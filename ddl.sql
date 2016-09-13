@@ -1,4 +1,4 @@
-CREATE TABLE Student ();
+CREATE TABLE Student (DATE dob);
 
 CREATE TABLE Quiz();
 
