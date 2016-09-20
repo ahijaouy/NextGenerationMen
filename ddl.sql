@@ -7,7 +7,14 @@ CREATE TABLE Student
 		PRIMARY KEY(id)
 	);
 
-CREATE TABLE PreRec(id INTEGER NOT NULL, ms_suspensions INTEGER, hs_suspensions INTEGER, hs_absenses INTEGER, PRIMARY KEY(id));
+CREATE TABLE PreRec
+    (
+        id INTEGER NOT NULL,
+        ms_suspensions INTEGER,
+        hs_suspensions INTEGER,
+        hs_absenses INTEGER,
+        PRIMARY KEY(id)
+    );
 
 CREATE TABLE CurrentRec
     (
