@@ -37,6 +37,7 @@ CREATE TABLE CurrentRec
         CONSTRAINT fk_currec FOREIGN KEY(cr_sid) REFERENCES Student(id),
         PRIMARY KEY(id)
     );
+
 CREATE TABLE SemesterRecord
     (
         id INTEGER NOT NULL AUTO_INCREMENT,
@@ -44,6 +45,7 @@ CREATE TABLE SemesterRecord
         grades TEXT NOT NULL,
         PRIMARY KEY(id)
     );
+
 CREATE TABLE SurveyData
     (
         id INTEGER NOT NULL AUTO_INCREMENT,
@@ -52,4 +54,3 @@ CREATE TABLE SurveyData
         CONSTRAINT fk_survey FOREIGN KEY(sd_sid) REFERENCES Student(id),
         PRIMARY KEY(id)
     );
-
