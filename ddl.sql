@@ -28,7 +28,7 @@ CREATE TABLE PreRec
 
 CREATE TABLE CurrentRec
     (
-        id INTEGER NOT NULL,
+        id INTEGER NOT NULL AUTO_INCREMENT,
         cr_sid INTEGER NOT NULL,
         gpa DECIMAL(5,2) NOT NULL,
         semester INTEGER NOT NULL,
@@ -42,6 +42,14 @@ CREATE TABLE SemesterRecord
         id INTEGER NOT NULL AUTO_INCREMENT,
         extra_curr TEXT,
         grades TEXT NOT NULL,
+        PRIMARY KEY(id)
+    );
+CREATE TABLE SurveyData
+    (
+        id INTEGER NOT NULL AUTO_INCREMENT,
+        sd_sid INTEGER NOT NULL,
+        surveyXML TEXT NOT NULL,
+        CONSTRAINT fk_survey FOREIGN KEY(sd_sid) REFERENCES Student(id),
         PRIMARY KEY(id)
     );
 
