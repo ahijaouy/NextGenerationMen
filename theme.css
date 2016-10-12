@@ -1,0 +1,15 @@
+div {
+    border: 3px solid black;
+}
+
+#boo {
+    border: 3px solid black;
+}
+
+.box {
+    border: 3px solid black;
+}
+
+body {
+    background-color: red;
+}

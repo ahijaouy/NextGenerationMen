@@ -44,4 +44,3 @@ CREATE TABLE SemesterRecord
         grades TEXT NOT NULL,
         PRIMARY KEY(id)
     );
-
