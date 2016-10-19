@@ -4,29 +4,31 @@ div {
     margin: 20px 20px 20px 20px;
 }
 
+.rightBox {
+    width: 300px;
+}
+
 #titleBox {
-    height: 100px;
-    width: 150px;
+    height: 200px;
 }
 
 #topRightBox {
     position: absolute;
     top: 0px;
-    left: 184px;
-    width: 500px;
-    height: 100px;
+    left: 344px;
+    width: 1000px;
+    height: 200px;
 }
 
 #scrollingBox {
-    width: 150px;
     height: 500px;
 }
 
 #contentBox {
     float:left;
     position: absolute;
-    top: 124px;
-    left: 184px;
-    width: 500px;
+    top: 224px;
+    left: 344px;
+    width: 1000px;
     height: 500px;
 }
