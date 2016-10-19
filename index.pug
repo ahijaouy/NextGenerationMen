@@ -1,17 +1,15 @@
 DOCTYPE
 html
-   head
-        link(rel='stylesheet', ref='/theme.css')
+    head
         title= title
-   body
-      div
-            p Testing Testing
-      div#boo(style = {
-                    width:'100px'})
+        style
+            include theme.css
+    body
+        #titleBox
+            p Next Generation Men
+        #topRightBox
             p Testing Testing 2
-      div.box(style = {
-                    position: 'absolute',
-                    right:'0px', top:'0px',
-                    height:'100px',
-                    width:'500px'})
+        #scrollingBox
             p Testing Testing 3
+        #contentBox
+            p Testing Testing 4

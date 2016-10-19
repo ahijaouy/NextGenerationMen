@@ -1,11 +1,10 @@
 var express = require('express');
 var app = express();
 
-
-
-app.set('views', '.')
+app.set('views','.');
 
 app.set('view engine', 'pug');
+//app.use(express.static(__myapp));
 
 app.get('/', function (req, res) {
   res.render('index', { title: 'Hey',
