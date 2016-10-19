@@ -1,0 +1,32 @@
+div {
+    border: 2px solid black;
+    border-radius: 10px;
+    margin: 20px 20px 20px 20px;
+}
+
+#titleBox {
+    height: 100px;
+    width: 150px;
+}
+
+#topRightBox {
+    position: absolute;
+    top: 0px;
+    left: 184px;
+    width: 500px;
+    height: 100px;
+}
+
+#scrollingBox {
+    width: 150px;
+    height: 500px;
+}
+
+#contentBox {
+    float:left;
+    position: absolute;
+    top: 124px;
+    left: 184px;
+    width: 500px;
+    height: 500px;
+}
