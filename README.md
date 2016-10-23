@@ -6,7 +6,7 @@
   - `cd NextGenerationMen`
   - `npm install`
   - install/confirm db instance
-  
+
 ##How to use
   - type `nodejs server.js` to run non-persistent test
   - confirm db activity with `idk_yet_lol`
@@ -15,6 +15,8 @@
 ##Action Items
   - Replace `cassandra-store` with db choice's store for login cookie persistence
   - Integrate static website
+  - Put favicon in as `/utilities/logo.ico`
+  - Create valid database login credentials in `database.js`
 
 ##To use PM2 (our choice for persistence management)
   In project root, run `pm2 start server.js --watch --name="ngm" -i ##`, where `##` is the number of node instances needed (this will load balance requests, and auto restart the server on file changes)
