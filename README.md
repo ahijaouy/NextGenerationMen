@@ -1,4 +1,11 @@
 # NextGenerationMen- Epic Intentions Readme
+
+##Cloning instructions
+  - `cd` to where you want to store the project
+  - `git clone https://github.gatech.edu/ahijaouy3/NextGenerationMen`
+  - `cd NextGenerationMen`
+  - `npm install`
+  - install/confirm db instance
 ##How to use
   - type `nodejs server.js` to run non-persistent test
   - confirm db activity with `idk_yet_lol`
