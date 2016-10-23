@@ -14,7 +14,7 @@ var sqlProtect  = require('sql-injection');
 var helmet      = require('helmet');
 var favicon     = require('express-favicon');
 var flash       = require('connect-flash');
-var cassStore   = require('cassandra-store'); //UPDATE THIS
+//var cassStore   = require('cassandra-store'); //UPDATE THIS
 
 //database plugins; needs passport object
 require('./config/passport')(passport);
