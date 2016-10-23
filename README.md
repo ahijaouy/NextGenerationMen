@@ -1,7 +1,8 @@
 # NextGenerationMen- Epic Intentions Readme
 
-##TODO:
-    Replace cassandra-store with db choice's store for login cookie persistence
+##Action Items:
+    - Replace `cassandra-store` with db choice's store for login cookie persistence
+    - Integrate static website
 
 ##To use PM2 (our choice for persistence management)
   In project root, run `pm2 start server.js --watch --name="ngm" -i ##`, where `##` is the number of node instances needed (this will load balance requests, and auto restart the server on file changes)
