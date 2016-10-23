@@ -3,6 +3,7 @@
   - type `nodejs server.js` to run non-persistent test
   - confirm db activity with `idk_yet_lol`
   - navigate to `localhost:80` on `HTTP` to view project (replace `localhost` with external AWS IP if needed)
+
 ##Action Items
   - Replace `cassandra-store` with db choice's store for login cookie persistence
   - Integrate static website
