@@ -1,6 +1,6 @@
 # NextGenerationMen- Epic Intentions Readme
 
-##Action Items:
+##Action Items
     - Replace `cassandra-store` with db choice's store for login cookie persistence
     - Integrate static website
 
