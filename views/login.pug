@@ -1,0 +1,19 @@
+doctype html
+html
+  head
+    title= 'Start to login'
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    link(href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css', rel='stylesheet', media='screen')
+    link(href='https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css', rel='stylesheet', media='screen')
+    style.
+      body {
+        padding-top:80px;
+      }
+  body
+    div(class='container')
+      div(class='col-sm-6 col-sm-offset-3')
+        h1(class='fa fa-sign-in') Login
+        #title
+          if title.length > 0
+            - var wow = title
+            div(class='alert alert-danger') title

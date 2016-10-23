@@ -32,7 +32,7 @@ module.exports = function(app, passport) {
 	}));
 
 	app.get('/auth', isLoggedIn, function(req, res) {
-		res.render('safe', {
+		res.render('auth', {
 			user : req.user
 		});
 	});
