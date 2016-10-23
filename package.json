@@ -1,0 +1,20 @@
+{
+  "name": "ngm",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "~1.0.1",
+    "express": "~4.0.0",
+    "passport": "^0.3.0",
+    "passport-local": "^1.0.0",
+    "pug": "^0.1.0",
+    "validator": "5.4.0",
+    "morgan": "~1.7.0",
+    "express-session": "^1.7.6",
+    "cookie-parser": "1.4.3",
+    "connect-ensure-login": "^0.1.1",
+    "sql-injection": "0.0.5",
+    "helmet": "~2.1.1",
+    "express-favicon": "~1.0.1",
+    "async": "~2.0.0"
+  }
+}
