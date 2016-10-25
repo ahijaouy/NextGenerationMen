@@ -5,11 +5,17 @@ html
         style
             include theme.css
     body
-        .rightBox#titleBox
-            p Next Generation Men
-        #topRightBox
-            p Testing Testing 2
-        .rightBox#scrollingBox
-            p Testing Testing 3
-        #contentBox
-            p Testing Testing 4
+        //.rightBox#titleBox
+        .leftBox
+            .logo
+                img(src="https://www.ngmatlanta.org/wp-content/uploads/2014/11/logo-white.png")
+            .menu
+                a(id ="menuButton" href='/students') Students
+                a(id ="menuButton" href='/schools') Schools
+                a(id ="menuButton" href='/staff') Staff
+                a(id ="menuButton" href='/survey') Surveys
+        
+        .rightBox
+            block content
+            
+      
