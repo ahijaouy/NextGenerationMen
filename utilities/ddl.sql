@@ -41,8 +41,10 @@ CREATE TABLE CurrentRec
 CREATE TABLE SemesterRecord
     (
         id INTEGER NOT NULL AUTO_INCREMENT,
+        sr_sid INTEGER NOT NULL,
         extra_curr TEXT,
         grades TEXT NOT NULL,
+        CONSTRAINT fk_semrec FOREIGN KEY(sr_sid) REFERENCES Student(id),
         PRIMARY KEY(id)
     );
 
