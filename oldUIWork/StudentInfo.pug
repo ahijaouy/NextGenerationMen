@@ -1,0 +1,59 @@
+extends index.pug
+
+append head
+    link(href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css', rel='stylesheet', media='screen')
+    link(href='https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css', rel='stylesheet', media='screen')
+block content
+    form
+        .sectionTitle
+            p
+                b General Information
+        .form
+            label
+                mark First Name
+            input
+        .form
+            label Last Name
+            input
+        .form
+            label ID Number
+            input
+        .form
+            label Date of Birth
+            input
+        .form
+            label Date of entry into Next Generation Men
+            input
+        .sectionTitle
+            p
+                b Pre-Program Information
+        .form
+            label # of Middle-School Suspensions
+            input
+        .form
+            label # of High-School Suspensions
+            input
+        .form
+            label # of High-School Absences
+            input
+        .sectionTitle
+            p
+                b Academic Information
+        .form
+            ul(class='nav navbar-nav')
+                li(class='active')
+                    a(href = "#") Hi3
+                li
+                    a(href = "#") Hello
+                li(class ='dropdown')
+                    a(href = '#'
+                      class='dropdown-toggle'
+                      data-toggle='dropdown')
+                        My Profile
+                    ul(class = 'dropdown-menu')
+                        li
+                            a(href='#') Friends
+                        li
+                            a(href='#') Photos
+                        li
+                            a(href='#') Settings

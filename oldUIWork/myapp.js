@@ -26,6 +26,12 @@ app.get('/survey', function (req, res) {
   res.render('survey', { title: 'Hey',
                         message: 'Hello there!'});
 });
+
+app.get('/StudentInfo', function (req, res) {
+  res.render('StudentInfo', { title: 'Hey',
+                        message: 'Hello there!'});
+});
+
 app.listen(3000, function() {
     console.log('example app listening on port 3000!');
 });

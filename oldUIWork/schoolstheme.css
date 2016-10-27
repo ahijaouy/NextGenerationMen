@@ -3,6 +3,7 @@
     width: 88%;
     height: 100%;
     right: 0;
+    background-color: red;
 }
 .leftBox {
     position: absolute;

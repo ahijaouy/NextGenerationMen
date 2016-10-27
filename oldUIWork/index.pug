@@ -1,6 +1,7 @@
 DOCTYPE
 html
     head
+        block head
         title= title
         style
             include theme.css
@@ -14,8 +15,7 @@ html
                 a(id ="menuButton" href='/schools') Schools
                 a(id ="menuButton" href='/staff') Staff
                 a(id ="menuButton" href='/survey') Surveys
-        
+                a(id ="menuButton" href='/StudentInfo') Student Info
+
         .rightBox
             block content
-            
-      
