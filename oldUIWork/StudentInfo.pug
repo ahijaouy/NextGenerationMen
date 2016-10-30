@@ -5,6 +5,7 @@ append head
     include Accordion.pug
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     link(href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css', rel='stylesheet', media='screen')
+    link(href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css', rel='stylesheet', media='screen')
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js")
     script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js", integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa", crossorigin="anonymous")
 block content
@@ -77,15 +78,27 @@ block content
                   a(role = "menuitem"
                     tabindex = "-1"
                     href = "#") Html
-        +accordion(grades)
-            +accordion-item-default('9th grade stuff', grades, 'other stuff')
-                p Check this out
+        +accordion('grades')
+            +accordion-item-default('grades', 'grades', true)
+                label Semester 1
+                input
+                label Semester 2
+                input
             +accordion-item-primary('10th grade stuff', 'grades', 'other stuff')
-                p Check this out2
+                label Semester 1
+                input
+                label Semester 2
+                input
             +accordion-item-info('11th grade stuff', 'grades', 'other stuff')
-                p Check this out3
+                label Semester 1
+                input
+                label Semester 2
+                input
             +accordion-item-success('12th grade stuff', 'grades', 'other stuff')
-                p Check this out4
+                label Semester 1
+                input
+                label Semester 2
+                input
 
 
             //- a(href = '#demo' class = 'btn btn-info' data-toggle = 'collapse' ) We're collapsing!
