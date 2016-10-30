@@ -14,8 +14,7 @@ block content
             p
                 b General Information
         .form
-            label
-                mark First Name
+            label First Name
             input
         .form
             label Last Name
@@ -61,44 +60,108 @@ block content
             //-                 a(href='#') Photos
             //-             li
             //-             a(href='#') Settings
-        div.dropdown
-            //button(class = 'dropdown-toggle'
-            button.btn.btn-default.dropdown-toggle(
-                   type = 'button'
-                   data-toggle = 'dropdown') Dropdown example
-                   span.caret
-            ul.dropdown-menu(
-               role = "menu"
-               aria-labelledby = "dropdownMenu1")
-                li(role = "presentation")
-                    a(role = "menuitem"
-                      tabindex = "-1"
-                      href = "#") Html
-                li(role = "presentation")
-                  a(role = "menuitem"
-                    tabindex = "-1"
-                    href = "#") Html
+        //- div.dropdown
+        //-     //button(class = 'dropdown-toggle'
+        //-     button.btn.btn-default.dropdown-toggle(
+        //-            type = 'button'
+        //-            data-toggle = 'dropdown') Dropdown example
+        //-            span.caret
+        //-     ul.dropdown-menu(
+        //-        role = "menu"
+        //-        aria-labelledby = "dropdownMenu1")
+        //-         li(role = "presentation")
+        //-             a(role = "menuitem"
+        //-               tabindex = "-1"
+        //-               href = "#") Html
+        //-         li(role = "presentation")
+        //-           a(role = "menuitem"
+        //-             tabindex = "-1"
+        //-             href = "#") Html
         +accordion('grades')
-            +accordion-item-default('grades', 'grades', true)
-                label Semester 1
-                input
-                label Semester 2
-                input
-            +accordion-item-primary('10th grade stuff', 'grades', 'other stuff')
-                label Semester 1
-                input
-                label Semester 2
-                input
-            +accordion-item-info('11th grade stuff', 'grades', 'other stuff')
-                label Semester 1
-                input
-                label Semester 2
-                input
-            +accordion-item-success('12th grade stuff', 'grades', 'other stuff')
-                label Semester 1
-                input
-                label Semester 2
-                input
+
+            //+accordion-item-default('9th Grade', 'grades', true)
+            .panel(class='panel-default')
+                .panel-heading(role='tab', id='heading9th')
+                    h4.panel-title
+                        a(data-toggle="collapse", data-parent="accordiongrades",
+                          href = '#collapse9th', aria-expanded = 'true',
+                          aria-controls='collapseOne') 9th Grade
+                unless expanded
+                    .panel-collapse.collapse(id="collapse9th", role='tabpanel'
+                                            aria-labelledby="heading9th")
+                        .panel-body
+                            label Semester 1
+                            input
+                            label Semester 2
+                            input
+                .panel(class='panel-default')
+                    .panel-heading(role='tab', id='heading10th')
+                        h4.panel-title
+                            a(data-toggle="collapse", data-parent="accordiongrades",
+                              href = '#collapse10th', aria-expanded = 'true',
+                              aria-controls='collapseOne') 10th Grade
+                    unless expanded
+                        .panel-collapse.collapse(id="collapse10th", role='tabpanel'
+                                                aria-labelledby="heading10th")
+                            .panel-body
+                                label Semester 1
+                                input
+                                label Semester 2
+                                input
+                    .panel(class='panel-default')
+                        .panel-heading(role='tab', id='heading11th')
+                            h4.panel-title
+                                a(data-toggle="collapse", data-parent="accordiongrades",
+                                  href = '#collapse11th', aria-expanded = 'true',
+                                  aria-controls='collapseOne') 11th Grade
+                        unless expanded
+                            .panel-collapse.collapse(id="collapse11th", role='tabpanel'
+                                                    aria-labelledby="heading11th")
+                                .panel-body
+                                    label Semester 1
+                                    input
+                                    label Semester 2
+                                    input
+                    .panel(class='panel-default')
+                        .panel-heading(role='tab', id='heading12th')
+                            h4.panel-title
+                                a(data-toggle="collapse", data-parent="accordiongrades",
+                                  href = '#collapse12th', aria-expanded = 'true',
+                                  aria-controls='collapseOne') 12th Grade
+                        unless expanded
+                            .panel-collapse.collapse(id="collapse12th", role='tabpanel'
+                                                    aria-labelledby="heading12th")
+                                .panel-body
+                                    label Semester 1
+                                    input
+                                    label Semester 2
+                                    input
+                //- else
+                    //- .panel-collapse.collapse.in(id = 'collapse9th', role = 'tabpanel',
+                    //-                             aria-labelledby='heading9th')
+                    //-     .panel-body
+                    //-         label Semester 1
+                    //-         input
+                    //-         label Semester 2
+                    //-         input
+            //- +accordion-item-primary('10th Grade', 'grades', expanded)
+            //-     if expanded
+            //-         label Semester 1
+            //-         input
+            //-         label Semester 2
+            //-         input
+            //-     else
+            //-
+            //- +accordion-item-info('11th Grade', 'grades', 'other stuff')
+            //-     label Semester 1
+            //-     input
+            //-     label Semester 2
+            //-     input
+            //- +accordion-item-success('12th Grade', 'grades', 'other stuff')
+            //-     label Semester 1
+            //-     input
+            //-     label Semester 2
+            //-     input
 
 
             //- a(href = '#demo' class = 'btn btn-info' data-toggle = 'collapse' ) We're collapsing!

@@ -6,7 +6,6 @@ mixin accordion(id)
 //- accordion-item
 mixin accordion-item(type,title,parent,expanded)
 	-var id = title.replace(/\s+/g,"");
-	-console.log(id);
 	.panel(class="panel-#{type}")
 		.panel-heading(role="tab", id="heading#{title}")
 			h4.panel-title
