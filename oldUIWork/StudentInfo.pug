@@ -12,7 +12,8 @@ block content
     form.form-horizontal
         .form-group
             .col-sm-2
-                p General Information
+                p
+                    b General Information
         .form-group
             .col-sm-2
                 label First Name
@@ -42,43 +43,45 @@ block content
             .col-sm-2
                 label Parent 1 Name
             .col-sm-10
-                input.form-control(type = 'PhoneNumber')
+                input.form-control(type = 'text' placeholder = 'Parent 1 Name')
         .form-group
             .col-sm-2
                 label Parent 1 Phone Number
             .col-sm-10
-                input.form-control
+                input.form-control(type = 'tel' placeholder = 'Parent 1 Phone Number')
         .form-group
             .col-sm-2
                 label Parent 2 Name
             .col-sm-10
-                input.form-control
+                input.form-control(placeholder = 'Parent 2 Name')
         .form-group
             .col-sm-2
                 label Parent 2 Phone Number
             .col-sm-10
-                input.form-control
+                input.form-control(type = 'tel' placeholder = 'Parent 2 Phone Number')
         .form-group
             .col-sm-2
-                p Pre-Program Information
+                p
+                    b Pre-Program Information
         .form-group
             .col-sm-2
                 label # of Middle-School Suspensions
             .col-sm-10
-                input.form-control
+                input.form-control(type = 'number' placeholder = '# of Middle-School Suspensions')
         .form-group
             .col-sm-2
                 label # of High-School Suspensions
             .col-sm-10
-                input.form-control
+                input.form-control(type = 'number' placeholder = '# of High-School Suspensions')
         .form-group
             .col-sm-2
                 label # of High-School Absences
             .col-sm-10
-                input.form-control
+                input.form-control(type = 'number' placeholder = '# of High-School Absences')
         .form-group
             .col-sm-2
-                p Academic Information
+                p
+                    b Academic Information
         .form
             +accordion('grades')
                 .panel(class='panel-default')
@@ -91,7 +94,8 @@ block content
                         .panel-collapse.collapse(id="collapse9th", role='tabpanel'
                                                 aria-labelledby="heading9th")
                             .panel-body
-                                label Semester 1
+                                .col-sm-2
+                                    label # of
                                 input
                                 label Semester 2
                                 input
