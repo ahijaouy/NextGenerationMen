@@ -9,66 +9,76 @@ append head
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js")
     script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js", integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa", crossorigin="anonymous")
 block content
-    form
-        .sectionTitle
-            p General Information
+    form.form-horizontal
         .form-group
-            label.col-sm-2.control-label First Name
-            input.form-control(type = 'text' id = 'inputFirstName' placeholder = 'First Name')
+            .col-sm-2
+                p General Information
         .form-group
-            label Last Name
-            input.form-control(type = 'text' id = 'inputLastName' placeholder = 'Last Name')
+            .col-sm-2
+                label First Name
+            .col-sm-10
+                input.form-control(type = 'text' id = 'inputFirstName' placeholder = 'First Name')
         .form-group
-            label ID Number
-            input.form-control(type = 'number' placeholder = 'ID Number')
+            .col-sm-2
+                label Last Name
+            .col-sm-10
+                input.form-control(type = 'text' id = 'inputLastName' placeholder = 'Last Name')
         .form-group
-            label Date of Birth
-            .dropdown
-                button.btn.dropdown-toggle(
-                    type = 'button' data-toggle = 'dropdown') Dropdown Example
-                    span.caret
-                ul.dropdown-menu
-                    li
-                        a(href = '#') html
-                        a(href = '#') css
-                        a(href = '#') javascript
-            .dropdown
-                button.btn.dropdown-toggle(
-                    type = 'button' data-toggle = 'dropdown') Dropdown Example
-                    span.caret
-                ul.dropdown-menu
-                    li
-                        a(href = '#') html
-                        a(href = '#') css
-                        a(href = '#') javascript
+            .col-sm-2
+                label ID Number
+            .col-sm-10
+                input.form-control(type = 'number' placeholder = 'ID Number')
         .form-group
-            label Date of entry into Next Generation Men
-            input.form-control
+            .col-sm-2
+                label Date of Birth
+            .col-sm-10
+                input.form-control(type = 'date')
         .form-group
-            label Parent 1 Name
-            input.form-control
+            .col-sm-2
+                label Date of entry into Next Generation Men
+            .col-sm-10
+                input.form-control(type = 'date')
         .form-group
-            label Parent 1 Phone Number
-            input.form-control
+            .col-sm-2
+                label Parent 1 Name
+            .col-sm-10
+                input.form-control(type = 'PhoneNumber')
         .form-group
-            label Parent 2 Name
-            input.form-control
+            .col-sm-2
+                label Parent 1 Phone Number
+            .col-sm-10
+                input.form-control
         .form-group
-            label Parent 2 Phone Number
-            input.form-control
-        .sectionTitle
-            p Pre-Program Information
+            .col-sm-2
+                label Parent 2 Name
+            .col-sm-10
+                input.form-control
         .form-group
-            label # of Middle-School Suspensions
-            input.form-control
+            .col-sm-2
+                label Parent 2 Phone Number
+            .col-sm-10
+                input.form-control
         .form-group
-            label # of High-School Suspensions
-            input.form-control
+            .col-sm-2
+                p Pre-Program Information
         .form-group
-            label # of High-School Absences
-            input.form-control
-        .sectionTitle
-            p Academic Information
+            .col-sm-2
+                label # of Middle-School Suspensions
+            .col-sm-10
+                input.form-control
+        .form-group
+            .col-sm-2
+                label # of High-School Suspensions
+            .col-sm-10
+                input.form-control
+        .form-group
+            .col-sm-2
+                label # of High-School Absences
+            .col-sm-10
+                input.form-control
+        .form-group
+            .col-sm-2
+                p Academic Information
         .form
             +accordion('grades')
                 .panel(class='panel-default')
@@ -127,8 +137,9 @@ block content
                                         input
                                         label Semester 2
                                         input
-        .sectionTitle
-            p Personality quiz
+        .form-group
+            .col-sm-2
+                p Personality quiz
         .form
             +accordion('Personality Quiz')
                 .panel(class='panel-default')
