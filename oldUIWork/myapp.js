@@ -7,7 +7,7 @@ app.set('view engine', 'pug');
 //app.use(express.static(__myapp));
 
 app.get('/', function (req, res) {
-  res.render('index', { title: 'Hey',
+  res.render('dashboard', { title: 'Hey',
                         message: 'Hello there!'});
 });
 app.get('/students', function (req, res) {
@@ -30,6 +30,15 @@ app.get('/survey', function (req, res) {
 app.get('/StudentInfo', function (req, res) {
   res.render('StudentInfo', { title: 'Hey',
                         message: 'Hello there!'});
+});
+app.get('/dashboard', function (req, res) {
+  res.render('dashboard', { });
+});
+app.get('/test1', function (req, res) {
+  res.render('test1', { });
+});
+app.get('/StudentInfo1', function (req, res) {
+  res.render('StudentInfo1', { });
 });
 
 app.listen(3000, function() {

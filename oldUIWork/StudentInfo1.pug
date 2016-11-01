@@ -1,0 +1,108 @@
+extends dashboard.pug
+
+append head
+    include dropdown.pug
+    include Accordion.pug
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    link(href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css', rel='stylesheet', media='screen')
+    link(href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css', rel='stylesheet', media='screen')
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js")
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js", integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa", crossorigin="anonymous")
+block content
+    form
+        .sectionTitle
+            p
+                b General Information
+        .form
+            label
+                mark First Name
+            input
+        .form
+            label Last Name
+            input
+        .form
+            label ID Number
+            input
+        .form
+            label Date of Birth
+            input
+        .form
+            label Date of entry into Next Generation Men
+            input
+        .sectionTitle
+            p
+                b Pre-Program Information
+        .form
+            label # of Middle-School Suspensions
+            input
+        .form
+            label # of High-School Suspensions
+            input
+        .form
+            label # of High-School Absences
+            input
+        .sectionTitle
+            p
+                b Academic Information
+        .form
+            //- ul(class='nav navbar-nav')
+            //-     li(class='active')
+            //-         a(href = "#") Hi3
+            //-     li
+            //-         a(href = "#") Hello
+            //-     li(class ='dropdown')
+            //-         a(href = '#'
+            //-           class='dropdown-toggle'
+            //-           data-toggle='dropdown') My profile
+            //-         ul(class = 'dropdown-menu')
+            //-             li
+            //-                 a(href='#') Friends
+            //-             li
+            //-                 a(href='#') Photos
+            //-             li
+            //-             a(href='#') Settings
+        div.dropdown
+            //button(class = 'dropdown-toggle'
+            button.btn.btn-default.dropdown-toggle(
+                   type = 'button'
+                   data-toggle = 'dropdown') Dropdown example
+                   span.caret
+            ul.dropdown-menu(
+               role = "menu"
+               aria-labelledby = "dropdownMenu1")
+                li(role = "presentation")
+                    a(role = "menuitem"
+                      tabindex = "-1"
+                      href = "#") Html
+                li(role = "presentation")
+                  a(role = "menuitem"
+                    tabindex = "-1"
+                    href = "#") Html
+        +accordion('grades')
+            +accordion-item-default('grades', 'grades', true)
+                label Semester 1
+                input
+                label Semester 2
+                input
+            +accordion-item-primary('10th grade stuff', 'grades', 'other stuff')
+                label Semester 1
+                input
+                label Semester 2
+                input
+            +accordion-item-info('11th grade stuff', 'grades', 'other stuff')
+                label Semester 1
+                input
+                label Semester 2
+                input
+            +accordion-item-success('12th grade stuff', 'grades', 'other stuff')
+                label Semester 1
+                input
+                label Semester 2
+                input
+
+
+            //- a(href = '#demo' class = 'btn btn-info' data-toggle = 'collapse' ) We're collapsing!
+        //- -var superStuff = ["s","s","s"];
+        //- -var stuff = ["something", superStuff, "something3"];
+        //- +dropdown('Please work',stuff)
+        //- +dropup('Please work pt 2', "something", "something 2")

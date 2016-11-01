@@ -1,1 +1,19 @@
-extends index.pug
+extends dashboard.pug
+
+block navBar
+  ul.nav.navbar-nav
+    li
+      a(href='dashboard') Overview
+    li
+      a(href='students') Students
+    li.active
+      a(href='schools') Schools
+    li
+      a(href='staff') Staff
+    li
+      a(href='survey') Surveys
+    li
+      a(href='#myProfile') My Profile
+
+block content
+  h1 Schools Block
