@@ -1,5 +1,9 @@
 extends dashboard.pug
 
+append head
+    include dropdown.pug
+    include Accordion.pug
+
 block navBar
   ul.nav.navbar-nav
     li
