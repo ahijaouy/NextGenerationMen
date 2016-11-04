@@ -1,0 +1,33 @@
+.modal-dialog
+  .modal-content
+    .modal-header
+      button(type="button" class="close" data-dismiss="modal") &times;
+      h4.modal-title(style="text-align-last:center") School Info
+    .modal-body
+      .container-fluid
+        //enter content
+        form.form-horizontal
+          .form-group
+            .col-sm-12
+                p
+                  b School Information
+          .form-group
+            .col-sm-2
+                label School Name
+            .col-sm-10
+                input.form-control(type = 'text' placeholder = 'School Name')
+          .form-group
+              .col-sm-2
+                  label Number of NGM Students
+              .col-sm-10
+                  input.form-control(type = 'number' placeholder = 'Number of NGM Students')
+          .form-group
+              .col-sm-2
+                  label Contact Person
+              .col-sm-10
+                  input.form-control(type = 'text' placeholder = 'Contact Person')
+          .form-group
+              .col-sm-2
+                  label Average GPA
+              .col-sm-10
+                  input.form-control(type = 'number' placeholder = 'Average Gpa')
