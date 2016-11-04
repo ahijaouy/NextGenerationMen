@@ -47,87 +47,8 @@ block content
         td input[x].name
 
 
-  #studentInfoModal.modal(role="dialog")
-    .modal-dialog
-      .modal-content
-        .modal-header
-          button(type="button" class="close" data-dismiss="modal") &times;
-          h4.modal-title(style="text-align-last:center") Student Info
-        .modal-body
-          .container-fluid
-            //enter content
-            form.form-horizontal
-              .form-group
-                .col-sm-2
-                    p
-                      b General Information
-              .form-group
-                .col-sm-2
-                    label First Name
-                .col-sm-10
-                    input.form-control(type = 'text' id = 'inputFirstName' placeholder = 'First Name')
-              .form-group
-              .col-sm-2
-                  label Last Name
-              .col-sm-10
-                  input.form-control(type = 'text' id = 'inputLastName' placeholder = 'Last Name')
-              .form-group
-
-                  .col-sm-2.col-md-2.col-lg-2
-                      label ID Number
-                  .clearfix.visible-lg-block
-                  .col-sm-10.col-md-10.col-lg-10
-                      input.form-control(type = 'number' placeholder = 'ID Number')
-              .form-group
-                  .col-sm-2
-                      label Date of Birth
-                  .col-sm-10
-                      input.form-control(type = 'date')
-              .form-group
-                  .col-sm-2
-                      label Date of entry into Next Generation Men
-                  .col-sm-10
-                      input.form-control(type = 'date')
-              .form-group
-                  .col-sm-2
-                      label Parent 1 Name
-                  .col-sm-10
-                      input.form-control(type = 'text' placeholder = 'Parent 1 Name')
-              .form-group
-                  .col-sm-2
-                      label Parent 1 Phone Number
-                  .col-sm-10
-                      input.form-control(type = 'tel' placeholder = 'Parent 1 Phone Number')
-              .form-group
-                  .col-sm-2
-                      label Parent 2 Name
-                  .col-sm-10
-                      input.form-control(placeholder = 'Parent 2 Name')
-              .form-group
-                  .col-sm-2
-                      label Parent 2 Phone Number
-                  .col-sm-10
-                      input.form-control(type = 'tel' placeholder = 'Parent 2 Phone Number')
-              .form-group
-                  .col-sm-2
-                      p
-                          b Pre-Program Information
-              .form-group
-                  .col-sm-2
-                      label # of Middle-School Suspensions
-                  .col-sm-10
-                      input.form-control(type = 'number' placeholder = '# of Middle-School Suspensions')
-              .form-group
-                  .col-sm-2
-                      label # of High-School Suspensions
-                  .col-sm-10
-                      input.form-control(type = 'number' placeholder = '# of High-School Suspensions')
-              .form-group
-                  .col-sm-2
-                      label # of High-School Absences
-                  .col-sm-10
-                      input.form-control(type = 'number' placeholder = '# of High-School Absences')
-
+  #staffInfoModal.modal(role="dialog")
+      include staffInfoModal.pug
 
 append scripts
   //script(src='jquery-3.1.1.slim.min.js')
