@@ -1,13 +1,15 @@
+include Accordion.pug
+
 .form
     +accordion('grades')
         .panel(class='panel-default')
             .panel-heading(role='tab', id='heading9th')
                 h4.panel-title
                     a(data-toggle="collapse", data-parent="accordiongrades",
-                      href = '#collapse9th', aria-expanded = 'true',
+                      href = '#add9th', aria-expanded = 'true',
                       aria-controls='collapseOne') 9th Grade
             unless expanded
-                .panel-collapse.collapse(id="collapse9th", role='tabpanel'
+                .panel-collapse.collapse(id="add9th", role='tabpanel'
                                         aria-labelledby="heading9th")
                     .panel-body
                         label Semester 1
@@ -18,10 +20,10 @@
                 .panel-heading(role='tab', id='heading10th')
                     h4.panel-title
                         a(data-toggle="collapse", data-parent="accordiongrades",
-                          href = '#collapse10th', aria-expanded = 'true',
+                          href = '#add10th', aria-expanded = 'true',
                           aria-controls='collapseOne') 10th Grade
                 unless expanded
-                    .panel-collapse.collapse(id="collapse10th", role='tabpanel'
+                    .panel-collapse.collapse(id="add10th", role='tabpanel'
                                             aria-labelledby="heading10th")
                         .panel-body
                             label Semester 1
@@ -32,10 +34,10 @@
                     .panel-heading(role='tab', id='heading11th')
                         h4.panel-title
                             a(data-toggle="collapse", data-parent="accordiongrades",
-                              href = '#collapse11th', aria-expanded = 'true',
+                              href = '#add11th', aria-expanded = 'true',
                               aria-controls='collapseOne') 11th Grade
                     unless expanded
-                        .panel-collapse.collapse(id="collapse11th", role='tabpanel'
+                        .panel-collapse.collapse(id="add11th", role='tabpanel'
                                                 aria-labelledby="heading11th")
                             .panel-body
                                 label Semester 1
@@ -46,10 +48,10 @@
                     .panel-heading(role='tab', id='heading12th')
                         h4.panel-title
                             a(data-toggle="collapse", data-parent="accordiongrades",
-                              href = '#collapse12th', aria-expanded = 'true',
+                              href = '#add12th', aria-expanded = 'true',
                               aria-controls='collapseOne') 12th Grade
                     unless expanded
-                        .panel-collapse.collapse(id="collapse12th", role='tabpanel'
+                        .panel-collapse.collapse(id="add12th", role='tabpanel'
                                                 aria-labelledby="heading12th")
                             .panel-body
                                 label Semester 1
@@ -66,10 +68,10 @@
                 .panel-heading(role='tab', id='headingsurveypt1')
                     h4.panel-title
                         a(data-toggle="collapse", data-parent="accordiongrades",
-                          href = '#collapsesurveypt1', aria-expanded = 'true',
+                          href = '#addsurvey1', aria-expanded = 'true',
                           aria-controls='collapseOne') GRIT Quesions
                 unless expanded
-                    .panel-collapse.collapse(id="collapsesurveypt1", role='tabpanel'
+                    .panel-collapse.collapse(id="addsurvey1", role='tabpanel'
                                             aria-labelledby="headingsurveypt1")
                         .panel-body
                             label Question 1
@@ -80,10 +82,10 @@
                     .panel-heading(role='tab', id='headingsurveypt2')
                         h4.panel-title
                             a(data-toggle="collapse", data-parent="accordiongrades",
-                              href = '#collapsesurveypt2', aria-expanded = 'true',
+                              href = '#addsurvey2', aria-expanded = 'true',
                               aria-controls='collapseOne') Problem-Solving Questions
                     unless expanded
-                        .panel-collapse.collapse(id="collapsesurveypt2", role='tabpanel'
+                        .panel-collapse.collapse(id="addsurvey2", role='tabpanel'
                                                 aria-labelledby="headingsurveypt2")
                             .panel-body
                                 label Question 1
@@ -91,13 +93,13 @@
                                 label Question 2
                                 input
                     .panel(class='panel-default')
-                        .panel-heading(role='tab', id='headingsurveypt3')
+                        .panel-heading(role='tab', id='headingaddsurvey3')
                             h4.panel-title
                                 a(data-toggle="collapse", data-parent="accordiongrades",
-                                  href = '#collapsesurveypt3', aria-expanded = 'true',
+                                  href = '#addsurvey3', aria-expanded = 'true',
                                   aria-controls='collapseOne') Academic Self-Efficacy Questions
                         unless expanded
-                            .panel-collapse.collapse(id="collapsesurveypt3", role='tabpanel'
+                            .panel-collapse.collapse(id="addsurvey3", role='tabpanel'
                                                     aria-labelledby="headingsurveypt3")
                                 .panel-body
                                     label Question 1
@@ -108,10 +110,10 @@
                         .panel-heading(role='tab', id='headingsurveypt4')
                             h4.panel-title
                                 a(data-toggle="collapse", data-parent="accordiongrades",
-                                  href = '#collapsesurveypt4', aria-expanded = 'true',
+                                  href = '#addsurvey4', aria-expanded = 'true',
                                   aria-controls='collapseOne') Interpersonal Skills Questions
                         unless expanded
-                            .panel-collapse.collapse(id="collapsesurveypt4", role='tabpanel'
+                            .panel-collapse.collapse(id="addsurvey4", role='tabpanel'
                                                     aria-labelledby="headingsurveypt4")
                                 .panel-body
                                     label Question 1
@@ -122,10 +124,10 @@
                         .panel-heading(role='tab', id='headingsurveypt5')
                             h4.panel-title
                                 a(data-toggle="collapse", data-parent="accordiongrades",
-                                  href = '#collapsesurveypt5', aria-expanded = 'true',
+                                  href = '#addsurvey5', aria-expanded = 'true',
                                   aria-controls='collapseOne') Growth Mindset Questions
                         unless expanded
-                            .panel-collapse.collapse(id="collapsesurveypt5", role='tabpanel'
+                            .panel-collapse.collapse(id="addsurvey5", role='tabpanel'
                                                     aria-labelledby="headingsurveypt5")
                                 .panel-body
                                     label Question 1
@@ -136,10 +138,10 @@
                         .panel-heading(role='tab', id='headingsurveypt6')
                             h4.panel-title
                                 a(data-toggle="collapse", data-parent="accordiongrades",
-                                  href = '#collapsesurveypt6', aria-expanded = 'true',
+                                  href = '#addsurvey6', aria-expanded = 'true',
                                   aria-controls='collapseOne') Academic Behaviors Questions
                         unless expanded
-                            .panel-collapse.collapse(id="collapsesurveypt6", role='tabpanel'
+                            .panel-collapse.collapse(id="addsurvey6", role='tabpanel'
                                                     aria-labelledby="headingsurveypt6")
                                 .panel-body
                                     label Question 1
