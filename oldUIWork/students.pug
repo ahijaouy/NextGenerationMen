@@ -13,7 +13,7 @@ block navBar
     li
       a(href='survey') Surveys
     li
-      a(href='#myProfile') My Profile
+      a(href='myprofile') My Profile
 
 block content
   h1 Students
@@ -126,9 +126,6 @@ block content
           td 3.0
           td 12th
 
-    //for (x =0; x < input.size; x++)
-      tr
-        td input[x].name
   .btn.btn-default(type = 'submit' data-toggle = 'modal' data-target = '#addStudentModal') Add Student
 
   #addStudentModal.modal(role = 'dialog')
