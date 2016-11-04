@@ -18,6 +18,10 @@ app.get('/schools', function (req, res) {
   res.render('schools', { title: 'Hey',
                         message: 'Hello there!'});
 });
+app.get('/myprofile', function (req, res) {
+  res.render('myprofile', { title: 'Hey',
+                        message: 'Hello there!'});
+});
 app.get('/staff', function (req, res) {
   res.render('staff', { title: 'Hey',
                         message: 'Hello there!'});
