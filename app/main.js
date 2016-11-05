@@ -42,7 +42,7 @@ module.exports = function(app, passport) {
 		req.logout();
 		res.redirect('/');
 	});
-	app.get('/', function (req, res) {
+	app.get('/dashboard', function (req, res) {
 	  res.render('dashboard', { title: 'Hey',
 	                        message: 'Hello there!'});
 	});
