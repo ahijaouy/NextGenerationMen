@@ -29,6 +29,10 @@ app.use(favicon(__dirname + '/utilities/logo.ico')); //Make sure this exists
 app.set('view engine', 'pug')
 app.use(morgan('dev'));
 app.use(cookieParser());
+app.user(session({ cookie: { maxAge: 60000 },
+                  secret: 'keyboardingkat',
+                  resave: false,
+                  saveUninitialized: false}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
