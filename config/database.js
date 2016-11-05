@@ -1,9 +1,9 @@
 module.exports = {
     'connection': {
         'host': 'localhost',
-        'user': '######',
-        'password': '######'
+        'user': 'admin',
+        'password': 'password'
     },
-	'database': '####',
+	'database': 'ngm',
     'users_table': 'users'
 };
