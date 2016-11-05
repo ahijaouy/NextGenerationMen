@@ -42,10 +42,12 @@ module.exports = function(app, passport) {
 		req.logout();
 		res.redirect('/');
 	});
+
 	app.get('/dashboard', function (req, res) {
 	  res.render('dashboard', { title: 'Hey',
 	                        message: 'Hello there!'});
 	});
+	/*
 	app.get('/students', function (req, res) {
 	  res.render('students', { title: 'Hey',
 	                        message: 'Hello there!'});
@@ -70,6 +72,7 @@ module.exports = function(app, passport) {
 	app.get('/dashboard', function (req, res) {
 	  res.render('dashboard', { });
 	});
+	*/
 };
 
 function isLoggedIn(req, res, next) {
