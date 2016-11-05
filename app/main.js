@@ -4,7 +4,8 @@ module.exports = function(app, passport) {
 	});
 
 	app.get('/login', function(req, res) {
-		res.render('login', { message: req.flash('loginMessage') });
+		res.render('login', { message: req.flash('loginMessage'),
+	 							title: 'Wowowow'});
 	});
 	app.post('/login', passport.authenticate('local-login', {
             successRedirect : '/auth',
