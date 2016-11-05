@@ -27,6 +27,9 @@ app.use(favicon(__dirname + '/utilities/logo.ico')); //Make sure this exists
 
 //some express additions
 app.set('view engine', 'pug')
+app.get('/', function(req, res) {
+    res.render('dashboard');
+});
 app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(session({ cookie: { maxAge: 60000 },
