@@ -1,0 +1,87 @@
+extends dashboard.pug
+
+block navBar
+  ul.nav.navbar-nav
+    li
+      a(href='dashboard') Overview
+    li
+      a(href='students') Students
+    li
+      a(href='schools') Schools
+    li
+      a(href='staff') Staff
+    li
+      a(href='survey') Surveys
+    li.active
+      a(href='myprofile') My Profile
+    li
+      a.pull-right(href='#') Logout
+
+block content
+  append head
+    include dropdown.pug
+    include Accordion.pug
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    link(href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css', rel='stylesheet', media='screen')
+    link(href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css', rel='stylesheet', media='screen')
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js")
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js", integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa", crossorigin="anonymous")
+block content
+    form.form-horizontal.container-fluid
+        .form-group
+            .col-sm-2
+                p
+                    b My Profile
+        .form-group
+            .col-sm-2
+                label First Name
+            .col-sm-10
+                input.form-control(type = 'text' id = 'inputFirstName' placeholder = 'First Name')
+        .form-group
+            .col-sm-2
+                label Last Name
+            .col-sm-10
+                input.form-control(type = 'text' id = 'inputLastName' placeholder = 'Last Name')
+        .form-group
+            .col-sm-2
+                label Username
+            .col-sm-10
+                input.form-control(type = 'text' placeholder = 'Username')
+        .form-group
+            .col-sm-2
+                label Date of Birth
+            .col-sm-10
+                input.form-control(type = 'date')
+        .form-group
+            .col-sm-2
+                label Password
+            .col-sm-10
+                input.form-control(type = 'text' placeholder="Password")
+        .form-group
+            .col-sm-2
+                label Email
+            .col-sm-10
+                input.form-control(type = 'text' placeholder = 'Email')
+        
+
+append scripts
+  //script(src='jquery-3.1.1.slim.min.js')
+  //script(src='jquery.searchable-1.1.0.min.js')
+  script
+    include jquery-3.1.1.slim.min.js
+    include jquery.searchable-1.1.0.min.js
+  script.
+    $(function () {
+      $( '#studentTable' ).searchable({
+        striped : true,
+        oddRow: { 'background-color': '#f5f5f5' },
+        evenRow: { 'background-color': '#fff' },
+        searchType: 'fuzzy'
+
+
+      });
+    });
+
+
+
+

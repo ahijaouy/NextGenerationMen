@@ -44,6 +44,35 @@ module.exports = function(app, passport) {
 	});
 };
 
+app.get('/', function (req, res) {
+  res.render('dashboard', { title: 'Hey',
+                        message: 'Hello there!'});
+});
+app.get('/students', function (req, res) {
+  res.render('students', { title: 'Hey',
+                        message: 'Hello there!'});
+});
+app.get('/schools', function (req, res) {
+  res.render('schools', { title: 'Hey',
+                        message: 'Hello there!'});
+});
+app.get('/myprofile', function (req, res) {
+  res.render('myprofile', { title: 'Hey',
+                        message: 'Hello there!'});
+});
+app.get('/staff', function (req, res) {
+  res.render('staff', { title: 'Hey',
+                        message: 'Hello there!'});
+});
+app.get('/survey', function (req, res) {
+  res.render('survey', { title: 'Hey',
+                        message: 'Hello there!'});
+});
+
+app.get('/dashboard', function (req, res) {
+  res.render('dashboard', { });
+});
+
 function isLoggedIn(req, res, next) {
 	if (req.isAuthenticated()) {
 		return next();

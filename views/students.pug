@@ -1,0 +1,163 @@
+extends dashboard.pug
+
+append head
+    include dropdown.pug
+    include Accordion.pug
+
+block navBar
+  ul.nav.navbar-nav
+    li
+      a(href='dashboard') Overview
+    li.active
+      a(href='students') Students
+    li
+      a(href='schools') Schools
+    li
+      a(href='staff') Staff
+    li
+      a(href='survey') Surveys
+    li
+      a(href='myprofile') My Profile
+
+block content
+  h1 Students
+
+  input(type='search' id='search' value class='form-control' placeholder='Search...')
+  .pre-scrollable
+    .table-responsive
+      table#studentTable.table.table-striped.table-hover
+        thead
+          tr
+            th.text-center First Name
+            th.text-center Last Name
+            th.text-center School
+            th.text-center GPA
+            th.text-center Grade
+        tr
+          td: a(href="#" data-toggle="modal" data-target="#studentInfoModal") John
+          td: a(href="#" data-toggle="modal" data-target="#studentInfoModal") Smith
+          td: a(href="#" data-toggle="modal" data-target="#studentInfoModal") School 1
+          td: a(href="#" data-toggle="modal" data-target="#studentInfoModal") 3.0
+          td: a(href="#" data-toggle="modal" data-target="#studentInfoModal") 9th
+        tr
+          td Jerry
+          td Smith
+          td School 1
+          td 3.5
+          td 10th
+        tr
+          td Frank
+          td Howard
+          td School 1
+          td 2.5
+          td 11th
+        tr
+          td Larry
+          td Coleman
+          td School 4
+          td 4.0
+          td 12th
+        tr
+          td John
+          td Schmit
+          td School 4
+          td 3.0
+          td 10th
+        tr
+          td Shane
+          td Campbell
+          td School 2
+          td 2.7
+          td 11th
+        tr
+          td Paul
+          td Hernendaz
+          td School 3
+          td 3.6
+          td 9th
+        tr
+          td Tony
+          td Cabrera
+          td School 1
+          td 3.0
+          td 12th
+        tr
+          td John
+          td Smith
+          td School 1
+          td 3.0
+          td 9th
+        tr
+          td Jerry
+          td Smith
+          td School 1
+          td 3.5
+          td 10th
+        tr
+          td Frank
+          td Howard
+          td School 1
+          td 2.5
+          td 11th
+        tr
+          td Larry
+          td Coleman
+          td School 4
+          td 4.0
+          td 12th
+        tr
+          td John
+          td Schmit
+          td School 4
+          td 3.0
+          td 10th
+        tr
+          td Roy
+          td Campbell
+          td School 2
+          td 3.5
+          td 11th
+        tr
+          td Paul
+          td Hernendaz
+          td School 3
+          td 3.6
+          td 9th
+        tr
+          td Tony
+          td Cabrera
+          td School 1
+          td 3.0
+          td 12th
+
+  .btn.btn-default(type = 'submit' data-toggle = 'modal' data-target = '#addStudentModal') Add Student
+
+  //- #addStudentModal.modal.col-sm-12(role = 'dialog' min-width='70%')
+  //-     include addStudentModal.pug
+
+  #addStudentModal.modal(role = 'dialog')
+    include addStudentModal.pug
+
+  #studentInfoModal.modal(role="dialog")
+    include studentInfoModal.pug
+
+append head
+    include Accordion.pug
+
+append scripts
+  //script(src='jquery-3.1.1.slim.min.js')
+  //script(src='jquery.searchable-1.1.0.min.js')
+  script
+    include jquery-3.1.1.slim.min.js
+    include jquery.searchable-1.1.0.min.js
+  script.
+    $(function () {
+      $( '#studentTable' ).searchable({
+        striped : true,
+        oddRow: { 'background-color': '#f5f5f5' },
+        evenRow: { 'background-color': '#fff' },
+        searchType: 'fuzzy'
+
+
+      });
+    });
