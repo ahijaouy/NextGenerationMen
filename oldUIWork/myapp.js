@@ -7,7 +7,7 @@ app.set('view engine', 'pug');
 //app.use(express.static(__myapp));
 
 app.get('/', function (req, res) {
-  res.render('dashboard', { title: 'Hey',
+  res.render('index', { title: 'Hey',
                         message: 'Hello there!'});
 });
 app.get('/students', function (req, res) {

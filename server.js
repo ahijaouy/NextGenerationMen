@@ -36,6 +36,9 @@ app.use(session({ cookie: { maxAge: 60000 },
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
+app.get('/', function(req, res) {
+    res.render('dashboard');
+});
 
 require('./app/main.js')(app, passport);
 
