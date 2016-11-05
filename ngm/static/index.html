@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+		<title>Login - Manhattan Extension Estimator</title>
+		
+		
+		<link rel="stylesheet"  href="style.css"></link>
+    	<link rel="stylesheet" href="css/normalize.css"></link>
+    	<link rel="stylesheet" href="css/keyframes.css"></link>
+    	<link rel="stylesheet" href="css/layout.css"></link>
+    	<link rel="stylesheet" href="css/pageTransitions.css"></link>
+	</h:head>
+
+
+	<h:body>
+		<div id="content">
+			<div class="index m-scene" id="main">
+				<div class="m-landing-Layout">
+					<div id="inner" class="inner">
+						<div class="m-header scene_element scene_element--fadein">
+							<img src ="resources/Logo_386.jpg" alt="Manhattan Associates"  width="100%"></img>
+						</div>
+					</div>
+					<div id="loginBox" class="loginBox">
+						<div class="m-page scene_element scene_element--fadeinup">
+							<div class="m-segment">
+								<div class="segment_content">
+									<h:form action="index.xhtml">
+									
+									<p:inputText id="username" placeholder="Username" value="#{loginBean.username}" required="true"/>
+									<p:password id="password" placeholder="Password" value="#{loginBean.password}" required="true" rendered="false"/>
+									<p:commandButton value="Submit" action="#{loginBean.login()}"></p:commandButton>
+									
+									</h:form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</h:body>
+	
+</html>
