@@ -1,13 +1,13 @@
 var express = require('express');
 var app = express();
 
-app.set('views','.');
+app.set('views','../views');
 
 app.set('view engine', 'pug');
 //app.use(express.static(__myapp));
 
 app.get('/', function (req, res) {
-  res.render('index', { title: 'Hey',
+  res.render('dashboard', { title: 'Hey',
                         message: 'Hello there!'});
 });
 app.get('/students', function (req, res) {
