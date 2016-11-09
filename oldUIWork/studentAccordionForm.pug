@@ -12,10 +12,18 @@ include Accordion.pug
                 .panel-collapse.collapse(id="collapse9th", role='tabpanel'
                                         aria-labelledby="heading9th")
                     .panel-body
-                        label Semester 1
-                        input
-                        label Semester 2
-                        input
+                        .form-group
+                          .col-sm-2
+                            label Semester 1 Grades
+                          .col-sm-10
+                            input.form-control(type = 'number'
+                                placeholder = 'Semester 1 Grades')
+                        .form-group
+                          .col-sm-2
+                            label Semester 2 Grades
+                          .col-sm-10
+                            input.form-control(type = 'number'
+                                placeholder = 'Semester 2 Grades')
             .panel(class='panel-default')
                 .panel-heading(role='tab', id='heading10th')
                     h4.panel-title

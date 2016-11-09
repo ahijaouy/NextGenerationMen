@@ -31,10 +31,9 @@ block content
     .col-sm-12
       h3
         b My Profile
-    .col-sm-2
-      img.img-rounded(src = 'https://thebenclark.files.wordpress.com/2014/03/facebook-default-no-profile-pic.jpg'
+      img(src = 'https://thebenclark.files.wordpress.com/2014/03/facebook-default-no-profile-pic.jpg'
                 alt = 'Picture of Student here'
-                style = {height: '10%',width:'100%'})
+                style = {margin: '0 0 0 0' , float:'left', height: '10%',width:'20%'})
 
     form.form-horizontal.container-
         .form-group
@@ -45,27 +44,27 @@ block content
         .form-group
             .col-sm-2
                 label Last Name
-            .col-sm-8
+            .col-sm-6
                 input.form-control(type = 'text' id = 'inputLastName' placeholder = 'Last Name')
         .form-group
           .col-sm-2
               label Username
-          .col-sm-10
+          .col-sm-6
               input.form-control(type = 'text' placeholder = 'Username')
         .form-group
-            .col-ms-offset-2.col-sm-2
+            .col-sm-2
                 label Date of Birth
-            .col-ms-offset-2.col-sm-10
+            .col-sm-6
                 input.form-control(type = 'date')
         .form-group
             .col-sm-2
                 label Password
-            .col-sm-10
+            .col-sm-6
                 input.form-control(type = 'text' placeholder="Password")
         .form-group
             .col-sm-2
                 label Email
-            .col-sm-10
+            .col-sm-6
                 input.form-control(type = 'text' placeholder = 'Email')
 
 
