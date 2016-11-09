@@ -26,31 +26,36 @@ block content
     link(href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css', rel='stylesheet', media='screen')
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js")
     script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js", integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa", crossorigin="anonymous")
+
 block content
-    form.form-horizontal.container-fluid
-        .form-group
-            .col-sm-2
-                p
-                    b My Profile
+    .col-sm-12
+      h3
+        b My Profile
+    .col-sm-2
+      img.img-rounded(src = 'https://thebenclark.files.wordpress.com/2014/03/facebook-default-no-profile-pic.jpg'
+                alt = 'Picture of Student here'
+                style = {height: '10%',width:'100%'})
+
+    form.form-horizontal.container-
         .form-group
             .col-sm-2
                 label First Name
-            .col-sm-10
+            .col-sm-6
                 input.form-control(type = 'text' id = 'inputFirstName' placeholder = 'First Name')
         .form-group
             .col-sm-2
                 label Last Name
-            .col-sm-10
+            .col-sm-8
                 input.form-control(type = 'text' id = 'inputLastName' placeholder = 'Last Name')
         .form-group
-            .col-sm-2
-                label Username
-            .col-sm-10
-                input.form-control(type = 'text' placeholder = 'Username')
+          .col-sm-2
+              label Username
+          .col-sm-10
+              input.form-control(type = 'text' placeholder = 'Username')
         .form-group
-            .col-sm-2
+            .col-ms-offset-2.col-sm-2
                 label Date of Birth
-            .col-sm-10
+            .col-ms-offset-2.col-sm-10
                 input.form-control(type = 'date')
         .form-group
             .col-sm-2
@@ -62,7 +67,7 @@ block content
                 label Email
             .col-sm-10
                 input.form-control(type = 'text' placeholder = 'Email')
-        
+
 
 append scripts
   //script(src='jquery-3.1.1.slim.min.js')
@@ -81,7 +86,3 @@ append scripts
 
       });
     });
-
-
-
-
