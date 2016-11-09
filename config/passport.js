@@ -1,7 +1,7 @@
-var LocalStrategy    = require('passport-local').Strategy;
-var mysql       = require('mysql'); //MATCH this with package.json
-var bcrypt = require('bcrypt-nodejs');
-var dbconfig = require('./database');
+var LocalStrategy   = require('passport-local').Strategy;
+var mysql           = require('mysql'); //MATCH this with package.json
+var bcrypt          = require('bcrypt-nodejs');
+var dbconfig        = require('./database');
 
 //connect based on config and connect to right db
 var connection = mysql.createConnection(dbconfig.connection)
@@ -29,6 +29,9 @@ module.exports = function(passport) {
                connection.query("SELECT * FROM users WHERE username = ?",[username], function(err, rows) {
                    if (err) {
                        return done(err);
+                   }
+                   if (req.body.password != req.body.Cpassword) {
+                       return done(null, false, req.flash('signupMessage', 'Passwords do not match'));
                    }
                    if (rows.length) {
                        return done(null, false, req.flash('signupMessage', 'Username is already taken.'));

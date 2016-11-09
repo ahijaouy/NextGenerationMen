@@ -51,10 +51,12 @@ html(lang='en')
               li
                 a(href='myprofile') My Profile
               li
-                a.pull-right(href='#') Logout
+                a.pull-right(href='logout') Logout
         // /.nav-collapse
     .container
       .starter-template
+        block content
+          h1 Congrats! You have been logged in as #{user}
         block content
           h1 Bootstrap starter template
           p.lead
