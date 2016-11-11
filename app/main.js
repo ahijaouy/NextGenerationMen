@@ -37,7 +37,9 @@ app.get('/logout', function(req, res) {
     res.redirect('/');
 });
 
-
+    app.get('/dashboard', isLoggedIn, function (req, res) {
+      res.render('dashboard', { user : req.user.username });
+    });
     app.get('/students', isLoggedIn, function (req, res) {
       res.render('students', { user : req.user.username,
                                 title: 'Hey',
@@ -66,11 +68,6 @@ app.get('/logout', function(req, res) {
 
     app.get('/StudentInfo', isLoggedIn, function (req, res) {
       res.render('StudentInfo', { user : req.user.username,
-                                title: 'Hey',
-                                message: 'Hello there!'});
-    });
-    app.get('/dashboard', isLoggedIn, function (req, res) {
-      res.render('dashboard', { user : req.user.username,
                                 title: 'Hey',
                                 message: 'Hello there!'});
     });
