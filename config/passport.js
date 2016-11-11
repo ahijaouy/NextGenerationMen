@@ -13,7 +13,7 @@ module.exports = function(passport) {
         done(null, user.id);
     });
     passport.deserializeUser(function(id, done) {
-        connection.query("SELECT * FROM users WHERE id = ? ",[id], function(err, rows){
+        connection.query("SELECT * FROM USERS WHERE id = ? ",[id], function(err, rows){
             done(err, rows[0]);
         });
     });
@@ -26,7 +26,7 @@ module.exports = function(passport) {
                passReqToCallback : true // allows us to pass back the entire request to the callback
            },
            function(req, username, password, done) {
-               connection.query("SELECT * FROM users WHERE username = ?",[username], function(err, rows) {
+               connection.query("SELECT * FROM USERS WHERE username = ?",[username], function(err, rows) {
                    if (err) {
                        return done(err);
                    }
@@ -41,7 +41,7 @@ module.exports = function(passport) {
                            password: bcrypt.hashSync(password, null, null)
                        };
 
-                       var insertQuery = "INSERT INTO users ( username, password ) values (?,?)";
+                       var insertQuery = "INSERT INTO USERS ( username, password ) values (?,?)";
 
                        connection.query(insertQuery,[newUserMysql.username, newUserMysql.password],function(err, rows) {
                            newUserMysql.id = rows.insertId;
@@ -62,7 +62,7 @@ module.exports = function(passport) {
                passReqToCallback : true
            },
            function(req, username, password, done) {
-               connection.query("SELECT * FROM users WHERE username = ?",[username], function(err, rows){
+               connection.query("SELECT * FROM USERS WHERE username = ?",[username], function(err, rows){
                    if (err) {
                        return done(err);
                    }

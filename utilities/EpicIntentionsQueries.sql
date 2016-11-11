@@ -148,14 +148,14 @@ WHERE (sr_sid = '"/*insert student id string here*/"');
 
 
 #get survey data xml
-SELECT surveyXML 
+SELECT surveyXML
 FROM SurveyData
 WHERE (sd_sid = '"/*insert student id string here*/"');
 
 #search student by last name, first name, or id
 SELECT last_name, first_name, id
 FROM Student
-WHERE ((id ='"/*insert student id string here*/"') OR 
+WHERE ((id ='"/*insert student id string here*/"') OR
 	(last_name = '"/*insert student name string here*/"') OR
 	(first_name = '"/*insert student name string here*/"'));
 
@@ -164,5 +164,3 @@ SELECT S.last_name, S.first_name, S.id, C.gpa
 FROM Student as S, CurrentRec as C
 WHERE S.id == C.cr_sid
 ORDER BY C.gpa DESC;
-
-

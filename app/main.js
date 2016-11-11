@@ -74,17 +74,6 @@ app.get('/logout', function(req, res) {
                                 title: 'Hey',
                                 message: 'Hello there!'});
     });
-    app.get('/test1', function (req, res) {
-      res.render('test1', { user : req.user.username,
-                                title: 'Hey',
-                                message: 'Hello there!'});
-    });
-    app.get('/StudentInfo1', function (req, res) {
-      res.render('StudentInfo1', { user : req.user.username,
-                                title: 'Hey',
-                                message: 'Hello there!'});
-    });
-
 };
 
 function isLoggedIn(req, res, next) {
