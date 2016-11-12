@@ -27,6 +27,20 @@ CREATE TABLE IF NOT EXISTS Student
         PRIMARY KEY(`id`)
 	);
 
+CREATE TABLE IF NOT EXISTS Staff
+	(
+	    `id` INTEGER NOT NULL AUTO_INCREMENT,
+		`school_id` INTEGER NOT NULL,
+	    `first_name` VARCHAR(255) NOT NULL,
+        `last_name` VARCHAR(255) NOT NULL,
+	    `dob` DATE NOT NULL,
+        `startdate` DATE NOT NULL,
+        `phonenum` VARCHAR(20) NOT NULL,
+        `email` VARCHAR(255) NOT NULL,
+		PRIMARY KEY(`id`),
+		CONSTRAINT fk_prerecschool FOREIGN KEY(`school_id`) REFERENCES School(`school_id`)
+	);
+
 CREATE TABLE IF NOT EXISTS School
     (
         `school_id` INTEGER NOT NULL AUTO_INCREMENT,
