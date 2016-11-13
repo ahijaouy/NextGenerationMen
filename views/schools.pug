@@ -57,85 +57,14 @@ block content
     .btn.btn-default(type = 'submit' data-toggle = 'modal' data-target = '#addSchoolModal') Add School
 
   #addSchoolModal.modal(role='dialog')
-      //include addSchoolModal.pug
-      .modal-dialog
-        .modal-content
-          .modal-header
-            button(type="button" class="close" data-dismiss="modal") &times;
-            h4.modal-title(style="text-align-last:center") Add School
-          .modal-body
-            .container-fluid
-              form.form-horizontal(role='form', action="/addschool",method="post", style='max-width: 300px;')
-                //include addSchoolForm.pug
-                .form-group
-                  .col-sm-12
-                      p
-                        b School Information
-                .form-group
-                  .col-sm-2
-                      label School Name
-                  .col-sm-10
-                      input.form-control(type = 'text' placeholder = 'School Name')
-                .form-group
-                    .col-sm-2
-                        label Number of NGM Students
-                    .col-sm-10
-                        input.form-control(type = 'number' placeholder = 'Number of NGM Students')
-                .form-group
-                    .col-sm-2
-                        label Contact Person
-                    .col-sm-10
-                        input.form-control(type = 'text' placeholder = 'Contact Person')
-                .form-group
-                    .col-sm-2
-                        label Average GPA
-                    .col-sm-10
-                        input.form-control(type = 'number' placeholder = 'Average Gpa')
-
-                .form-group
-                        button.btn.btn-default(type='submit') Submit
+      include addSchoolModal.pug
 
   #schoolInfoModal.modal(role="dialog")
-      //include schoolInfoModal.pug
-      .modal-dialog
-        .modal-content
-          .modal-header
-            button(type="button" class="close" data-dismiss="modal") &times;
-            h4.modal-title(style="text-align-last:center") School Info
-          .modal-body
-            .container-fluid
-              form.form-horizontal(role='form', action="/addinfo",method="post", style='max-width: 300px;')
-                  //include schoolInfoForm.pug
-                  .form-group
-                    .col-sm-12
-                        p
-                          b School Information
-                  .form-group
-                    .col-sm-2
-                        label School Name
-                    .col-sm-10
-                        input.form-control(type = 'text' placeholder = 'School Name')
-                  .form-group
-                      .col-sm-2
-                          label Number of NGM Students
-                      .col-sm-10
-                          input.form-control(type = 'number' placeholder = 'Number of NGM Students')
-                  .form-group
-                      .col-sm-2
-                          label Contact Person
-                      .col-sm-10
-                          input.form-control(type = 'text' placeholder = 'Contact Person')
-                  .form-group
-                      .col-sm-2
-                          label Average GPA
-                      .col-sm-10
-                          input.form-control(type = 'number' placeholder = 'Average Gpa')
-
-                  .form-group
-                          button.btn.btn-default(type='submit') Submit
-
+      include schoolInfoModal.pug
 
 append scripts
+  //script(src='jquery-3.1.1.slim.min.js')
+  //script(src='jquery.searchable-1.1.0.min.js')
   script
     include jquery-3.1.1.slim.min.js
     include jquery.searchable-1.1.0.min.js
