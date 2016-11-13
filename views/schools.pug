@@ -32,6 +32,12 @@ block content
             th.text-center Contact Person
             th.text-center Avg. GPA
             th.text-center Extra?
+        if (data)
+          each val in data
+            tr
+              td #{val.username}
+              td #{val.password}
+              td #{val.id}
         tr
           td: a(href="#" data-toggle="modal" data-target="#schoolInfoModal") School 1
           td: a(href="#" data-toggle="modal" data-target="#schoolInfoModal") 5
