@@ -1,25 +1,5 @@
 #INSERT MANDATORY INFO into  STUDENT
-INSERT INTO Student
-(		first_name,
-        last_name,
-	    dob,
-        startdate,
-        phonenum,
-        email,
-        parentone_name,
-        parentone_num,
-        parentone_email
-)
-VALUES
-(	'Paul',
-	'Dorsch',
-	'1997-01-01',
-	'2006-02-02',
-	'7033406218',
-	'paul.dorsch@gmial.com',
-	'Grace Dorsch',
-	'gld@me.com',
-	'7034314906');
+INSERT INTO Student(first_name, last_name,dob,startdate,phonenum,email,parentone_name,parentone_num,parentone_email) VALUES (	'Paul','Dorsch','1997-01-01','2006-02-02','7033406218','paul.dorsch@gmial.com','Grace Dorsch','gld@me.com','7034314906');
 
 #INSERT OPTIONAL INFO into STUDENT
 UPDATE Student

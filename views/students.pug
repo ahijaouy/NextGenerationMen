@@ -38,105 +38,108 @@ block content
         if (data)
           each val in data
             tr
-              td #{val.username}
-              td #{val.password}
-              td #{val.id}
-        tr
-          td: a(href="#" data-toggle="modal" data-target="#studentInfoModal") John
-          td: a(href="#" data-toggle="modal" data-target="#studentInfoModal") Smith
-          td: a(href="#" data-toggle="modal" data-target="#studentInfoModal") School 1
-          td: a(href="#" data-toggle="modal" data-target="#studentInfoModal") 3.0
-          td: a(href="#" data-toggle="modal" data-target="#studentInfoModal") 9th
-        tr
-          td Jerry
-          td Smith
-          td School 1
-          td 3.5
-          td 10th
-        tr
-          td Frank
-          td Howard
-          td School 1
-          td 2.5
-          td 11th
-        tr
-          td Larry
-          td Coleman
-          td School 4
-          td 4.0
-          td 12th
-        tr
-          td John
-          td Schmit
-          td School 4
-          td 3.0
-          td 10th
-        tr
-          td Shane
-          td Campbell
-          td School 2
-          td 2.7
-          td 11th
-        tr
-          td Paul
-          td Hernendaz
-          td School 3
-          td 3.6
-          td 9th
-        tr
-          td Tony
-          td Cabrera
-          td School 1
-          td 3.0
-          td 12th
-        tr
-          td John
-          td Smith
-          td School 1
-          td 3.0
-          td 9th
-        tr
-          td Jerry
-          td Smith
-          td School 1
-          td 3.5
-          td 10th
-        tr
-          td Frank
-          td Howard
-          td School 1
-          td 2.5
-          td 11th
-        tr
-          td Larry
-          td Coleman
-          td School 4
-          td 4.0
-          td 12th
-        tr
-          td John
-          td Schmit
-          td School 4
-          td 3.0
-          td 10th
-        tr
-          td Roy
-          td Campbell
-          td School 2
-          td 3.5
-          td 11th
-        tr
-          td Paul
-          td Hernendaz
-          td School 3
-          td 3.6
-          td 9th
-        tr
-          td Tony
-          td Cabrera
-          td School 1
-          td 3.0
-          td 12th
+              td #{val.first_name}
+              td #{val.last_name}
+              td #{val.dob}
+              td #{val.phonenum}
+              td #{val.email}
+        //- tr
+        //-   td: a(href="#" data-toggle="modal" data-target="#studentInfoModal") John
+        //-   td: a(href="#" data-toggle="modal" data-target="#studentInfoModal") Smith
+        //-   td: a(href="#" data-toggle="modal" data-target="#studentInfoModal") School 1
+        //-   td: a(href="#" data-toggle="modal" data-target="#studentInfoModal") 3.0
+        //-   td: a(href="#" data-toggle="modal" data-target="#studentInfoModal") 9th
+        //- tr
+        //-   td Jerry
+        //-   td Smith
+        //-   td School 1
+        //-   td 3.5
+        //-   td 10th
+        //- tr
+        //-   td Frank
+        //-   td Howard
+        //-   td School 1
+        //-   td 2.5
+        //-   td 11th
+        //- tr
+        //-   td Larry
+        //-   td Coleman
+        //-   td School 4
+        //-   td 4.0
+        //-   td 12th
+        //- tr
+        //-   td John
+        //-   td Schmit
+        //-   td School 4
+        //-   td 3.0
+        //-   td 10th
+        //- tr
+        //-   td Shane
+        //-   td Campbell
+        //-   td School 2
+        //-   td 2.7
+        //-   td 11th
+        //- tr
+        //-   td Paul
+        //-   td Hernendaz
+        //-   td School 3
+        //-   td 3.6
+        //-   td 9th
+        //- tr
+        //-   td Tony
+        //-   td Cabrera
+        //-   td School 1
+        //-   td 3.0
+        //-   td 12th
+        //- tr
+        //-   td John
+        //-   td Smith
+        //-   td School 1
+        //-   td 3.0
+        //-   td 9th
+        //- tr
+        //-   td Jerry
+        //-   td Smith
+        //-   td School 1
+        //-   td 3.5
+        //-   td 10th
+        //- tr
+        //-   td Frank
+        //-   td Howard
+        //-   td School 1
+        //-   td 2.5
+        //-   td 11th
+        //- tr
+        //-   td Larry
+        //-   td Coleman
+        //-   td School 4
+        //-   td 4.0
+        //-   td 12th
+        //- tr
+        //-   td John
+        //-   td Schmit
+        //-   td School 4
+        //-   td 3.0
+        //-   td 10th
+        //- tr
+        //-   td Roy
+        //-   td Campbell
+        //-   td School 2
+        //-   td 3.5
+        //-   td 11th
+        //- tr
+        //-   td Paul
+        //-   td Hernendaz
+        //-   td School 3
+        //-   td 3.6
+        //-   td 9th
+        //- tr
+        //-   td Tony
+        //-   td Cabrera
+        //-   td School 1
+        //-   td 3.0
+        //-   td 12th
+        
 
   .btn.btn-default(type = 'submit' data-toggle = 'modal' data-target = '#addStudentModal') Add Student
 
