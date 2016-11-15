@@ -6,27 +6,32 @@
   .col-sm-2
       label First Name
   .col-sm-10
-      input.form-control(type = 'text' id = 'inputFirstName' placeholder = 'First Name')
+      input.form-control(name = 'fname' type = 'text' id = 'inputFirstName' placeholder = 'First Name')
 .form-group
     .col-sm-2
         label Last Name
     .col-sm-10
-        input.form-control(type = 'text' id = 'inputLastName' placeholder = 'Last Name')
-.form-group
-    .col-sm-2
-        label ID Number
-    .col-sm-10
-        input.form-control(type = 'number' placeholder = 'ID Number')
+        input.form-control(name = 'lname' type = 'text' id = 'inputLastName' placeholder = 'Last Name')
 .form-group
     .col-sm-2
         label Date of Birth
     .col-sm-10
-        input.form-control(type = 'date')
+        input.form-control(name = 'dob' type = 'date')
 .form-group
     .col-sm-2
         label Date of entry into Next Generation Men
     .col-sm-10
-        input.form-control(type = 'date')
+        input.form-control(name = 'ngmdate' type = 'date')
+.form-group
+    .col-sm-2
+        label Phone Number
+    .col-sm-10
+        input.form-control(name = 'num' type = 'tel' placeholder = 'Phone Number')
+.form-group
+    .col-sm-2
+        label Email
+    .col-sm-10
+        input.form-control(name = 'email' type = 'email' placeholder = 'Email')
 .form-group
     .col-sm-12
         p
@@ -35,17 +40,17 @@
     .col-sm-2
         label Parent 1 Name
     .col-sm-10
-        input.form-control(type = 'text' placeholder = 'Parent 1 Name')
+        input.form-control(name = 'p1name' type = 'text' placeholder = 'Parent 1 Name')
 .form-group
     .col-sm-2
         label Parent 1 Phone Number
     .col-sm-10
-        input.form-control(type = 'tel' placeholder = 'Parent 1 Phone Number')
+        input.form-control(name = 'p1num' type = 'tel' placeholder = 'Parent 1 Phone Number')
 .form-group
     .col-sm-2
         label Parent 2 Name
     .col-sm-10
-        input.form-control(placeholder = 'Parent 2 Name')
+        input.form-control(type = 'text' placeholder = 'Parent 2 Name')
 .form-group
     .col-sm-2
         label Parent 2 Phone Number
