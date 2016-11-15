@@ -1,44 +1,42 @@
 .form-group
   .col-sm-12
       p
-        b General Information
-button.btn.btn-default(href = '#' data-toggle = 'modal'
-                        data-target = '#addStudentModal')
-    span.glyphicon.glyphicon-wrench Edit
+          b(style = 'text-align-last:center') General Information
+      button.btn.btn-default.btn-lg(tyle = 'button' href = '#' data-dismiss = 'modal' data-toggle = 'modal' style = 'float:center'
+                              data-target = '#editStudentModal')
+          span.glyphicon.glyphicon-cog(style = 'margin:5px')
 .form-group
   .col-sm-2
       label First Name
   .col-sm-10
-      input.form-control(name = 'fname' type = 'text' id = 'inputFirstName'
-                            placeholder = 'First Name')
+      p(style = 'text-align-last:left') #{val.first_name}
 .form-group
     .col-sm-2
         label Last Name
     .col-sm-10
-        input.form-control(name = 'lname' type = 'text' id = 'inputLastName'
-                            placeholder = 'Last Name')
+        p(style = 'text-align-last:left') #{val.last_name}
 .form-group
     .col-sm-2
         label Date of Birth
     .col-sm-10
-        input.form-control(name = 'dob' type = 'date')
+        -bday = new Date(val.dob).toDateString()
+        p(style = 'text-align-last:left') #{bday}
 .form-group
     .col-sm-2
         label Date of entry into Next Generation Men
     .col-sm-10
-        input.form-control(name = 'ngmdate' type = 'date')
+        -start = new Date(val.startdate).toDateString()
+        p(style = 'text-align-last:left') #{start}
 .form-group
     .col-sm-2
         label Phone Number
     .col-sm-10
-        input.form-control(name = 'num' type = 'tel'
-                            placeholder = 'Phone Number')
+        p(style = 'text-align-last:left') #{val.phonenum}
 .form-group
     .col-sm-2
         label Email
     .col-sm-10
-        input.form-control(name = 'email' type = 'email'
-                            placeholder = 'Email')
+        p(style = 'text-align-last:left') #{val.email}
 .form-group
     .col-sm-12
         p
