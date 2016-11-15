@@ -7,10 +7,10 @@ var flash       = require('connect-flash');
 var morgan      = require('morgan');
 var session     = require('express-session');
 var port        = process.env.PORT || 80;
-var favicon     = require('express-favicon')
+//var favicon     = require('express-favicon')
 
 app.set('view engine', 'pug');
-app.use(favicon(__dirname + '/utilities/logo.ico')); //Make sure this exists
+//app.use(favicon(__dirname + '/utilities/logo.ico')); //Make sure this exists
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

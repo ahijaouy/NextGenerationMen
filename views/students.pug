@@ -33,14 +33,18 @@ block content
             th.text-center First Name
             th.text-center Last Name
             th.text-center DOB
+            th.text-center NGM Start
             th.text-center Phone Number
             th.text-center Email
         if (data)
           each val in data
             tr
+              - bday = new Date(val.dob).toDateString()
+              - start = new Date(val.startdate).toDateString()
               td #{val.first_name}
               td #{val.last_name}
-              td #{val.dob}
+              td #{bday}
+              td #{start}
               td #{val.phonenum}
               td #{val.email}
         //- tr

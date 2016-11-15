@@ -1,8 +1,8 @@
 module.exports = {
     'connection': {
         'host': 'localhost',
-        'user': 'root',
-        'password': ''
+        'user': 'admin',
+        'password': 'password'
     },
 	'database': 'ngm',
     'users_table': 'USERS'
