@@ -83,7 +83,7 @@ app.get('/StudentInfo', isLoggedIn, function (req, res) {
 });
 app.post('/addstudent', isLoggedIn, function (req, res) {
     stmt = 'INSERT INTO Student(first_name, last_name,dob,startdate,phonenum,email,parentone_name,parentone_num,parentone_email) VALUES (?,?,?,?,?,?,?,?,?);';
-    connection.query(stmt,[req.body.fname, req.body.lname, new Date(req.body.dob), new Date(req.body.ngmdate), 'phonetest', 'emailtest', 'p1name', 'p1num', 'p1email'], function(err, rows){
+    connection.query(stmt,[req.body.fname, req.body.lname, new Date(req.body.dob), new Date(req.body.ngmdate), 'phonetest' , 'emailtest', 'p1name', 'p1num', 'p1email'], function(err, rows){
         console.log(err);
 
       console.log(req.body.fname);
@@ -108,4 +108,3 @@ function isLoggedIn(req, res, next) {
      res.redirect('/login');
  }
 }
-

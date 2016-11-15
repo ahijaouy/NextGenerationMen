@@ -29,16 +29,17 @@ block content
     .table-responsive
       table#studentTable.table.table-striped.table-hover
         thead
-          tr
-            th.text-center First Name
-            th.text-center Last Name
-            th.text-center DOB
-            th.text-center NGM Start
-            th.text-center Phone Number
-            th.text-center Email
+          a(href="#" data-toggle="modal" data-target="#studentInfoModal")
+            tr
+              th.text-center First Name
+              th.text-center Last Name
+              th.text-center DOB
+              th.text-center NGM Start
+              th.text-center Phone Number
+              th.text-center Email
         if (data)
           each val in data
-            tr
+            tr.clickable-row(data-toggle = 'modal' data-target='#studentInfoModal')
               - bday = new Date(val.dob).toDateString()
               - start = new Date(val.startdate).toDateString()
               td #{val.first_name}
@@ -143,7 +144,7 @@ block content
         //-   td School 1
         //-   td 3.0
         //-   td 12th
-        
+
 
   .btn.btn-default(type = 'submit' data-toggle = 'modal' data-target = '#addStudentModal') Add Student
 
