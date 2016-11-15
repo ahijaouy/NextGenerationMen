@@ -1,11 +1,12 @@
-.modal-dialog
+.modal-dialog.modal-lg
   .modal-content
     .modal-header
       button(type="button" class="close" data-dismiss="modal") &times;
       h4.modal-title(style="text-align-last:center") Student Info
     .modal-body
       .container-fluid
-        form.form-horizontal(role='form', action="/addstudent",method="post", style='max-width: 300px;')
+        form.form-horizontal(role='form', action="/addstudent",
+                                method="post", style='max-width: 300px;')
           include studentInfoForm.pug
           include studentAccordionForm.pug
           .form-group

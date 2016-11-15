@@ -1,4 +1,4 @@
-.modal-dialog
+.modal-dialog.modal-lg
   .modal-content
     .modal-header
       button(type="button" class="close" data-dismiss="modal") &times;
@@ -6,7 +6,8 @@
     .modal-body
       .container-fluid
         //enter content
-        form.form-horizontal(role='form', action="/addstaff",method="post", style='max-width: 300px;')
+        form.form-horizontal(role='form', action="/addstaff",
+                                method="post", style='max-width: 300px;')
             include staffForm.pug
             .form-group
                     button.btn.btn-default(type='submit') Submit
