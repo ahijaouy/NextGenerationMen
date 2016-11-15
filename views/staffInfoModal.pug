@@ -6,8 +6,7 @@
     .modal-body
       .container-fluid
         //enter content
-        form.form-horizontal(role='form', action="/addstaff",
-                                method="post", style='max-width: 300px;')
+        form.form-horizontal(role='form', action="/addstaff" method="post")
             include staffForm.pug
             .form-group
                     button.btn.btn-default(type='submit') Submit

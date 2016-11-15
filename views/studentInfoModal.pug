@@ -5,8 +5,7 @@
       h4.modal-title(style="text-align-last:center") Student Info
     .modal-body
       .container-fluid
-        form.form-horizontal(role='form', action="/addstudent",
-                                method="post", style='max-width: 300px;')
+        form.form-horizontal(role='form', action="/addstudent" method="post")
           include studentInfoForm.pug
           include studentAccordionForm.pug
           .form-group
