@@ -2,11 +2,10 @@
   .modal-content
     .modal-header
       button(type="button" class="close" data-dismiss="modal") &times;
-      h4.modal-title(style="text-align-last:center") Edit Student
+      h4.modal-title(style="text-align-last:center") Edit School
     .modal-body
       .container-fluid
-        form.form-horizontal(role='form', action="/editstudent",method="post")
-          include editStudentForm.pug
-          include editStudentAccordion.pug
+        form.form-horizontal(role='form', action="/editschool",method="post")
+          include editSchoolForm.pug
           .form-group
                   button.btn.btn-default(type='submit') Submit
