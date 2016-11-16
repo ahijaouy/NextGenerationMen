@@ -52,8 +52,6 @@ app.get('/dashboard', isLoggedIn, function (req, res) {
             });
         });
     });
-
-    res.render('dashboard', { user : req.user.username });
 });
 app.get('/students', isLoggedIn, function (req, res) {
     connection.query("SELECT * FROM Student", function(err, rows){
