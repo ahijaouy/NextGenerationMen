@@ -41,6 +41,18 @@ app.get('/logout', function(req, res) {
 });
 
 app.get('/dashboard', isLoggedIn, function (req, res) {
+    connection.query("SELECT COUNT(*) AS num FROM Student;", function(err, rows0){
+        connection.query("SELECT COUNT(*) AS num FROM Staff;", function(err, rows1){
+            connection.query("SELECT COUNT(*) AS num FROM School;", function(err, rows2){
+                console.log(rows0 + rows1 + rows2)
+                res.render('dashboard', { user : req.user.username,
+                  student: rows0,
+                  staff: rows1,
+                  school: rows2});
+            });
+        });
+    });
+
     res.render('dashboard', { user : req.user.username });
 });
 app.get('/students', isLoggedIn, function (req, res) {
@@ -86,7 +98,7 @@ app.post('/addstudent', isLoggedIn, function (req, res) {
     connection.query(stmt,[req.body.fname, req.body.lname, new Date(req.body.dob), new Date(req.body.ngmdate), req.body.num , req.body.email, req.body.p1name, req.body.p1num, req.body.p1email,req.body.p2name, req.body.p2num, req.body.p2email], function(err, rows){
         console.log(err);
 
-      
+
       res.redirect('/students');
     });
       //console.log(req);
@@ -98,7 +110,7 @@ app.post('/addstaff', isLoggedIn, function (req, res) {
     connection.query(stmt,[req.body.fname, req.body.lname, req.body.num, req.body.email], function(err, rows){
         console.log(err);
 
-      
+
       res.redirect('/staff');
     });
       //console.log(req);
@@ -111,7 +123,7 @@ app.post('/addschool', isLoggedIn, function (req, res) {
     connection.query(stmt,[req.body.name, req.body.address, req.body.num], function(err, rows){
         console.log(err);
 
-      
+
       res.redirect('/schools');
     });
       //console.log(req);

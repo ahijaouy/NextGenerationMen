@@ -58,6 +58,12 @@ html(lang='en')
         block content
           h1 More dashboard information will be integrated here
           p.lead
+            if student
+              | Number of students in table: #{student.num}
+            if staff
+              | Number of students in table: #{staff.num}
+            if school
+              | Number of students in table: #{school.num}
             | This is just a temporary placeholder!
 
     // /.container
