@@ -2,25 +2,43 @@
   .col-sm-12
       p
         b School Information
+        button.btn.btn-default.btn-lg(tyle = 'button' href = '#' data-dismiss = 'modal' data-toggle = 'modal' style = 'float:center'
+                              data-target = '#editStudentModal')
+          span.glyphicon.glyphicon-cog(style = 'margin:5px')
 .form-group
     .col-sm-2
         label School Name
     .col-sm-10
-        input.form-control(name = 'name' type = 'text'
+        //- input.form-control(name = 'name' type = 'text'
                             placeholder = 'School Name')
+        p(style = 'text-align-last:left') Dummy Name 
 .form-group
+    .col-sm-2
+        label School Address
+    .col-sm-10
+        //- input.form-control(name = 'address' type = 'text'
+                            placeholder = 'School Address')
+        p(style = 'text-align-last:left') Dummy Address
+.form-group
+    .col-sm-2
+        label School Phone Number
+    .col-sm-10
+        //- input.form-control(name = 'num' type = 'tel'
+                            placeholder = 'Phone Number')
+        p(style = 'text-align-last:left') (xxx) xxx-xxxx
+//- .form-group
     .col-sm-2
         label Number of NGM Students
     .col-sm-10
         input.form-control(name = 'numstudents' type = 'number'
                             placeholder = 'Number of NGM Students')
-.form-group
+//- .form-group
     .col-sm-2
         label Contact Person
     .col-sm-10
         input.form-control(name = 'cperson' type = 'text'
                             placeholder = 'Contact Person')
-.form-group
+//- .form-group
     .col-sm-2
         label Average GPA
     .col-sm-10

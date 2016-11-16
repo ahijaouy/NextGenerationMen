@@ -86,15 +86,21 @@ app.post('/addstudent', isLoggedIn, function (req, res) {
     connection.query(stmt,[req.body.fname, req.body.lname, new Date(req.body.dob), new Date(req.body.ngmdate), req.body.num , req.body.email, req.body.p1name, req.body.p1num, req.body.p1email,req.body.p2name, req.body.p2num, req.body.p2email], function(err, rows){
         console.log(err);
 
-      console.log(req.body.fname);
-      console.log(req.body.lname);
-      console.log(req.body.id);
-      console.log(req.body.dob);
-      console.log(req.body.ngmdate);
-      console.log(req.body.msuspens);
-      console.log(req.body.hsuspens);
-      console.log(req.body.habsences);
+      
       res.redirect('/students');
+    });
+      //console.log(req);
+
+  });
+
+
+app.post('/addschool', isLoggedIn, function (req, res) {
+    stmt = 'INSERT INTO School(school_name, school_address,school_phone) VALUES (?,?,?);';
+    connection.query(stmt,[req.body.name, req.body.address, req.body.num], function(err, rows){
+        console.log(err);
+
+      
+      res.redirect('/schools');
     });
       //console.log(req);
 

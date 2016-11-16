@@ -28,24 +28,25 @@ block content
         thead
           tr
             th.text-center School
-            th.text-center NGM Students
-            th.text-center Contact Person
-            th.text-center Avg. GPA
-            th.text-center Extra?
+            //th.text-center NGM Students
+            //th.text-center Contact Person
+            //th.text-center Avg. GPA
+            th.text-center Address
+            th.text-center Phone Number
         if (data)
           each val in data
             tr.clickable-row(data-toggle = 'modal'
                             data-target='#schoolInfoModal')
-              td #{val.username}
-              td #{val.password}
-              td #{val.id}
-        tr
+              td #{val.school_name}
+              td #{val.school_address}
+              td #{val.school_phone}
+        //- tr
           td: a(href="#" data-toggle="modal" data-target="#schoolInfoModal") School 1
           td: a(href="#" data-toggle="modal" data-target="#schoolInfoModal") 5
           td: a(href="#" data-toggle="modal" data-target="#schoolInfoModal") John Smith
           td: a(href="#" data-toggle="modal" data-target="#schoolInfoModal") 3.5
           td: a(href="#" data-toggle="modal" data-target="#schoolInfoModal") ??
-        tr
+        //- tr
           td school 2
           td 10
           td Jonah Long
