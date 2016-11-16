@@ -93,6 +93,18 @@ app.post('/addstudent', isLoggedIn, function (req, res) {
 
   });
 
+app.post('/addstaff', isLoggedIn, function (req, res) {
+    stmt = 'INSERT INTO Staff(first_name, last_name,phone, email) VALUES (?,?,?,?);';
+    connection.query(stmt,[req.body.fname, req.body.lname, req.body.num, req.body.email], function(err, rows){
+        console.log(err);
+
+      
+      res.redirect('/staff');
+    });
+      //console.log(req);
+
+  });
+
 
 app.post('/addschool', isLoggedIn, function (req, res) {
     stmt = 'INSERT INTO School(school_name, school_address,school_phone) VALUES (?,?,?);';

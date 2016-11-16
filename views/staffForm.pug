@@ -1,34 +1,31 @@
 .form-group
-  .col-sm-2
+  .col-sm-12
       p
-        b General Information
+          b(style = 'text-align-last:center') General Information
+      button.btn.btn-default.btn-lg(tyle = 'button' href = '#' data-dismiss = 'modal' data-toggle = 'modal' style = 'float:center'
+                              data-target = '#editStudentModal')
+          span.glyphicon.glyphicon-cog(style = 'margin:5px')
 .form-group
   .col-sm-2
       label First Name
   .col-sm-10
-      input.form-control(name = 'fname' type = 'text' id = 'inputFirstName'
-                            placeholder = 'First Name')
+      //p(style = 'text-align-last:left') #{val.fname}
+      p(style = 'text-align-last:left') Dummy Name
 .form-group
     .col-sm-2
         label Last Name
     .col-sm-10
-        input.form-control(name = 'lname' type = 'text' id = 'inputLastName'
-                            placeholder = 'Last Name')
+        //p(style = 'text-align-last:left') #{val.last_name}
+        p(style = 'text-align-last:left') Dummy Name
 .form-group
     .col-sm-2
-        label School
+        label Email
     .col-sm-10
-        input.form-control(name = 'school' type = 'text'
-                            placeholder = 'School')
+        //p(style = 'text-align-last:left') #{val.last_name}
+        p(style = 'text-align-last:left') Dummy Email
 .form-group
     .col-sm-2
-        label Average GPA
+        label Phone Number
     .col-sm-10
-        input.form-control(name = 'avggpa' type = 'number'
-                            placeholder = 'Average GPA')
-.form-group
-    .col-sm-2
-        label Students
-    .col-sm-10
-        input.form-control(name = 'students' type = 'text'
-                            placeholder = 'Students')
+        //p(style = 'text-align-last:left') #{val.last_name}
+        p(style = 'text-align-last:left') (xxx)xxx-xxxx

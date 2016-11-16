@@ -28,21 +28,31 @@ block content
           tr
             th.text-center First Name
             th.text-center Last Name
-            th.text-center School
-            th.text-center Avg. GPA
-            th.text-center Students
-        tr
-          td: a(href="#" data-toggle="modal" data-target="#staffInfoModal") John
-          td: a(href="#" data-toggle="modal" data-target="#staffInfoModal") Smith
-          td: a(href="#" data-toggle="modal" data-target="#staffInfoModal") School 1
-          td: a(href="#" data-toggle="modal" data-target="#staffInfoModal") 3.5
-          td: a(href="#" data-toggle="modal" data-target="#staffInfoModal") 5
-        tr
-          td Jonah
-          td Long
-          td School 2
-          td 2.9
-          td 15
+            th.text-center Email
+            th.text-center Phone Number
+            //th.text-center School
+            //th.text-center Avg. GPA
+            //th.text-center Students
+        if (data)
+          each val in data
+            tr.clickable-row(data-toggle = 'modal'
+                          data-target='#staffInfoModal')
+              td #{val.first_name}
+              td #{val.last_name}
+              td #{val.email}
+              td #{val.phone}
+        //- tr
+        //-   td: a(href="#" data-toggle="modal" data-target="#staffInfoModal") John
+        //-   td: a(href="#" data-toggle="modal" data-target="#staffInfoModal") Smith
+        //-   td: a(href="#" data-toggle="modal" data-target="#staffInfoModal") School 1
+        //-   td: a(href="#" data-toggle="modal" data-target="#staffInfoModal") 3.5
+        //-   td: a(href="#" data-toggle="modal" data-target="#staffInfoModal") 5
+        //- tr
+        //-   td Jonah
+        //-   td Long
+        //-   td School 2
+        //-   td 2.9
+        //-   td 15
 
     .btn.btn-default(type = 'submit' data-toggle = 'modal' data-target = '#addStaffModal') Add School
 

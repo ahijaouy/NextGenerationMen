@@ -8,6 +8,15 @@ CREATE TABLE IF NOT EXISTS USERS
 		UNIQUE INDEX `username_UNIQUE` (`username` ASC)
 	);
 
+CREATE TABLE IF NOT EXISTS Staff 
+    (
+      `staff_id` int(11) NOT NULL AUTO_INCREMENT,
+      `first_name` varchar(255) NOT NULL,
+      `last_name` varchar(255) DEFAULT NULL,
+      `phone` varchar(20) DEFAULT NULL,
+      `email` varchar(255) DEFAULT NULL,
+      PRIMARY KEY (`staff_id`)
+    );
 
 CREATE TABLE IF NOT EXISTS Student
 	(
