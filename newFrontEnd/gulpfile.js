@@ -3,10 +3,13 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     rename = require('gulp-rename'),
     sass = require('gulp-ruby-sass'),
+    php = require('gulp-connect-php'),
     autoprefixer = require('gulp-autoprefixer'),
     browserSync = require('browser-sync').create();
 
 var DEST = 'build/';
+
+
 
 gulp.task('scripts', function() {
     return gulp.src([
@@ -47,6 +50,11 @@ gulp.task('browser-sync', function() {
     });
 });
 
+gulp.task('php', function() {
+  php.server({base: 'app', port: 3000, keepalive: true});
+  console.log("php working?");
+});
+
 gulp.task('watch', function() {
   // Watch .html files
   gulp.watch('production/*.html', browserSync.reload);
@@ -57,4 +65,4 @@ gulp.task('watch', function() {
 });
 
 // Default Task
-gulp.task('default', ['browser-sync', 'watch']);
+gulp.task('default', ['browser-sync', 'watch', 'php']);

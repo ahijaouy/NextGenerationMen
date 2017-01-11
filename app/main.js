@@ -4,54 +4,55 @@ var dbconfig        = require('../config/database');
 var connection = mysql.createConnection(dbconfig.connection)
 connection.query('USE ' + dbconfig.database);
 app.get('/', function (req, res) {
-  res.render('index', { });
+  res.render('index.html', { });
 });
 
-app.get('/login', function(req, res) {
-    res.render('login', { message: req.flash('loginMessage')});
-});
-app.post('/login', passport.authenticate('local-login', {
-    successRedirect : '/dashboard',
-    failureRedirect : '/login',
-    failureFlash : true
-}),
-function(req, res) {
-    if (req.body.remember) {
-          req.session.cookie.maxAge = 1000 * 60 * 20; //20 minutes
-      } else {
-          req.session.cookie.expires = false;
-      }
-    //res.redirect('/');
-});
+// app.get('/login', function(req, res) {
+//     res.render('login', { message: req.flash('loginMessage')});
+// });
+// app.post('/login', passport.authenticate('local-login', {
+//     successRedirect : '/dashboard',
+//     failureRedirect : '/login',
+//     failureFlash : true
+// }),
+// function(req, res) {
+//     if (req.body.remember) {
+//           req.session.cookie.maxAge = 1000 * 60 * 20; //20 minutes
+//       } else {
+//           req.session.cookie.expires = false;
+//       }
+//     //res.redirect('/');
+// });
 
 
-app.get('/signup', function(req, res) {
-    res.render('signup', { message: req.flash('signupMessage') });
-});
+// app.get('/signup', function(req, res) {
+//     res.render('signup', { message: req.flash('signupMessage') });
+// });
 
-app.post('/signup', passport.authenticate('local-signup', {
-    successRedirect : '/dashboard',
-    failureRedirect : '/signup',
-    failureFlash : true
-}));
+// app.post('/signup', passport.authenticate('local-signup', {
+//     successRedirect : '/dashboard',
+//     failureRedirect : '/signup',
+//     failureFlash : true
+// }));
 
-app.get('/logout', function(req, res) {
-    req.logout();
-    res.redirect('/');
-});
+// app.get('/logout', function(req, res) {
+//     req.logout();
+//     res.redirect('/');
+// });
 
-app.get('/dashboard', isLoggedIn, function (req, res) {
-    connection.query("SELECT COUNT(*) AS num FROM Student;", function(err, rows0){
-        connection.query("SELECT COUNT(*) AS num FROM Staff;", function(err, rows1){
-            connection.query("SELECT COUNT(*) AS num FROM School;", function(err, rows2){
-                console.log(rows0 + rows1 + rows2)
-                res.render('dashboard', { user : req.user.username,
-                  student: rows0,
-                  staff: rows1,
-                  school: rows2});
-            });
-        });
-    });
+  
+app.get('/index.html',  function (req, res) {
+    // connection.query("SELECT COUNT(*) AS num FROM Student;", function(err, rows0){
+    //     connection.query("SELECT COUNT(*) AS num FROM Staff;", function(err, rows1){
+    //         connection.query("SELECT COUNT(*) AS num FROM School;", function(err, rows2){
+    //             console.log(rows0 + rows1 + rows2)
+    //             res.render('dashboard', { user : req.user.username,
+    //               student: rows0,
+    //               staff: rows1,
+    //               school: rows2});
+    //         });
+    //     });
+    // });
 });
 app.get('/students', isLoggedIn, function (req, res) {
     connection.query("SELECT * FROM Student", function(err, rows){
@@ -88,7 +89,7 @@ app.get('/survey', isLoggedIn, function (req, res) {
 
 app.get('/StudentInfo', isLoggedIn, function (req, res) {
   res.render('StudentInfo', { user : req.user.username,
-    title: 'Hey',
+    title: 'test',
     message: 'Hello there!'});
 });
 app.post('/addstudent', isLoggedIn, function (req, res) {
