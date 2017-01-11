@@ -27,8 +27,8 @@ app.get('/', function(req, res) {
 });
 
 
-app.listen(3000, function() {
-	console.log('Server running on 3000');
+app.listen(80, function() {
+	console.log('we are live on 80');
 });
 
 // app.set('view engine', 'pug');
