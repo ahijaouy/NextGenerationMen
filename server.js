@@ -10,23 +10,79 @@
 //var favicon     = require('express-favicon')
 var express 	= require('express'),
 	bodyParser 	= require('body-parser'),
-	path 		= require('path');
+	path 		= require('path'),
+	mysql		= require('mysql'),
+	dbconfig	= require('./config/database'),
+	exphbs 	= require('express-handlebars');
 
+var connection = mysql.createConnection(dbconfig.connection)
+connection.query('USE ' + dbconfig.database);
 
 var app = express();
+
+
 
 //Body Parser Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-//Set static path
-app.use(express.static(path.join(__dirname, 'public')));
+//Set View Engine
+app.engine('hbs', exphbs({defaultLayout: false, extname:'.hbs',}));
+app.set('view engine', 'hbs');
 
+//Set static path
+app.use("/vendors",express.static(__dirname + "/vendors"));
+app.use("/build",express.static(__dirname + "/build"));
+app.use("/images",express.static(__dirname + "/images"));
+
+//routes
 app.get('/', function(req, res) {
-	res.send('Hello World');
+	res.render('index');
+	 
+	connection.query("SELECT * FROM Student", function(err, rows){
+        console.log(rows);
+        //rows.dob = new Date(rows.dob).toDateString();
+        res.render('index');
+    });
+
+	
+});
+
+app.get('/index.html', function(req, res) {
+	res.render('index');
+});
+
+app.get('/schools.html', function(req, res) {
+	connection.query("SELECT * FROM School", function(err, rows){
+        res.render('schools', { schools: rows});
+    });
+});
+
+app.get('/students.html', function(req, res) {
+	connection.query("SELECT * FROM Student", function(err, rows){
+        res.render('students', { students: rows});
+    });
+});
+
+app.get('/partners.html', function(req, res) {
+	res.render('partners');
+});
+
+app.get('/addStudent.html', function(req, res) {
+	res.render('addStudent');
+});
+
+app.get('/addSchool.html', function(req, res) {
+	res.render('addSchool');
+});
+
+app.get('/addPartner.html', function(req, res) {
+	res.render('addPartner');
 });
 
 
+
+//Launch server?
 app.listen(80, function() {
 	console.log('we are live on 80');
 });

@@ -33,6 +33,8 @@ CREATE TABLE IF NOT EXISTS Student
         `parenttwo_name` VARCHAR(255),
         `parenttwo_num` VARCHAR(20),
         `parenttwo_email` VARCHAR(255),
+        `cohort` VARCHAR(50),
+        `school` VARCHAR(255),
         PRIMARY KEY(`id`)
 	);
 
