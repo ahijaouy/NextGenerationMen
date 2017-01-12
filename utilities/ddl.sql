@@ -56,6 +56,8 @@ CREATE TABLE IF NOT EXISTS School
     (
         `school_id` INTEGER NOT NULL AUTO_INCREMENT,
         `school_name` VARCHAR(255) NOT NULL,
+        `principle` VARCHAR(255) NOT NULL,
+        `principle_phone` VARCHAR(255) NOT NULL,
         `school_address` VARCHAR(255),
         `school_phone` VARCHAR(20),
         PRIMARY KEY(`school_id`)
