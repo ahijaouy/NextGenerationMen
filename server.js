@@ -37,7 +37,6 @@ app.use("/images",express.static(__dirname + "/images"));
 
 //routes
 app.get('/', function(req, res) {
-	res.render('index');
 	 
 	connection.query("SELECT * FROM Student", function(err, rows){
         console.log(rows);
