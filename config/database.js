@@ -8,4 +8,4 @@ module.exports = {
     'users_table': 'USERS'
 };
 
-//Testing Git ignore 2
+//Testing Git ignore 3
