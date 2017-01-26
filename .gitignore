@@ -28,7 +28,7 @@ coverage
 build/Release
 
 #config data
-/config
+config/database.js
 
 # Dependency directories
 node_modules
