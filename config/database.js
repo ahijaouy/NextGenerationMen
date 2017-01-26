@@ -7,3 +7,5 @@ module.exports = {
 	'database': 'ngm',
     'users_table': 'USERS'
 };
+
+//Testing Git ignore
