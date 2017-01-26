@@ -2,15 +2,13 @@
 
 ##Cloning instructions
   - `cd` to where you want to store the project
-  - `git clone https://github.gatech.edu/ahijaouy3/NextGenerationMen`
+  - `git clone https://github.com/ahijaouy/NextGenerationMen.git`
   - `cd NextGenerationMen`
   - `npm install`
-  - install/confirm db instance
 
 ##How to use
-  - type `nodejs server.js` to run non-persistent test
-  - confirm db activity with `idk_yet_lol`
-  - navigate to `localhost:80` on `HTTP` to view project (replace `localhost` with external AWS IP if needed)
+  - type `sudo nodejs server.js` to run non-persistent test
+  - navigate to `localhost:80` on `HTTP` to view project (replace `localhost` with external AWS instance located at `http://ec2-35-161-110-16.us-west-2.compute.amazonaws.com/`
 
 ##Action Items
   - Replace `cassandra-store` with db choice's store for login cookie persistence
