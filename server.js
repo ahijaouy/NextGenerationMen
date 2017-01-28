@@ -47,9 +47,31 @@ app.get('/', function(req, res) {
 	
 });
 
+app.post('/students.html', function(req, res) {
+  res.send('POST request recieved');
+  res.end();
+  //console.log(req.body);
+});
 app.get('/profile.html', function(req, res) {
-  res.render('profile', {student : {first_name : 'Andre',
-                                    last_name : 'Hijaouy'}});
+  //console.log(req);
+  //console.log(req.query);
+  var first_name = req.query.first_name;
+  console.log('First Name: ' + first_name);
+  //res.send('working..');
+  res.render('profile', {student : req.query});
+//  res.render('profile', {student : {
+//                                    first_name : 'Andre',
+//                                    last_name : 'Hijaouy',
+//                                    dob : "01/31/1997",
+//                                    startdate: "1/27/2017",
+//                                    phonenum: "(734) 634-8178",
+//                                    email: "hijaouya@gmail.com",
+//                                    parentone_name: "Nazih Hijaouy",
+//                                    parentone_num: "(734) 634-8613",
+//                                    parentone_email: "nhijaouy@gmail.com",
+//                                    cohort : "Class of 2019",
+//                                    school : "Georgia Tech"
+//                                   }});
 });
 
 app.get('/index.html', function(req, res) {

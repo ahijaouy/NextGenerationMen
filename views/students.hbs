@@ -170,6 +170,7 @@
                       {{#each students}}
                       <tbody>
                         <tr>
+                          
                           <td>{{this.first_name}}</td>
                           <td>{{this.last_name}}</td>
                           <td>{{this.cohort}}</td>
@@ -177,9 +178,11 @@
                           <td>{{this.phonenum}}</td>
                           <td>{{this.parentone_name}}</td>
                           <td>{{this.parentone_num}}</td>
+                            
                         </tr>
                       </tbody>
                       {{/each}}
+                        
                       
                       
 <!--
@@ -263,11 +266,29 @@
 
     <script>
     $("#datatable tr").click(function(){
-        $(this).addClass('selected').siblings().removeClass('selected');    
-        var value=$(this).find('td:first-child, td:nth-child(2)').html();
-        value += " " + $(this).find('td:nth-child(2)').html();
-        alert(value);
+        $(this).addClass('selected').siblings().removeClass('selected');
+        
+        var firstName=$(this).find('td:first-child').html();
+        var lastName=$(this).find('td:nth-child(2)').html();
+        var cellPhone=$(this).find('td:nth-child(5)').html();
+        var primaryGuardianName=$(this).find('td:nth-child(6)').html();
+        //value += " " + $(this).find('td:nth-child(2)').html();
+        //alert(cellPhone);
+        $.ajax({
+						type: 'GET',
+						data: {
+              first_name : firstName,
+              last_name : lastName,
+              phonenum : cellPhone,
+              parentone_name : primaryGuardianName
+            },
+            url: '/profile.html',						
+            success: function(data) {
+                console.log('success');
+            }
+        });
     });
+      
     </script>
     <!-- Datatables -->
     <script>

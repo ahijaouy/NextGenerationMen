@@ -146,17 +146,16 @@
                       <h3>{{student.first_name}} {{student.last_name}}</h3>
 
                       <ul class="list-unstyled user_data">
-                        <li><i class="fa fa-map-marker user-profile-icon"></i> San Francisco, California, USA
+                        <li><i class="fa fa-birthday-cake user-profile-icon"></i> {{student.dob}}</li>
+                        <li><i class="fa fa-map-marker user-profile-icon"></i> {{student.school}}
                         </li>
 
                         <li>
-                          <i class="fa fa-briefcase user-profile-icon"></i> Software Engineer
+                          <i class="fa fa-briefcase user-profile-icon"></i> {{student.cohort}}
                         </li>
 
-                        <li class="m-top-xs">
-                          <i class="fa fa-external-link user-profile-icon"></i>
-                          <a href="http://www.kimlabs.com/profile/" target="_blank">www.kimlabs.com</a>
-                        </li>
+                        <li><i class="fa fa-phone user-profile-icon"></i> {{student.phonenum}}</li>
+                        <li><i class="fa fa-envelope user-profile-icon"></i> {{student.email}}</li>
                       </ul>
 
                       <a class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a>
