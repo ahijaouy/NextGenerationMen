@@ -47,6 +47,11 @@ app.get('/', function(req, res) {
 	
 });
 
+app.get('/profile.html', function(req, res) {
+  res.render('profile', {student : {first_name : 'Andre',
+                                    last_name : 'Hijaouy'}});
+});
+
 app.get('/index.html', function(req, res) {
 	res.render('index');
 });
