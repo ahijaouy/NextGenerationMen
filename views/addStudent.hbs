@@ -194,14 +194,15 @@
                                                 </a>
                                             </li>
                                         </ul>
+
                                         <div id="step-1">
                                             <!-- First Name -->
                                             <div class="form-group">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                                                       for="first-name">First Name <span class="required">*</span>
+                                                       for="first_name">First Name <span class="required">*</span>
                                                 </label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <input type="text" id="first-name" required="required"
+                                                    <input type="text" id="first_name" name="first_name" required="required"
                                                            class="form-control col-md-7 col-xs-12">
                                                 </div>
                                             </div>
@@ -209,10 +210,10 @@
                                             <!-- Last Name -->
                                             <div class="form-group">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                                                       for="last-name">Last Name <span class="required">*</span>
+                                                       for="last_name">Last Name <span class="required">*</span>
                                                 </label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <input type="text" id="last-name" name="last-name"
+                                                    <input type="text" id="last_name" name="last_name"
                                                            required="required"
                                                            class="form-control col-md-7 col-xs-12">
                                                 </div>
@@ -264,7 +265,7 @@
                                             <!-- Email -->
                                             <div class="form-group">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                                                       for="last-name">Email <span class="required">*</span>
+                                                       for="email">Email <span class="required">*</span>
                                                 </label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <input type="email" id="email" name="email" required="required"
@@ -275,10 +276,10 @@
                                             <!-- Cell Phone -->
                                             <div class="form-group">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                                                       for="last-name">Cell Phone <span class="required">*</span>
+                                                       for="num">Cell Phone <span class="required">*</span>
                                                 </label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <input type="tel" id="email" name="email" required="required"
+                                                    <input type="num" id="num" name="num" required="required"
                                                            class="form-control col-md-7 col-xs-12">
                                                 </div>
                                             </div>
@@ -289,11 +290,11 @@
                                             <!-- Gaurdian 1 Name -->
                                             <div class="form-group">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                                                       for="guardian1name">Primary Guardian Name <span
+                                                       for="parentone_name">Primary Guardian Name <span
                                                         class="required">*</span>
                                                 </label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <input type="text" id="guardian1name" name="guardian1name"
+                                                    <input type="text" id="parentone_name" name="parentone_name"
                                                            required="required"
                                                            class="form-control col-md-7 col-xs-12">
                                                 </div>
@@ -302,11 +303,11 @@
                                             <!-- Gaurdian 1 phone -->
                                             <div class="form-group">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                                                       for="guardian1cell">Primary Guardian Cell Phone <span
+                                                       for="parentone_num">Primary Guardian Cell Phone <span
                                                         class="required">*</span>
                                                 </label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <input type="tel" id="guardian1cell" name="guardian1cell"
+                                                    <input type="tel" id="parentone_num" name="parentone_num"
                                                            required="required"
                                                            class="form-control col-md-7 col-xs-12">
                                                 </div>
@@ -315,11 +316,11 @@
                                             <!-- Guardian 1 Email -->
                                             <div class="form-group">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                                                       for="guardian1email">Primary Guardian Email <span
+                                                       for="parentone_email">Primary Guardian Email <span
                                                         class="required">*</span>
                                                 </label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <input type="email" id="guardian1email" name="guardian1email"
+                                                    <input type="email" id="parentone_email" name="parentone_email"
                                                            required="required"
                                                            class="form-control col-md-7 col-xs-12">
                                                 </div>
@@ -330,9 +331,9 @@
                                             <!-- Gaurdian 2 Name -->
                                             <div class="form-group">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                                                       for="guardian2name">Secondary Guardian Name</label>
+                                                       for="parenttwo_name">Secondary Guardian Name</label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <input type="text" id="guardian2name" name="guardian2name"
+                                                    <input type="text" id="parenttwo_name" name="parenttwo_name"
                                                            class="form-control col-md-7 col-xs-12">
                                                 </div>
                                             </div>
@@ -340,9 +341,9 @@
                                             <!-- Gaurdian 2 phone -->
                                             <div class="form-group">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                                                       for="guardian2cell">Secondary Guardian Cell Phone</label>
+                                                       for="parenttwo_num">Secondary Guardian Cell Phone</label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <input type="tel" id="guardian2cell" name="guardian2cell"
+                                                    <input type="tel" id="parenttwo_num" name="parenttwo_num"
                                                            class="form-control col-md-7 col-xs-12">
                                                 </div>
                                             </div>
@@ -350,9 +351,9 @@
                                             <!-- Guardian 2 Email -->
                                             <div class="form-group">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                                                       for="guardian2email">Secondary Guardian Email</label>
+                                                       for="parenttwo_email">Secondary Guardian Email</label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <input type="email" id="guardian2email" name="guardian2email"
+                                                    <input type="email" id="parenttwo_email" name="parenttwo_email"
                                                            class="form-control col-md-7 col-xs-12">
                                                 </div>
                                             </div>
