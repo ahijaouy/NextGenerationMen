@@ -164,6 +164,7 @@
                           <th>Cell Phone</th>
                           <th>Primary Guardian</th>
                           <th>Cell Phone</th>
+                          <th>Edit</th>
                         </tr>
                       </thead>
                       
@@ -178,7 +179,13 @@
                           <td>{{this.phonenum}}</td>
                           <td>{{this.parentone_name}}</td>
                           <td>{{this.parentone_num}}</td>
-                            
+                          <td>
+                            <a id="view" name="{{this.id}}" href="/profile.html" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+<!--
+                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+-->
+                          </td>
                         </tr>
                       </tbody>
                       {{/each}}
@@ -265,29 +272,39 @@
     <script src="../build/js/custom.min.js"></script>
 
     <script>
-    $("#datatable tr").click(function(){
-        $(this).addClass('selected').siblings().removeClass('selected');
-        
-        var firstName=$(this).find('td:first-child').html();
-        var lastName=$(this).find('td:nth-child(2)').html();
-        var cellPhone=$(this).find('td:nth-child(5)').html();
-        var primaryGuardianName=$(this).find('td:nth-child(6)').html();
-        //value += " " + $(this).find('td:nth-child(2)').html();
-        //alert(cellPhone);
-        $.ajax({
-						type: 'GET',
-						data: {
-              first_name : firstName,
-              last_name : lastName,
-              phonenum : cellPhone,
-              parentone_name : primaryGuardianName
-            },
-            url: '/profile.html',						
-            success: function(data) {
-                console.log('success');
-            }
+      $(function() {
+        $("#view").click(function(e) {
+          e.preventDefault(); // cancel the link itself
+          $.get(this.href,function(data) {
+            console.log('success');
+          });
         });
-    });
+      });
+//    $("#datatable tr").click(function(){
+//        $(this).addClass('selected').siblings().removeClass('selected');
+//        
+//        var firstName=$(this).find('td:first-child').html();
+//        var lastName=$(this).find('td:nth-child(2)').html();
+//        var cellPhone=$(this).find('td:nth-child(5)').html();
+//        var primaryGuardianName=$(this).find('td:nth-child(6)').html();
+//        //value += " " + $(this).find('td:nth-child(2)').html();
+//        //alert(cellPhone);
+//        window.location.href = "/profile.html";
+//        $.ajax({
+//						type: 'GET',
+//						data: {
+//              first_name : firstName,
+//              last_name : lastName,
+//              phonenum : cellPhone,
+//              parentone_name : primaryGuardianName
+//            },
+//            url: '/profile.html',						
+//            success: function(data) {
+//                
+//                console.log('success');
+//            }
+//        });
+//    });
       
     </script>
     <!-- Datatables -->
