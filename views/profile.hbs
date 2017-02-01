@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Next Generation Men </title>
+
+    <!-- Bootstrap -->
+    <link href="../../../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../../../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../../../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="../../../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    
+    <!-- Custom Theme Style -->
+    <link href="../../../build/css/custom.min.css" rel="stylesheet">
+  </head>
+
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col">
+          <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>NGM</span></a>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <!-- menu profile quick info -->
+            <div class="profile clearfix">
+              <div class="profile_pic">
+                <img src="../../../images/img.jpg" alt="..." class="img-circle profile_img">
+              </div>
+              <div class="profile_info">
+                <span>Welcome,</span>
+                <h2>John Doe</h2>
+              </div>
+            </div>
+            <!-- /menu profile quick info -->
+
+            <br />
+
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              <div class="menu_section">
+                <h3>General</h3>
+                <ul class="nav side-menu">
+                  <li><a href="/index"><i class="fa fa-home"></i>Dashboard</a></li>
+									<li><a href="/schools"><i class="fa fa-graduation-cap"></i>Schools</a></li>
+									<li><a href="/students"><i class="fa fa-users"></i>Students</a></li>
+									<li><a href="/partners"><i class="fa fa-building"></i>Partners</a></li>
+                  <li><a><i class="fa fa-plus"></i>Add<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                    	<li><a href="/addStudent">Students</a></li>
+											<li><a href="/addSchool">Schools</a></li>
+											<li><a href="/addPartner">Partners</a></li>
+                    </ul>
+									</li>
+                </ul>
+              </div>
+            </div>
+            <!-- /sidebar menu -->
+
+            
+          </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+          <div class="nav_menu">
+            <nav>
+              <div class="nav toggle">
+                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+              </div>
+
+              <ul class="nav navbar-nav navbar-right">
+                <li class="">
+                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <img src="../../../images/img.jpg" alt="">John Doe
+                    <span class=" fa fa-angle-down"></span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-usermenu pull-right">
+                    <li><a href="javascript:;"> Profile</a></li>
+                    <li>
+                      <a href="javascript:;">
+                        <span class="badge bg-red pull-right">50%</span>
+                        <span>Settings</span>
+                      </a>
+                    </li>
+                    <li><a href="javascript:;">Help</a></li>
+                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                  </ul>
+                </li>
+
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>Student Profile</h3>
+              </div>
+
+              
+            </div>
+            
+            <div class="clearfix"></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>{{student.first_name}} {{student.last_name}} Student Report</h2>
+                    
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
+                      <div class="profile_img">
+                        <div id="crop-avatar">
+                          <!-- Current avatar -->
+                          <img class="img-responsive avatar-view" src="../../../images/picture.jpg" alt="Avatar" title="Change the avatar">
+                        </div>
+                      </div>
+                      <h3>{{student.first_name}} {{student.last_name}}</h3>
+
+                      <ul class="list-unstyled user_data">
+                        <li><i class="fa fa-birthday-cake user-profile-icon"></i> {{student.dob}} </li>
+                        <li><i class="fa fa-map-marker user-profile-icon"></i>   {{student.school}}
+                        </li>
+
+                        <li>
+                          <i class="fa fa-briefcase user-profile-icon"></i> {{student.cohort}}
+                        </li>
+
+                        <li><i class="fa fa-phone user-profile-icon"></i>  {{student.phonenum}}</li>
+                        <li><i class="fa fa-envelope user-profile-icon"></i> {{student.email}}</li>
+                      </ul>
+
+                      <a class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a>
+                      <br />
+
+                      <!-- start skills -->
+                      <h4>Survey Data</h4>
+                      <ul class="list-unstyled user_data">
+                        <li>
+                          <p>Grit</p>
+                          <div class="progress progress_sm">
+                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="50"></div>
+                          </div>
+                        </li>
+                        <li>
+                          <p>Problem Solving</p>
+                          <div class="progress progress_sm">
+                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="70"></div>
+                          </div>
+                        </li>
+                        <li>
+                          <p>Academic Self-Efficacy</p>
+                          <div class="progress progress_sm">
+                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="30"></div>
+                          </div>
+                        </li>
+                        <li>
+                          <p>Interpersonal Skills</p>
+                          <div class="progress progress_sm">
+                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="50"></div>
+                          </div>
+                        </li>
+                        <li>
+                          <p>Growth Mindset</p>
+                          <div class="progress progress_sm">
+                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="50"></div>
+                          </div>
+                        </li>
+                        <li>
+                          <p>Academic Behaviors</p>
+                          <div class="progress progress_sm">
+                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="50"></div>
+                          </div>
+                        </li>
+                      </ul>
+                      <!-- end of skills -->
+
+                    </div>
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+
+                      <div class="profile_title">
+                        <div class="col-md-6">
+                          <h2>{{student.first_name}} {{student.last_name}} Academic Performance</h2>
+                        </div>
+                        <div class="col-md-6">
+                          <div id="reportrange" class="pull-right" style="margin-top: 5px; background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #E6E9ED">
+                            <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                            <span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- start of user-activity-graph -->
+                      <div id="graph_bar" style="width:100%; height:280px;"></div>
+                      <!-- end of user-activity-graph -->
+
+                      <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                        <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                          <li role="presentation" class="active"><a href="#tab_content1" id="notes-tab" role="tab" data-toggle="tab" aria-expanded="true">Notes</a>
+                          </li>
+                          <li role="presentation" class=""><a href="#tab_content3" role="tab" id="academic-tab" data-toggle="tab" aria-expanded="false">Academic Record</a>
+                          </li>
+                          <li role="presentation" class=""><a href="#tab_content2" role="tab" id="survey-tab" data-toggle="tab" aria-expanded="false">Survey Responses</a>
+                          </li>
+                          
+                        </ul>
+                        <div id="myTabContent" class="tab-content">
+                          <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+
+                            <!-- start Notes -->
+                            <ul class="messages">
+                              <li>
+                                <img src="../../images/img.jpg" class="avatar" alt="Avatar">
+                                <div class="message_date">
+                                  <h3 class="date text-info">24</h3>
+                                  <p class="month">May</p>
+                                </div>
+                                <div class="message_wrapper">
+                                  <h4 class="heading">Desmond Davison</h4>
+                                  <blockquote class="message">This is an example of a note a NGM user might leave on this profile?</blockquote>
+                                  <br />
+                                  <p class="url">
+                                    <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
+                                    <a href="#"><i class="fa fa-paperclip"></i> User Acceptance Test.doc </a>
+                                  </p>
+                                </div>
+                              </li>
+                            </ul>
+                            <!-- end Notes -->
+                            
+                          </div>
+                          <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="survey-tab">
+
+                            <!-- start Survey Responses -->
+                            <div class="x_content">
+                              <h2>SSN - Grit</h2>
+                              <table id="datatable" class="table table-striped table-bordered">
+                                <thead>
+                                  <tr>
+                                    <th>Question</th>
+                                    <th>Response</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>New ideas and projects sometimes distract me from previous ones.</td>
+                                    <td>5</td>
+                                  </tr>
+                                  <tr>
+                                    <td>I have been obsessed with a certain ideas or project for a short time but later lost interest.</td>
+                                    <td>5</td>
+                                  </tr>
+                                  <tr>
+                                    <td>I am a hard worker.</td>
+                                    <td>5</td>
+                                  </tr>
+                                  <tr>
+                                    <td>I often set a goal but later choose to pursue (follow) a different one.</td>
+                                    <td>5</td>
+                                  </tr>
+                                  <tr>
+                                    <td>I have difficulty maintining (keeping) my focus on projects that take more than a few months to complete.</td>
+                                    <td>5</td>
+                                  </tr>
+                                  <tr>
+                                    <td>I finish whatever I begin.</td>
+                                    <td>5</td>
+                                  </tr>
+                                  <tr>
+                                    <td>New ideas and projects sometimes distract me from previous ones.</td>
+                                    <td>5</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                               <h2>SSN - Problem Solving</h2>
+                              <table id="datatable" class="table table-striped table-bordered">
+                                <thead>
+                                  <tr>
+                                    <th>Question</th>
+                                    <th>Response</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>I compare each possible solution with the others to find the best one to solve my problem.</td>
+                                    <td>5</td>
+                                  </tr>
+                                  <tr>
+                                    <td>I look at a problem from many different viewpoints (my own, my friends', my parents', etc.).</td>
+                                    <td>5</td>
+                                  </tr>
+                                  <tr>
+                                    <td>I'm confident I can do an excellent job on assignments and tests.</td>
+                                    <td>5</td>
+                                  </tr>
+                                  <tr>
+                                    <td>When solving a problem, I look at all possible solutions.</td>
+                                    <td>5</td>
+                                  </tr>
+                                  <tr>
+                                    <td>I try to get all the facts before trying to solve a problem.</td>
+                                    <td>5</td>
+                                  </tr>
+                                  <tr>
+                                    <td>I try to look at the long term results of each possible solution.</td>
+                                    <td>5</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                              <h2>SSN - Academic Self-Efficacy</h2>
+                              <table id="datatable" class="table table-striped table-bordered">
+                                <thead>
+                                  <tr>
+                                    <th>Question</th>
+                                    <th>Response</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>I'm certain I can understand the most difficult material presented in texts.</td>
+                                    <td>5</td>
+                                  </tr>
+                                  <tr>
+                                    <td>I'm confident I can understand the most complex material presented by the teacher.</td>
+                                    <td>5</td>
+                                  </tr>
+                                  <tr>
+                                    <td>When faced with a problem, I wait to see if it will go away.</td>
+                                    <td>5</td>
+                                  </tr>
+                                  <tr>
+                                    <td>I'm certain I can master the skills being taught in school.</td>
+                                    <td>5</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                               <h2>SSN - Interpersonal Skills (Teamwork)</h2>
+                              <table id="datatable" class="table table-striped table-bordered">
+                                <thead>
+                                  <tr>
+                                    <th>Question</th>
+                                    <th>Response</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>I can be a good group leader.</td>
+                                    <td>5</td>
+                                  </tr>
+                                  <tr>
+                                    <td>I can help a group be successful.</td>
+                                    <td>5</td>
+                                  </tr>
+                                  <tr>
+                                    <td>I can be happy even when my group has decided to do something I don't want to do.</td>
+                                    <td>5</td>
+                                  </tr>
+                                  <tr>
+                                    <td>I can appreciate opinions that are different from my own.</td>
+                                    <td>5</td>
+                                  </tr>
+                                  <tr>
+                                    <td>I can place group goals above the things that I want.</td>
+                                    <td>5</td>
+                                  </tr>
+                                  <tr>
+                                    <td>I can cooperate with others.</td>
+                                    <td>5</td>
+                                  </tr>
+                                  <tr>
+                                    <td>I can be a team-player in a small group.</td>
+                                    <td>5</td>
+                                  </tr>
+                                  <tr>
+                                    <td>I know I can get along with other people in a small group.</td>
+                                    <td>5</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                              <h2>SSN - Interpersonal Skills (Social Competence)</h2>
+                              <table id="datatable" class="table table-striped table-bordered">
+                                <thead>
+                                  <tr>
+                                    <th>Question</th>
+                                    <th>Response</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>I work well with other students.</td>
+                                    <td>5</td>
+                                  </tr>
+                                  <tr>
+                                    <td>I can solve problems with other students without being aggressive.</td>
+                                    <td>5</td>
+                                  </tr>
+                                  <tr>
+                                    <td>I often think about the feelings of other students.</td>
+                                    <td>5</td>
+                                  </tr>
+                                  <tr>
+                                    <td>I usually cooperate with other students without being told to do so.</td>
+                                    <td>5</td>
+                                  </tr>
+                                  <tr>
+                                    <td>I understand the feelings of other students.</td>
+                                    <td>5</td>
+                                  </tr>
+                                  <tr>
+                                    <td>I can resolve problems with other students on my own.</td>
+                                    <td>5</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                               <h2>SSN - Growth Mindset</h2>
+                              <table id="datatable" class="table table-striped table-bordered">
+                                <thead>
+                                  <tr>
+                                    <th>Question</th>
+                                    <th>Response</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>You have a certain amount of intelligence and you can't really do much to change it.</td>
+                                    <td>5</td>
+                                  </tr>
+                                  <tr>
+                                    <td>Your intelligence is something about you that you can't change very much.</td>
+                                    <td>5</td>
+                                  </tr>
+                                  <tr>
+                                    <td>You can learn new things but you can't really change your basic intelligence.</td>
+                                    <td>5</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                              <h2>SSN - Academic Behavior (Children's Self-Efficacy)</h2>
+                              <table id="datatable" class="table table-striped table-bordered">
+                                <thead>
+                                  <tr>
+                                    <th>Question</th>
+                                    <th>Response</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>Get teachers to help me when I get stuck on schoolwork.</td>
+                                    <td>5</td>
+                                  </tr>
+                                  <tr>
+                                    <td>Get another student to help me when I get stuck on schoolwork.</td>
+                                    <td>5</td>
+                                  </tr>
+                                  <tr>
+                                    <td>Get adults to help me when I have social problems.</td>
+                                    <td>5</td>
+                                  </tr>
+                                  <tr>
+                                    <td>Get a friend to help me when I have social problems.</td>
+                                    <td>5</td>
+                                  </tr>
+                                  <tr>
+                                    <td>Finish my homework assignments by deadlines.</td>
+                                    <td>5</td>
+                                  </tr>
+                                  <tr>
+                                    <td>Get myself to study when there are other interesting things to do.</td>
+                                    <td>5</td>
+                                  </tr>
+                                  <tr>
+                                    <td>Always concentrate on school subjects during class.</td>
+                                    <td>5</td>
+                                  </tr>
+                                  <tr>
+                                    <td>Take good notes during class instruction.</td>
+                                    <td>5</td>
+                                  </tr>
+                                  <tr>
+                                    <td>Use the library to get information for class assignments.</td>
+                                    <td>5</td>
+                                  </tr>
+                                  <tr>
+                                    <td>Plan my schoolwork for the day.</td>
+                                    <td>5</td>
+                                  </tr>
+                                  <tr>
+                                    <td>Organize my schoolwork.</td>
+                                    <td>5</td>
+                                  </tr>
+                                  <tr>
+                                    <td>Remember well information presented in class and testbooks.</td>
+                                    <td>5</td>
+                                  </tr>
+                                  <tr>
+                                    <td>Arrange a place to study without distractions.</td>
+                                    <td>5</td>
+                                  </tr>
+                                  <tr>
+                                    <td>Get myself to do schoolwork.</td>
+                                    <td>5</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                            <!-- end Survey Data -->  
+                            
+                          </div>
+                          <!--Begin Academic Record -->
+                          <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="academic-tab">
+                            <div class="x_content">
+                              <table id="datatable" class="table table-striped table-bordered">
+                                <thead>
+                                  <tr>
+                                    <th>Grade</th>
+                                    <th>Semester</th>
+                                    <th>As</th>
+                                    <th>Bs</th>
+                                    <th>Cs</th>
+                                    <th>Fs</th>
+                                    <th>GPA</th>
+                                    <th>Credits</th>
+                                  </tr>
+                                </thead>
+
+
+                                <tbody>
+                                  <tr>
+                                    <td>9th</td>
+                                    <td>1st Semester</td>
+                                    <td>4</td>
+                                    <td>3</td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                    <td>3.0</td>
+                                    <td>8</td>
+                                  </tr>
+                                </tbody>
+                        
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+          <div class="pull-right">
+            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+          </div>
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="../../../vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="../../../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="../../../vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="../../../vendors/nprogress/nprogress.js"></script>
+    <!-- morris.js -->
+    <script src="../../../vendors/raphael/raphael.min.js"></script>
+    <script src="../../../vendors/morris.js/morris.min.js"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="../../../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="../../../vendors/moment/min/moment.min.js"></script>
+    <script src="../../../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+    
+    <!-- Custom Theme Scripts -->
+    <script src="../../../build/js/custom.min.js"></script>
+    
+    <script>
+      $(function() {
+        Morris.Bar({
+          element: 'graph_bar',
+          data: [
+            { "period": "Jan", "Hours worked": 80 }, 
+            { "period": "Feb", "Hours worked": 125 }, 
+            { "period": "Mar", "Hours worked": 176 }, 
+            { "period": "Apr", "Hours worked": 224 }, 
+            { "period": "May", "Hours worked": 265 }, 
+            { "period": "Jun", "Hours worked": 314 }, 
+            { "period": "Jul", "Hours worked": 347 }, 
+            { "period": "Aug", "Hours worked": 287 }, 
+            { "period": "Sep", "Hours worked": 240 }, 
+            { "period": "Oct", "Hours worked": 211 }
+          ],
+          xkey: 'period',
+          hideHover: 'auto',
+          barColors: ['#26B99A', '#34495E', '#ACADAC', '#3498DB'],
+          ykeys: ['Hours worked', 'sorned'],
+          labels: ['Hours worked', 'SORN'],
+          xLabelAngle: 60,
+          resize: true
+        });
+
+        $MENU_TOGGLE.on('click', function() {
+          $(window).resize();
+        });
+      });
+    </script>
+
+    <!-- datepicker -->
+    <script type="text/javascript">
+      $(document).ready(function() {
+
+        var cb = function(start, end, label) {
+          console.log(start.toISOString(), end.toISOString(), label);
+          $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+          //alert("Callback has fired: [" + start.format('MMMM D, YYYY') + " to " + end.format('MMMM D, YYYY') + ", label = " + label + "]");
+        }
+
+        var optionSet1 = {
+          startDate: moment().subtract(29, 'days'),
+          endDate: moment(),
+          minDate: '01/01/2012',
+          maxDate: '12/31/2015',
+          dateLimit: {
+            days: 60
+          },
+          showDropdowns: true,
+          showWeekNumbers: true,
+          timePicker: false,
+          timePickerIncrement: 1,
+          timePicker12Hour: true,
+          ranges: {
+            'Today': [moment(), moment()],
+            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+            'This Month': [moment().startOf('month'), moment().endOf('month')],
+            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+          },
+          opens: 'left',
+          buttonClasses: ['btn btn-default'],
+          applyClass: 'btn-small btn-primary',
+          cancelClass: 'btn-small',
+          format: 'MM/DD/YYYY',
+          separator: ' to ',
+          locale: {
+            applyLabel: 'Submit',
+            cancelLabel: 'Clear',
+            fromLabel: 'From',
+            toLabel: 'To',
+            customRangeLabel: 'Custom',
+            daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+            monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            firstDay: 1
+          }
+        };
+        $('#reportrange span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
+        $('#reportrange').daterangepicker(optionSet1, cb);
+        $('#reportrange').on('show.daterangepicker', function() {
+          console.log("show event fired");
+        });
+        $('#reportrange').on('hide.daterangepicker', function() {
+          console.log("hide event fired");
+        });
+        $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
+          console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
+        });
+        $('#reportrange').on('cancel.daterangepicker', function(ev, picker) {
+          console.log("cancel event fired");
+        });
+        $('#options1').click(function() {
+          $('#reportrange').data('daterangepicker').setOptions(optionSet1, cb);
+        });
+        $('#options2').click(function() {
+          $('#reportrange').data('daterangepicker').setOptions(optionSet2, cb);
+        });
+        $('#destroy').click(function() {
+          $('#reportrange').data('daterangepicker').remove();
+        });
+      });
+    </script>
+    <!-- /datepicker -->
+
+  </body>
+</html>
