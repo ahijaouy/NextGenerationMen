@@ -56,10 +56,12 @@ app.get('/students/:id/profile', function(req, res) {
   //console.log(req);
   console.log(req.params);
   var query = "SELECT * FROM Student WHERE id=" + req.params.id;
-  console.log(query);
+  //console.log(que);
   connection.query(query, function(err, rows){
-    console.log(rows);
-        res.render('profile', { student: rows});
+    console.log(rows[0]);
+    rows[0].dob = rows[0].dob.toDateString(); //properly set date.
+    //rows[0].startdate = rows[0].startdate.toDateString();
+    res.render('profile', { student: rows[0]});
   });
   //res.send('working..');
   //res.render('profile', {student : req.query});
