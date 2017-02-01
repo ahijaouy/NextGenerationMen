@@ -20,7 +20,7 @@ connection.query('USE ' + dbconfig.database);
 
 var app = express();
 
-
+// TESTING branch
 
 //Body Parser Middleware
 app.use(bodyParser.json());
@@ -47,34 +47,55 @@ app.get('/', function(req, res) {
 	
 });
 
-app.get('/index.html', function(req, res) {
+app.post('/students', function(req, res) {
+  res.send('POST request recieved');
+  res.end();
+  //console.log(req.body);
+});
+app.get('/students/:id/profile', function(req, res) {
+  //console.log(req);
+  console.log(req.params);
+  var query = "SELECT * FROM Student WHERE id=" + req.params.id;
+  //console.log(que);
+  connection.query(query, function(err, rows){
+    console.log(rows[0]);
+    rows[0].dob = rows[0].dob.toDateString(); //properly set date.
+    //rows[0].startdate = rows[0].startdate.toDateString();
+    res.render('profile', { student: rows[0]});
+  });
+  //res.send('working..');
+  //res.render('profile', {student : req.query});
+
+});
+
+app.get('/index', function(req, res) {
 	res.render('index');
 });
 
-app.get('/schools.html', function(req, res) {
+app.get('/schools', function(req, res) {
 	connection.query("SELECT * FROM School", function(err, rows){
         res.render('schools', { schools: rows});
     });
 });
 
-app.get('/students.html', function(req, res) {
+app.get('/students', function(req, res) {
 	connection.query("SELECT * FROM Student", function(err, rows){
         res.render('students', { students: rows});
     });
 });
 
-app.get('/partners.html', function(req, res) {
+app.get('/partners', function(req, res) {
 	res.render('partners');
 });
 
-app.get('/addStudent.html', function(req, res) {
+app.get('/addStudent', function(req, res) {
 	res.render('addStudent');
 });
 
-app.post('/addStudent.html', function(req, res) {
+app.post('/addStudent', function(req, res) {
 	//res.render('addStudent');
   res.send('POST request recieved');
-  console.log(req.body.dob);
+  //console.log(req.body);
   stmt = 'INSERT INTO Student(first_name, last_name,dob,startdate,phonenum,email,parentone_name,parentone_num,parentone_email,parenttwo_name,parenttwo_num,parenttwo_email, cohort, school) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?);';
   
   connection.query(stmt,['first_name', 'last_name',new Date(req.body.dob), new Date(req.body.dob),'phonenum','email','parentone_name','parentone_num','parentone_email','parenttwo_name','parenttwo_num','parenttwo_email', 'cohort', 'school'], function(err, rows){ 
@@ -85,11 +106,11 @@ app.post('/addStudent.html', function(req, res) {
   
 });
 
-app.get('/addSchool.html', function(req, res) {
+app.get('/addSchool', function(req, res) {
 	res.render('addSchool');
 });
 
-app.get('/addPartner.html', function(req, res) {
+app.get('/addPartner', function(req, res) {
 	res.render('addPartner');
 });
 
