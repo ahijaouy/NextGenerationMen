@@ -47,61 +47,53 @@ app.get('/', function(req, res) {
 	
 });
 
-app.post('/students.html', function(req, res) {
+app.post('/students', function(req, res) {
   res.send('POST request recieved');
   res.end();
   //console.log(req.body);
 });
-app.get('/profile.html', function(req, res) {
+app.get('/students/:id/profile', function(req, res) {
   //console.log(req);
-  //console.log(req.query);
-  var first_name = req.query.first_name;
-  console.log('First Name: ' + first_name);
+  console.log(req.params);
+  var query = "SELECT * FROM Student WHERE id=" + req.params.id;
+  console.log(query);
+  connection.query(query, function(err, rows){
+    console.log(rows);
+        res.render('profile', { student: rows});
+  });
   //res.send('working..');
-  res.render('profile', {student : req.query});
-//  res.render('profile', {student : {
-//                                    first_name : 'Andre',
-//                                    last_name : 'Hijaouy',
-//                                    dob : "01/31/1997",
-//                                    startdate: "1/27/2017",
-//                                    phonenum: "(734) 634-8178",
-//                                    email: "hijaouya@gmail.com",
-//                                    parentone_name: "Nazih Hijaouy",
-//                                    parentone_num: "(734) 634-8613",
-//                                    parentone_email: "nhijaouy@gmail.com",
-//                                    cohort : "Class of 2019",
-//                                    school : "Georgia Tech"
-//                                   }});
+  //res.render('profile', {student : req.query});
+
 });
 
-app.get('/index.html', function(req, res) {
+app.get('/index', function(req, res) {
 	res.render('index');
 });
 
-app.get('/schools.html', function(req, res) {
+app.get('/schools', function(req, res) {
 	connection.query("SELECT * FROM School", function(err, rows){
         res.render('schools', { schools: rows});
     });
 });
 
-app.get('/students.html', function(req, res) {
+app.get('/students', function(req, res) {
 	connection.query("SELECT * FROM Student", function(err, rows){
         res.render('students', { students: rows});
     });
 });
 
-app.get('/partners.html', function(req, res) {
+app.get('/partners', function(req, res) {
 	res.render('partners');
 });
 
-app.get('/addStudent.html', function(req, res) {
+app.get('/addStudent', function(req, res) {
 	res.render('addStudent');
 });
 
-app.post('/addStudent.html', function(req, res) {
+app.post('/addStudent', function(req, res) {
 	//res.render('addStudent');
   res.send('POST request recieved');
-  console.log(req.body);
+  //console.log(req.body);
   stmt = 'INSERT INTO Student(first_name, last_name,dob,startdate,phonenum,email,parentone_name,parentone_num,parentone_email,parenttwo_name,parenttwo_num,parenttwo_email, cohort, school) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?);';
   
   connection.query(stmt,['first_name', 'last_name',new Date(req.body.dob), new Date(req.body.dob),'phonenum','email','parentone_name','parentone_num','parentone_email','parenttwo_name','parenttwo_num','parenttwo_email', 'cohort', 'school'], function(err, rows){ 
@@ -112,11 +104,11 @@ app.post('/addStudent.html', function(req, res) {
   
 });
 
-app.get('/addSchool.html', function(req, res) {
+app.get('/addSchool', function(req, res) {
 	res.render('addSchool');
 });
 
-app.get('/addPartner.html', function(req, res) {
+app.get('/addPartner', function(req, res) {
 	res.render('addPartner');
 });
 
