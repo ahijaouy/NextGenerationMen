@@ -38,14 +38,18 @@ app.use("/images",express.static(__dirname + "/images"));
 
 //routes
 app.get('/', function(req, res) {
-	 
-	connection.query("SELECT * FROM Student", function(err, rows){
-        console.log(rows);
-        //rows.dob = new Date(rows.dob).toDateString();
-        res.render('index');
+
+	connection.query("SELECT * FROM Student", function(err, students){
+        connection.query("SELECT * FROM School", function(err, schools){
+            console.log(students.length);
+            res.render('index', {
+                students: students,
+                schools: schools
+            });
+        });
     });
 
-	
+
 });
 
 app.post('/students', function(req, res) {
@@ -97,10 +101,10 @@ app.post('/addStudent', function(req, res) {
 	res.redirect('/students');
      console.log(req.body);
      stmt = 'INSERT INTO Student(first_name,last_name,dob,startdate,email,parentone_name,parentone_num,parentone_email,parenttwo_name,parenttwo_num,parenttwo_email) VALUES (?,?,?,?,?,?,?,?,?,?,?);';
-     connection.query(stmt,[req.body.first_name,req.body.last_name,new Date(req.body.dob),Date.now(),req.body.email,req.body.parentone_name,req.body.parentone_num,req.body.parentone_email,req.body.parenttwo_name,req.body.parenttwo_num,req.body.parenttwo_email], function(err, rows){ 
+     connection.query(stmt,[req.body.first_name,req.body.last_name,new Date(req.body.dob),Date.now(),req.body.email,req.body.parentone_name,req.body.parentone_num,req.body.parentone_email,req.body.parenttwo_name,req.body.parenttwo_num,req.body.parenttwo_email], function(err, rows){
       console.log(err);
     });
-  
+
 });
 
 app.get('/addSchool', function(req, res) {

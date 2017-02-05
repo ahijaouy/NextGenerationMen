@@ -74,7 +74,7 @@
             </div>
             <!-- /sidebar menu -->
 
-            
+
           </div>
         </div>
 
@@ -116,12 +116,12 @@
           <div class="row tile_count">
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-user"></i> Total Schools</span>
-              <div class="count">5</div>
+              <div class="count">{{schools.length}}</div>
              <!--  <span class="count_bottom"><i class="green">4% </i> From last Week</span> -->
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-clock-o"></i> Total Students</span>
-              <div class="count green">200</div>
+              <div class="count green">{{students.length}}</div>
               <!-- <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> From last Week</span> -->
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
@@ -772,7 +772,7 @@
                   </div>
                 </div>
                 <!-- End to do list -->
-                
+
                 <!-- start of weather widget -->
                 <div class="col-md-6 col-sm-6 col-xs-12">
                   <div class="x_panel">
@@ -1096,7 +1096,7 @@
       });
     </script>
     <!-- /Doughnut Chart -->
-    
+
     <!-- bootstrap-daterangepicker -->
     <script>
       $(document).ready(function() {
