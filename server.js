@@ -48,8 +48,6 @@ app.get('/', function(req, res) {
             });
         });
     });
-
-
 });
 
 app.post('/students', function(req, res) {
@@ -74,7 +72,15 @@ app.get('/students/:id/profile', function(req, res) {
 });
 
 app.get('/index', function(req, res) {
-	res.render('index');
+    connection.query("SELECT * FROM Student", function(err, students){
+        connection.query("SELECT * FROM School", function(err, schools){
+            console.log(students.length);
+            res.render('index', {
+                students: students,
+                schools: schools
+            });
+        });
+    });
 });
 
 app.get('/schools', function(req, res) {
