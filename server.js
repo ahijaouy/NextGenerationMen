@@ -38,10 +38,10 @@ app.use("/images",express.static(__dirname + "/images"));
 
 //routes
 app.get('/', function(req, res) {
-
 	connection.query("SELECT * FROM Student", function(err, students){
         connection.query("SELECT * FROM School", function(err, schools){
-            console.log(students.length);
+            //for (var i = 0; i < 5; i++)
+            console.log(students[0]);
             res.render('index', {
                 students: students,
                 schools: schools
@@ -53,18 +53,21 @@ app.get('/', function(req, res) {
 app.post('/students', function(req, res) {
   res.send('POST request recieved');
   res.end();
-  //console.log(req.body);
+  //console.gi  log(req.body);
 });
 app.get('/students/:id/profile', function(req, res) {
   //console.log(req);
-  console.log(req.params);
+  //console.log(req.params);
   var query = "SELECT * FROM Student WHERE id=" + req.params.id;
+  var studentQuery = "SELECT 5 FROM Student ORDER BY startdate";
   //console.log(que);
   connection.query(query, function(err, rows){
-    console.log(rows[0]);
-    rows[0].dob = rows[0].dob.toDateString(); //properly set date.
-    //rows[0].startdate = rows[0].startdate.toDateString();
-    res.render('profile', { student: rows[0]});
+      connection.query(studentQuery, function(err, students) {
+        console.log(students);
+        rows[0].dob = rows[0].dob.toDateString(); //properly set date.
+        //rows[0].startdate = rows[0].startdate.toDateString();
+        res.render('profile', { student: rows[0]});
+     });
   });
   //res.send('working..');
   //res.render('profile', {student : req.query});
