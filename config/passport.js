@@ -26,6 +26,8 @@ module.exports = function(passport) {
                passReqToCallback : true // allows us to pass back the entire request to the callback
            },
            function(req, username, password, done) {
+                console.log('made it to sign up ');
+                console.log(req.body);
                connection.query("SELECT * FROM USERS WHERE username = ?",[username], function(err, rows) {
                    if (err) {
                        return done(err);
@@ -62,6 +64,7 @@ module.exports = function(passport) {
                passReqToCallback : true
            },
            function(req, username, password, done) {
+             console.log('get to login');
                connection.query("SELECT * FROM USERS WHERE username = ?",[username], function(err, rows){
                    if (err) {
                        return done(err);
