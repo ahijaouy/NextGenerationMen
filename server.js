@@ -41,10 +41,13 @@ app.get('/', function(req, res) {
 
 	connection.query("SELECT * FROM Student", function(err, students){
         connection.query("SELECT * FROM School", function(err, schools){
+          connection.query("SELECT * FROM Staff", function(err, partners){
             console.log(students.length);
             res.render('index', {
                 students: students,
-                schools: schools
+                schools: schools, 
+                partners: partners
+              });
             });
         });
     });
@@ -74,10 +77,13 @@ app.get('/students/:id/profile', function(req, res) {
 app.get('/index', function(req, res) {
     connection.query("SELECT * FROM Student", function(err, students){
         connection.query("SELECT * FROM School", function(err, schools){
-            console.log(students.length);
+          connection.query("SELECT * FROM Staff", function(err, partners){
+            console.log(partners.length);
             res.render('index', {
                 students: students,
-                schools: schools
+                schools: schools,
+                partners: partners
+              });
             });
         });
     });
@@ -96,11 +102,13 @@ app.get('/students', function(req, res) {
 });
 
 app.get('/partners', function(req, res) {
-	res.render('partners');
+  connection.query("SELECT * FROM Staff", function(err, rows){
+      res.render('partners', { partners: rows});
+  });
 });
 
 app.get('/addStudent', function(req, res) {
-	res.render('addStudent');
+res.render('addStudent');
 });
 
 app.post('/addStudent', function(req, res) {
