@@ -36,6 +36,17 @@ app.use("/vendors",express.static(__dirname + "/vendors"));
 app.use("/build",express.static(__dirname + "/build"));
 app.use("/images",express.static(__dirname + "/images"));
 
+// Ideas for dashboard
+//   Student / teacher of the month
+//   Announcements
+//   Survey data
+//   Total credits across schools
+//   Average GPA cross schools + Highs/lows, separating across semester
+// Student Page Ideas
+//   Credit accumulation
+//   GPA
+//   MS/HS Suspension
+//   D3 Using As Bs Cs
 //routes
 app.get('/', function(req, res) {
 	connection.query("SELECT * FROM Student", function(err, students){
