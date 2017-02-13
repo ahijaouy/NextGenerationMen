@@ -12,8 +12,6 @@ var express 	    = require('express'),
     flash         = require('connect-flash'),
     app           = express();;
 
-
-
 //Set View Engine
 app.engine('hbs', exphbs({defaultLayout: false, extname:'.hbs',}));
 app.set('view engine', 'hbs');

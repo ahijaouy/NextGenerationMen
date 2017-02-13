@@ -47,14 +47,24 @@ app.get('/callback',
     res.redirect('/');
   });
 
+  // Ideas for dashboard
+   //   Student / teacher of the month
+   //   Announcements
+   //   Survey data
+   //   Total credits across schools
+   //   Average GPA cross schools + Highs/lows, separating across semester
+   // Student Page Ideas
+   //   Credit accumulation
+   //   GPA
+   //   MS/HS Suspension
+   //   D3 Using As Bs Cs
+
 
   //index route
   app.get('/index',ensureLog, function(req, res) {
-    console.log(req.user);
     connection.query("SELECT * FROM Student", function(err, students){
         connection.query("SELECT * FROM School", function(err, schools){
           connection.query("SELECT * FROM Staff", function(err, partners){
-            console.log(students.length);
             res.render('index', {
                 students: students,
                 schools: schools,
@@ -110,7 +120,6 @@ app.get('/callback',
   app.get('/addSchool',ensureLog, function(req, res) {
     res.render('addSchool');
   });
-
 
   //Partner routes
   app.get('/partners',ensureLog, function(req, res) {
