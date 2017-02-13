@@ -1,139 +1,124 @@
 module.exports = function(app, passport) {
-var mysql           = require('mysql'); //MATCH this with package.json
-var dbconfig        = require('../config/database');
-var connection = mysql.createConnection(dbconfig.connection)
-connection.query('USE ' + dbconfig.database);
-app.get('/', function (req, res) {
-  res.render('index.html', { });
-});
 
-// app.get('/login', function(req, res) {
-//     res.render('login', { message: req.flash('loginMessage')});
-// });
-// app.post('/login', passport.authenticate('local-login', {
-//     successRedirect : '/dashboard',
-//     failureRedirect : '/login',
-//     failureFlash : true
-// }),
-// function(req, res) {
-//     if (req.body.remember) {
-//           req.session.cookie.maxAge = 1000 * 60 * 20; //20 minutes
-//       } else {
-//           req.session.cookie.expires = false;
-//       }
-//     //res.redirect('/');
-// });
+  var mysql      = require('mysql'),
+      dbconfig   = require('../config/database'),
+      connection = mysql.createConnection(dbconfig.connection),
+      ensureLog  = require('connect-ensure-login').ensureLoggedIn();;
+
+  connection.query('USE ' + dbconfig.database);
 
 
-// app.get('/signup', function(req, res) {
-//     res.render('signup', { message: req.flash('signupMessage') });
-// });
+  //New Code to try to implemnt Auth0
 
-// app.post('/signup', passport.authenticate('local-signup', {
-//     successRedirect : '/dashboard',
-//     failureRedirect : '/signup',
-//     failureFlash : true
-// }));
-
-// app.get('/logout', function(req, res) {
-//     req.logout();
-//     res.redirect('/');
-// });
-
-  
-app.get('/index.html',  function (req, res) {
-    // connection.query("SELECT COUNT(*) AS num FROM Student;", function(err, rows0){
-    //     connection.query("SELECT COUNT(*) AS num FROM Staff;", function(err, rows1){
-    //         connection.query("SELECT COUNT(*) AS num FROM School;", function(err, rows2){
-    //             console.log(rows0 + rows1 + rows2)
-    //             res.render('dashboard', { user : req.user.username,
-    //               student: rows0,
-    //               staff: rows1,
-    //               school: rows2});
-    //         });
-    //     });
-    // });
-});
-app.get('/students', isLoggedIn, function (req, res) {
-    connection.query("SELECT * FROM Student", function(err, rows){
-        console.log(rows);
-        //rows.dob = new Date(rows.dob).toDateString();
-        res.render('students', { user : req.user.username,
-          data: rows });
-    });
-});
-app.get('/schools', isLoggedIn, function (req, res) {
-    connection.query("SELECT * FROM School", function(err, rows){
-        console.log(rows);
-        res.render('schools', { user : req.user.username,
-          data: rows });
-    });
-});
-app.get('/myprofile', isLoggedIn, function (req, res) {
-  res.render('myprofile', { user : req.user.username,
-    title: 'Hey',
-    message: 'Hello there!'});
-});
-app.get('/staff', isLoggedIn, function (req, res) {
-    connection.query("SELECT * FROM Staff", function(err, rows){
-        console.log(rows);
-        res.render('staff', { user : req.user.username,
-          data: rows });
-    });
-});
-app.get('/survey', isLoggedIn, function (req, res) {
-  res.render('survey', { user : req.user.username,
-    title: 'Hey',
-    message: 'Hello there!'});
-});
-
-app.get('/StudentInfo', isLoggedIn, function (req, res) {
-  res.render('StudentInfo', { user : req.user.username,
-    title: 'test',
-    message: 'Hello there!'});
-});
-app.post('/addstudent', isLoggedIn, function (req, res) {
-    stmt = 'INSERT INTO Student(first_name, last_name,dob,startdate,phonenum,email,parentone_name,parentone_num,parentone_email,parenttwo_name,parenttwo_num,parenttwo_email) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);';
-    connection.query(stmt,[req.body.fname, req.body.lname, new Date(req.body.dob), new Date(req.body.ngmdate), req.body.num , req.body.email, req.body.p1name, req.body.p1num, req.body.p1email,req.body.p2name, req.body.p2num, req.body.p2email], function(err, rows){
-        console.log(err);
+  var env = {
+    AUTH0_CLIENT_ID: process.env.AUTH0_CLIENT_ID,
+    AUTH0_DOMAIN: process.env.AUTH0_DOMAIN,
+    AUTH0_CALLBACK_URL: process.env.AUTH0_CALLBACK_URL || 'http://admin.ngmatlanta.org/callback'
+  };
 
 
-      res.redirect('/students');
-    });
-      //console.log(req);
+app.get('/callback',
+  passport.authenticate('test', {
+    failureRedirect: '/login',
+    successRedirect: '/index',
+  }),
+ function(req, res) {
 
+    res.redirect(req.session.returnTo || '/index');
   });
 
-app.post('/addstaff', isLoggedIn, function (req, res) {
-    stmt = 'INSERT INTO Staff(first_name, last_name,phone, email) VALUES (?,?,?,?);';
-    connection.query(stmt,[req.body.fname, req.body.lname, req.body.num, req.body.email], function(err, rows){
-        console.log(err);
-
-
-      res.redirect('/staff');
-    });
-      //console.log(req);
-
+  app.get('/login', function(req, res){
+    res.render('login', { env: env });
   });
 
 
-app.post('/addschool', isLoggedIn, function (req, res) {
-    stmt = 'INSERT INTO School(school_name, school_address,school_phone) VALUES (?,?,?);';
-    connection.query(stmt,[req.body.name, req.body.address, req.body.num], function(err, rows){
-        console.log(err);
+  //End of New Code
 
 
-      res.redirect('/schools');
-    });
-      //console.log(req);
-
+  app.get('/', function(req, res) {
+	    res.render('login');
   });
+
+  //login, logout, and sign up routes
+  app.get('/logout', function(req, res) {
+    console.log(req.user);
+    req.logout();
+    console.log(req.user);
+    res.redirect('/');
+  });
+
+
+  //index route
+  app.get('/index',ensureLog, function(req, res) {
+    console.log(req.user);
+    connection.query("SELECT * FROM Student", function(err, students){
+        connection.query("SELECT * FROM School", function(err, schools){
+          connection.query("SELECT * FROM Staff", function(err, partners){
+            console.log(students.length);
+            res.render('index', {
+                students: students,
+                schools: schools,
+                partners: partners
+              });
+            });
+        });
+    });
+  });
+
+  //Student routes
+  app.get('/students',ensureLog, function(req, res) {
+	connection.query("SELECT * FROM Student", function(err, rows){
+        res.render('students', { students: rows});
+    });
+});
+  app.post('/students',ensureLog, function(req, res) {
+  res.send('POST request recieved');
+  res.end();
+  //console.log(req.body);
+});
+  app.get('/students/:id/profile',ensureLog, function(req, res) {
+  //console.log(req);
+  console.log(req.params);
+  var query = "SELECT * FROM Student WHERE id=" + req.params.id;
+  connection.query(query, function(err, rows){
+    console.log(rows[0]);
+    rows[0].dob = rows[0].dob.toDateString(); //properly set date.
+    //rows[0].startdate = rows[0].startdate.toDateString();
+    res.render('profile', { student: rows[0]});
+  });
+
+});
+  app.get('/addStudent',ensureLog, function(req, res) {
+	res.render('addStudent');
+});
+  app.post('/addStudent',ensureLog, function(req, res) {
+	res.redirect('/students');
+     console.log(req.body);
+     stmt = 'INSERT INTO Student(first_name,last_name,dob,startdate,email,parentone_name,parentone_num,parentone_email,parenttwo_name,parenttwo_num,parenttwo_email) VALUES (?,?,?,?,?,?,?,?,?,?,?);';
+     connection.query(stmt,[req.body.first_name,req.body.last_name,new Date(req.body.dob),Date.now(),req.body.email,req.body.parentone_name,req.body.parentone_num,req.body.parentone_email,req.body.parenttwo_name,req.body.parenttwo_num,req.body.parenttwo_email], function(err, rows){
+      console.log(err);
+    });
+
+});
+
+  //School routes
+  app.get('/schools',ensureLog, function(req, res) {
+	connection.query("SELECT * FROM School", function(err, rows){
+        res.render('schools', { schools: rows});
+    });
+});
+  app.get('/addSchool',ensureLog, function(req, res) {
+    res.render('addSchool');
+  });
+
+
+  //Partner routes
+  app.get('/partners',ensureLog, function(req, res) {
+	res.render('partners');
+});
+  app.get('/addPartner',ensureLog, function(req, res) {
+	res.render('addPartner');
+});
+
+
 };
-
-function isLoggedIn(req, res, next) {
-    if (req.isAuthenticated()) {
-        return next();
-    } else {
-     res.redirect('/login');
- }
-}
