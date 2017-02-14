@@ -53,12 +53,14 @@ app.get('/callback',
    //   Survey data
    //   Total credits across schools
    //   Average GPA cross schools + Highs/lows, separating across semester
+   //   Comparing GPA across schools'
+   //   GPA per Cohort
    // Student Page Ideas
    //   Credit accumulation
    //   GPA
    //   MS/HS Suspension
    //   D3 Using As Bs Cs
-
+// INSERT INTO survey_category (survey_category_id, survey_id, survey_category_name, date_modified, user_modified) VALUES(1,(SELECT survey_id from survey where survey_name="NGM Survey"), "Grit", NOW(), 1);
 
   //index route
   app.get('/index',ensureLog, function(req, res) {
