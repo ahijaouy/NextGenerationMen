@@ -85,7 +85,7 @@ INSERT INTO survey (
     user_modified
 ) VALUES (
     1,
-    'NGM survey_id',
+    'NGM Survey',
     now(),
     1
 )
