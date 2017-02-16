@@ -15,8 +15,8 @@ CREATE TABLE IF NOT EXISTS `school`(
     `school_name` VARCHAR(255) NOT NULL,
     `school_address` VARCHAR(255),
     `school_phone` VARCHAR(20),
-    `principle_name` VARCHAR(255),
-    `principle_phone` VARCHAR(255),
+    `principal_name` VARCHAR(255),
+    `principal_phone` VARCHAR(255),
     `date_modified` DATE,
     `user_modified` INT,
     PRIMARY KEY(`school_id`)
