@@ -159,7 +159,7 @@ INSERT INTO cohort (
     5,
     2,
     1,
-    3.78,
+    3.26,
     22,
     Now(),
     1
@@ -204,7 +204,7 @@ INSERT INTO cohort (
     4,
     7,
     2,
-    3.76,
+    3.18,
     218,
     Now(),
     1
@@ -249,7 +249,7 @@ INSERT INTO cohort (
     6,
     7,
     4,
-    3.82,
+    3.31,
     23,
     Now(),
     1
@@ -296,7 +296,7 @@ INSERT INTO cohort (
     2,
     3,
     2,
-    3.88,
+    3.10,
     29,
     Now(),
     1
@@ -341,7 +341,7 @@ INSERT INTO cohort (
     6,
     4,
     4,
-    3.90,
+    2.98,
     32,
     Now(),
     1
@@ -386,7 +386,7 @@ INSERT INTO cohort (
     6,
     3,
     5,
-    3.86,
+    3.07,
     27,
     Now(),
     1
@@ -416,25 +416,25 @@ INSERT INTO cohort (
     date_modified,
     user_modified
 ) VALUES (
-    96047,
+    97423,
     3,
-    "Lindsay",
-    "Morrison",
-    2000-11-11,
-    2015-11-11,
-    5018351272,
-    "LMorrison42@gmail.com",
-    "Lucas",
-    "LMorrison22@gmail.com",
-    6529375241
-    "Holly",
-    "HMorrison65@gmail.com"
-    3591712902,
-    5,
+    "Juanita",
+    "Perry",
+    2001-9-13,
+    2015-1-22,
+    5019089782,
+    "JPerry56@gmail.com",
+    "Phillip",
+    "PPerry26@gmail.com",
+    6528905641
+    "Jeanne",
+    "JPerry90@gmail.com"
+    3594869702,
+    3,
+    4,
     2,
-    1,
-    3.78,
-    22,
+    2.87,
+    20,
     Now(),
     1
 )
@@ -461,25 +461,25 @@ INSERT INTO cohort (
     date_modified,
     user_modified
 ) VALUES (
-    96057,
+    99757,
     3,
-    "Ray",
-    "Massey"
-    2001-6-21,
-    2015-6-11,
-    5018841272,
-    "RMassey85@gmail.com",
-    "Gary",
-    "GMassey39@gmail.com",
-    6529309241
-    "Evelyn",
-    "EMassey45@gmail.com"
-    3596713902,
-    4,
-    7,
+    "Garrett",
+    "Cohen"
+    2001-5-03,
+    2014-9-27,
+    5018123452,
+    "GCohen02@gmail.com",
+    "Willie",
+    "WCohen42@gmail.com",
+    6523009421
+    "Mary",
+    "MCohen@gmail.com"
+    3596131425,
     2,
-    3.76,
-    28,
+    1,
+    4,
+    2.76,
+    21,
     Now(),
     1
 )
@@ -508,23 +508,23 @@ INSERT INTO cohort (
 ) VALUES (
     95047,
     3,
-    "Lisa",
-    "Hall",
-    2002-3-06,
-    2015-5-17,
-    9598351272,
-    "LHall54@gmail.com",
-    "Ken",
-    "KHall40@gmail.com",
-    6520856241
-    "Sharon",
-    "SHall60@gmail.com"
-    2942960351,
-    6,
-    7,
-    4,
-    3.82,
-    23,
+    "Frances",
+    "Logan",
+    2002-4-21,
+    2016-8-12,
+    9598980952,
+    "FLogan10@gmail.com",
+    "Raymond",
+    "RLogan56@gmail.com",
+    6529276521
+    "Marianne",
+    "MLogan18@gmail.com"
+    2942983490,
+    5,
+    8,
+    2,
+    2.82,
+    24,
     Now(),
     1
 )
