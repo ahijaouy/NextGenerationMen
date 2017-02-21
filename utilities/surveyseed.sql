@@ -8,7 +8,7 @@ INSERT INTO survey (
     'NGM Survey',
     now(),
     1
-)
+);
 
 INSERT INTO survey_category (
     survey_category_id,
@@ -18,7 +18,7 @@ INSERT INTO survey_category (
     user_modified,
 ) VALUES (
     1,
-    (SELECT survey_id from survey where survey_name='NGM Survey'),
+    (SELECT survey_id FROM survey WHERE survey_id=1),
     'Grit',
     now(),
     1
@@ -115,7 +115,7 @@ INSERT INTO survey_question (
     0,
     now(),
     1
-)
+);
 INSERT INTO survey_question (
     survey_question_id,
     survey_category_id,
@@ -130,7 +130,7 @@ INSERT INTO survey_question (
     1,
     now(),
     1
-)
+);
 INSERT INTO survey_question (
     survey_question_id,
     survey_category_id,
@@ -145,7 +145,7 @@ INSERT INTO survey_question (
     0,
     now(),
     1
-)
+);
 INSERT INTO survey_question (
     survey_question_id,
     survey_category_id,
@@ -160,7 +160,7 @@ INSERT INTO survey_question (
     1,
     now(),
     1
-)
+);
 INSERT INTO survey_question (
     survey_question_id,
     survey_category_id,
@@ -175,7 +175,7 @@ INSERT INTO survey_question (
     1,
     now(),
     1
-)
+);
 INSERT INTO survey_question (
     survey_question_id,
     survey_category_id,
@@ -190,7 +190,7 @@ INSERT INTO survey_question (
     0,
     now(),
     1
-)
+);
 INSERT INTO survey_question (
     survey_question_id,
     survey_category_id,
@@ -205,7 +205,7 @@ INSERT INTO survey_question (
     0,
     now(),
     1
-)
+);
 INSERT INTO survey_question (
     survey_question_id,
     survey_category_id,
@@ -220,7 +220,7 @@ INSERT INTO survey_question (
     0,
     now(),
     1
-)
+);
 INSERT INTO survey_question (
     survey_question_id,
     survey_category_id,
@@ -235,7 +235,7 @@ INSERT INTO survey_question (
     0,
     now(),
     1
-)
+);
 INSERT INTO survey_question (
     survey_question_id,
     survey_category_id,
@@ -250,7 +250,7 @@ INSERT INTO survey_question (
     0,
     now(),
     1
-)
+);
 INSERT INTO survey_question (
     survey_question_id,
     survey_category_id,
@@ -265,7 +265,7 @@ INSERT INTO survey_question (
     0,
     now(),
     1
-)
+);
 INSERT INTO survey_question (
     survey_question_id,
     survey_category_id,
@@ -280,7 +280,7 @@ INSERT INTO survey_question (
     0,
     now(),
     1
-)
+);
 INSERT INTO survey_question (
     survey_question_id,
     survey_category_id,
@@ -295,7 +295,7 @@ INSERT INTO survey_question (
     0,
     now(),
     1
-)
+);
 INSERT INTO survey_question (
     survey_question_id,
     survey_category_id,
@@ -310,7 +310,7 @@ INSERT INTO survey_question (
     0,
     now(),
     1
-)
+);
 INSERT INTO survey_question (
     survey_question_id,
     survey_category_id,
@@ -325,7 +325,7 @@ INSERT INTO survey_question (
     0,
     now(),
     1
-)
+);
 INSERT INTO survey_question (
     survey_question_id,
     survey_category_id,
@@ -340,7 +340,7 @@ INSERT INTO survey_question (
     1,
     now(),
     1
-)
+);
 INSERT INTO survey_question (
     survey_question_id,
     survey_category_id,
@@ -355,7 +355,7 @@ INSERT INTO survey_question (
     0,
     now(),
     1
-)
+);
 INSERT INTO survey_question (
     survey_question_id,
     survey_category_id,
@@ -370,7 +370,7 @@ INSERT INTO survey_question (
     0,
     now(),
     1
-)
+);
 INSERT INTO survey_question (
     survey_question_id,
     survey_category_id,
@@ -385,7 +385,7 @@ INSERT INTO survey_question (
     0,
     now(),
     1
-)
+);
 INSERT INTO survey_question (
     survey_question_id,
     survey_category_id,
@@ -400,7 +400,7 @@ INSERT INTO survey_question (
     0,
     now(),
     1
-)
+);
 INSERT INTO survey_question (
     survey_question_id,
     survey_category_id,
@@ -415,7 +415,7 @@ INSERT INTO survey_question (
     0,
     now(),
     1
-)
+);
 INSERT INTO survey_question (
     survey_question_id,
     survey_category_id,
@@ -430,7 +430,7 @@ INSERT INTO survey_question (
     0,
     now(),
     1
-)
+);
 INSERT INTO survey_question (
     survey_question_id,
     survey_category_id,
@@ -445,7 +445,7 @@ INSERT INTO survey_question (
     0,
     now(),
     1
-)
+);
 INSERT INTO survey_question (
     survey_question_id,
     survey_category_id,
@@ -460,7 +460,7 @@ INSERT INTO survey_question (
     0,
     now(),
     1
-)
+);
 INSERT INTO survey_question (
     survey_question_id,
     survey_category_id,
@@ -475,7 +475,7 @@ INSERT INTO survey_question (
     0,
     now(),
     1
-)
+);
 INSERT INTO survey_question (
     survey_question_id,
     survey_category_id,
@@ -490,7 +490,7 @@ INSERT INTO survey_question (
     0,
     now(),
     1
-)
+);
 INSERT INTO survey_question (
     survey_question_id,
     survey_category_id,
@@ -505,7 +505,7 @@ INSERT INTO survey_question (
     0,
     now(),
     1
-)
+);
 INSERT INTO survey_question (
     survey_question_id,
     survey_category_id,
@@ -520,7 +520,7 @@ INSERT INTO survey_question (
     0,
     now(),
     1
-)
+);
 INSERT INTO survey_question (
     survey_question_id,
     survey_category_id,
@@ -535,7 +535,7 @@ INSERT INTO survey_question (
     0,
     now(),
     1
-)
+);
 INSERT INTO survey_question (
     survey_question_id,
     survey_category_id,
@@ -550,7 +550,7 @@ INSERT INTO survey_question (
     0,
     now(),
     1
-)
+);
 INSERT INTO survey_question (
     survey_question_id,
     survey_category_id,
@@ -565,7 +565,7 @@ INSERT INTO survey_question (
     0,
     now(),
     1
-)
+);
 INSERT INTO survey_question (
     survey_question_id,
     survey_category_id,
@@ -580,7 +580,7 @@ INSERT INTO survey_question (
     1,
     now(),
     1
-)
+);
 INSERT INTO survey_question (
     survey_question_id,
     survey_category_id,
@@ -595,7 +595,7 @@ INSERT INTO survey_question (
     1,
     now(),
     1
-)
+);
 INSERT INTO survey_question (
     survey_question_id,
     survey_category_id,
@@ -610,7 +610,7 @@ INSERT INTO survey_question (
     1,
     now(),
     1
-)
+);
 INSERT INTO survey_question (
     survey_question_id,
     survey_category_id,
@@ -625,7 +625,7 @@ INSERT INTO survey_question (
     0,
     now(),
     1
-)
+);
 INSERT INTO survey_question (
     survey_question_id,
     survey_category_id,
@@ -640,7 +640,7 @@ INSERT INTO survey_question (
     0,
     now(),
     1
-)
+);
 INSERT INTO survey_question (
     survey_question_id,
     survey_category_id,
@@ -655,7 +655,7 @@ INSERT INTO survey_question (
     0,
     now(),
     1
-)
+);
 INSERT INTO survey_question (
     survey_question_id,
     survey_category_id,
@@ -670,7 +670,7 @@ INSERT INTO survey_question (
     0,
     now(),
     1
-)
+);
 INSERT INTO survey_question (
     survey_question_id,
     survey_category_id,
@@ -685,7 +685,7 @@ INSERT INTO survey_question (
     0,
     now(),
     1
-)
+);
 INSERT INTO survey_question (
     survey_question_id,
     survey_category_id,
@@ -700,7 +700,7 @@ INSERT INTO survey_question (
     0,
     now(),
     1
-)
+);
 INSERT INTO survey_question (
     survey_question_id,
     survey_category_id,
@@ -715,7 +715,7 @@ INSERT INTO survey_question (
     0,
     now(),
     1
-)
+);
 INSERT INTO survey_question (
     survey_question_id,
     survey_category_id,
@@ -730,7 +730,7 @@ INSERT INTO survey_question (
     0,
     now(),
     1
-)
+);
 INSERT INTO survey_question (
     survey_question_id,
     survey_category_id,
@@ -745,7 +745,7 @@ INSERT INTO survey_question (
     0,
     now(),
     1
-)
+);
 INSERT INTO survey_question (
     survey_question_id,
     survey_category_id,
@@ -760,7 +760,7 @@ INSERT INTO survey_question (
     0,
     now(),
     1
-)
+);
 INSERT INTO survey_question (
     survey_question_id,
     survey_category_id,
@@ -775,7 +775,7 @@ INSERT INTO survey_question (
     0,
     now(),
     1
-)
+);
 INSERT INTO survey_question (
     survey_question_id,
     survey_category_id,
@@ -790,7 +790,7 @@ INSERT INTO survey_question (
     0,
     now(),
     1
-)
+);
 INSERT INTO survey_question (
     survey_question_id,
     survey_category_id,
@@ -805,7 +805,7 @@ INSERT INTO survey_question (
     0,
     now(),
     1
-)
+);
 INSERT INTO survey_question (
     survey_question_id,
     survey_category_id,
@@ -820,4 +820,4 @@ INSERT INTO survey_question (
     0,
     now(),
     1
-)
+);
