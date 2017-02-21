@@ -18,7 +18,7 @@ INSERT INTO survey_category (
     user_modified,
 ) VALUES (
     1,
-    (SELECT survey_id FROM survey WHERE survey_id=1),
+    (SELECT survey_id from survey where survey_name='NGM Survey'),
     'Grit',
     now(),
     1
