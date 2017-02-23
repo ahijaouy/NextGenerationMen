@@ -5,96 +5,54 @@ INSERT INTO survey (
     user_modified
 ) VALUES (
     1,
-    'NGM Survey',
+    "NGM Survey",
     now(),
     1
 );
 
-INSERT INTO survey_category (
-    survey_category_id,
-    survey_id,
-    survey_category_name,
-    date_modified,
-    user_modified,
-) VALUES (
+INSERT INTO survey_category VALUES (
     1,
-    (SELECT survey_id from survey where survey_name='NGM Survey'),
-    'Grit',
+    (SELECT survey_id from survey where survey_id=1),
+    "Grit",
     now(),
     1
 );
-INSERT INTO survey_category (
-    survey_category_id,
-    survey_id,
-    survey_category_name,
-    date_modified,
-    user_modified,
-) VALUES (
+INSERT INTO survey_category VALUES (
     2,
     (SELECT survey_id from survey where survey_name='NGM Survey'),
     'Problem Solving',
     now(),
     1
 );
-INSERT INTO survey_category (
-    survey_category_id,
-    survey_id,
-    survey_category_name,
-    date_modified,
-    user_modified,
-) VALUES (
+INSERT INTO survey_category VALUES (
     3,
     (SELECT survey_id from survey where survey_name='NGM Survey'),
     'Academic Self-Efficacy',
     now(),
     1
 );
-INSERT INTO survey_category (
-    survey_category_id,
-    survey_id,
-    survey_category_name,
-    date_modified,
-    user_modified,
-) VALUES (
+INSERT INTO survey_category VALUES (
     4,
     (SELECT survey_id from survey where survey_name='NGM Survey'),
     'Teamwork',
     now(),
     1
 );
-INSERT INTO survey_category (
-    survey_category_id,
-    survey_id,
-    survey_category_name,
-    date_modified,
-    user_modified,
-) VALUES (
+INSERT INTO survey_category VALUES (
     5,
     (SELECT survey_id from survey where survey_name='NGM Survey'),
     'Social Competence',
     now(),
     1
 );
-INSERT INTO survey_category (
-    survey_category_id,
-    survey_id,
-    survey_category_name,
-    date_modified,
-    user_modified,
-) VALUES (
+INSERT INTO survey_category VALUES (
     6,
     (SELECT survey_id from survey where survey_name='NGM Survey'),
     'Growth Mindset',
     now(),
     1
 );
-INSERT INTO survey_category (
-    survey_category_id,
-    survey_id,
-    survey_category_name,
-    date_modified,
-    user_modified,
-) VALUES (
+INSERT INTO survey_category VALUES (
     7,
     (SELECT survey_id from survey where survey_name='NGM Survey'),
     'Academic Behaviors',
