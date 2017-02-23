@@ -12,49 +12,54 @@ INSERT INTO survey (
 
 INSERT INTO survey_category VALUES (
     1,
+<<<<<<< Updated upstream
     (SELECT survey_id from survey where survey_id=1),
     "Grit",
+=======
+    (SELECT survey_id from survey where survey_id= 1),
+    'Grit',
+>>>>>>> Stashed changes
     now(),
     1
 );
 INSERT INTO survey_category VALUES (
     2,
-    (SELECT survey_id from survey where survey_name='NGM Survey'),
+    (SELECT survey_id from survey where survey_id= 1),
     'Problem Solving',
     now(),
     1
 );
 INSERT INTO survey_category VALUES (
     3,
-    (SELECT survey_id from survey where survey_name='NGM Survey'),
+    (SELECT survey_id from survey where survey_id= 1),
     'Academic Self-Efficacy',
     now(),
     1
 );
 INSERT INTO survey_category VALUES (
     4,
-    (SELECT survey_id from survey where survey_name='NGM Survey'),
+    (SELECT survey_id from survey where survey_id= 1),
     'Teamwork',
     now(),
     1
 );
 INSERT INTO survey_category VALUES (
     5,
-    (SELECT survey_id from survey where survey_name='NGM Survey'),
+    (SELECT survey_id from survey where survey_id= 1),
     'Social Competence',
     now(),
     1
 );
 INSERT INTO survey_category VALUES (
     6,
-    (SELECT survey_id from survey where survey_name='NGM Survey'),
+    (SELECT survey_id from survey where survey_id= 1),
     'Growth Mindset',
     now(),
     1
 );
 INSERT INTO survey_category VALUES (
     7,
-    (SELECT survey_id from survey where survey_name='NGM Survey'),
+    (SELECT survey_id from survey where survey_id= 1),
     'Academic Behaviors',
     now(),
     1
