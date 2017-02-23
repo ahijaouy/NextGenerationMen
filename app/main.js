@@ -23,7 +23,12 @@ app.get('/callback',
     successRedirect: '/index',
   }),
  function(req, res) {
-        
+    console.log('function');
+    if (req.body.remember) {
+        req.session.cookie.maxAge = 1000 * 60 * 20; //20 minutes
+    } else {
+        req.session.cookie.expires = false;
+    }
     res.redirect(req.session.returnTo || '/index');
   });
   

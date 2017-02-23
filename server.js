@@ -6,12 +6,31 @@ var express 	    = require('express'),
     logger        = require('morgan'),
     cookieParser  = require('cookie-parser'),
     session       = require('express-session'),
+    MySQLStore    = require('express-mysql-session')(session),
     dotenv        = require ('dotenv'),
     Auth0Strategy = require('passport-auth0'),
     helmet        = require('helmet'),
     flash         = require('connect-flash'),
-    app           = express();;
+    app           = express();
 
+//for MySQLStore
+var options = {
+    host: 'localhost',
+    port: 3306,
+    user: 'root',
+    password: '',
+    database: 'ngm',
+    createDatabaseTable: true,
+    schema: {
+        tableName: 'sessions',
+        columnNames: {
+            session_id: 'session_id',
+            expires: 'expires',
+            data: 'data'
+        }
+    }
+};
+var sessionStore = new MySQLStore(options);
 
 
 //Set View Engine
@@ -29,9 +48,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(helmet());
 app.use(flash());
-app.use(session({ secret: 'keyboardingkat',
-                  resave: true,
-                  saveUninitialized: true}));
+app.use(session({
+    key: 'session_cookie_name',
+    secret: 'session_cookie_secret',
+    store: sessionStore,
+    resave: true,
+    saveUninitialized: true
+}));
+//app.use(session({ secret: 'keyboardingkat',
+//                  resave: true,
+//                  saveUninitialized: true}));
 app.use(passport.initialize());
 app.use(passport.session());
 
