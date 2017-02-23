@@ -345,14 +345,14 @@ INSERT INTO survey_question (
     1
 );
 INSERT INTO survey_question (
-    survey_question_id,
+
     survey_category_id,
     question,
     question_negated,
     date_modified,
     user_modified
 ) VALUES (
-    22,
+
     (SELECT survey_category_id from survey_category where survey_category_id=4),
     "I can place group goals above the things that I want.",
     0,
@@ -360,14 +360,14 @@ INSERT INTO survey_question (
     1
 );
 INSERT INTO survey_question (
-    survey_question_id,
+
     survey_category_id,
     question,
     question_negated,
     date_modified,
     user_modified
 ) VALUES (
-    23,
+
     (SELECT survey_category_id from survey_category where survey_category_id=4),
     "I can cooperate with others.",
     0,
@@ -375,14 +375,14 @@ INSERT INTO survey_question (
     1
 );
 INSERT INTO survey_question (
-    survey_question_id,
+
     survey_category_id,
     question,
     question_negated,
     date_modified,
     user_modified
 ) VALUES (
-    24,
+
     (SELECT survey_category_id from survey_category where survey_category_id=4),
     "I can be a team-player in a small group.",
     0,
@@ -390,14 +390,14 @@ INSERT INTO survey_question (
     1
 );
 INSERT INTO survey_question (
-    survey_question_id,
+
     survey_category_id,
     question,
     question_negated,
     date_modified,
     user_modified
 ) VALUES (
-    25,
+
     (SELECT survey_category_id from survey_category where survey_category_id=4),
     "I know I can get along with other people in a small group.",
     0,
@@ -405,14 +405,14 @@ INSERT INTO survey_question (
     1
 );
 INSERT INTO survey_question (
-    survey_question_id,
+
     survey_category_id,
     question,
     question_negated,
     date_modified,
     user_modified
 ) VALUES (
-    26,
+
     (SELECT survey_category_id from survey_category where survey_category_id=5),
     "I work well with other students.",
     0,
@@ -420,14 +420,14 @@ INSERT INTO survey_question (
     1
 );
 INSERT INTO survey_question (
-    survey_question_id,
+
     survey_category_id,
     question,
     question_negated,
     date_modified,
     user_modified
 ) VALUES (
-    27,
+
     (SELECT survey_category_id from survey_category where survey_category_id=5),
     "I can solve problems with other students without being aggressive.",
     0,
@@ -435,14 +435,14 @@ INSERT INTO survey_question (
     1
 );
 INSERT INTO survey_question (
-    survey_question_id,
+
     survey_category_id,
     question,
     question_negated,
     date_modified,
     user_modified
 ) VALUES (
-    28,
+
     (SELECT survey_category_id from survey_category where survey_category_id=5),
     "I often think about the feelings of other students.",
     0,
@@ -450,14 +450,14 @@ INSERT INTO survey_question (
     1
 );
 INSERT INTO survey_question (
-    survey_question_id,
+
     survey_category_id,
     question,
     question_negated,
     date_modified,
     user_modified
 ) VALUES (
-    29,
+
     (SELECT survey_category_id from survey_category where survey_category_id=5),
     "I usually cooperate with other students without being told to do so.",
     0,
@@ -465,14 +465,14 @@ INSERT INTO survey_question (
     1
 );
 INSERT INTO survey_question (
-    survey_question_id,
+
     survey_category_id,
     question,
     question_negated,
     date_modified,
     user_modified
 ) VALUES (
-    30,
+
     (SELECT survey_category_id from survey_category where survey_category_id=5),
     "I understand the feelings of other students.",
     0,
@@ -480,14 +480,14 @@ INSERT INTO survey_question (
     1
 );
 INSERT INTO survey_question (
-    survey_question_id,
+
     survey_category_id,
     question,
     question_negated,
     date_modified,
     user_modified
 ) VALUES (
-    31,
+
     (SELECT survey_category_id from survey_category where survey_category_id=5),
     "I can resolve problems with other students on my own.",
     0,
@@ -495,14 +495,14 @@ INSERT INTO survey_question (
     1
 );
 INSERT INTO survey_question (
-    survey_question_id,
+
     survey_category_id,
     question,
     question_negated,
     date_modified,
     user_modified
 ) VALUES (
-    32,
+
     (SELECT survey_category_id from survey_category where survey_category_id=6),
     "You have a certain amount of intelligence and you can't really do much to change it.",
     1,
@@ -510,14 +510,13 @@ INSERT INTO survey_question (
     1
 );
 INSERT INTO survey_question (
-    survey_question_id,
     survey_category_id,
     question,
     question_negated,
     date_modified,
     user_modified
 ) VALUES (
-    33,
+
     (SELECT survey_category_id from survey_category where survey_category_id=6),
     "Your intelligence is something about you that you can't change very much.",
     1,
@@ -525,14 +524,13 @@ INSERT INTO survey_question (
     1
 );
 INSERT INTO survey_question (
-    survey_question_id,
     survey_category_id,
     question,
     question_negated,
     date_modified,
     user_modified
 ) VALUES (
-    34,
+
     (SELECT survey_category_id from survey_category where survey_category_id=6),
     "You can learn new things but you can't really change your basic intelligence.",
     1,
@@ -540,14 +538,12 @@ INSERT INTO survey_question (
     1
 );
 INSERT INTO survey_question (
-    survey_question_id,
     survey_category_id,
     question,
     question_negated,
     date_modified,
     user_modified
 ) VALUES (
-    35,
     (SELECT survey_category_id from survey_category where survey_category_id=7),
     "Get teachers to help me when I get stuck on schoolwork.",
     0,
@@ -555,14 +551,14 @@ INSERT INTO survey_question (
     1
 );
 INSERT INTO survey_question (
-    survey_question_id,
+
     survey_category_id,
     question,
     question_negated,
     date_modified,
     user_modified
 ) VALUES (
-    36,
+
     (SELECT survey_category_id from survey_category where survey_category_id=7),
     "Get another student to help me when I get stuck on schoolwork.",
     0,
@@ -570,14 +566,14 @@ INSERT INTO survey_question (
     1
 );
 INSERT INTO survey_question (
-    survey_question_id,
+
     survey_category_id,
     question,
     question_negated,
     date_modified,
     user_modified
 ) VALUES (
-    37,
+
     (SELECT survey_category_id from survey_category where survey_category_id=7),
     "Get adults to help me when I have social problems.",
     0,
@@ -585,14 +581,14 @@ INSERT INTO survey_question (
     1
 );
 INSERT INTO survey_question (
-    survey_question_id,
+
     survey_category_id,
     question,
     question_negated,
     date_modified,
     user_modified
 ) VALUES (
-    38,
+
     (SELECT survey_category_id from survey_category where survey_category_id=7),
     "Get a friend to help me when I have social problems.",
     0,
@@ -600,14 +596,14 @@ INSERT INTO survey_question (
     1
 );
 INSERT INTO survey_question (
-    survey_question_id,
+
     survey_category_id,
     question,
     question_negated,
     date_modified,
     user_modified
 ) VALUES (
-    39,
+
     (SELECT survey_category_id from survey_category where survey_category_id=7),
     "Finish my homework assignments by deadlines.",
     0,
@@ -615,14 +611,14 @@ INSERT INTO survey_question (
     1
 );
 INSERT INTO survey_question (
-    survey_question_id,
+
     survey_category_id,
     question,
     question_negated,
     date_modified,
     user_modified
 ) VALUES (
-    40,
+
     (SELECT survey_category_id from survey_category where survey_category_id=7),
     "Get myself to study when there are other interesting things to do.",
     0,
@@ -630,14 +626,14 @@ INSERT INTO survey_question (
     1
 );
 INSERT INTO survey_question (
-    survey_question_id,
+
     survey_category_id,
     question,
     question_negated,
     date_modified,
     user_modified
 ) VALUES (
-    41,
+
     (SELECT survey_category_id from survey_category where survey_category_id=7),
     "Always concentrate on school subjects during class.",
     0,
@@ -645,14 +641,14 @@ INSERT INTO survey_question (
     1
 );
 INSERT INTO survey_question (
-    survey_question_id,
+
     survey_category_id,
     question,
     question_negated,
     date_modified,
     user_modified
 ) VALUES (
-    42,
+
     (SELECT survey_category_id from survey_category where survey_category_id=7),
     "Take good notes during class instruction.",
     0,
@@ -660,14 +656,14 @@ INSERT INTO survey_question (
     1
 );
 INSERT INTO survey_question (
-    survey_question_id,
+
     survey_category_id,
     question,
     question_negated,
     date_modified,
     user_modified
 ) VALUES (
-    43,
+
     (SELECT survey_category_id from survey_category where survey_category_id=7),
     "Use the library to get information for class assignments.",
     0,
@@ -675,14 +671,14 @@ INSERT INTO survey_question (
     1
 );
 INSERT INTO survey_question (
-    survey_question_id,
+
     survey_category_id,
     question,
     question_negated,
     date_modified,
     user_modified
 ) VALUES (
-    44,
+
     (SELECT survey_category_id from survey_category where survey_category_id=7),
     "Plan my schoolwork for the day.",
     0,
@@ -690,14 +686,14 @@ INSERT INTO survey_question (
     1
 );
 INSERT INTO survey_question (
-    survey_question_id,
+
     survey_category_id,
     question,
     question_negated,
     date_modified,
     user_modified
 ) VALUES (
-    45,
+
     (SELECT survey_category_id from survey_category where survey_category_id=7),
     "Organize my schoolwork.",
     0,
@@ -705,14 +701,14 @@ INSERT INTO survey_question (
     1
 );
 INSERT INTO survey_question (
-    survey_question_id,
+
     survey_category_id,
     question,
     question_negated,
     date_modified,
     user_modified
 ) VALUES (
-    46,
+
     (SELECT survey_category_id from survey_category where survey_category_id=7),
     "Remember well information presented in class and testbooks.",
     0,
@@ -720,14 +716,13 @@ INSERT INTO survey_question (
     1
 );
 INSERT INTO survey_question (
-    survey_question_id,
+
     survey_category_id,
     question,
     question_negated,
     date_modified,
     user_modified
 ) VALUES (
-    47,
     (SELECT survey_category_id from survey_category where survey_category_id=7),
     "Arrange a place to study without distractions.",
     0,
@@ -735,14 +730,12 @@ INSERT INTO survey_question (
     1
 );
 INSERT INTO survey_question (
-    survey_question_id,
     survey_category_id,
     question,
     question_negated,
     date_modified,
     user_modified
 ) VALUES (
-    48,
     (SELECT survey_category_id from survey_category where survey_category_id=7),
     "Get myself to do schoolwork.",
     0,
