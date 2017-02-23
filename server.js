@@ -1,7 +1,7 @@
-var express 	    = require('express'),
-	  bodyParser 	  = require('body-parser'),
-	  path 		      = require('path'),
-	  exphbs 	      = require('express-handlebars'),
+var express 	  = require('express'),
+	bodyParser 	  = require('body-parser'),
+	path 		  = require('path'),
+    exphbs 	      = require('express-handlebars'),
     passport      = require('passport'),
     logger        = require('morgan'),
     cookieParser  = require('cookie-parser'),
@@ -11,15 +11,14 @@ var express 	    = require('express'),
     Auth0Strategy = require('passport-auth0'),
     helmet        = require('helmet'),
     flash         = require('connect-flash'),
-    app           = express();
-
+    app           = express(),
+    dbconfig      = require('./config/database.js');
 //for MySQLStore
 var options = {
-    host: 'localhost',
-    port: 3306,
-    user: 'root',
-    password: '',
-    database: 'ngm',
+    host: dbconfig.connection.host,
+    user: dbconfig.connection.user,
+    password: dbconfig.connection.password,
+    database: dbconfig.database,
     createDatabaseTable: true,
     schema: {
         tableName: 'sessions',
