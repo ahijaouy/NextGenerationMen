@@ -15,7 +15,7 @@ module.exports = function(app, passport) {
     AUTH0_DOMAIN: process.env.AUTH0_DOMAIN,
     AUTH0_CALLBACK_URL: process.env.AUTH0_CALLBACK_URL || 'http://admin.ngmatlanta.org/callback'
   };
-  
+
 
 app.get('/callback',
   passport.authenticate('test', { 
@@ -38,7 +38,6 @@ app.get('/callback',
 
   
   //End of New Code
-
 
   app.get('/', function(req, res) {
 	    res.render('login');
@@ -80,6 +79,12 @@ app.get('/callback',
     //rows[0].startdate = rows[0].startdate.toDateString();
     res.render('profile', { student: rows[0]});
   });
+
+var for_cohort = [
+  { name: 'GT 2018', id:'1' },
+  { name: 'GT 2019', id:'2' },
+  //...
+];
 
 });
   app.get('/addStudent',ensureLog, function(req, res) {
