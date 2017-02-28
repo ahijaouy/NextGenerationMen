@@ -29,6 +29,7 @@ build/Release
 
 #config data
 /config/database.js
+/config/passport.js
 
 # Dependency directories
 node_modules

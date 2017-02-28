@@ -150,7 +150,6 @@
           <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="dashboard_graph">
-
                 <div class="row x_title">
                   <div class="col-md-6">
                     <h3>School Performance <small>Graph title sub-title</small></h3>
@@ -955,32 +954,39 @@
           [gd(2012, 1, 7), 7]
         ];
 
-        var data2 = [
-          [gd(2012, 1, 1), 82],
-          [gd(2012, 1, 2), 23],
-          [gd(2012, 1, 3), 66],
-          [gd(2012, 1, 4), 9],
-          [gd(2012, 1, 5), 119],
-          [gd(2012, 1, 6), 6],
-          [gd(2012, 1, 7), 9]
-        ];
+        // var data2 = [
+        //   [gd(2012, 1, 1), 82],
+        //   [gd(2012, 1, 2), 23],
+        //   [gd(2012, 1, 3), 66],
+        //   [gd(2012, 1, 4), 9],
+        //   [gd(2012, 1, 5), 119],
+        //   [gd(2012, 1, 6), 6],
+        //   [gd(2012, 1, 7), 9]
+        // ];
         $("#canvas_dahs").length && $.plot($("#canvas_dahs"), [
-          data1, data2
+          data1
         ], {
           series: {
             lines: {
               show: false,
-              fill: true
+              fill: false,
             },
-            splines: {
+            // splines: {
+            //   show: false,
+            //   tension: 0.4,
+            //   lineWidth: 1,
+            //   fill: 0.4
+            // },
+            bars: {
               show: true,
-              tension: 0.4,
-              lineWidth: 1,
-              fill: 0.4
+              fill: true,
+              align: "center",
+              lineWidth: 100,
+              horizontal: false
             },
             points: {
               radius: 0,
-              show: true
+              show: false
             },
             shadowSize: 2
           },
@@ -990,19 +996,18 @@
             clickable: true,
             tickColor: "#d5d5d5",
             borderWidth: 1,
-            color: '#fff'
+            color: '#fff',
           },
           colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
           xaxis: {
             tickColor: "rgba(51, 51, 51, 0.06)",
             mode: "time",
             tickSize: [1, "day"],
-            //tickLength: 10,
+            tickLength: 10,
             axisLabel: "Date",
-            axisLabelUseCanvas: true,
+            axisLabelUseCanvas: false,
             axisLabelFontSizePixels: 12,
-            axisLabelFontFamily: 'Verdana, Arial',
-            axisLabelPadding: 10
+            axisLabelFontFamily: 'Verda na, Arial'
           },
           yaxis: {
             ticks: 8,

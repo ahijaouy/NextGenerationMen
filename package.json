@@ -13,6 +13,7 @@
     "express": "~4.13.4",
     "express-favicon": "^2.0.0",
     "express-handlebars": "^3.0.0",
+    "express-mysql-session": "^1.2.0",
     "express-session": "^1.14.2",
     "flash": "^1.1.0",
     "helmet": "^3.4.0",

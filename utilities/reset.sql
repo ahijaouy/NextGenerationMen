@@ -159,7 +159,6 @@ INSERT INTO student VALUES (95147,(SELECT cohort_id FROM cohort WHERE cohort_id=
 
 # BEGINNING OF SURVEY SEED
 
-
 # Survey
 INSERT INTO survey (survey_id,survey_name,date_modified,user_modified) VALUES (1,"NGM Survey",now(),1);
 
