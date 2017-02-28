@@ -70,3 +70,4 @@ INSERT INTO survey_question (survey_question_id,survey_category_id,question,ques
 INSERT INTO survey_question (survey_question_id,survey_category_id,question,question_negated,date_modified,user_modified) VALUES (46,(SELECT survey_category_id from survey_category where survey_category_id=7),"Remember well information presented in class and testbooks.",0,now(),1);
 INSERT INTO survey_question (survey_question_id,survey_category_id,question,question_negated,date_modified,user_modified) VALUES (47,(SELECT survey_category_id from survey_category where survey_category_id=7),"Arrange a place to study without distractions.",0,now(),1);
 INSERT INTO survey_question (survey_question_id,survey_category_id,question,question_negated,date_modified,user_modified) VALUES (48,(SELECT survey_category_id from survey_category where survey_category_id=7),"Get myself to do schoolwork.",0,now(),1);
+
