@@ -943,27 +943,38 @@
 
     <!-- Flot -->
     <script>
+      Handlebars.registerHelper("countStudents", function(schools, options){
+        var count = 0;
+        for(var i=0;i<schools.length;i++){
+          if (schools[i].school_id != 1) {
+            count++;
+          }
+        }
+
+        return count;
+      });
+
       $(document).ready(function() {
+        var countSchool1 = 0;
+        
+        // var schools = "{{schools}}";
+        // schools = $("#schools"); 
+
+        // for (var i = 0; i < "{{schools.length}}"; i++) {
+        //   console.log(schools);
+        // }
+        console.log(countStudents("{{schools}}"));
+        // console.log(schools);
+        console.log("countSchool1: " + countSchool1);
         var data1 = [[2,8],[8,12]];
-          var series1 = {
-            label: "Save me Please",
-            data: [[1,17], [4,17]]
-          };
-          var series2 = {
-            label: "Save me",
-            data: [2,17]
-          };
-          var series3 = {
-            label: "Save me Jesus",
-            data: [3,17]
-          };
+
           
         console.log(data1.toString());
 
         var schoolTicks = [
-          [2, "School1"],
-          [5, "School2"],
-          [8, "School3"]
+          [2, "{{schools.0.school_name}}"],
+          [5, "{{schools.1.school_name}}"],
+          [8, "{{schools.2.school_name}}"]
         ];
 
         
@@ -995,6 +1006,7 @@
             //  
           },
           grid: {
+            padding: 10,
             verticalLines: true,
             hoverable: true,
             clickable: true,

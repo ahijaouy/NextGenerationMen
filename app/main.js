@@ -73,6 +73,7 @@ app.get('/callback',
     connection.query("SELECT * FROM Student", function(err, students){
         connection.query("SELECT * FROM School", function(err, schools){
           connection.query("SELECT * FROM Staff", function(err, partners){
+            console.log(schools);
             res.render('index', {
                 students: students,
                 schools: schools,
