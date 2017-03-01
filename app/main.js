@@ -77,7 +77,8 @@ app.get('/callback',
             res.render('index', {
                 students: students,
                 schools: schools,
-                partners: partners
+                partners: partners,
+                numStudents: [3, 2, 1]
               });
             });
         });
