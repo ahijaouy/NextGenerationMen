@@ -96,15 +96,49 @@ app.get('/callback',
 });
   
   //School routes
-  app.get('/schools',ensureLog, function(req, res) {
-	connection.query("SELECT * FROM School", function(err, rows){
+app.get('/schools', function(req, res) {
+  connection.query("SELECT * FROM School", function(err, rows){
         res.render('schools', { schools: rows});
     });
 });
-  app.get('/addSchool',ensureLog, function(req, res) {
+
+app.delete('/schools', function(req, res) {
+  console.log("Deleted");
+});
+
+app.get('/addSchool', function(req, res) {
     res.render('addSchool');
+});
+
+app.post('/addSchool', function(req, res) {
+    res.redirect('/schools');
+    console.log(req.body);
+    stmt = 'INSERT INTO School(school_name,principle,principle_phone,school_address,school_phone) VALUES (?,?,?,?,?);';
+    connection.query(stmt,[req.body.schoolName,req.body.principleName,req.body.principlePhone,req.body.schoolAddress,req.body.schoolNumber], function(err, rows) {
+      console.log(err);
+    });
+});
+
+app.get('/schools/:id/delete', function(req, res) {
+  console.log(req.params);
+  res.redirect('/schools');
+  connection.query("DELETE FROM School WHERE school_id=" + req.params.id, function(err, rows) {
+    console.log(err);
   });
-  
+});
+
+app.get('/schools/:id/profile', function(req, res) {
+  console.log(req.params);
+  var query = "SELECT * FROM School WHERE school_id=" + req.params.id;
+  connection.query(query, function(err, rows) {
+    console.log(rows[0]);
+    res.render('schoolDetail', {school: rows[0]});
+  });
+});
+
+app.get('/schools/:id/edit', function(req, res) {
+  console.log(req.params);
+});
   
   //Partner routes
   app.get('/partners',ensureLog, function(req, res) {

@@ -146,7 +146,6 @@
                     <table class="table table-striped projects">
                       <thead>
                         <tr>
-                          <th style="width: 1%">#</th>
                           <th style="width: 20%">School Name</th>
                           <th>Principle</th>
                           <th>Project Progress</th>
@@ -158,7 +157,6 @@
                       {{#each schools}}
                       <tbody>
                         <tr>
-                          <td>{{this.school_id}}</td>
                           <td>
                             <a>{{{this.school_name}}}</a>
                             <br />
@@ -190,9 +188,9 @@
                             <button type="button" class="btn btn-success btn-xs">Success</button>
                           </td>
                           <td>
-                            <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+                            <a href="/schools/{{this.school_id}}/profile" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+                            <a href="/schools/{{this.school.id}}/edit" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                            <a href="/schools/{{this.school_id}}/delete" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete</a>
                           </td>
                         </tr>
                       </tbody>
