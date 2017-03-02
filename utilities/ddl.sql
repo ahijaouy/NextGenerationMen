@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS `staff`(
 
 CREATE TABLE IF NOT EXISTS `school`(
     `school_id` int(11) NOT NULL AUTO_INCREMENT,
-    `school_name` VARCHAR(255) NOT NULL, 
+    `school_name` VARCHAR(255) NOT NULL,
     `school_address` VARCHAR(255),
     `school_phone` VARCHAR(20),
     `principle_name` VARCHAR(255),
@@ -23,8 +23,8 @@ CREATE TABLE IF NOT EXISTS `school`(
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `cohort`(
-    `cohort_id` int(11) NOT NULL AUTO_INCREMENT, 
-    `school_id` int(11) NOT NULL, 
+    `cohort_id` int(11) NOT NULL AUTO_INCREMENT,
+    `school_id` int(11) NOT NULL,
     `cohort_year` INTEGER,
     `date_modified` DATE,
     `user_modified` INT,
@@ -115,4 +115,3 @@ CREATE TABLE IF NOT EXISTS `survey_response`(
     CONSTRAINT `fk_semester_record` FOREIGN KEY (`semester_record_id`) REFERENCES `semester_record` (`semester_record_id`),
     PRIMARY KEY(`survey_response_id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
- 

@@ -23,12 +23,14 @@ app.get('/callback',
     successRedirect: '/index',
   }),
  function(req, res) {
+
     console.log('function');
     if (req.body.remember) {
         req.session.cookie.maxAge = 1000 * 60 * 20; //20 minutes
     } else {
         req.session.cookie.expires = false;
     }
+
     res.redirect(req.session.returnTo || '/index');
   });
   
@@ -41,7 +43,7 @@ app.get('/callback',
 
 
   app.get('/', function(req, res) {
-	    res.render('login');
+      res.render('login');
   });
 
   //login, logout, and sign up routes
@@ -52,16 +54,29 @@ app.get('/callback',
     res.redirect('/');
   });
   
-  
   //index route
   app.get('/index',ensureLog, function(req, res) {
+
     console.log(req.user);
-	res.render('index');
+  res.render('index');
+
+    connection.query("SELECT * FROM Student", function(err, students){
+        connection.query("SELECT * FROM School", function(err, schools){
+          connection.query("SELECT * FROM Staff", function(err, partners){
+            res.render('index', {
+                students: students,
+                schools: schools,
+                partners: partners,
+              });
+            });
+        });
+    });
+
   });
   
   //Student routes
   app.get('/students',ensureLog, function(req, res) {
-	connection.query("SELECT * FROM Student", function(err, rows){
+  connection.query("SELECT * FROM Student", function(err, rows){
         res.render('students', { students: rows});
     });
 });
@@ -75,18 +90,21 @@ app.get('/callback',
   console.log(req.params);
   var query = "SELECT * FROM Student WHERE id=" + req.params.id;
   connection.query(query, function(err, rows){
+    //connection.query("SELECT semester_gpa FROM semester_record", function(err, gpa){
     console.log(rows[0]);
+    //console.log(gpa[0]);
     rows[0].dob = rows[0].dob.toDateString(); //properly set date.
     //rows[0].startdate = rows[0].startdate.toDateString();
-    res.render('profile', { student: rows[0]});
+    res.render('profile', { student: rows[0], 
+                            //gpa: gpa});
   });
-
-});
+  });
+ });
   app.get('/addStudent',ensureLog, function(req, res) {
-	res.render('addStudent');
+  res.render('addStudent');
 });
   app.post('/addStudent',ensureLog, function(req, res) {
-	res.redirect('/students');
+  res.redirect('/students');
      console.log(req.body);
      stmt = 'INSERT INTO Student(first_name,last_name,dob,startdate,email,parentone_name,parentone_num,parentone_email,parenttwo_name,parenttwo_num,parenttwo_email) VALUES (?,?,?,?,?,?,?,?,?,?,?);';
      connection.query(stmt,[req.body.first_name,req.body.last_name,new Date(req.body.dob),Date.now(),req.body.email,req.body.parentone_name,req.body.parentone_num,req.body.parentone_email,req.body.parenttwo_name,req.body.parenttwo_num,req.body.parenttwo_email], function(err, rows){ 
@@ -97,7 +115,7 @@ app.get('/callback',
   
   //School routes
   app.get('/schools',ensureLog, function(req, res) {
-	connection.query("SELECT * FROM School", function(err, rows){
+  connection.query("SELECT * FROM School", function(err, rows){
         res.render('schools', { schools: rows});
     });
 });
@@ -108,13 +126,12 @@ app.get('/callback',
   
   //Partner routes
   app.get('/partners',ensureLog, function(req, res) {
-	res.render('partners');
+  res.render('partners');
 });
   app.get('/addPartner',ensureLog, function(req, res) {
-	res.render('addPartner');
+  res.render('addPartner');
 });
 
   
 };
   
-

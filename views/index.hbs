@@ -59,22 +59,22 @@
                 <h3>General</h3>
                 <ul class="nav side-menu">
                   <li><a href="/index"><i class="fa fa-home"></i>Dashboard</a></li>
-									<li><a href="/schools"><i class="fa fa-graduation-cap"></i>Schools</a></li>
-									<li><a href="/students"><i class="fa fa-users"></i>Students</a></li>
-									<li><a href="/partners"><i class="fa fa-building"></i>Partners</a></li>
+                  <li><a href="/schools"><i class="fa fa-graduation-cap"></i>Schools</a></li>
+                  <li><a href="/students"><i class="fa fa-users"></i>Students</a></li>
+                  <li><a href="/partners"><i class="fa fa-building"></i>Partners</a></li>
                   <li><a><i class="fa fa-plus"></i>Add<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                    	<li><a href="/addStudent">Students</a></li>
-											<li><a href="/addSchool">Schools</a></li>
-											<li><a href="/addPartner">Partners</a></li>
+                      <li><a href="/addStudent">Students</a></li>
+                      <li><a href="/addSchool">Schools</a></li>
+                      <li><a href="/addPartner">Partners</a></li>
                     </ul>
-									</li>
+                  </li>
                 </ul>
               </div>
             </div>
             <!-- /sidebar menu -->
 
-            
+
           </div>
         </div>
 
@@ -116,12 +116,12 @@
           <div class="row tile_count">
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-user"></i> Total Schools</span>
-              <div class="count">5</div>
+              <div class="count">{{schools.length}}</div>
              <!--  <span class="count_bottom"><i class="green">4% </i> From last Week</span> -->
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-clock-o"></i> Total Students</span>
-              <div class="count green">200</div>
+              <div class="count green">{{students.length}}</div>
               <!-- <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> From last Week</span> -->
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
@@ -136,7 +136,7 @@
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-user"></i> Total Partners</span>
-              <div class="count">25</div>
+              <div class="count">{{partners.length}}</div>
               <!-- <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span> -->
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
@@ -150,7 +150,6 @@
           <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="dashboard_graph">
-
                 <div class="row x_title">
                   <div class="col-md-6">
                     <h3>School Performance <small>Graph title sub-title</small></h3>
@@ -240,9 +239,9 @@
                               <i class="fa fa-user aero"></i>
                             </a>
                             <div class="media-body">
-                              <a class="title" href="#">Ms. Mary Jane</a>
-                              <p><strong>$2300. </strong> Agent Avarage Sales </p>
-                              <p> <small>12 Sales Today</small>
+                              <a class="title" href="#">{{students.0.first_name}} {{students.0.last_name}}</a>
+                              <p><strong>{{students.0.dob}} </strong> Date Joined </p>
+                              <p> <small>{{students.0.id}}</small>
                               </p>
                             </div>
                           </li>
@@ -251,10 +250,10 @@
                               <i class="fa fa-user green"></i>
                             </a>
                             <div class="media-body">
-                              <a class="title" href="#">Ms. Mary Jane</a>
-                              <p><strong>$2300. </strong> Agent Avarage Sales </p>
-                              <p> <small>12 Sales Today</small>
-                              </p>
+                                <a class="title" href="#">{{students.1.first_name}} {{students.1.last_name}}</a>
+                                <p><strong>{{students.1.dob}} </strong> Date Joined </p>
+                                <p> <small>{{students.1.id}}</small>
+                                </p>
                             </div>
                           </li>
                           <li class="media event">
@@ -262,10 +261,10 @@
                               <i class="fa fa-user blue"></i>
                             </a>
                             <div class="media-body">
-                              <a class="title" href="#">Ms. Mary Jane</a>
-                              <p><strong>$2300. </strong> Agent Avarage Sales </p>
-                              <p> <small>12 Sales Today</small>
-                              </p>
+                                <a class="title" href="#">{{students.2.first_name}} {{students.2.last_name}}</a>
+                                <p><strong>{{students.2.dob}} </strong> Date Joined </p>
+                                <p> <small>{{students.2.id}}</small>
+                                </p>
                             </div>
                           </li>
                           <li class="media event">
@@ -273,10 +272,10 @@
                               <i class="fa fa-user aero"></i>
                             </a>
                             <div class="media-body">
-                              <a class="title" href="#">Ms. Mary Jane</a>
-                              <p><strong>$2300. </strong> Agent Avarage Sales </p>
-                              <p> <small>12 Sales Today</small>
-                              </p>
+                                <a class="title" href="#">{{students.3.first_name}} {{students.3.last_name}}</a>
+                                <p><strong>{{students.3.dob}} </strong> Date Joined </p>
+                                <p> <small>{{students.3.id}}</small>
+                                </p>
                             </div>
                           </li>
                           <li class="media event">
@@ -284,10 +283,10 @@
                               <i class="fa fa-user green"></i>
                             </a>
                             <div class="media-body">
-                              <a class="title" href="#">Ms. Mary Jane</a>
-                              <p><strong>$2300. </strong> Agent Avarage Sales </p>
-                              <p> <small>12 Sales Today</small>
-                              </p>
+                                <a class="title" href="#">{{students.4.first_name}} {{students.4.last_name}}</a>
+                                <p><strong>{{students.4.dob}} </strong> Date Joined </p>
+                                <p> <small>{{students.4.id}}</small>
+                                </p>
                             </div>
                           </li>
                         </ul>
@@ -772,7 +771,7 @@
                   </div>
                 </div>
                 <!-- End to do list -->
-                
+
                 <!-- start of weather widget -->
                 <div class="col-md-6 col-sm-6 col-xs-12">
                   <div class="x_panel">
@@ -934,82 +933,67 @@
     <!-- bootstrap-daterangepicker -->
     <script src="../vendors/moment/min/moment.min.js"></script>
     <script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <!-- D3 -->
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
 
+    <script src="../build/js/demo.js"></script>
+
     <!-- Flot -->
     <script>
       $(document).ready(function() {
-        var data1 = [
-          [gd(2012, 1, 1), 17],
-          [gd(2012, 1, 2), 74],
-          [gd(2012, 1, 3), 6],
-          [gd(2012, 1, 4), 39],
-          [gd(2012, 1, 5), 20],
-          [gd(2012, 1, 6), 85],
-          [gd(2012, 1, 7), 7]
+        var data1 = [[2,8],[5,10],[8,12]];
+        var schoolTicks = [
+          [2, "{{schools.0.school_name}}"],
+          [5, "{{schools.1.school_name}}"],
+          [8, "school3"]
         ];
 
-        var data2 = [
-          [gd(2012, 1, 1), 82],
-          [gd(2012, 1, 2), 23],
-          [gd(2012, 1, 3), 66],
-          [gd(2012, 1, 4), 9],
-          [gd(2012, 1, 5), 119],
-          [gd(2012, 1, 6), 6],
-          [gd(2012, 1, 7), 9]
-        ];
+        
         $("#canvas_dahs").length && $.plot($("#canvas_dahs"), [
-          data1, data2
+          data1
         ], {
           series: {
             lines: {
               show: false,
-              fill: true
+              fill: false,
             },
-            splines: {
+            bars: {
               show: true,
-              tension: 0.4,
-              lineWidth: 1,
-              fill: 0.4
+              fill: true,
+              barWidth: 2,
+              align: "center"
             },
             points: {
-              radius: 0,
-              show: true
-            },
-            shadowSize: 2
+              },
           },
           grid: {
+            padding: 10,
             verticalLines: true,
             hoverable: true,
             clickable: true,
             tickColor: "#d5d5d5",
-            borderWidth: 1,
-            color: '#fff'
+            borderWidth: 10,
+            color: '#fff',
           },
           colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
           xaxis: {
+            ticks: schoolTicks,
             tickColor: "rgba(51, 51, 51, 0.06)",
-            mode: "time",
-            tickSize: [1, "day"],
-            //tickLength: 10,
+            tickSize: 5,
             axisLabel: "Date",
             axisLabelUseCanvas: true,
             axisLabelFontSizePixels: 12,
-            axisLabelFontFamily: 'Verdana, Arial',
-            axisLabelPadding: 10
+            axisLabelFontFamily: 'Verda na, Arial'
           },
           yaxis: {
-            ticks: 8,
+            axisLabelUseCanvas: true,
             tickColor: "rgba(51, 51, 51, 0.06)",
           },
           tooltip: false
-        });
-
-        function gd(year, month, day) {
-          return new Date(year, month - 1, day).getTime();
-        }
+        });   
       });
     </script>
     <!-- /Flot -->
@@ -1096,7 +1080,7 @@
       });
     </script>
     <!-- /Doughnut Chart -->
-    
+
     <!-- bootstrap-daterangepicker -->
     <script>
       $(document).ready(function() {
