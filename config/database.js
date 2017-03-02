@@ -4,8 +4,7 @@ module.exports = {
         'user': 'epic',
         'password': 'intentions'
     },
-	'database': 'ngm',
-    'users_table': 'USERS'
+    'database': 'next_generation_men'
 };
 
 //Testing Git ignore 3
