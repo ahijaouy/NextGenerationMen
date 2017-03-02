@@ -52,33 +52,16 @@ app.get('/callback',
     console.log(req.user);
     res.redirect('/');
   });
-
-  // Ideas for dashboard
-   //   Student / teacher of the month
-   //   Announcements
-   //   Survey data
-   //   Total credits across schools
-   //   Average GPA cross schools + Highs/lows, separating across semester
-   //   Comparing GPA across schools'
-   //   GPA per Cohort
-   // Student Page Ideas
-   //   Credit accumulation
-   //   GPA
-   //   MS/HS Suspension
-   //   D3 Using As Bs Cs
-// INSERT INTO survey_category (survey_category_id, survey_id, survey_category_name, date_modified, user_modified) VALUES(1,(SELECT survey_id from survey where survey_name="NGM Survey"), "Grit", NOW(), 1);
-
+  
   //index route
   app.get('/index',ensureLog, function(req, res) {
     connection.query("SELECT * FROM Student", function(err, students){
         connection.query("SELECT * FROM School", function(err, schools){
           connection.query("SELECT * FROM Staff", function(err, partners){
-            console.log(schools);
             res.render('index', {
                 students: students,
                 schools: schools,
                 partners: partners,
-                numStudents: [3, 2, 1]
               });
             });
         });

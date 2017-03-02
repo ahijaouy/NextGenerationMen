@@ -943,41 +943,12 @@
 
     <!-- Flot -->
     <script>
-      // Handlebars.registerHelper("countStudents", function(schools, options){
-      //   var count = 0;
-      //   for(var i=0;i<schools.length;i++){
-      //     if (schools[i].school_id != 1) {
-      //       count++;
-      //     }
-      //   }
-
-      //   return count;
-      // });
-
       $(document).ready(function() {
-        var countSchool1 = 0;
-        var schools = {{{schools}}};
-        console.log(schools);
-        // var numStudents = "{{numStudents}}";
-        // console.log(numStudents.toString());
-        // var schools = "{{schools}}";
-        // schools = $("#schools"); 
-
-        // for (var i = 0; i < "{{schools.length}}"; i++) {
-        //   console.log(schools);
-        // }
-        // console.log(countStudents("{{schools}}"));
-        // console.log(schools);
-        console.log("countSchool1: " + countSchool1);
-        var data1 = [[2,8],[8,12]];
-
-          
-        console.log(data1.toString());
-
+        var data1 = [[2,8],[5,10],[8,12]];
         var schoolTicks = [
           [2, "{{schools.0.school_name}}"],
           [5, "{{schools.1.school_name}}"],
-          [8, "{{schools.2.school_name}}"]
+          [8, "school3"]
         ];
 
         
@@ -989,35 +960,25 @@
               show: false,
               fill: false,
             },
-            // splines: {
-            //   show: false,
-            //   tension: 0.4,
-            //   lineWidth: 1,
-            //   fill: 0.4
-            // },
             bars: {
               show: true,
               fill: true,
               barWidth: 2,
               align: "center"
-              //horizontal: false
             },
             points: {
-              // radius: 0,
-              // show: false
-            },
-            //  
+              },
           },
           grid: {
             padding: 10,
             verticalLines: true,
             hoverable: true,
             clickable: true,
-            // tickColor: "#d5d5d5",
+            tickColor: "#d5d5d5",
             borderWidth: 10,
             color: '#fff',
           },
-          // colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
+          colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
           xaxis: {
             ticks: schoolTicks,
             tickColor: "rgba(51, 51, 51, 0.06)",
@@ -1032,9 +993,7 @@
             tickColor: "rgba(51, 51, 51, 0.06)",
           },
           tooltip: false
-        });
-
-        
+        });   
       });
     </script>
     <!-- /Flot -->
