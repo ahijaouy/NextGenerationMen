@@ -23,12 +23,14 @@ app.get('/callback',
     successRedirect: '/index',
   }),
  function(req, res) {
+
     console.log('function');
     if (req.body.remember) {
         req.session.cookie.maxAge = 1000 * 60 * 20; //20 minutes
     } else {
         req.session.cookie.expires = false;
     }
+
     res.redirect(req.session.returnTo || '/index');
   });
   
@@ -55,8 +57,24 @@ app.get('/callback',
   
   //index route
   app.get('/index',ensureLog, function(req, res) {
+
     console.log(req.user);
   res.render('index');
+
+    connection.query("SELECT * FROM Student", function(err, students){
+        connection.query("SELECT * FROM School", function(err, schools){
+          connection.query("SELECT * FROM Staff", function(err, partners){
+            console.log(schools);
+            res.render('index', {
+                students: students,
+                schools: schools,
+                partners: partners,
+                numStudents: [3, 2, 1]
+              });
+            });
+        });
+    });
+
   });
   
   //Student routes

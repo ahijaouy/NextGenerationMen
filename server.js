@@ -50,9 +50,11 @@ app.use(bodyParser.json());
 app.use(helmet());
 app.use(flash());
 app.use(session({
+
     //key: 'session_cookie_name',
     secret: 'session_cookie_secret',
     //store: sessionStore,
+
     resave: true,
     saveUninitialized: true
 }));
