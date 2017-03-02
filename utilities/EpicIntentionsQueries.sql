@@ -79,7 +79,6 @@ VALUES
 (	'1',
 	'SurveyResults');
 
-
 #gets all names, school, gpa, and gradelevel in descending order by last name (A-Z)
 SELECT  St.last_name, St.first_name, Sch.school_name, C.gpa, C.grade_level
 FROM Student AS St, CurrentRec AS C, school as Sch

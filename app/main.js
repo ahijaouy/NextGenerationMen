@@ -23,12 +23,14 @@ app.get('/callback',
     successRedirect: '/index',
   }),
  function(req, res) {
+
     console.log('function');
     if (req.body.remember) {
         req.session.cookie.maxAge = 1000 * 60 * 20; //20 minutes
     } else {
         req.session.cookie.expires = false;
     }
+
     res.redirect(req.session.returnTo || '/index');
   });
   
@@ -40,7 +42,7 @@ app.get('/callback',
   //End of New Code
 
   app.get('/', function(req, res) {
-	    res.render('login');
+      res.render('login');
   });
 
   //login, logout, and sign up routes
@@ -51,16 +53,29 @@ app.get('/callback',
     res.redirect('/');
   });
   
-  
   //index route
   app.get('/index',ensureLog, function(req, res) {
+
     console.log(req.user);
-	res.render('index');
+  res.render('index');
+
+    connection.query("SELECT * FROM Student", function(err, students){
+        connection.query("SELECT * FROM School", function(err, schools){
+          connection.query("SELECT * FROM Staff", function(err, partners){
+            res.render('index', {
+                students: students,
+                schools: schools,
+                partners: partners,
+              });
+            });
+        });
+    });
+
   });
   
   //Student routes
   app.get('/students',ensureLog, function(req, res) {
-	connection.query("SELECT * FROM Student", function(err, rows){
+  connection.query("SELECT * FROM Student", function(err, rows){
         res.render('students', { students: rows});
     });
 });
@@ -74,11 +89,15 @@ app.get('/callback',
   console.log(req.params);
   var query = "SELECT * FROM Student WHERE id=" + req.params.id;
   connection.query(query, function(err, rows){
+    //connection.query("SELECT semester_gpa FROM semester_record", function(err, gpa){
     console.log(rows[0]);
+    //console.log(gpa[0]);
     rows[0].dob = rows[0].dob.toDateString(); //properly set date.
     //rows[0].startdate = rows[0].startdate.toDateString();
-    res.render('profile', { student: rows[0]});
+    res.render('profile', { student: rows[0], 
+                            //gpa: gpa});
   });
+
 
 var for_cohort = [
   { name: 'GT 2018', id:'1' },
@@ -87,11 +106,13 @@ var for_cohort = [
 ];
 
 });
+
+
   app.get('/addStudent',ensureLog, function(req, res) {
-	res.render('addStudent');
+  res.render('addStudent');
 });
   app.post('/addStudent',ensureLog, function(req, res) {
-	res.redirect('/students');
+  res.redirect('/students');
      console.log(req.body);
      stmt = 'INSERT INTO student(cohort_id,student_first_name,student_last_name,student_phone,student_dob,student_start_date,student_email,guardian_one_name,guardian_one_phone,guardian_one_email,guardian_two_name,guardian_two_phone,guardian_two_email,middleschool_absences,highschool_absences,highschool_suspensions) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);';
      connection.query(stmt,["1",req.body.first_name,req.body.last_name,req.body.num,new Date(req.body.dob),Date.now(),req.body.email,req.body.parentone_name,req.body.parentone_num,req.body.parentone_email,req.body.parenttwo_name,req.body.parenttwo_num,req.body.parenttwo_email,req.body.mssuspensions,req.body.hssuspensions,req.body.hsabsences], function(err, rows){ 
@@ -104,7 +125,7 @@ var for_cohort = [
   
   //School routes
   app.get('/schools',ensureLog, function(req, res) {
-	connection.query("SELECT * FROM School", function(err, rows){
+  connection.query("SELECT * FROM School", function(err, rows){
         res.render('schools', { schools: rows});
     });
 });
@@ -115,13 +136,12 @@ var for_cohort = [
   
   //Partner routes
   app.get('/partners',ensureLog, function(req, res) {
-	res.render('partners');
+  res.render('partners');
 });
   app.get('/addPartner',ensureLog, function(req, res) {
-	res.render('addPartner');
+  res.render('addPartner');
 });
 
   
 };
   
-

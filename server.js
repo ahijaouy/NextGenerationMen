@@ -48,9 +48,11 @@ app.use(bodyParser.json());
 app.use(helmet());
 app.use(flash());
 app.use(session({
-    key: 'session_cookie_name',
+
+    //key: 'session_cookie_name',
     secret: 'session_cookie_secret',
-    store: sessionStore,
+    //store: sessionStore,
+
     resave: true,
     saveUninitialized: true
 }));
@@ -60,7 +62,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-//passport.js contains login/signup 
+//passport.js contains login/signup
 require('./config/passport')(passport);
 
 //main.js contains routes
