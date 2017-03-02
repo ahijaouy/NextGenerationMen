@@ -15,7 +15,7 @@ module.exports = function(app, passport) {
     AUTH0_DOMAIN: process.env.AUTH0_DOMAIN,
     AUTH0_CALLBACK_URL: process.env.AUTH0_CALLBACK_URL || 'http://admin.ngmatlanta.org/callback'
   };
-  
+
 
 app.get('/callback',
   passport.authenticate('test', { 
@@ -40,7 +40,6 @@ app.get('/callback',
 
   
   //End of New Code
-
 
   app.get('/', function(req, res) {
       res.render('login');
@@ -98,18 +97,29 @@ app.get('/callback',
     res.render('profile', { student: rows[0], 
                             //gpa: gpa});
   });
-  });
- });
+
+
+var for_cohort = [
+  { name: 'GT 2018', id:'1' },
+  { name: 'GT 2019', id:'2' },
+  //...
+];
+
+});
+
+
   app.get('/addStudent',ensureLog, function(req, res) {
   res.render('addStudent');
 });
   app.post('/addStudent',ensureLog, function(req, res) {
   res.redirect('/students');
      console.log(req.body);
-     stmt = 'INSERT INTO Student(first_name,last_name,dob,startdate,email,parentone_name,parentone_num,parentone_email,parenttwo_name,parenttwo_num,parenttwo_email) VALUES (?,?,?,?,?,?,?,?,?,?,?);';
-     connection.query(stmt,[req.body.first_name,req.body.last_name,new Date(req.body.dob),Date.now(),req.body.email,req.body.parentone_name,req.body.parentone_num,req.body.parentone_email,req.body.parenttwo_name,req.body.parenttwo_num,req.body.parenttwo_email], function(err, rows){ 
+     stmt = 'INSERT INTO student(cohort_id,student_first_name,student_last_name,student_phone,student_dob,student_start_date,student_email,guardian_one_name,guardian_one_phone,guardian_one_email,guardian_two_name,guardian_two_phone,guardian_two_email,middleschool_absences,highschool_absences,highschool_suspensions) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);';
+     connection.query(stmt,["1",req.body.first_name,req.body.last_name,req.body.num,new Date(req.body.dob),Date.now(),req.body.email,req.body.parentone_name,req.body.parentone_num,req.body.parentone_email,req.body.parenttwo_name,req.body.parenttwo_num,req.body.parenttwo_email,req.body.mssuspensions,req.body.hssuspensions,req.body.hsabsences], function(err, rows){ 
       console.log(err);
     });
+
+     //middle school absences --> middle school suspensions in DB
   
 });
   
