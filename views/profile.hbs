@@ -209,7 +209,7 @@
                         </div>
                       </div>
                       <!-- start of user-activity-graph -->
-                      <div id="graph_bar" style="width:100%; height:280px;"></div>
+                      <div id="graph_line" style="width:100%; height:280px;"></div>
                       <!-- end of user-activity-graph -->
 
                       <div class="" role="tabpanel" data-example-id="togglable-tabs">
@@ -696,28 +696,23 @@
 
     <script>
       $(function() {
-        Morris.Bar({
-          element: 'graph_bar',
+        Morris.Line({
+          element: 'graph_line',
           data: [
-            { "period": "Jan", "Hours worked": 80 },
-            { "period": "Feb", "Hours worked": 125 },
-            { "period": "Mar", "Hours worked": 176 },
-            { "period": "Apr", "Hours worked": 224 },
-            { "period": "May", "Hours worked": 265 },
-            { "period": "Jun", "Hours worked": 314 },
-            { "period": "Jul", "Hours worked": 347 },
-            { "period": "Aug", "Hours worked": 287 },
-            { "period": "Sep", "Hours worked": 240 },
-            { "period": "Oct", "Hours worked": 211 }
+          { y: '2006', a: 100 },
+          { y: '2007', a: 75 },
+          { y: '2008', a: 50 },
+          { y: '2009', a: 75 },
+          { y: '2010', a: 50 },
+          { y: '2011', a: 75 },
+          { y: '2012', a: 100 }
           ],
-          xkey: 'period',
+          xkey: 'y',
+          ykeys: ['a'],
+          labels: ['Series A'],
+          parseTime: false,
           hideHover: 'auto',
-          barColors: ['#26B99A', '#34495E', '#ACADAC', '#3498DB'],
-          ykeys: ['Hours worked', 'sorned'],
-          labels: ['Hours worked', 'SORN'],
-          xLabelAngle: 60,
-          resize: true
-        });
+          });
 
         $MENU_TOGGLE.on('click', function() {
           $(window).resize();
