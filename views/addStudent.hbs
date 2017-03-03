@@ -394,11 +394,13 @@
                                                        for="mssuspensions">Cohort <span
                                                         class="required">*</span>
                                                 </label>
-                                                <select name="cohort">
-                                                    {{#each cohorts}}
-                                                    <option value="{{this.cohort_id}}">{{this.school_name}}{{this.cohort_year}}</option>
-                                                    {{/each}}
-                                                </select>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <select class="form-control" name="cohort">
+                                                        {{#each cohorts}}
+                                                        <option value="{{this.cohort_id}}">{{this.school_name}} Class of {{this.cohort_year}}</option>
+                                                        {{/each}}
+                                                    </select>
+                                                </div>
                                             </div>
 
                                             <!-- Program Start Date -->
