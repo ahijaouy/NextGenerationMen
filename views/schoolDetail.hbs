@@ -19,6 +19,8 @@
     <link href="../../../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="../../../build/css/custom.min.css" rel="stylesheet">
+    <!-- dropdown menus -->
+    <link href="../../../css/dropdown.css" rel="stylesheet">
   </head>
 
   <body class="nav-md">
@@ -212,22 +214,129 @@
 
                           <div class="project_detail">
 
-                            <p class="title">School Address</p>
-                            <p>{{school.school_address}}</p>
-                            <p class="title">School Phone Number</p>
-                            <p>{{school.school_phone}}</p>
-                            <p class="title">Principle</p>
-                            <p>{{school.principle}}</p>
-                            <p class="title">Principle's Phone Number</p>
-                            <p>{{school.school_phone}}</p>
+                            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+                              <!-- Panel One -->
+                              <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingOne">
+                                  <h4 class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                      Primary School Information
+                                    </a>
+                                  </h4>
+                                </div>
+                                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                  <div class="panel-body">
+                                    <div class="x_content">
+                                      <p><b>School Name: </b>{{school.school_name}}</p>
+                                      <p><b>School Address: </b>{{school.school_address}}</p>
+                                      <p><b>School Phone: </b>{{school.school_phone}}</p>
+                                      <p><b>Principal Name: </b>{{school.principal_name}}</p>
+                                      <p><b>Principal Phone: </b>{{school.principal_phone}}</p>
+                                      <p><b>Principal Email: </b>{{school.principal_email}}</p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div> 
+
+                              <!-- Panel Two -->
+                              <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingTwo">
+                                  <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                      Assistant Principal and Cohort Coach Information
+                                    </a>
+                                  </h4>
+                                </div>
+                                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                  <div class="panel-body">
+                                    <div class="x_content">
+                                      <p><b>Assistant Principal Name: </b>{{school.assistant_principal_name}}</p>
+                                      <p><b>Assistant Principal Phone: </b>{{school.assistant_principal_phone}}</p>
+                                      <p><b>Assistant Principal Email: </b>{{school.assistant_principal_email}}</p>
+                                      <p><b>Cohort Coach Name: </b>{{school.cohort_coach_name}}</p>
+                                      <p><b>Cohort Coach Phone: </b>{{school.cohort_coach_phone}}</p>
+                                      <p><b>Cohort Coach Email: </b>{{school.cohort_coach_email}}</p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <!-- Panel Three -->
+                              <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingThree">
+                                  <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                      NGM Fellow and Counselor Information
+                                    </a>
+                                  </h4>
+                                </div>
+                                <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                  <div class="panel-body">
+                                    <div class="x_content">
+                                      <p><b>NGM Fellow Name: </b>{{school.ngm_fellow_name}}</p>
+                                      <p><b>NGM Fellow Phone: </b>{{school.ngm_fellow_phone}}</p>
+                                      <p><b>NGM Fellow Email: </b>{{school.ngm_fellow_email}}</p>
+                                      <p><b>Counselor Name: </b>{{school.counselor_name}}</p>
+                                      <p><b>Counselor Phone: </b>{{school.counselor_phone}}</p>
+                                      <p><b>Counselor Email: </b>{{school.counselor_email}}</p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div> 
+
+                              <!-- Panel Four -->
+                              <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingFour">
+                                  <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                      Social Worker and Data Liason Information
+                                    </a>
+                                  </h4>
+                                </div>
+                                <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                                  <div class="panel-body">
+                                    <div class="x_content">
+                                      <p><b>Social Worker Name: </b>{{school.social_worker_name}}</p>
+                                      <p><b>Social Worker Phone: </b>{{school.social_worker_phone}}</p>
+                                      <p><b>Social Worker Email: </b>{{school.social_worker_email}}</p>
+                                      <p><b>Data Liason Name: </b>{{school.data_liason_name}}</p>
+                                      <p><b>Data Liason Phone: </b>{{school.data_liason_phone}}</p>
+                                      <p><b>Data Liason Email: </b>{{school.data_liason_email}}</p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>  
+
+                              <!-- Panel Five -->
+                              <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingFive">
+                                  <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                      CIS Coordinator and College Coach Information
+                                    </a>
+                                  </h4>
+                                </div>
+                                <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+                                  <div class="panel-body">
+                                    <div class="x_content">
+                                      <p><b>CIS Coordinator Name: </b>{{school.cis_coordinator_name}}</p>
+                                      <p><b>CIS Coordinator Phone: </b>{{school.cis_coordinator_phone}}</p>
+                                      <p><b>CIS Coordinator Email: </b>{{school.cis_coordinator_email}}</p>
+                                      <p><b>College Coach Name: </b>{{school.college_coach_name}}</p>
+                                      <p><b>College Coach Phone: </b>{{school.college_coach_phone}}</p>
+                                      <p><b>College Coach Email: </b>{{school.college_coach_email}}</p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>                                                         
+                            </div>
                           </div>
+                          <!-- end Survey Data -->                              
                         </div>
-
                       </section>
-
                     </div>
                     <!-- end project-detail sidebar -->
-
                   </div>
                 </div>
               </div>
