@@ -34,7 +34,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>NGM</span></a>
+              <a href="/index" class="site_title"><i class="fa fa-paw"></i> <span>NGM</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -172,15 +172,15 @@
                       <tbody>
                         <tr>
 
-                          <td>{{this.first_name}}</td>
-                          <td>{{this.last_name}}</td>
-                          <td>{{this.cohort}}</td>
-                          <td>{{this.school}}</td>
-                          <td>{{this.phonenum}}</td>
-                          <td>{{this.parentone_name}}</td>
-                          <td>{{this.parentone_num}}</td>
+                          <td>{{this.student_first_name}}</td>
+                          <td>{{this.student_last_name}}</td>
+                          <td>{{this.school_name}}</td>
+                          <td>Class of {{this.cohort_year}}</td>
+                          <td>{{this.student_phone}}</td>
+                          <td>{{this.guardian_one_name}}</td>
+                          <td>{{this.guardian_one_phone}}</td>
                           <td>
-                            <a id="view"  href="/students/{{this.id}}/profile" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+                            <a id="view"  href="/students/{{this.student_id}}/profile" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
 <!--
                             <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
                             <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>

@@ -1,9 +1,12 @@
 module.exports = function(app, passport) {
 
-  var mysql      = require('mysql'),
-      dbconfig   = require('../config/database'),
-      connection = mysql.createConnection(dbconfig.connection),
-      ensureLog  = require('connect-ensure-login').ensureLoggedIn();;
+  var mysql          = require('mysql'),
+      dbconfig       = require('../config/database'),
+      connection     = mysql.createConnection(dbconfig.connection),
+      ensureLog      = require('connect-ensure-login').ensureLoggedIn(),
+      env            = require('node-env-file');
+
+  env('./.env');;
   
   connection.query('USE ' + dbconfig.database);
 
@@ -17,30 +20,26 @@ module.exports = function(app, passport) {
   };
 
 
-app.get('/callback',
-  passport.authenticate('test', { 
-    failureRedirect: '/login',
-    successRedirect: '/index',
-  }),
- function(req, res) {
-
-    console.log('function');
-    if (req.body.remember) {
-        req.session.cookie.maxAge = 1000 * 60 * 20; //20 minutes
-    } else {
-        req.session.cookie.expires = false;
-    }
-
-    res.redirect(req.session.returnTo || '/index');
-  });
+  app.get('/callback',
+    passport.authenticate('test', { 
+      failureRedirect: '/login',
+      successRedirect: '/index',
+    }),
+    function(req, res) {
+      if (req.body.remember) {
+          req.session.cookie.maxAge = 1000 * 60 * 20; //20 minutes
+      } else {
+          req.session.cookie.expires = false;
+      }
+      res.redirect(req.session.returnTo || '/index');
+    });
   
+
   app.get('/login', function(req, res){
     res.render('login', { env: env });
   });
 
   
-  //End of New Code
-
   app.get('/', function(req, res) {
       res.render('login');
   });
@@ -55,80 +54,54 @@ app.get('/callback',
   
   //index route
   app.get('/index',ensureLog, function(req, res) {
-
-    console.log(req.user);
-  res.render('index');
-
-    connection.query("SELECT * FROM Student", function(err, students){
-        connection.query("SELECT * FROM School", function(err, schools){
-          connection.query("SELECT * FROM Staff", function(err, partners){
-            res.render('index', {
-                students: students,
-                schools: schools,
-                partners: partners,
-              });
-            });
+    connection.query("SELECT * FROM student", function(err, students){
+      connection.query("SELECT * FROM school", function(err, schools){
+        res.render('index', {
+            students: students,
+            schools: schools,
+            
         });
+      });
     });
-
   });
   
   //Student routes
   app.get('/students',ensureLog, function(req, res) {
-  connection.query("SELECT * FROM Student", function(err, rows){
-        res.render('students', { students: rows});
+    connection.query("SELECT student.student_id, student.student_first_name, student.student_phone, student.student_last_name, school.school_name, cohort.cohort_year, student.guardian_one_name, student.guardian_one_phone FROM student INNER JOIN cohort ON student.cohort_id=cohort.cohort_id INNER JOIN school ON cohort.school_id=school.school_id;", function(err, rows){
+      res.render('students', { students: rows});
     });
-});
-  app.post('/students',ensureLog, function(req, res) {
-  res.send('POST request recieved');
-  res.end();
-  //console.log(req.body);
-});
-  app.get('/students/:id/profile',ensureLog, function(req, res) {
-  //console.log(req);
-  console.log(req.params);
-  var query = "SELECT * FROM Student WHERE id=" + req.params.id;
-  connection.query(query, function(err, rows){
-    //connection.query("SELECT semester_gpa FROM semester_record", function(err, gpa){
-    console.log(rows[0]);
-    //console.log(gpa[0]);
-    rows[0].dob = rows[0].dob.toDateString(); //properly set date.
-    //rows[0].startdate = rows[0].startdate.toDateString();
-    res.render('profile', { student: rows[0], 
-                            //gpa: gpa});
   });
 
 
-var for_cohort = [
-  { name: 'GT 2018', id:'1' },
-  { name: 'GT 2019', id:'2' },
-  //...
-];
-
-});
+  app.get('/students/:id/profile',ensureLog, function(req, res) {
+    var query = "SELECT * FROM student WHERE student_id=" + req.params.id;
+    connection.query(query, function(err, rows){
+      rows[0].student_dob = rows[0].student_dob.toDateString(); //properly set date.
+      res.render('profile', { student: rows[0]});
+    });
+  });
 
 
   app.get('/addStudent',ensureLog, function(req, res) {
-  res.render('addStudent');
-});
-  app.post('/addStudent',ensureLog, function(req, res) {
-  res.redirect('/students');
-     console.log(req.body);
-     stmt = 'INSERT INTO student(cohort_id,student_first_name,student_last_name,student_phone,student_dob,student_start_date,student_email,guardian_one_name,guardian_one_phone,guardian_one_email,guardian_two_name,guardian_two_phone,guardian_two_email,middleschool_absences,highschool_absences,highschool_suspensions) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);';
-     connection.query(stmt,["1",req.body.first_name,req.body.last_name,req.body.num,new Date(req.body.dob),Date.now(),req.body.email,req.body.parentone_name,req.body.parentone_num,req.body.parentone_email,req.body.parenttwo_name,req.body.parenttwo_num,req.body.parenttwo_email,req.body.mssuspensions,req.body.hssuspensions,req.body.hsabsences], function(err, rows){ 
-      console.log(err);
+    connection.query("SELECT cohort.cohort_id, cohort.cohort_year, school.school_name FROM cohort INNER JOIN school ON cohort.school_id=school.school_id;", function(err, rows) {
+      res.render('addStudent', {cohorts: rows});
     });
+  });
 
-     //middle school absences --> middle school suspensions in DB
-  
-});
+  app.post('/addStudent',ensureLog, function(req, res) {
+    res.redirect('/students');
+    stmt = 'INSERT INTO student(student_gender, cohort_id,student_first_name,student_last_name,student_phone,student_dob,student_start_date,student_email,guardian_one_name,guardian_one_phone,guardian_one_email,guardian_two_name,guardian_two_phone,guardian_two_email,middleschool_absences,highschool_absences,highschool_suspensions) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);';
+    connection.query(stmt,[req.body.gender,req.body.cohort,req.body.first_name,req.body.last_name,req.body.num,new Date(req.body.dob),Date.now(),req.body.email,req.body.parentone_name,req.body.parentone_num,req.body.parentone_email,req.body.parenttwo_name,req.body.parenttwo_num,req.body.parenttwo_email,req.body.mssuspensions,req.body.hssuspensions,req.body.hsabsences], function(err, rows){ 
+    });
+  });
   
   //School routes
   app.get('/schools',ensureLog, function(req, res) {
-  connection.query("SELECT * FROM School", function(err, rows){
+  connection.query("SELECT * FROM school", function(err, rows){
         res.render('schools', { schools: rows});
     });
-});
+  });
+
   app.get('/addSchool',ensureLog, function(req, res) {
     res.render('addSchool');
   });
@@ -136,11 +109,11 @@ var for_cohort = [
   
   //Partner routes
   app.get('/partners',ensureLog, function(req, res) {
-  res.render('partners');
-});
+    res.render('partners');
+  });
   app.get('/addPartner',ensureLog, function(req, res) {
-  res.render('addPartner');
-});
+    res.render('addPartner');
+  });
 
   
 };
