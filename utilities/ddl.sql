@@ -1,14 +1,20 @@
-CREATE TABLE IF NOT EXISTS `staff`(
-    `staff_id` int(11) NOT NULL AUTO_INCREMENT,
-    `first_name` varchar(255) NOT NULL,
-    `last_name` varchar(255) NOT NULL,
-    `phone` varchar(20) NOT NULL,
-    `email` varchar(255) NOT NULL,
-    `date_modified` DATE,
-    `user_modified` INT,
-    PRIMARY KEY (`staff_id`)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS USERS
+	(
+		`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+		`username` VARCHAR(20) NOT NULL,
+		`password` CHAR(60) NOT NULL,
+		PRIMARY KEY (`id`),
+		UNIQUE INDEX `id_UNIQUE` (`id` ASC),
+		UNIQUE INDEX `username_UNIQUE` (`username` ASC)
+	);
 
+CREATE TABLE IF NOT EXISTS Staff 
+    (
+      `staff_id` int(11) NOT NULL AUTO_INCREMENT,
+      `first_name` varchar(255) NOT NULL,
+      `last_name` varchar(255) DEFAULT NULL,
+      `phone` varchar(20) DEFAULT NULL,
+      `email` varchar(255) DEFAULT NULL,
 
 CREATE TABLE IF NOT EXISTS `school`(
     `school_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -32,6 +38,19 @@ CREATE TABLE IF NOT EXISTS `cohort`(
     PRIMARY KEY(`cohort_id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE IF NOT EXISTS Staff
+	(
+	    `id` INTEGER NOT NULL AUTO_INCREMENT,
+		`school_id` INTEGER NOT NULL,
+	    `first_name` VARCHAR(255) NOT NULL,
+        `last_name` VARCHAR(255) NOT NULL,
+	    `dob` DATE NOT NULL,
+        `startdate` DATE NOT NULL,
+        `phonenum` VARCHAR(20) NOT NULL,
+        `email` VARCHAR(255) NOT NULL,
+		PRIMARY KEY(`id`),
+		CONSTRAINT fk_prerecschool FOREIGN KEY(`school_id`) REFERENCES School(`school_id`)
+	);
 
 CREATE TABLE IF NOT EXISTS `student`(
     `student_id` int(11)  NOT NULL AUTO_INCREMENT,
@@ -60,39 +79,54 @@ CREATE TABLE IF NOT EXISTS `student`(
     PRIMARY KEY(`student_id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE IF NOT EXISTS PreRec
+    (
+        `id` INTEGER NOT NULL AUTO_INCREMENT,
+        `pr_sid` INTEGER NOT NULL,
+        `prev_school_id` INTEGER NOT NULL,
+        `ms_suspensions` INTEGER,
+        `hs_suspensions` INTEGER,
+        `hs_absences` INTEGER,
+        CONSTRAINT fk_prerec FOREIGN KEY(`pr_sid`) REFERENCES Student(`id`),
+        CONSTRAINT fk_prerecschool FOREIGN KEY(`prev_school_id`) REFERENCES School(`school_id`),
+        PRIMARY KEY(`id`)
+    );
 
-CREATE TABLE IF NOT EXISTS `semester_record`(
-    `semester_record_id` int(11) NOT NULL AUTO_INCREMENT,
-    `student_id` int(11) NOT NULL,
-    `number_as` INT NOT NULL,
-    `number_bs` INT NOT NULL,
-    `number_cs` INT NOT NULL,
-    `number_ds` INT NOT NULL,
-    `semester_gpa` DECIMAL(5,2) NOT NULL,
-    `semester_credits` INT NOT NULL,
-    `date_modified` DATE NOT NULL,
-    `user_modified` INT NOT NULL,
-    CONSTRAINT `fk_student` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`),
-    PRIMARY KEY(`semester_record_id`)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS CurrentRec
+    (
+        `id` INTEGER NOT NULL AUTO_INCREMENT,
+        `cr_sid` INTEGER NOT NULL,
+        `curr_school_id` INTEGER NOT NULL,
+        `gpa` DECIMAL(5,2) NOT NULL,
+        `semester` INTEGER NOT NULL,
+        `credits_earned` INTEGER NOT NULL,
+        `total_credits` INTEGER NOT NULL,
+        `grade_level` INTEGER NOT NULL,
+        CONSTRAINT fk_currec FOREIGN KEY(`cr_sid`) REFERENCES Student(`id`),
+        CONSTRAINT fk_currecschool FOREIGN KEY(`curr_school_id`) REFERENCES School(`school_id`),
+        PRIMARY KEY(`id`)
+    );
 
-CREATE TABLE IF NOT EXISTS `survey`(
-    `survey_id` int(11) NOT NULL AUTO_INCREMENT,
-    `survey_name` varchar(45) NOT NULL,
-    `date_modified` DATE NOT NULL,
-    `user_modified` INT NOT NULL,
-    PRIMARY KEY(`survey_id`)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS SemesterRecord
+    (
+        `id` INTEGER NOT NULL AUTO_INCREMENT,
+        `sr_sid` INTEGER NOT NULL,
+        `curr_school_id` INTEGER NOT NULL,
+        `extra_curr` TEXT,
+        `grades` TEXT NOT NULL,
+        CONSTRAINT fk_semrec FOREIGN KEY(`sr_sid`) REFERENCES Student(`id`),
+        CONSTRAINT fk_semrecschool FOREIGN KEY(`curr_school_id`) REFERENCES School(`school_id`),
+        PRIMARY KEY(`id`)
+    );
 
-CREATE TABLE IF NOT EXISTS `survey_category`(
-    `survey_category_id` int(11) NOT NULL AUTO_INCREMENT,
-    `survey_id` int(11) NOT NULL,
-    `survey_category_name` varchar(45) NOT NULL,
-    `date_modified` DATE NOT NULL,
-    `user_modified` INT NOT NULL,
-    CONSTRAINT `fk_survey` FOREIGN KEY (`survey_id`) REFERENCES `survey` (`survey_id`),
-    PRIMARY KEY(`survey_category_id`)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS SurveyData
+    (
+        `id` INTEGER NOT NULL AUTO_INCREMENT,
+        `sd_sid` INTEGER NOT NULL,
+        `surveyXML` TEXT NOT NULL,
+        CONSTRAINT fk_survey FOREIGN KEY(`sd_sid`) REFERENCES Student(`id`),
+        PRIMARY KEY(`id`)
+    );
 
 CREATE TABLE IF NOT EXISTS `survey_question`(
     `survey_question_id` int(11) NOT NULL AUTO_INCREMENT,

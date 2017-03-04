@@ -103,111 +103,431 @@
 
         <!-- page content -->
         <div class="right_col" role="main">
-          <div class="">
-            <div class="page-title">
-              <div class="title_left">
-                <h3>Add School Form</h3>
-              </div>
+            <div class="">
+                <div class="page-title">
+                    <div class="title_left">
+                        <h3>Add School Form</h3>
+                    </div>
 
-              <div class="title_right">
-                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
+                    <div class="title_right">
+                        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search for...">
+                                <span class="input-group-btn">
                               <button class="btn btn-default" type="button">Go!</button>
                           </span>
-                  </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            </div>
-            <div class="clearfix"></div>
-						<div class="row">
-              <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>New School</h2>
-<!--
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
-                          </li>
-                          <li><a href="#">Settings 2</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
-                    </ul>
--->
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    <br />
-                    <form id="schoolForm" data-parsley-validate class="form-horizontal form-label-left">
+                <div class="clearfix"></div>
 
-											<!--School Name-->
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="schoolName">School Name <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="schoolName" name="schoolName" required="required" class="form-control col-md-7 col-xs-12">
-                        </div>
-                      </div>
-											
-											<!--School Address-->
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="schoolAddress">School Address <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="schoolAddress" name="schoolAddress" required="required" class="form-control col-md-7 col-xs-12">
-                        </div>
-                      </div>
-											
-											<!-- Principle Name-->
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="principleName">Principle Name <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="principleName" name="principleName" required="required" class="form-control col-md-7 col-xs-12">
-                        </div>
-                      </div>
-											
-											<!-- Principle Cell-->
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="principleCell">Principle Cell Phone <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="tel" id="principleCell" name="principleCell" required="required" class="form-control col-md-7 col-xs-12">
-                        </div>
-                      </div>
-											
-											<!-- Principle Email-->
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="principleEmail">Principle Email <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="email" id="principleEmail" name="principleEmail" required="required" class="form-control col-md-7 col-xs-12">
-                        </div>
-                      </div>
-											
-                      <div class="ln_solid"></div>
-                      <div class="form-group">
-                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                          <button type="submit" class="btn btn-primary">Cancel</button>
-                          <button type="submit" class="btn btn-success">Submit</button>
-                        </div>
-                      </div>
+                <div class="row">
 
-                    </form>
-                  </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>New School</h2>
+                                <!--
+                                                    <ul class="nav navbar-right panel_toolbox">
+                                                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                                      </li>
+                                                      <li class="dropdown">
+                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                                        <ul class="dropdown-menu" role="menu">
+                                                          <li><a href="#">Settings 1</a>
+                                                          </li>
+                                                          <li><a href="#">Settings 2</a>
+                                                          </li>
+                                                        </ul>
+                                -->
+                                <!-- </li>
+                                <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                </li>
+                              </ul>-->
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <div class="x_content">
+
+                                <!--Smart Wizard -->
+                                <p>This is the form to add a new school.</p>
+                                <form id="notWizard" class="form-horizontal" method="post">
+                                    <div id="wizard" class="form_wizard wizard_horizontal">
+                                        <ul class="wizard_steps">
+                                            <li>
+                                                <a href="#step-1">
+                                                    <span class="step_no">1</span>
+                                                    <span class="step_descr">
+                                              Step 1<br/>
+                                              <small>Primary School</br> Information</small>
+                                          </span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#step-2">
+                                                    <span class="step_no">2</span>
+                                                    <span class="step_descr">
+                                              Step 2<br/>
+                                              <small>Assistant Principal and</br> Cohort Coach Information</small>
+                                          </span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#step-3">
+                                                    <span class="step_no">3</span>
+                                                    <span class="step_descr">
+                                              Step 3<br/>
+                                              <small>NGM Fellow and</br> Counselor Inforation</small>
+                                          </span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#step-4">
+                                                    <span class="step_no">4</span>
+                                                    <span class="step_descr">
+                                              Step 4<br/>
+                                              <small>Social Worker and</br> Data Liason Information</small>
+                                          </span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#step-5">
+                                                    <span class="step_no">5</span>
+                                                    <span class="step_descr">
+                                              Step 5<br/>
+                                              <small>CIS Coordinator and</br> College Coach Information</small>
+                                          </span>
+                                                </a>
+                                            </li>
+                                        </ul>
+
+                                        <div id="step-1">
+                                            <!-- School Name -->
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                                       for="school_name">School Name <span class="required">*</span>
+                                                </label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <input type="text" id="school_name" name="school_name" required="required"
+                                                           class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                            </div>
+
+                                            <!-- School Address -->
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                                       for="school_address">School Address <span class="required">*</span>
+                                                </label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <input type="text" id="school_address" name="school_address"
+                                                           required="required"
+                                                           class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                            </div>
+
+                                            <!-- School Phone -->
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                                       for="school_phone">School Phone <span class="required">*</span>
+                                                </label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <input type="num" id="school_phone" name="school_phone"
+                                                           required="required"
+                                                           class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                            </div>
+
+                                            <!-- Principal Name -->
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                                       for="principal_name">Principal's Name <span class="required">*</span>
+                                                </label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <input type="text" id="principal_name" name="principal_name"
+                                                           required="required"
+                                                           class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                            </div>
+                                            
+
+                                            <!-- Principal Phone -->
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                                       for="principal_phone">Principal's Phone <span class="required">*</span>
+                                                </label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <input type="tel" id="principal_phone" name="principal_phone" required="required"
+                                                           class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                            </div>
+
+                                            <!-- Principal Email -->
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                                       for="principal_email">Principal's Email <span class="required">*</span>
+                                                </label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <input type="email" id="principal_email" name="principal_email" required="required"
+                                                           class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <div id="step-2">
+                                            <!-- Assistant Principal Name -->
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                                       for="assistant_principal_name">Assistant Principal's Name</label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <input type="text" id="assistant_principal_name" name="assistant_principal_name" class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                            </div>
+                                            
+
+                                            <!-- Assistant Principal Phone -->
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                                       for="assistant_principal_phone">Assistant Principal's Phone</label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <input type="tel" id="assistant_principal_phone" name="assistant_principal_phone" class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                            </div>
+
+                                            <!-- Assistant Principal Email -->
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                                       for="assistant_principal_email">Assistant Principal's Email</label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <input type="email" id="assistant_principal_email" name="assistant_principal_email" class="form-control col-md-7 col-xs-1">
+                                                </div>
+                                            </div>
+
+                                            <!-- Cohort Coach Name -->
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                                       for="cohort_coach_name">Cohort Coach Name</label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <input type="text" id="cohort_coach_name" name="cohort_coach_name"
+                                                           class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                            </div>
+
+                                            <!-- Cohort Coach phone -->
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                                       for="cohort_coach_phone">Cohort Coach Phone</label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <input type="tel" id="cohort_coach_phone" name="cohort_coach_phone"
+                                                           class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                            </div>
+
+                                            <!-- Cohort Coach Email -->
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                                       for="cohort_coach_email">Cohort Coach Email</label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <input type="email" id="cohort_coach_email" name="cohort_coach_email"
+                                                           class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="step-3">
+                                            <!-- NGM Fellow Name -->
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                                       for="ngm_fellow_name">NGM Fellow Name</label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <input type="text" id="ngm_fellow_name" name="ngm_fellow_name"
+                                                           class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                            </div>
+
+                                            <!-- NGM Fellow phone -->
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                                       for="ngm_fellow_phone">NGM Fellow Phone</label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <input type="tel" id="ngm_fellow_phone" name="ngm_fellow_phone"
+                                                           class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                            </div>
+
+                                            <!-- NGM Fellow Email -->
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                                       for="ngm_fellow_email">NGM Fellow Email</label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <input type="email" id="ngm_fellow_email" name="ngm_fellow_email"
+                                                           class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                            </div>
+
+                                            <!-- Counselor Name -->
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                                       for="counselor_name">Counselor Name</label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <input type="text" id="counselor_name" name="counselor_name"
+                                                           class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                            </div>
+
+                                            <!-- Counselor phone -->
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                                       for="counselor_phone">Counselor Phone</label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <input type="tel" id="counselor_phone" name="counselor_phone"
+                                                           class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                            </div>
+
+                                            <!-- Counselor Email -->
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                                       for="counselor_email">Counselor Email</label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <input type="email" id="counselor_email" name="counselor_email"
+                                                           class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                            </div>    
+                                        </div>
+                                        <div id="step-4">
+                                            <!-- Social Worker Name -->
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                                       for="social_worker_name">Social Worker Name</label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <input type="text" id="social_worker_name" name="social_worker_name"
+                                                           class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                            </div>
+
+                                            <!-- Social Worker phone -->
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                                       for="social_worker_phone">Social Worker Phone</label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <input type="tel" id="social_worker_phone" name="social_worker_phone"
+                                                           class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                            </div>
+
+                                            <!-- Social Worker Email -->
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                                       for="social_worker_email">Social Worker Email</label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <input type="email" id="social_worker_email" name="social_worker_email"
+                                                           class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                            </div>    
+
+                                            <!-- Data Liason Name -->
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                                       for="data_liason_name">Data Liason Name</label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <input type="text" id="data_liason_name" name="data_liason_name"
+                                                           class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                            </div>
+
+                                            <!-- Data Liason phone -->
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                                       for="data_liason_phone">Data Liason Phone</label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <input type="tel" id="data_liason_phone" name="data_liason_phone"
+                                                           class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                            </div>
+
+                                            <!-- Data Liason Email -->
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                                       for="data_liason_email">Data Liason Email</label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <input type="email" id="data_liason_email" name="data_liason_email"
+                                                           class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                            </div>    
+                                        </div>
+
+                                        <div id="step-5">
+                                            <!-- CIS Coordinator Name -->
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                                       for="cis_coordinator_name">CIS Coordinator Name</label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <input type="text" id="cis_coordinator_name" name="cis_coordinator_name"
+                                                           class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                            </div>
+
+                                            <!-- CIS Coordinator phone -->
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                                       for="cis_coordinator_phone">CIS Coordinator Phone</label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <input type="tel" id="cis_coordinator_phone" name="cis_coordinator_phone"
+                                                           class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                            </div>
+
+                                            <!-- CIS Coordinator Email -->
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                                       for="cis_coordinator_email">CIS Coordinator Email</label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <input type="email" id="cis_coordinator_email" name="cis_coordinator_email"
+                                                           class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                            </div>    
+
+                                            <!-- College Coach Name -->
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                                       for="college_coach_name">College Coach Name</label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <input type="text" id="college_coach_name" name="college_coach_name"
+                                                           class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                            </div>
+
+                                            <!-- College Coach phone -->
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                                       for="college_coach_phone">College Coach Phone</label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <input type="tel" id="college_coach_phone" name="college_coach_phone"
+                                                           class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                            </div>
+
+                                            <!-- College Coach Email -->
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                                       for="college_coach_email">College Coach Email</label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <input type="email" id="college_coach_email" name="college_coach_email"
+                                                           class="form-control col-md-7 col-xs-12">
+                                                </div>
+                                            </div>    
+                                        </div>
+                                    </div>
+                                </form>
+                                <!-- End SmartWizard Content-->
+
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-					</div>
         </div>
         <!-- /page content -->
 
