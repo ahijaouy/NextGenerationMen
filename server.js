@@ -51,7 +51,9 @@ app.use(bodyParser.json());
 app.use(helmet());
 app.use(flash());
 app.use(session({
-    secret: 'session_cookie_secret',
+    key: 'NGM Session',
+    secret: 'GETABETTERSECRET',
+    store: sessionStore,
     resave: true,
     saveUninitialized: true
 }));
