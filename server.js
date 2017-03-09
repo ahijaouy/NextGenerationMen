@@ -12,7 +12,10 @@ var express 	  = require('express'),
     helmet        = require('helmet'),
     flash         = require('connect-flash'),
     app           = express(),
-    dbconfig      = require('./config/database.js');
+    dbconfig      = require('./config/database.js'),
+    authtoken     = require('./app/authenticationapi');
+
+
 //for MySQLStore
 var options = {
     host: dbconfig.connection.host,
@@ -48,25 +51,22 @@ app.use(bodyParser.json());
 app.use(helmet());
 app.use(flash());
 app.use(session({
-
-    //key: 'session_cookie_name',
     secret: 'session_cookie_secret',
-    //store: sessionStore,
-
     resave: true,
     saveUninitialized: true
 }));
-//app.use(session({ secret: 'keyboardingkat',
-//                  resave: true,
-//                  saveUninitialized: true}));
 app.use(passport.initialize());
 app.use(passport.session());
+
+
 
 //passport.js contains login/signup
 require('./config/passport')(passport);
 
 //main.js contains routes
 require('./app/main.js')(app, passport);
+
+
 
 //Launch server?
 app.listen(80, function() {
