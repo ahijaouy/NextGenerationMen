@@ -9,6 +9,7 @@
     "connect-ensure-login": "^0.1.1",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.3",
+    "dialog": "^0.2.0",
     "dotenv": "^4.0.0",
     "express": "^4.13.4",
     "express-favicon": "^2.0.0",
@@ -23,6 +24,7 @@
     "passport": "^0.3.2",
     "passport-auth0": "^0.6.0",
     "passport-local": "^1.0.0",
-    "pug": "^2.0.0-beta6"
+    "pug": "^2.0.0-beta6",
+    "window-popup": "^1.0.1"
   }
 }
