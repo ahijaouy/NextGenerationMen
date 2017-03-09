@@ -94,7 +94,7 @@ module.exports = function(app, passport) {
     console.log(req.body);
     stmt = 'INSERT INTO student(student_gender, cohort_id,student_first_name,student_last_name,student_phone,student_dob,student_start_date,student_email,guardian_one_name,guardian_one_phone,guardian_one_email,guardian_two_name,guardian_two_phone,guardian_two_email,middleschool_absences,highschool_absences,highschool_suspensions) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);';
     connection.query(stmt,[req.body.gender,req.body.cohort,req.body.student_first_name,req.body.student_last_name,req.body.student_phone,new Date(req.body.student_dob),Date.now(),req.body.student_email,req.body.parentone_name,req.body.parentone_num,req.body.parentone_email,req.body.parenttwo_name,req.body.parenttwo_num,req.body.parenttwo_email,req.body.mssuspensions,req.body.hssuspensions,req.body.hsabsences], function(err, rows){ 
-    if (err) { dialog.err('Sorry, the system was unable to add the student. Please make sure you fill out all required fields.', 'Error Adding Student!'); }
+    if (err) { dialog.err('Sorry, an error occured while trying to add the student. Please make sure you fill out all required fields indicated by the *.', 'Failure Adding Student'); }
     });
   });
   
