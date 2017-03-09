@@ -25,6 +25,6 @@
     "passport-auth0": "^0.6.0",
     "passport-local": "^1.0.0",
     "pug": "^2.0.0-beta6",
-    "window-popup": "^1.0.1"
+    "request": "^2.80.0"
   }
 }

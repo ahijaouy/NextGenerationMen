@@ -59,7 +59,7 @@ module.exports = function(app, passport) {
       connection.query("SELECT * FROM school", function(err, schools){
         res.render('index', {
             students: students,
-            schools: schools,
+            schools: schools
             
         });
       });
@@ -139,13 +139,13 @@ app.get('/schools/:id/edit', function(req, res) {
   console.log(req.params);
 });
   
-  //Partner routes
-  app.get('/partners',ensureLog, function(req, res) {
-    res.render('partners');
-  });
-  app.get('/addPartner',ensureLog, function(req, res) {
-    res.render('addPartner');
-  });
+  // //Partner routes
+  // app.get('/partners',ensureLog, function(req, res) {
+  //   res.render('partners');
+  // });
+  // app.get('/addPartner',ensureLog, function(req, res) {
+  //   res.render('addPartner');
+  // });
 
   
 };
