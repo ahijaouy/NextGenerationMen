@@ -106,16 +106,23 @@ app.get('/students/:id/delete',ensureLog, function(req, res) {
     console.log(err);
   });
 });
-  
-  //School routes
-  app.get('/schools',ensureLog, function(req, res) {
-    connection.query("SELECT * FROM school", function(err, rows){
-        res.render('schools', { schools: rows});
-    });
-  });
 
-  app.get('/addSchool',ensureLog, function(req, res) {
-    res.render('addSchool');
+app.get('/students/:id/edit', ensureLog, function(req, res) {
+  var query = "SELECT * FROM student WHERE student_id=" + req.params.id;
+  connection.query(query, function(err, rows) {
+    res.render('editStudent', {student: rows[0]});
+  });
+});
+
+//School routes
+app.get('/schools',ensureLog, function(req, res) {
+  connection.query("SELECT * FROM school", function(err, rows){
+      res.render('schools', { schools: rows});
+  });
+});
+
+app.get('/addSchool',ensureLog, function(req, res) {
+  res.render('addSchool');
 });
 
 app.post('/addSchool',ensureLog, function(req, res) {
