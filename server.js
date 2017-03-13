@@ -68,8 +68,6 @@ require('./config/passport')(passport, env);
 //main.js contains routes
 require('./app/main.js')(app, passport, env);
 
-
-
 //Launch server?
 app.listen(80, function() {
 	console.log('we are live on 80');

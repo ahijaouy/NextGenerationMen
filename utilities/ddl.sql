@@ -7,28 +7,29 @@ CREATE TABLE IF NOT EXISTS Staff
       `last_name` varchar(255) DEFAULT NULL,
       `phone` varchar(20) DEFAULT NULL,
       `email` varchar(255) DEFAULT NULL,
+      PRIMARY KEY (`staff_id`)
+    );
 
-CREATE TABLE IF NOT EXISTS `school`(
-    `school_id` int(11) NOT NULL AUTO_INCREMENT,
-    `school_name` VARCHAR(255) NOT NULL,
-    `school_address` VARCHAR(255),
-    `school_phone` VARCHAR(20),
-    `principle_name` VARCHAR(255),
-    `principle_phone` VARCHAR(255),
-    `date_modified` DATE,
-    `user_modified` INT,
-    PRIMARY KEY(`school_id`)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-CREATE TABLE IF NOT EXISTS `cohort`(
-    `cohort_id` int(11) NOT NULL AUTO_INCREMENT,
-    `school_id` int(11) NOT NULL,
-    `cohort_year` INTEGER,
-    `date_modified` DATE,
-    `user_modified` INT,
-    CONSTRAINT `fk_school_id` FOREIGN KEY(`school_id`) REFERENCES `school`(`school_id`),
-    PRIMARY KEY(`cohort_id`)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS Student
+	(
+	    `id` INTEGER NOT NULL AUTO_INCREMENT,
+	    `first_name` VARCHAR(255) NOT NULL,
+        `last_name` VARCHAR(255) NOT NULL,
+	    `dob` DATE NOT NULL,
+	    `gender` TINYINT NOT NULL,
+        `startdate` DATE NOT NULL,
+        `phonenum` VARCHAR(20) NOT NULL,
+        `email` VARCHAR(255) NOT NULL,
+        `parentone_name` VARCHAR(255) NOT NULL,
+        `parentone_num` VARCHAR(20) NOT NULL,
+        `parentone_email` VARCHAR(255) NOT NULL,
+        `parenttwo_name` VARCHAR(255),
+        `parenttwo_num` VARCHAR(20),
+        `parenttwo_email` VARCHAR(255),
+        `cohort` VARCHAR(50),
+        `school` VARCHAR(255),
+        PRIMARY KEY(`id`)
+	);
 
 CREATE TABLE IF NOT EXISTS Staff
 	(
@@ -44,32 +45,41 @@ CREATE TABLE IF NOT EXISTS Staff
 		CONSTRAINT fk_prerecschool FOREIGN KEY(`school_id`) REFERENCES School(`school_id`)
 	);
 
-CREATE TABLE IF NOT EXISTS `student`(
-    `student_id` int(11)  NOT NULL AUTO_INCREMENT,
-    `cohort_id` int(11) NOT NULL,
-    `student_first_name` VARCHAR(255) NOT NULL,
-    `student_last_name` VARCHAR(255) NOT NULL,
-    `student_dob` DATE NOT NULL,
-    `student_gender` VARCHAR(15) NOT NULL,
-    `student_start_date` DATE NOT NULL,
-    `student_phone` VARCHAR(20) NOT NULL,
-    `student_email` VARCHAR(255) NOT NULL,
-    `guardian_one_name` VARCHAR(255) NOT NULL,
-    `guardian_one_email` VARCHAR(255) NOT NULL,
-    `guardian_one_phone` VARCHAR(20) NOT NULL,
-    `guardian_two_name` VARCHAR(255) NOT NULL,
-    `guardian_two_email` VARCHAR(255) NOT NULL,
-    `guardian_two_phone` VARCHAR(20) NOT NULL,
-    `middleschool_absences` TINYINT NOT NULL,
-    `highschool_absences` TINYINT NOT NULL,
-    `highschool_suspensions` TINYINT NOT NULL,
-    `cumulative_gpa` DECIMAL(5,2) NOT NULL,
-    `total_credits_earned` INT NOT NULL,
-    `date_modified` DATE,
-    `user_modified` INT,
-    CONSTRAINT `fk_cohort` FOREIGN KEY(`cohort_id`) REFERENCES `cohort`(`cohort_id`),
-    PRIMARY KEY(`student_id`)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS School
+    (
+        `school_id` INTEGER NOT NULL AUTO_INCREMENT,
+        `school_name` VARCHAR(255) NOT NULL,
+        `school_address` VARCHAR(255) NOT NULL,
+        `school_phone` VARCHAR(20) NOT NULL,
+        `principal_name` VARCHAR(255) NOT NULL,
+        `principal_phone` VARCHAR(255) NOT NULL,
+        `principal_email` VARCHAR(255) NOT NULL,
+        `assistant_principal_name` VARCHAR(255),
+        `assistant_principal_phone` VARCHAR(20),
+        `assistant_principal_email` VARCHAR(255),
+        `cohort_coach_name` VARCHAR(255),
+        `cohort_coach_phone` VARCHAR(20),
+        `cohort_coach_email` VARCHAR(255),
+        `ngm_fellow_name` VARCHAR(255),
+        `ngm_fellow_phone` VARCHAR(20),
+        `ngm_fellow_email` VARCHAR(255),
+        `counselor_name` VARCHAR(255),
+        `counselor_phone` VARCHAR(20),
+        `counselor_email` VARCHAR(255),
+        `social_worker_name` VARCHAR(255),
+        `social_worker_phone` VARCHAR(20),
+        `social_worker_email` VARCHAR(255),
+        `data_liason_name` VARCHAR(255),
+        `data_liason_phone` VARCHAR(20),
+        `data_liason_email` VARCHAR(255),
+        `cis_coordinator_name` VARCHAR(255),
+        `cis_coordinator_phone` VARCHAR(20),
+        `cis_coordinator_email` VARCHAR(255),
+        `college_coach_name` VARCHAR(255),
+        `college_coach_phone` VARCHAR(20),
+        `college_coach_email` VARCHAR(255),
+        PRIMARY KEY(`school_id`)
+    );
 
 CREATE TABLE IF NOT EXISTS PreRec
     (
