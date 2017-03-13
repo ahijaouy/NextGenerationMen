@@ -143,7 +143,7 @@
                     <p>Below is a list of all the schools currently in the system. If you want to add a new school, refer to the ADD tab on the left navigation bar.</p>
 
                     <!-- start project list -->
-                    <table class="table table-striped projects">
+                    <table id="datatable" class="table table-striped table-bordered">
                       <thead>
                         <tr>
                           <th style="width: 20%">School Name</th>
@@ -182,7 +182,7 @@
        
                           <td>
                             <a href="/schools/{{this.school_id}}/profile" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                            <a href="/schools/{{this.school.id}}/edit" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                            <a href="/schools/{{this.school_id}}/edit" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
                             <a href="/schools/{{this.school_id}}/delete" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete</a>
                           </td>
                         </tr>
