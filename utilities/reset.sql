@@ -1,4 +1,3 @@
-DROP TABLE staff;
 DROP TABLE survey_response;
 DROP TABLE survey_qestion;
 DROP TABLE survey_category;
@@ -9,123 +8,152 @@ DROP TABLE cohort;
 DROP TABLE school;
 
 # BEGINNING OF DDL
-CREATE TABLE IF NOT EXISTS `staff`(
-    `staff_id` int(11) NOT NULL AUTO_INCREMENT,
-    `first_name` varchar(255) NOT NULL,
-    `last_name` varchar(255) NOT NULL,
-    `phone` varchar(20) NOT NULL,
-    `email` varchar(255) NOT NULL,
-    `date_modified` DATE,
-    `user_modified` INT,
-    PRIMARY KEY (`staff_id`)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `sessions` (
+  `session_id` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `expires` int(11) unsigned NOT NULL,
+  `data` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
+  PRIMARY KEY (`session_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-CREATE TABLE IF NOT EXISTS `school`(
-    `school_id` int(11) NOT NULL AUTO_INCREMENT,
-    `school_name` VARCHAR(255) NOT NULL,
-    `school_address` VARCHAR(255),
-    `school_phone` VARCHAR(20),
-    `principle_name` VARCHAR(255),
-    `principle_phone` VARCHAR(255),
-    `date_modified` DATE,
-    `user_modified` INT,
-    PRIMARY KEY(`school_id`)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `school` (
+  `school_id` int(11) NOT NULL AUTO_INCREMENT,
+  `school_name` varchar(255) NOT NULL,
+  `school_address` varchar(255) NOT NULL,
+  `school_phone` varchar(20) NOT NULL,
+  `principal_name` varchar(255) NOT NULL,
+  `principal_phone` varchar(255) NOT NULL,
+  `principal_email` varchar(255) NOT NULL,
+  `assistant_principal_name` varchar(255) DEFAULT NULL,
+  `assistant_principal_phone` varchar(20) DEFAULT NULL,
+  `assistant_principal_email` varchar(255) DEFAULT NULL,
+  `cohort_coach_name` varchar(255) DEFAULT NULL,
+  `cohort_coach_phone` varchar(20) DEFAULT NULL,
+  `cohort_coach_email` varchar(255) DEFAULT NULL,
+  `ngm_fellow_name` varchar(255) DEFAULT NULL,
+  `ngm_fellow_phone` varchar(20) DEFAULT NULL,
+  `ngm_fellow_email` varchar(255) DEFAULT NULL,
+  `counselor_name` varchar(255) DEFAULT NULL,
+  `counselor_phone` varchar(20) DEFAULT NULL,
+  `counselor_email` varchar(255) DEFAULT NULL,
+  `social_worker_name` varchar(255) DEFAULT NULL,
+  `social_worker_phone` varchar(20) DEFAULT NULL,
+  `social_worker_email` varchar(255) DEFAULT NULL,
+  `data_liason_name` varchar(255) DEFAULT NULL,
+  `data_liason_phone` varchar(20) DEFAULT NULL,
+  `data_liason_email` varchar(255) DEFAULT NULL,
+  `cis_coordinator_name` varchar(255) DEFAULT NULL,
+  `cis_coordinator_phone` varchar(20) DEFAULT NULL,
+  `cis_coordinator_email` varchar(255) DEFAULT NULL,
+  `college_coach_name` varchar(255) DEFAULT NULL,
+  `college_coach_phone` varchar(20) DEFAULT NULL,
+  `college_coach_email` varchar(255) DEFAULT NULL,
+  `date_modified` date DEFAULT NULL,
+  `user_modified` int(11) DEFAULT NULL,
+  PRIMARY KEY (`school_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 ;
 
-CREATE TABLE IF NOT EXISTS `cohort`(
-    `cohort_id` int(11) NOT NULL AUTO_INCREMENT,
-    `school_id` int(11) NOT NULL,
-    `cohort_year` INTEGER,
-    `date_modified` DATE,
-    `user_modified` INT,
-    CONSTRAINT `fk_school_id` FOREIGN KEY(`school_id`) REFERENCES `school`(`school_id`),
-    PRIMARY KEY(`cohort_id`)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `cohort` (
+  `cohort_id` int(11) NOT NULL AUTO_INCREMENT,
+  `school_id` int(11) NOT NULL,
+  `cohort_year` int(11) DEFAULT NULL,
+  `date_modified` date DEFAULT NULL,
+  `user_modified` int(11) DEFAULT NULL,
+  PRIMARY KEY (`cohort_id`),
+  KEY `fk_school_id` (`school_id`),
+  CONSTRAINT `fk_school_id` FOREIGN KEY (`school_id`) REFERENCES `school` (`school_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `student` (
+  `student_id` int(11) NOT NULL AUTO_INCREMENT,
+  `cohort_id` int(11) NOT NULL,
+  `student_first_name` varchar(255) NOT NULL,
+  `student_last_name` varchar(255) NOT NULL,
+  `student_dob` date NOT NULL,
+  `student_gender` varchar(15) NOT NULL,
+  `student_start_date` date NOT NULL,
+  `student_phone` varchar(20) NOT NULL,
+  `student_email` varchar(255) NOT NULL,
+  `guardian_one_name` varchar(255) NOT NULL,
+  `guardian_one_email` varchar(255) NOT NULL,
+  `guardian_one_phone` varchar(20) NOT NULL,
+  `guardian_two_name` varchar(255) NOT NULL,
+  `guardian_two_email` varchar(255) NOT NULL,
+  `guardian_two_phone` varchar(20) NOT NULL,
+  `middleschool_suspensions` tinyint(4) NOT NULL,
+  `highschool_absences` tinyint(4) NOT NULL,
+  `highschool_suspensions` tinyint(4) NOT NULL,
+  `cumulative_gpa` decimal(5,2) NOT NULL,
+  `total_credits_earned` int(11) NOT NULL,
+  `date_modified` date DEFAULT NULL,
+  `user_modified` int(11) DEFAULT NULL,
+  PRIMARY KEY (`student_id`),
+  KEY `fk_cohort` (`cohort_id`),
+  CONSTRAINT `fk_cohort` FOREIGN KEY (`cohort_id`) REFERENCES `cohort` (`cohort_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=99758 DEFAULT CHARSET=utf8 ;
+
+CREATE TABLE `semester_record` (
+  `semester_record_id` int(11) NOT NULL AUTO_INCREMENT,
+  `student_id` int(11) NOT NULL,
+  `number_as` int(11) NOT NULL,
+  `number_bs` int(11) NOT NULL,
+  `number_cs` int(11) NOT NULL,
+  `number_ds` int(11) NOT NULL,
+  `semester_gpa` decimal(5,2) NOT NULL,
+  `semester_credits` int(11) NOT NULL,
+  `date_modified` date NOT NULL,
+  `user_modified` int(11) NOT NULL,
+  PRIMARY KEY (`semester_record_id`),
+  KEY `fk_student` (`student_id`),
+  CONSTRAINT `fk_student` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `survey` (
+  `survey_id` int(11) NOT NULL AUTO_INCREMENT,
+  `survey_name` varchar(45) NOT NULL,
+  `date_modified` date NOT NULL,
+  `user_modified` int(11) NOT NULL,
+  PRIMARY KEY (`survey_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `survey_category` (
+  `survey_category_id` int(11) NOT NULL AUTO_INCREMENT,
+  `survey_id` int(11) NOT NULL,
+  `survey_category_name` varchar(45) NOT NULL,
+  `date_modified` date NOT NULL,
+  `user_modified` int(11) NOT NULL,
+  PRIMARY KEY (`survey_category_id`),
+  KEY `fk_survey` (`survey_id`),
+  CONSTRAINT `fk_survey` FOREIGN KEY (`survey_id`) REFERENCES `survey` (`survey_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `survey_question` (
+  `survey_question_id` int(11) NOT NULL AUTO_INCREMENT,
+  `survey_category_id` int(11) NOT NULL,
+  `question` varchar(255) NOT NULL,
+  `question_negated` tinyint(4) NOT NULL,
+  `date_modified` date NOT NULL,
+  `user_modified` int(11) NOT NULL,
+  PRIMARY KEY (`survey_question_id`),
+  KEY `fk_survey_category` (`survey_category_id`),
+  CONSTRAINT `fk_survey_category` FOREIGN KEY (`survey_category_id`) REFERENCES `survey_category` (`survey_category_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `survey_response` (
+  `survey_response_id` int(11) NOT NULL AUTO_INCREMENT,
+  `survey_question_id` int(11) NOT NULL,
+  `semester_record_id` int(11) NOT NULL,
+  `response` tinyint(4) NOT NULL,
+  `date_modified` date NOT NULL,
+  `user_modified` int(11) NOT NULL,
+  PRIMARY KEY (`survey_response_id`),
+  KEY `fk_survey_question` (`survey_question_id`),
+  KEY `fk_semester_record` (`semester_record_id`),
+  CONSTRAINT `fk_survey_question` FOREIGN KEY (`survey_question_id`) REFERENCES `survey_question` (`survey_question_id`),
+  CONSTRAINT `fk_semester_record` FOREIGN KEY (`semester_record_id`) REFERENCES `semester_record` (`semester_record_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-CREATE TABLE IF NOT EXISTS `student`(
-    `student_id` int(11)  NOT NULL AUTO_INCREMENT,
-    `cohort_id` int(11) NOT NULL,
-    `student_first_name` VARCHAR(255) NOT NULL,
-    `student_last_name` VARCHAR(255) NOT NULL,
-    `student_dob` DATE NOT NULL,
-    `student_start_date` DATE NOT NULL,
-    `student_phone` VARCHAR(20) NOT NULL,
-    `student_email` VARCHAR(255) NOT NULL,
-    `guardian_one_name` VARCHAR(255) NOT NULL,
-    `guardian_one_email` VARCHAR(255) NOT NULL,
-    `guardian_one_phone` VARCHAR(20) NOT NULL,
-    `guardian_two_name` VARCHAR(255) NOT NULL,
-    `guardian_two_email` VARCHAR(255) NOT NULL,
-    `guardian_two_phone` VARCHAR(20) NOT NULL,
-    `middleschool_absences` INT NOT NULL,
-    `highschool_absences` INT NOT NULL,
-    `highschool_suspensions` INT NOT NULL,
-    `cumulative_gpa` DECIMAL(5,2) NOT NULL,
-    `total_credits_earned` INT NOT NULL,
-    `date_modified` DATE,
-    `user_modified` INT,
-    CONSTRAINT `fk_cohort` FOREIGN KEY(`cohort_id`) REFERENCES `cohort`(`cohort_id`),
-    PRIMARY KEY(`student_id`)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
-CREATE TABLE IF NOT EXISTS `semester_record`(
-    `semester_record_id` int(11) NOT NULL AUTO_INCREMENT,
-    `student_id` int(11) NOT NULL,
-    `number_as` INT NOT NULL,
-    `number_bs` INT NOT NULL,
-    `number_cs` INT NOT NULL,
-    `number_ds` INT NOT NULL,
-    `semester_gpa` DECIMAL(5,2) NOT NULL,
-    `semester_credits` INT NOT NULL,
-    `date_modified` DATE NOT NULL,
-    `user_modified` INT NOT NULL,
-    CONSTRAINT `fk_student` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`),
-    PRIMARY KEY(`semester_record_id`)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-CREATE TABLE IF NOT EXISTS `survey`(
-    `survey_id` int(11) NOT NULL AUTO_INCREMENT,
-    `survey_name` varchar(45) NOT NULL,
-    `date_modified` DATE NOT NULL,
-    `user_modified` INT NOT NULL,
-    PRIMARY KEY(`survey_id`)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-CREATE TABLE IF NOT EXISTS `survey_category`(
-    `survey_category_id` int(11) NOT NULL AUTO_INCREMENT,
-    `survey_id` int(11) NOT NULL,
-    `survey_category_name` varchar(45) NOT NULL,
-    `date_modified` DATE NOT NULL,
-    `user_modified` INT NOT NULL,
-    CONSTRAINT `fk_survey` FOREIGN KEY (`survey_id`) REFERENCES `survey` (`survey_id`),
-    PRIMARY KEY(`survey_category_id`)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-CREATE TABLE IF NOT EXISTS `survey_question`(
-    `survey_question_id` int(11) NOT NULL AUTO_INCREMENT,
-    `survey_category_id` int(11) NOT NULL,
-    `question` varchar(255) NOT NULL,
-    `question_negated` TINYINT NOT Null,
-    `date_modified` DATE NOT NULL,
-    `user_modified` INT NOT NULL,
-    CONSTRAINT `fk_survey_category` FOREIGN KEY (`survey_category_id`) REFERENCES `survey_category` (`survey_category_id`),
-    PRIMARY KEY(`survey_question_id`)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-CREATE TABLE IF NOT EXISTS `survey_response`(
-    `survey_response_id` int(11) NOT NULL AUTO_INCREMENT,
-    `survey_question_id` int(11) NOT NULL,
-    `semester_record_id` int(11) NOT NULL,
-    `response` TINYINT NOT Null,
-    `date_modified` DATE NOT NULL,
-    `user_modified` INT NOT NULL,
-    CONSTRAINT `fk_survey_question` FOREIGN KEY (`survey_question_id`) REFERENCES `survey_question` (`survey_question_id`),
-    CONSTRAINT `fk_semester_record` FOREIGN KEY (`semester_record_id`) REFERENCES `semester_record` (`semester_record_id`),
-    PRIMARY KEY(`survey_response_id`)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 # END OF DDL
 
 # BEGINNING OF SEED DATA
