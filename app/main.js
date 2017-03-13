@@ -75,7 +75,8 @@ module.exports = function(app, passport, env) {
 
 
   app.get('/students/:id/profile',ensureLog, function(req, res) {
-    var query = "SELECT * FROM student WHERE student_id=" + req.params.id;
+    var query = "SELECT * FROM student INNER JOIN cohort on student.cohort_id=cohort.cohort_id INNER JOIN school on cohort.school_id=school.school_id WHERE student_id=" + req.params.id + ";";
+
     connection.query(query, function(err, rows){
       //rows[0].student_dob = rows[0].student_dob.toDateString(); //properly set date.
       res.render('profile', { student: rows[0]});
@@ -172,7 +173,15 @@ app.get('/addCohort',ensureLog, function(req, res) {
 app.post('/addCohort',ensureLog, function(req, res) {
   var query = "INSERT INTO cohort(school_id, cohort_year) VALUES (?,?);";
   connection.query(query, [req.body.school_id, req.body.cohort_year], function(err, rows) {
-    res.redirect('/schools');
+    res.redirect('/schools/' + req.body.school_id + '/profile');
+  });
+});
+
+app.post('/students/:id/edit', ensureLog, function(req, res) {
+  var query = "UPDATE student SET  cohort_id = ?, student_first_name = ?, student_last_name = ?, student_dob = ?, student_gender = ?, student_start_date = ?, student_phone = ?, student_email = ?, guardian_one_name = ?, guardian_one_email = ?, guardian_one_phone = ?, guardian_two_name = ?, guardian_two_email = ?, guardian_two_phone = ?, middleschool_suspensions = ?, highschool_absences = ?, highschool_suspensions = ?, cumulative_gpa = ?, total_credits_earned = ?, date_modified = ?, user_modified = ?, WHERE student_id = " + req.params.id;
+  connection.query(query, [req.body.cohort_id,req.body.student_first_name,req.body.student_last_name,req.body.student_dob,req.body.gender,req.body.start_date,req.body.student_phone,req.body.student_email,req.body.guardian_one_name,req.body.guardian_one_email,req.body.guardian_one_phone,req.body.guardian_two_name,req.body.guardian_two_email,req.body.guardian_two_phone,req.body.middleschool_suspensions,req.body.highschool_absence,req.body.highschool_suspensions,req.body.cumulative_gpa,req.body.total_credits_earned,req.body.date_modified,req.body.user_modified], function(err, rows) {
+    console.log(err);
+    res.redirect('/students/' + req.params.id + '/profile'); 
   });
 });
   
