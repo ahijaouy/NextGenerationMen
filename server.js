@@ -7,21 +7,21 @@ var express 	  = require('express'),
     cookieParser  = require('cookie-parser'),
     session       = require('express-session'),
     MySQLStore    = require('express-mysql-session')(session),
-    dotenv        = require ('dotenv'),
+    env           = require ('node-env-file'),
     Auth0Strategy = require('passport-auth0'),
     helmet        = require('helmet'),
     flash         = require('connect-flash'),
-    app           = express(),
-    dbconfig      = require('./config/database.js'),
-    authtoken     = require('./app/authenticationapi');
+    app           = express();
+    //authtoken     = require('./app/authenticationapi');
 
 
+env('.env');
 //for MySQLStore
-var options = {
-    host: dbconfig.connection.host,
-    user: dbconfig.connection.user,
-    password: dbconfig.connection.password,
-    database: dbconfig.database,
+var dbconfig = {
+    host: process.env.DATABASE_HOST,
+    user: process.env.DATABASE_USER,
+    password: process.env.DATABASE_PASSWORD,
+    database: process.env.DATABASE,
     createDatabaseTable: true,
     schema: {
         tableName: 'sessions',
@@ -32,7 +32,7 @@ var options = {
         }
     }
 };
-var sessionStore = new MySQLStore(options);
+var sessionStore = new MySQLStore(dbconfig);
 
 
 //Set View Engine
@@ -63,10 +63,10 @@ app.use(passport.session());
 
 
 //passport.js contains login/signup
-require('./config/passport')(passport);
+require('./config/passport')(passport, env);
 
 //main.js contains routes
-require('./app/main.js')(app, passport);
+require('./app/main.js')(app, passport, env);
 
 
 
