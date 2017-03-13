@@ -114,7 +114,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>NGM Schools</h3>
+                <h3>Next Generation Men</h3>
               </div>
 
               <div class="title_right">
@@ -140,14 +140,18 @@
                   </div>
                   <div class="x_content">
 
+                    <p>Below is a list of all the schools currently in the system. If you want to add a new school, refer to the ADD tab on the left navigation bar.</p>
 
                     <!-- start project list -->
                     <table class="table table-striped projects">
                       <thead>
                         <tr>
-                          <th style="width: 33%">School Name</th>
-                          <th>Principle</th>
-                          <th style="width: 33%">Edit</th>
+                          <th style="width: 20%">School Name</th>
+                          <th>School Phone Number</th>
+                          <th>Principal</th>
+                          <th>Cohort Coach</th>
+                          <th>Counselor</th>
+                          <th style="width: 20%">Actions</th>
                         </tr>
                       </thead>
 
@@ -156,11 +160,26 @@
                         <tr>
                           <td>
                             <a>{{{this.school_name}}}</a>
-                            <br />
+                            <br/>
                           </td>
                           <td>
-                          {{this.principal_name}}
+                            <a>{{{this.school_phone}}}</a>
+                            <br/>
                           </td>
+                          <td>
+                            <a>{{{this.principal_name}}}</a>
+                            <br/>
+                          </td>
+                          <td>
+                            <a>{{{this.cohort_coach_name}}}</a>
+                            <br/>
+                          </td>
+                          <td>
+                            <a>{{{this.couselor_name}}}</a>
+                            <br/>
+                          </td>
+                          
+       
                           <td>
                             <a href="/schools/{{this.school_id}}/profile" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
                             <a href="/schools/{{this.school.id}}/edit" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
