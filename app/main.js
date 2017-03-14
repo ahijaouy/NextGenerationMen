@@ -56,10 +56,18 @@ module.exports = function(app, passport) {
   app.get('/index',ensureLog, function(req, res) {
     connection.query("SELECT * FROM student", function(err, students){
       connection.query("SELECT * FROM school", function(err, schools){
+        var list = [];
+        for (var i = 0; i < students.length; i++) {
+          list.push({
+            id: students[i].student_id,
+            first_name:students[i].student_first_name
+          });
+        }
+        // console.log(students);
+        console.log(list);
         res.render('index', {
             students: students,
-            schools: schools
-            
+            schools: schools  
         });
       });
     });
