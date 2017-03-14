@@ -57,14 +57,35 @@ module.exports = function(app, passport) {
     connection.query("SELECT * FROM student", function(err, students){
       connection.query("SELECT * FROM school", function(err, schools){
         var list = [];
+        console.log(students[0]);
         for (var i = 0; i < students.length; i++) {
           list.push({
             id: students[i].student_id,
-            first_name:students[i].student_first_name
+            cohort_id: students[i].cohort_id,
+            first_name: students[i].student_first_name,
+            last_name: students[i].student_last_name,
+            dob: students[i].student_dob,
+            gender: students[i].student_gender,
+            start_date: students[i].student_start_date,
+            phone: students[i].student_phone,
+            email: students[i].student_email,
+            guardian_one_name: students[i].guardian_one_name,
+            guardian_one_email: students[i].guardian_one_email,
+            guardian_one_phone: students[i].guardian_one_phone,
+            guardian_two_name: students[i].guardian_two_name,
+            guardian_two_email: students[i].guardian_two_email,
+            guardian_one_phone: students[i].guardian_two_phone,
+            middleschool_suspensions: students[i].middleschool_suspensions,
+            highschool_absences: students[i].highschool_absences,
+            highschool_suspensions: students[i].highschool_suspensions,
+            gpa: students[i].cumulative_gpa,
+            total_credits_earned: students[i].total_credits_earned,
+            date_modified: students[i].date_modified,
+            user_modified: students[i].user_modified
           });
         }
         // console.log(students);
-        console.log(list);
+        // console.log(list);
         res.render('index', {
             students: students,
             schools: schools  
