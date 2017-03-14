@@ -89,6 +89,8 @@ CREATE TABLE `semester_record` (
   `number_bs` int(11) NOT NULL,
   `number_cs` int(11) NOT NULL,
   `number_ds` int(11) NOT NULL,
+  `semester_number` varchar(45) NOT NULL,
+  `grade` varchar(45) NOT NULL,
   `semester_gpa` decimal(5,2) NOT NULL,
   `semester_credits` int(11) NOT NULL,
   `date_modified` date NOT NULL,
@@ -142,4 +144,5 @@ CREATE TABLE `survey_response` (
   CONSTRAINT `fk_survey_question` FOREIGN KEY (`survey_question_id`) REFERENCES `survey_question` (`survey_question_id`),
   CONSTRAINT `fk_semester_record` FOREIGN KEY (`semester_record_id`) REFERENCES `semester_record` (`semester_record_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
