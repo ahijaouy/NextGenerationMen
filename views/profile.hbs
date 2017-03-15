@@ -59,6 +59,7 @@
                   <li><a><i class="fa fa-plus"></i>Add<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                     	<li><a href="/addStudent">Students</a></li>
+                      <li><a href="/addCohort">Cohorts</a></li>
 											<li><a href="/addSchool">Schools</a></li>
 										{{!-- 	<li><a href="/addPartner">Partners</a></li> --}}
                     </ul>
@@ -122,7 +123,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>{{student.first_name}} {{student.last_name}} Student Report</h2>
+                    <h2>{{student.student_first_name}} {{student.student_last_name}} Student Report</h2>
 
                     <div class="clearfix"></div>
                   </div>
@@ -134,10 +135,10 @@
                           <img class="img-responsive avatar-view" src="../../../images/picture.jpg" alt="Avatar" title="Change the avatar">
                         </div>
                       </div>
-                      <h3>{{student.first_name}} {{student.last_name}}</h3>
+                      <h3>{{student.student_first_name}} {{student.student_last_name}}</h3>
 
                       <ul class="list-unstyled user_data">
-                        <li><i class="fa fa-birthday-cake user-profile-icon"></i> {{student.dob}} </li>
+                        <li><i class="fa fa-birthday-cake user-profile-icon"></i> {{student.student_dob}} </li>
                         <li><i class="fa fa-map-marker user-profile-icon"></i>   {{student.school}}
                         </li>
 
