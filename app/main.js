@@ -58,7 +58,7 @@ module.exports = function(app, passport, env) {
     connection.query("SELECT * FROM student", function(err, students){
       connection.query("SELECT * FROM school", function(err, schools){
         var list = [];
-        console.log(students[0]);
+        // console.log(students[0]);
         for (var i = 0; i < students.length; i++) {
           list.push({
             id: students[i].student_id,
@@ -85,10 +85,11 @@ module.exports = function(app, passport, env) {
             user_modified: students[i].user_modified
           });
         }
-        // console.log(students);
+        console.log(students);
         // console.log(list);
         res.render('index', {
             students: students,
+            list: list,
             schools: schools  
         });
       });

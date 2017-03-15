@@ -300,7 +300,7 @@
           </div>
           <br />
 
-          <!--div class="row">
+          div class="row">
 
 
             <div class="col-md-4 col-sm-4 col-xs-12">
@@ -545,7 +545,7 @@
               </div>
             </div>
 
-          </div-->
+          </div
 
 
           <!--div class="row">
@@ -838,9 +838,40 @@
 
     <!-- Flot -->
     <script>
-      
+
 
       $(document).ready(function() {
+        // function objectToStudent(object) {
+        //   return {first_name: object.first_name,
+        //           last_name: object.last_name};
+        // }
+
+        // function objectToString(object) {
+        //   console.log(object.first_name + " " + object.last_name);
+        // }
+
+        // console.log("{{students}}");
+        {{#each students}}
+          if ("{{this.student_gender}}".toUpperCase() == "MALE") {
+            console.log("{{this.student_first_name}}");
+          }
+        {{/each}}
+        // var students1 = [[13],[25]];
+        // var students = [];
+        // console.log("students");
+        // for (student in ) {
+        //   list.push(student);
+        // }
+        // console.log(students);
+        // $.each(studs, function(student) {
+        //   students.push(student);
+        // }); 
+        // var students = JQuery.makeArray(studs);
+        // console.log([{first:"hello",tomorrow:"plopo"},{first:"hello",tomorrow:"plopo"}]);
+        // console.log(students);
+        // for (var i = 0; i < {{students}}.length; i++) {
+        //   console.log("{{students.i.gender}}");
+        // }
         var data1 = [[2,8],[5,10],[8,12]];
         var schoolTicks = [
           [2, "{{schools.0.school_name}}"],
@@ -895,7 +926,7 @@
     <!-- /Flot -->
 
     <!-- JQVMap -->
-    <script>
+ <!--    <script>
       $(document).ready(function(){
         $('#world-map-gdp').vectorMap({
             map: 'world_en',
@@ -910,7 +941,7 @@
             normalizeFunction: 'polynomial'
         });
       });
-    </script>
+    </script> -->
     <!-- /JQVMap -->
 
     <!-- Skycons -->
