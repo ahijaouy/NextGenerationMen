@@ -1,4 +1,12 @@
-CREATE TABLE IF NOT EXISTS `users` (`id` INT UNSIGNED NOT NULL AUTO_INCREMENT, `nickname` VARCHAR(20) NOT NULL, `email` VARCHAR(255) NOT NULL, `password` CHAR(60) NOT NULL, PRIMARY KEY (`id`), UNIQUE INDEX `id_UNIQUE` (`id` ASC), UNIQUE INDEX `username_UNIQUE` (`nickname` ASC));
+CREATE TABLE IF NOT EXISTS USERS
+	(
+		`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+		`username` VARCHAR(20) NOT NULL,
+		`password` CHAR(60) NOT NULL,
+		PRIMARY KEY (`id`),
+		UNIQUE INDEX `id_UNIQUE` (`id` ASC),
+		UNIQUE INDEX `username_UNIQUE` (`username` ASC)
+	);
 
 CREATE TABLE IF NOT EXISTS Staff 
     (
@@ -129,26 +137,3 @@ CREATE TABLE IF NOT EXISTS SurveyData
         CONSTRAINT fk_survey FOREIGN KEY(`sd_sid`) REFERENCES Student(`id`),
         PRIMARY KEY(`id`)
     );
-
-CREATE TABLE IF NOT EXISTS `survey_question`(
-    `survey_question_id` int(11) NOT NULL AUTO_INCREMENT,
-    `survey_category_id` int(11) NOT NULL,
-    `question` varchar(255) NOT NULL,
-    `question_negated` TINYINT NOT Null,
-    `date_modified` DATE NOT NULL,
-    `user_modified` INT NOT NULL,
-    CONSTRAINT `fk_survey_category` FOREIGN KEY (`survey_category_id`) REFERENCES `survey_category` (`survey_category_id`),
-    PRIMARY KEY(`survey_question_id`)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-CREATE TABLE IF NOT EXISTS `survey_response`(
-    `survey_response_id` int(11) NOT NULL AUTO_INCREMENT,
-    `survey_question_id` int(11) NOT NULL,
-    `semester_record_id` int(11) NOT NULL,
-    `response` TINYINT NOT Null,
-    `date_modified` DATE NOT NULL,
-    `user_modified` INT NOT NULL,
-    CONSTRAINT `fk_survey_question` FOREIGN KEY (`survey_question_id`) REFERENCES `survey_question` (`survey_question_id`),
-    CONSTRAINT `fk_semester_record` FOREIGN KEY (`semester_record_id`) REFERENCES `semester_record` (`semester_record_id`),
-    PRIMARY KEY(`survey_response_id`)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;

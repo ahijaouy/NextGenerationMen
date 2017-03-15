@@ -10,14 +10,14 @@
     <title>Next Generation Men</title>
 
     <!-- Bootstrap -->
-    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- NProgress -->
-    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <link href="../../../vendors/nprogress/nprogress.css" rel="stylesheet">
 
     <!-- Custom Theme Style -->
-    <link href="../build/css/custom.min.css" rel="stylesheet">
+    <link href="../../../build/css/custom.min.css" rel="stylesheet">
   </head>
 
   <body class="nav-md">
@@ -34,7 +34,7 @@
             <!-- menu profile quick info -->
             <div class="profile">
               <div class="profile_pic">
-                <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                <img src="../../images/img.jpg" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
@@ -58,7 +58,7 @@
                     <ul class="nav child_menu">
                     	<li><a href="/addStudent">Students</a></li>
 											<li><a href="/addSchool">Schools</a></li>
-											{{!-- <li><a href="/addPartner">Partners</a></li> --}}
+											<!-- <li><a href="/addPartner">Partners</a></li> -->
                     </ul>
 									</li>
                 </ul>
@@ -80,18 +80,18 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="images/img.jpg" alt="">John Doe
+                    <img src="../../images/img.jpg" alt="">John Doe
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <!--li><a href="javascript:;"> Profile</a></li>
+                    <li><a href="javascript:;"> Profile</a></li>
                     <li>
                       <a href="javascript:;">
                         <span class="badge bg-red pull-right">50%</span>
                         <span>Settings</span>
                       </a>
                     </li>
-                    <li><a href="javascript:;">Help</a></li-->
+                    <li><a href="javascript:;">Help</a></li>
                     <li><a href="logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                   </ul>
                 </li>
@@ -106,7 +106,7 @@
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>Add School Form</h3>
+                        <h3>Edit School Form</h3>
                     </div>
 
                     <div class="title_right">
@@ -127,7 +127,7 @@
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="x_panel">
                             <div class="x_title">
-                                <h2>New School</h2>
+                                <h2>{{school.school_name}}</h2>
                                 <!--
                                                     <ul class="nav navbar-right panel_toolbox">
                                                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -151,7 +151,7 @@
                             <div class="x_content">
 
                                 <!--Smart Wizard -->
-                                <p>This is the form to add a new school.</p>
+                                <p>This is the form to edit a school.</p>
                                 <form id="notWizard" class="form-horizontal" method="post">
                                     <div id="wizard" class="form_wizard wizard_horizontal">
                                         <ul class="wizard_steps">
@@ -169,7 +169,7 @@
                                                     <span class="step_no">2</span>
                                                     <span class="step_descr">
                                               Step 2<br/>
-                                              <small>Assistant Principal and</br> Coach Information</small>
+                                              <small>Assistant Principal and</br> Cohort Coach Information</small>
                                           </span>
                                                 </a>
                                             </li>
@@ -210,7 +210,7 @@
                                                 </label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <input type="text" id="school_name" name="school_name" required="required"
-                                                           class="form-control col-md-7 col-xs-12">
+                                                           class="form-control col-md-7 col-xs-12" value="{{school.school_name}}">
                                                 </div>
                                             </div>
 
@@ -221,7 +221,7 @@
                                                 </label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <input type="text" id="school_address" name="school_address"
-                                                           required="required"
+                                                           required="required" value="{{school.school_address}}"
                                                            class="form-control col-md-7 col-xs-12">
                                                 </div>
                                             </div>
@@ -233,7 +233,7 @@
                                                 </label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <input type="num" id="school_phone" name="school_phone"
-                                                           required="required"
+                                                           required="required" value="{{school.school_phone}}"
                                                            class="form-control col-md-7 col-xs-12">
                                                 </div>
                                             </div>
@@ -245,7 +245,7 @@
                                                 </label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <input type="text" id="principal_name" name="principal_name"
-                                                           required="required"
+                                                           required="required" value="{{school.principal_name}}"
                                                            class="form-control col-md-7 col-xs-12">
                                                 </div>
                                             </div>
@@ -258,7 +258,7 @@
                                                 </label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <input type="tel" id="principal_phone" name="principal_phone" required="required"
-                                                           class="form-control col-md-7 col-xs-12">
+                                                           class="form-control col-md-7 col-xs-12" value="{{school.principal_phone}}">
                                                 </div>
                                             </div>
 
@@ -269,7 +269,7 @@
                                                 </label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <input type="email" id="principal_email" name="principal_email" required="required"
-                                                           class="form-control col-md-7 col-xs-12">
+                                                           class="form-control col-md-7 col-xs-12" value="{{school.principal_email}}">
                                                 </div>
                                             </div>
 
@@ -281,7 +281,8 @@
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12"
                                                        for="assistant_principal_name">Assistant Principal's Name</label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <input type="text" id="assistant_principal_name" name="assistant_principal_name" class="form-control col-md-7 col-xs-12">
+                                                    <input type="text" id="assistant_principal_name" name="assistant_principal_name" 
+                                                    class="form-control col-md-7 col-xs-12" value="{{school.assistant_principal_name}}">
                                                 </div>
                                             </div>
                                             
@@ -291,7 +292,8 @@
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12"
                                                        for="assistant_principal_phone">Assistant Principal's Phone</label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <input type="tel" id="assistant_principal_phone" name="assistant_principal_phone" class="form-control col-md-7 col-xs-12">
+                                                    <input type="tel" id="assistant_principal_phone" name="assistant_principal_phone" 
+                                                    class="form-control col-md-7 col-xs-12" value="{{school.assistant_principal_phone}}">
                                                 </div>
                                             </div>
 
@@ -300,7 +302,8 @@
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12"
                                                        for="assistant_principal_email">Assistant Principal's Email</label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <input type="email" id="assistant_principal_email" name="assistant_principal_email" class="form-control col-md-7 col-xs-1">
+                                                    <input type="email" id="assistant_principal_email" name="assistant_principal_email"
+                                                    class="form-control col-md-7 col-xs-1" value="{{school.assistant_principal_email}}">
                                                 </div>
                                             </div>
 
@@ -310,7 +313,7 @@
                                                        for="cohort_coach_name">Cohort Coach Name</label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <input type="text" id="cohort_coach_name" name="cohort_coach_name"
-                                                           class="form-control col-md-7 col-xs-12">
+                                                           class="form-control col-md-7 col-xs-12" value="{{school.cohort_coach_name}}">
                                                 </div>
                                             </div>
 
@@ -320,7 +323,7 @@
                                                        for="cohort_coach_phone">Cohort Coach Phone</label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <input type="tel" id="cohort_coach_phone" name="cohort_coach_phone"
-                                                           class="form-control col-md-7 col-xs-12">
+                                                           class="form-control col-md-7 col-xs-12" value="{{school.cohort_coach_phone}}">
                                                 </div>
                                             </div>
 
@@ -330,7 +333,7 @@
                                                        for="cohort_coach_email">Cohort Coach Email</label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <input type="email" id="cohort_coach_email" name="cohort_coach_email"
-                                                           class="form-control col-md-7 col-xs-12">
+                                                           class="form-control col-md-7 col-xs-12" value="{{school.cohort_coach_email}}">
                                                 </div>
                                             </div>
                                         </div>
@@ -341,7 +344,7 @@
                                                        for="ngm_fellow_name">NGM Fellow Name</label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <input type="text" id="ngm_fellow_name" name="ngm_fellow_name"
-                                                           class="form-control col-md-7 col-xs-12">
+                                                           class="form-control col-md-7 col-xs-12" value="{{school.ngm_fellow_name}}">
                                                 </div>
                                             </div>
 
@@ -351,7 +354,7 @@
                                                        for="ngm_fellow_phone">NGM Fellow Phone</label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <input type="tel" id="ngm_fellow_phone" name="ngm_fellow_phone"
-                                                           class="form-control col-md-7 col-xs-12">
+                                                           class="form-control col-md-7 col-xs-12" value="{{school.ngm_fellow_phone}}">
                                                 </div>
                                             </div>
 
@@ -361,7 +364,7 @@
                                                        for="ngm_fellow_email">NGM Fellow Email</label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <input type="email" id="ngm_fellow_email" name="ngm_fellow_email"
-                                                           class="form-control col-md-7 col-xs-12">
+                                                           class="form-control col-md-7 col-xs-12" value="{{school.ngm_fellow_email}}">
                                                 </div>
                                             </div>
 
@@ -371,7 +374,7 @@
                                                        for="counselor_name">Counselor Name</label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <input type="text" id="counselor_name" name="counselor_name"
-                                                           class="form-control col-md-7 col-xs-12">
+                                                           class="form-control col-md-7 col-xs-12" value="{{school.counselor_name}}">
                                                 </div>
                                             </div>
 
@@ -381,7 +384,7 @@
                                                        for="counselor_phone">Counselor Phone</label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <input type="tel" id="counselor_phone" name="counselor_phone"
-                                                           class="form-control col-md-7 col-xs-12">
+                                                           class="form-control col-md-7 col-xs-12" value="{{school.counselor_phone}}">
                                                 </div>
                                             </div>
 
@@ -391,7 +394,7 @@
                                                        for="counselor_email">Counselor Email</label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <input type="email" id="counselor_email" name="counselor_email"
-                                                           class="form-control col-md-7 col-xs-12">
+                                                           class="form-control col-md-7 col-xs-12" value="{{school.counselor_email}}">
                                                 </div>
                                             </div>    
                                         </div>
@@ -402,7 +405,7 @@
                                                        for="social_worker_name">Social Worker Name</label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <input type="text" id="social_worker_name" name="social_worker_name"
-                                                           class="form-control col-md-7 col-xs-12">
+                                                           class="form-control col-md-7 col-xs-12" value="{{school.social_worker_name}}">
                                                 </div>
                                             </div>
 
@@ -412,7 +415,7 @@
                                                        for="social_worker_phone">Social Worker Phone</label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <input type="tel" id="social_worker_phone" name="social_worker_phone"
-                                                           class="form-control col-md-7 col-xs-12">
+                                                           class="form-control col-md-7 col-xs-12" value="{{school.social_worker_phone}}">
                                                 </div>
                                             </div>
 
@@ -422,7 +425,7 @@
                                                        for="social_worker_email">Social Worker Email</label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <input type="email" id="social_worker_email" name="social_worker_email"
-                                                           class="form-control col-md-7 col-xs-12">
+                                                           class="form-control col-md-7 col-xs-12" value="{{school.social_worker_email}}">
                                                 </div>
                                             </div>    
 
@@ -432,7 +435,7 @@
                                                        for="data_liason_name">Data Liason Name</label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <input type="text" id="data_liason_name" name="data_liason_name"
-                                                           class="form-control col-md-7 col-xs-12">
+                                                           class="form-control col-md-7 col-xs-12" value="{{school.data_liason_name}}">
                                                 </div>
                                             </div>
 
@@ -442,7 +445,7 @@
                                                        for="data_liason_phone">Data Liason Phone</label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <input type="tel" id="data_liason_phone" name="data_liason_phone"
-                                                           class="form-control col-md-7 col-xs-12">
+                                                           class="form-control col-md-7 col-xs-12" value="{{school.data_liason_phone}}">
                                                 </div>
                                             </div>
 
@@ -452,7 +455,7 @@
                                                        for="data_liason_email">Data Liason Email</label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <input type="email" id="data_liason_email" name="data_liason_email"
-                                                           class="form-control col-md-7 col-xs-12">
+                                                           class="form-control col-md-7 col-xs-12" value="{{school.data_liason_email}}">
                                                 </div>
                                             </div>    
                                         </div>
@@ -464,7 +467,7 @@
                                                        for="cis_coordinator_name">CIS Coordinator Name</label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <input type="text" id="cis_coordinator_name" name="cis_coordinator_name"
-                                                           class="form-control col-md-7 col-xs-12">
+                                                           class="form-control col-md-7 col-xs-12" value="{{school.cis_coordinator_name}}">
                                                 </div>
                                             </div>
 
@@ -474,7 +477,7 @@
                                                        for="cis_coordinator_phone">CIS Coordinator Phone</label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <input type="tel" id="cis_coordinator_phone" name="cis_coordinator_phone"
-                                                           class="form-control col-md-7 col-xs-12">
+                                                           class="form-control col-md-7 col-xs-12" value="{{school.cis_coordinator_phone}}">
                                                 </div>
                                             </div>
 
@@ -484,7 +487,7 @@
                                                        for="cis_coordinator_email">CIS Coordinator Email</label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <input type="email" id="cis_coordinator_email" name="cis_coordinator_email"
-                                                           class="form-control col-md-7 col-xs-12">
+                                                           class="form-control col-md-7 col-xs-12" value="{{school.cis_coordinator_email}}">
                                                 </div>
                                             </div>    
 
@@ -494,7 +497,7 @@
                                                        for="college_coach_name">College Coach Name</label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <input type="text" id="college_coach_name" name="college_coach_name"
-                                                           class="form-control col-md-7 col-xs-12">
+                                                           class="form-control col-md-7 col-xs-12" value="{{school.college_coach_name}}">
                                                 </div>
                                             </div>
 
@@ -504,7 +507,7 @@
                                                        for="college_coach_phone">College Coach Phone</label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <input type="tel" id="college_coach_phone" name="college_coach_phone"
-                                                           class="form-control col-md-7 col-xs-12">
+                                                           class="form-control col-md-7 col-xs-12" value="{{school.college_coach_phone}}">
                                                 </div>
                                             </div>
 
@@ -514,7 +517,7 @@
                                                        for="college_coach_email">College Coach Email</label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <input type="email" id="college_coach_email" name="college_coach_email"
-                                                           class="form-control col-md-7 col-xs-12">
+                                                           class="form-control col-md-7 col-xs-12" value="{{school.college_coach_email}}">
                                                 </div>
                                             </div>    
                                         </div>
@@ -543,17 +546,17 @@
     </div>
 
     <!-- jQuery -->
-    <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <script src="../../../vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
-    <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../../../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- FastClick -->
-    <script src="../vendors/fastclick/lib/fastclick.js"></script>
+    <script src="../../../vendors/fastclick/lib/fastclick.js"></script>
     <!-- NProgress -->
-    <script src="../vendors/nprogress/nprogress.js"></script>
+    <script src="../../../vendors/nprogress/nprogress.js"></script>
     <!-- jQuery Smart Wizard -->
-    <script src="../vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js"></script>
+    <script src="../../../vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js"></script>
     <!-- Custom Theme Scripts -->
-    <script src="../build/js/custom.min.js"></script>
+    <script src="../../../build/js/custom.min.js"></script>
 
     <!-- jQuery Smart Wizard -->
     <script>

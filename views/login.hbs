@@ -7,14 +7,24 @@
   <body>
     <div id="root" style="width: 280px; margin: 40px auto; padding: 10px;"></div>
     <script>
-      var lock = new Auth0Lock('xu6aCuEjSdJN0b1lCQh0sk3JSWaQoFft', 'myoberon.auth0.com', { 
+      var lock = new Auth0Lock("T4zfzFLTpefPOzcusSDe5pNckdtqs33D", "ngmatl.auth0.com", { 
         auth: {
-            redirectUrl: 'http://localhost/callback',
+            redirectUrl: '{{callback}}',
             responseType: 'code'},
         closable: false,
         languageDictionary: {title: "Next Generation Men"},
         params: {scope: 'openid name email picture'},
-        allowSignUp: false 
+        allowSignUp: true ,
+        additionalSignUpFields: [{
+          name: "Name",
+          placeholder: "enter your name",
+          validator: function(name) {
+            return {
+               valid: name.length >= 2,
+               hint: "Must have 10 or more chars" // optional
+            };
+          }
+        }]
         
       });
       lock.show();

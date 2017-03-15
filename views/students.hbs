@@ -92,14 +92,14 @@
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;"> Profile</a></li>
+                    <!--li><a href="javascript:;"> Profile</a></li>
                     <li>
                       <a href="javascript:;">
                         <span class="badge bg-red pull-right">50%</span>
                         <span>Settings</span>
                       </a>
                     </li>
-                    <li><a href="javascript:;">Help</a></li>
+                    <li><a href="javascript:;">Help</a></li-->
                     <li><a href="logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                   </ul>
                 </li>
@@ -164,7 +164,7 @@
                           <th>Cell Phone</th>
                           <th>Primary Guardian</th>
                           <th>Cell Phone</th>
-                          <th>Edit</th>
+                          <th>Actions</th>
                         </tr>
                       </thead>
 
@@ -180,11 +180,9 @@
                           <td>{{this.guardian_one_name}}</td>
                           <td>{{this.guardian_one_phone}}</td>
                           <td>
-                            <a id="view"  href="/students/{{this.student_id}}/profile" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-<!--
-                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
--->
+                            <a href="/students/{{this.student_id}}/profile" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+                            <a href="/students/{{this.student_id}}/edit" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                            <a href="/students/{{this.student_id}}/delete" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete</a>
                           </td>
                         </tr>
                       </tbody>

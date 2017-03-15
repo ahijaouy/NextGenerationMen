@@ -15,16 +15,16 @@
 
     request(options)
   
-   // var token;
-    //   request(options, function (error, response, body) {
-    //   if (error) throw new Error(error);
-    //   token = response.body;
-    //   console.log('inside');
-    //   console.log(token);
-    //   //token.access_token = body.access_token;
-    //   //return response;
-    // });
-  //console.log(token);
+   var token;
+      request(options, function (error, response, body) {
+      if (error) throw new Error(error);
+      token = response.body;
+      console.log('inside');
+      console.log(token);
+      //token.access_token = body.access_token;
+      //return response;
+    });
+  console.log(token);
    
 //}
 //module.exports = getToken;
