@@ -55,6 +55,7 @@ module.exports = function(app, passport, env) {
   
   //index route
   app.get('/index',ensureLog, function(req, res) {
+    console.log(process.env.ssl_key);
     connection.query("SELECT * FROM student", function(err, students){
       connection.query("SELECT * FROM school", function(err, schools){
         res.render('index', {

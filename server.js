@@ -69,8 +69,11 @@ require('./config/passport')(passport, env);
 require('./app/main.js')(app, passport, env);
 
 //Launch server?
-app.listen(80, function() {
-	console.log('we are live on 80');
+// app.listen(80, function() {
+// 	console.log('we are live on 80');
+// });
+app.listen(80, function () {
+    console.log('Secure Server listening on port 80');
 });
 
 
