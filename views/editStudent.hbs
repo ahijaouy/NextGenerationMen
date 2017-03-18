@@ -10,14 +10,14 @@
     <title>Next Generation Men</title>
 
     <!-- Bootstrap -->
-    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- NProgress -->
-    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <link href="../../../vendors/nprogress/nprogress.css" rel="stylesheet">
 
     <!-- Custom Theme Style -->
-    <link href="../build/css/custom.min.css" rel="stylesheet">
+    <link href="../../../build/css/custom.min.css" rel="stylesheet">
 </head>
 
 <body class="nav-md">
@@ -34,7 +34,7 @@
                 <!-- menu profile quick info -->
                 <div class="profile">
                     <div class="profile_pic">
-                        <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                        <img src="../../images/img.jpg" alt="..." class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
                         <span>Welcome,</span>
@@ -57,7 +57,6 @@
                       <li><a><i class="fa fa-plus"></i>Add<span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                           <li><a href="/addStudent">Students</a></li>
-                          <li><a href="/addCohort">Cohorts</a></li>
                           <li><a href="/addSchool">Schools</a></li>
                          {{!--  <li><a href="/addPartner">Partners</a></li> --}}
                         </ul>
@@ -81,7 +80,7 @@
                         <li class="">
                             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
                                aria-expanded="false">
-                                <img src="images/img.jpg" alt="">John Doe
+                                <img src="../../images/img.jpg" alt="">John Doe
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -107,10 +106,19 @@
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>Add Student Form</h3>
+                        <h3>Edit Student Form</h3>
                     </div>
 
-                    
+                    <div class="title_right">
+                        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search for...">
+                                <span class="input-group-btn">
+                              <button class="btn btn-default" type="button">Go!</button>
+                          </span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="clearfix"></div>
 
@@ -119,7 +127,7 @@
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="x_panel">
                             <div class="x_title">
-                                <h2>New Student</h2>
+                                <h2>{{student.student_first_name}} {{student.student_last_name}}</h2>
                                 <!--
                                                     <ul class="nav navbar-right panel_toolbox">
                                                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -174,15 +182,7 @@
                                           </span>
                                                 </a>
                                             </li>
-                                            <li>
-                                                <a href="#step-4">
-                                                    <span class="step_no">4</span>
-                                                    <span class="step_descr">
-                                              Step 4<br/>
-                                              <small>Current School Information</small>
-                                          </span>
-                                                </a>
-                                            </li>
+                                            
                                         </ul>
 
                                         <div id="step-1">
@@ -194,7 +194,7 @@
                                                 </label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <input type="text" id="student_first_name" name="student_first_name" required="required"
-                                                           class="form-control col-md-7 col-xs-12">
+                                                           class="form-control col-md-7 col-xs-12" value="{{student.student_first_name}}">
                                                 </div>
                                             </div>
 
@@ -206,17 +206,17 @@
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <input type="text" id="student_last_name" name="student_last_name"
                                                            required="required"
-                                                           class="form-control col-md-7 col-xs-12">
+                                                           class="form-control col-md-7 col-xs-12" value="{{student.student_last_name}}">
                                                 </div>
                                             </div>
 
                                             <!-- Date of Birth -->
                                             <div class="form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="student_dob    ">Date Of
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="student_dob">Date Of
                                                     Birth <span class="required">*</span>
                                                 </label>
                                                 <div class="col-sm-6 col-smd-6 col-xs-12">
-                                                    <input type="date" class="form-control" id="student_dob" name="student_dob">
+                                                    <input type="date" class="form-control" id="student_dob" name="student_dob" value="{{student.student_dob}}">
                                                 </div>
                                             </div>
 
@@ -229,7 +229,7 @@
                                                         <label class="btn btn-default"
                                                                data-toggle-class="btn-primary"
                                                                data-toggle-passive-class="btn-default">
-                                                            <input type="radio" name="gender" value="male"> &nbsp;
+                                                            <input type="radio" name="gender" value="male" checked="true"> &nbsp;
                                                             Male &nbsp;
                                                         </label>
                                                         <label class="btn btn-default"
@@ -248,10 +248,9 @@
                                                 </label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <input type="email" id="student_email" name="student_email" required="required"
-                                                           class="form-control col-md-7 col-xs-12">
+                                                           class="form-control col-md-7 col-xs-12" value="{{student.student_email}}">
                                                 </div>
                                             </div>
-
 
                                             <!-- Cell Phone -->
                                             <div class="form-group">
@@ -260,7 +259,7 @@
                                                 </label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <input type="num" id="student_phone" name="student_phone" required="required"
-                                                           class="form-control col-md-7 col-xs-12">
+                                                           class="form-control col-md-7 col-xs-12" value="{{student.student_phone}}">
                                                 </div>
                                             </div>
 
@@ -276,7 +275,7 @@
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <input type="text" id="parentone_name" name="parentone_name"
                                                            required="required"
-                                                           class="form-control col-md-7 col-xs-12">
+                                                           class="form-control col-md-7 col-xs-12" value="{{student.guardian_one_name}}">
                                                 </div>
                                             </div>
 
@@ -289,7 +288,7 @@
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <input type="tel" id="parentone_num" name="parentone_num"
                                                            required="required"
-                                                           class="form-control col-md-7 col-xs-12">
+                                                           class="form-control col-md-7 col-xs-12" value="{{student.guardian_one_phone}}">
                                                 </div>
                                             </div>
 
@@ -302,7 +301,7 @@
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <input type="email" id="parentone_email" name="parentone_email"
                                                            required="required"
-                                                           class="form-control col-md-7 col-xs-12">
+                                                           class="form-control col-md-7 col-xs-12" value="{{student.guardian_one_email}}">
                                                 </div>
                                             </div>
 
@@ -314,7 +313,7 @@
                                                        for="parenttwo_name">Secondary Guardian Name</label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <input type="text" id="parenttwo_name" name="parenttwo_name"
-                                                           class="form-control col-md-7 col-xs-12">
+                                                           class="form-control col-md-7 col-xs-12" value="{{student.guardian_two_name}}">
                                                 </div>
                                             </div>
 
@@ -324,7 +323,7 @@
                                                        for="parenttwo_num">Secondary Guardian Cell Phone</label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <input type="tel" id="parenttwo_num" name="parenttwo_num"
-                                                           class="form-control col-md-7 col-xs-12">
+                                                           class="form-control col-md-7 col-xs-12" value="{{student.guardian_two_phone}}">
                                                 </div>
                                             </div>
 
@@ -334,7 +333,7 @@
                                                        for="parenttwo_email">Secondary Guardian Email</label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <input type="email" id="parenttwo_email" name="parenttwo_email"
-                                                           class="form-control col-md-7 col-xs-12">
+                                                           class="form-control col-md-7 col-xs-12" value="{{student.guardian_two_email}}">
                                                 </div>
                                             </div>
                                         </div>
@@ -350,7 +349,7 @@
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <input type="text" id="mssuspensions" name="mssuspensions"
                                                            required="required"
-                                                           class="form-control col-md-7 col-xs-12">
+                                                           class="form-control col-md-7 col-xs-12" value="{{student.middleschool_suspensions}}">
                                                 </div>
                                             </div>
 
@@ -363,7 +362,7 @@
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <input type="text" id="hssuspensions" name="hssuspensions"
                                                            required="required"
-                                                           class="form-control col-md-7 col-xs-12">
+                                                           class="form-control col-md-7 col-xs-12" value="{{student.highschool_suspensions}}">
                                                 </div>
                                             </div>
 
@@ -375,36 +374,9 @@
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <input type="text" id="hsabsences" name="hsabsences"
                                                            required="required"
-                                                           class="form-control col-md-7 col-xs-12">
+                                                           class="form-control col-md-7 col-xs-12" value="{{student.highschool_absences}}">
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div id="step-4">
-
-                                            <!-- Cohort -->
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                                                       for="mssuspensions">Cohort <span
-                                                        class="required">*</span>
-                                                </label>
-                                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <select class="form-control" name="cohort">
-                                                        {{#each cohorts}}
-                                                        <option value="{{this.cohort_id}}">{{this.school_name}} Class of {{this.cohort_year}}</option>
-                                                        {{/each}}
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <!-- Program Start Date -->
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Program Start Date <span class="required">*</span>
-                                                </label>
-                                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <input type="date" class="form-control" id="startdate" name="startdate">
-                                                </div>
-                                            </div>
-
                                         </div>
                                     </div>
                                 </form>
@@ -431,17 +403,17 @@
 </div>
 
 <!-- jQuery -->
-<script src="../vendors/jquery/dist/jquery.min.js"></script>
+<script src="../../../vendors/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap -->
-<script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../../../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- FastClick -->
-<script src="../vendors/fastclick/lib/fastclick.js"></script>
+<script src="../../../vendors/fastclick/lib/fastclick.js"></script>
 <!-- NProgress -->
-<script src="../vendors/nprogress/nprogress.js"></script>
+<script src="../../../vendors/nprogress/nprogress.js"></script>
 <!-- jQuery Smart Wizard -->
-<script src="../vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js"></script>
+<script src="../../../vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js"></script>
 <!-- Custom Theme Scripts -->
-<script src="../build/js/custom.min.js"></script>
+<script src="../../../build/js/custom.min.js"></script>
 
 <!-- jQuery Smart Wizard -->
 <script>
