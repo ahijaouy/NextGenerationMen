@@ -1,7 +1,7 @@
-var express 	  = require('express'),
-	bodyParser 	  = require('body-parser'),
-	path 		  = require('path'),
-    exphbs 	      = require('express-handlebars'),
+var express       = require('express'),
+    bodyParser    = require('body-parser'),
+    path          = require('path'),
+    exphbs        = require('express-handlebars'),
     passport      = require('passport'),
     logger        = require('morgan'),
     cookieParser  = require('cookie-parser'),
@@ -18,8 +18,8 @@ var express 	  = require('express'),
 env('.env');
 //for MySQLStore
 var dbconfig = {
-    host: process.env.DATABASE_HOST,
-    user: process.env.DATABASE_USER,
+    host:     process.env.DATABASE_HOST,
+    user:     process.env.DATABASE_USER,
     password: process.env.DATABASE_PASSWORD,
     database: process.env.DATABASE,
     createDatabaseTable: true,
@@ -68,13 +68,9 @@ require('./config/passport')(passport, env);
 //main.js contains routes
 require('./app/main.js')(app, passport, env);
 
-//Launch server?
-// app.listen(80, function() {
-// 	console.log('we are live on 80');
-// });
+
 app.listen(80, function () {
     console.log('Secure Server listening on port 80');
 });
 
-
- module.exports = app;
+module.exports = app;
