@@ -559,7 +559,9 @@
     <!-- jQuery Smart Wizard -->
     <script>
       $(document).ready(function() {
-        $('#wizard').smartWizard();
+        $('#wizard').smartWizard({
+          autoAdjustHeight:false
+        });
 
         $('#wizard_verticle').smartWizard({
           transitionEffect: 'slide'

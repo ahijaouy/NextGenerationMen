@@ -78,9 +78,27 @@ module.exports = function(app, passport, env) {
   app.get('/students/:id/profile',ensureLog, function(req, res) {
     var query = "SELECT * FROM student INNER JOIN cohort on student.cohort_id=cohort.cohort_id INNER JOIN school on cohort.school_id=school.school_id WHERE student_id=" + req.params.id + ";";
 
-    connection.query(query, function(err, rows){
+    connection.query(query, function(err, rows) {
       //rows[0].student_dob = rows[0].student_dob.toDateString(); //properly set date.
-      res.render('profile', { student: rows[0]});
+      var academicRecord = "SELECT * FROM semester_record WHERE student_id=" + req.params.id + ";";
+      connection.query(academicRecord, function(err, recordRows) {
+        if (recordRows === undefined) {
+          res.render('profile', {student: rows[0], record: []});
+        } else {
+          res.render('profile', { student: rows[0], record: recordRows});
+        }
+      });
+    });
+  });
+
+  app.post('/students/:id/profile', ensureLog, function(req, res) {
+    res.redirect('/students/' + req.params.id +'/profile');
+    var stmt = 'INSERT INTO semester_record(student_id, number_as, number_bs, number_cs, number_ds, semester_number, grade, semester_gpa, semester_credits) VALUES (?,?,?,?,?,?,?,?,?);';
+    var gpa = ((parseInt(req.body.number_as) * 4) + (parseInt(req.body.number_bs) * 3) + (parseInt(req.body.number_cs) * 2)) / (parseInt(req.body.number_as) + parseInt(req.body.number_bs) + parseInt(req.body.number_cs) + parseInt(req.body.number_ds));
+    console.log(req.body);
+    connection.query(stmt, [req.params.id, req.body.number_as, req.body.number_bs, req.body.number_cs, req.body.number_ds, req.body.semester_number, req.body.grade, gpa, req.body.semester_credits], function(err, rows) {
+     // if (err) {dialog.err('Sorry, an error occured while trying to add the semester record. Please make sure you fill out all the fields.', 'Failed to add semester record');}
+      console.log(err)
     });
   });
 
@@ -95,7 +113,7 @@ module.exports = function(app, passport, env) {
     res.redirect('/students');
     console.log(req.body);
     stmt = 'INSERT INTO student(student_gender, cohort_id,student_first_name,student_last_name,student_phone,student_dob,student_start_date,student_email,guardian_one_name,guardian_one_phone,guardian_one_email,guardian_two_name,guardian_two_phone,guardian_two_email,middleschool_suspensions,highschool_absences,highschool_suspensions) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);';
-    connection.query(stmt,[req.body.gender,req.body.cohort,req.body.student_first_name,req.body.student_last_name,req.body.student_phone,new Date(req.body.student_dob),Date.now(),req.body.student_email,req.body.parentone_name,req.body.parentone_num,req.body.parentone_email,req.body.parenttwo_name,req.body.parenttwo_num,req.body.parenttwo_email,req.body.mssuspensions,req.body.hssuspensions,req.body.hsabsences], function(err, rows){ 
+    connection.query(stmt,[req.body.gender,rdeq.body.cohort,req.body.student_first_name,req.body.student_last_name,req.body.student_phone,new Date(req.body.student_dob),Date.now(),req.body.student_email,req.body.parentone_name,req.body.parentone_num,req.body.parentone_email,req.body.parenttwo_name,req.body.parenttwo_num,req.body.parenttwo_email,req.body.mssuspensions,req.body.hssuspensions,req.body.hsabsences], function(err, rows){ 
       if (err) { dialog.err('Sorry, an error occured while trying to add the student. Please make sure you fill out all required fields indicated by the *.', 'Failed to Add Student'); }
       console.log(err);
     });
