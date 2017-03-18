@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>NGM | Schools</title>
+    <title>NGM | Students</title>
 
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -59,20 +59,20 @@
                 <h3>General</h3>
                 <ul class="nav side-menu">
                   <li><a href="/index"><i class="fa fa-home"></i>Dashboard</a></li>
-                  <li><a href="/schools"><i class="fa fa-building"></i>Schools</a></li>
-                  <li><a href="/students"> <i class="fa fa-users"></i>Students</a></li>
-                  {{!-- <li><a href="/partners"><i class="fa fa-building"></i>Partners</a></li> --}}
+									<li><a href="/schools"><i class="fa fa-building"></i>Schools</a></li>
+									<li><a href="/students"> <i class="fa fa-users"></i>Students</a></li>
+									{{!-- <li><a href="/partners"><i class="fa fa-building"></i>Partners</a></li> --}}
                   <li><a><i class="fa fa-plus"></i>Add<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="/addStudent">Students</a></li>
+                    	<li><a href="/addStudent">Students</a></li>
                       <li><a href="/addCohort">Cohorts</a></li>
-                      <li><a href="/addSchool">Schools</a></li>
-                    {{!--   <li><a href="/addPartner">Partners</a></li> --}}
+											<li><a href="/addSchool">Schools</a></li>
+											{{!-- <li><a href="/addPartner">Partners</a></li> --}}
                     </ul>
-                  </li>
+									</li>
                 </ul>
               </div>
-            </div>
+          	</div>
             <!-- /sidebar menu -->
 
           </div>
@@ -104,7 +104,7 @@
                     <li><a href="logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                   </ul>
                 </li>
-              </ul>
+							</ul>
             </nav>
           </div>
         </div>
@@ -117,56 +117,105 @@
               <div class="title_left">
                 <h3>Next Generation Men</h3>
               </div>
+
+              
             </div>
-            
+
             <div class="clearfix"></div>
 
             <div class="row">
-              <div class="col-md-12">
+              <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    
+                    <h2>Students</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#">Settings 1</a>
+                          </li>
+                          <li><a href="#">Settings 2</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-
-                    <p>Below is a list of all the schools currently in the system. If you want to add a new school, refer to the ADD tab on the left navigation bar.</p>
-
-                    <!-- start project list -->
                     <table id="datatable" class="table table-striped table-bordered">
                       <thead>
                         <tr>
-                          <th style="width: 20%">School Name</th>
-                          <th>School Phone Number</th>
-                          <th>Principal</th>
-                          <th>Cohort Coach</th>
-                          <th>Counselor</th>
-                          <th style="width: 20%">Actions</th>
+                          <th>First Name</th>
+                          <th>Last Name</th>
+                          <th>School</th>
+                          <th>Cohort</th>
+                          <th>Cell Phone</th>
+                          <th>Primary Guardian</th>
+                          <th>Cell Phone</th>
+                          <th>Actions</th>
                         </tr>
                       </thead>
+
+                      {{#each students}}
                       <tbody>
-                      {{#each schools}}
                         <tr>
-                          <td><a>{{{this.school_name}}}</a></td>
-                          <td><a>{{{this.school_phone}}}</a></td>
-                          <td><a>{{{this.principal_name}}}</a>
-                          <td><a>{{{this.cohort_coach_name}}}</a>
-                          <td><a>{{{this.couselor_name}}}</a>
+
+                          <td>{{this.student_first_name}}</td>
+                          <td>{{this.student_last_name}}</td>
+                          <td>{{this.school_name}}</td>
+                          <td>Class of {{this.cohort_year}}</td>
+                          <td>{{this.student_phone}}</td>
+                          <td>{{this.guardian_one_name}}</td>
+                          <td>{{this.guardian_one_phone}}</td>
                           <td>
-                            <a href="/schools/{{this.school_id}}/profile" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                            <a href="/schools/{{this.school_id}}/edit" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                            <a href="/schools/{{this.school_id}}/delete" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete</a>
+                            <a href="/students/{{this.student_id}}/profile" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+                            <a href="/students/{{this.student_id}}/edit" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                            <a href="/students/{{this.student_id}}/delete" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete</a>
                           </td>
                         </tr>
-                      {{/each}}
                       </tbody>
-                    </table>
-                    <!-- end School list -->
+                      {{/each}}
 
+
+
+<!--
+                        <tr>
+                          <td>Tiger Nixon</td>
+                          <td>System Architect</td>
+                          <td>Edinburgh</td>
+                          <td>61</td>
+                          <td>2011/04/25</td>
+                          <td>$320,800</td>
+                        </tr>
+                        <tr>
+                          <td>Garrett Winters</td>
+                          <td>Accountant</td>
+                          <td>Tokyo</td>
+                          <td>63</td>
+                          <td>2011/07/25</td>
+                          <td>$170,750</td>
+                        </tr>
+                        <tr>
+                          <td>Ashton Cox</td>
+                          <td>Junior Technical Author</td>
+                          <td>San Francisco</td>
+                          <td>66</td>
+                          <td>2009/01/12</td>
+                          <td>$86,000</td>
+                        </tr>
+-->
+
+
+
+                    </table>
                   </div>
                 </div>
               </div>
-            </div>
+						</div>
           </div>
         </div>
         <!-- /page content -->
@@ -194,6 +243,17 @@
     <script src="../vendors/iCheck/icheck.min.js"></script>
     <!-- Datatables -->
     <script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script src="../vendors/datatables.net-scroller/js/datatables.scroller.min.js"></script>
     <script src="../vendors/jszip/dist/jszip.min.js"></script>
     <script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
     <script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
@@ -201,6 +261,43 @@
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
 
+    <script>
+//      This code doesn't work because it only grabs the first view link and doesn't navigate to other page.
+//      $(function() {
+//        $("#view").click(function(e) {
+//          e.preventDefault(); // cancel the link itself
+//          $.get(this.href,function(data) {
+//            console.log('success');
+//          });
+//        });
+//      });
+//    $("#datatable tr").click(function(){
+//        $(this).addClass('selected').siblings().removeClass('selected');
+//
+//        var firstName=$(this).find('td:first-child').html();
+//        var lastName=$(this).find('td:nth-child(2)').html();
+//        var cellPhone=$(this).find('td:nth-child(5)').html();
+//        var primaryGuardianName=$(this).find('td:nth-child(6)').html();
+//        //value += " " + $(this).find('td:nth-child(2)').html();
+//        //alert(cellPhone);
+//        window.location.href = "/profile.html";
+//        $.ajax({
+//						type: 'GET',
+//						data: {
+//              first_name : firstName,
+//              last_name : lastName,
+//              phonenum : cellPhone,
+//              parentone_name : primaryGuardianName
+//            },
+//            url: '/profile.html',
+//            success: function(data) {
+//
+//                console.log('success');
+//            }
+//        });
+//    });
+
+    </script>
     <!-- Datatables -->
     <script>
       $(document).ready(function() {
