@@ -55,7 +55,7 @@ module.exports = function(app, passport, env) {
 
   //index route
   app.get('/index',ensureLog, function(req, res) {
-    connection.query("SELECT * FROM student", function(err, students){
+    connection.query("SELECT * FROM student order by date_modified", function(err, students){
       connection.query("SELECT * FROM school", function(err, schools){
         var innerJoinQuery = "SELECT * FROM student INNER JOIN cohort ";
         innerJoinQuery += "on student.cohort_id=cohort.cohort_id";
