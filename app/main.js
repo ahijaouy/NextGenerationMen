@@ -9,16 +9,16 @@ module.exports = function(app, passport, env) {
     user: process.env.DATABASE_USER,
     password: process.env.DATABASE_PASSWORD,
     database: process.env.DATABASE
-  }  
+  }
 
   var connection = mysql.createConnection(dbconfig);
-  
+
   connection.query('USE ' + process.env.DATABASE);
 
 
 
   app.get('/callback',
-    passport.authenticate('test', { 
+    passport.authenticate('test', {
       failureRedirect: '/login',
       successRedirect: '/index',
     }),
@@ -30,18 +30,18 @@ module.exports = function(app, passport, env) {
       }
       res.redirect(req.session.returnTo || '/index');
     });
-  
+
 
   app.get('/login', function(req, res){
-    res.render('login', { 
+    res.render('login', {
     domain: process.env.AUTH0_DOMAIN,
     client: process.env.AUTH0_CLIENT,
     callback: process.env.AUTH0_CALLBACK });
   });
 
-  
+
   app.get('/', function(req, res) {
-      res.render('login', { 
+      res.render('login', {
     domain: process.env.AUTH0_DOMAIN,
     client: process.env.AUTH0_CLIENT,
     callback: process.env.AUTH0_CALLBACK });
@@ -52,7 +52,7 @@ module.exports = function(app, passport, env) {
     req.logout();
     res.redirect('/');
   });
-  
+
   //index route
   app.get('/index',ensureLog, function(req, res) {
     connection.query("SELECT * FROM student", function(err, students){
@@ -60,19 +60,20 @@ module.exports = function(app, passport, env) {
         var innerJoinQuery = "SELECT * FROM student INNER JOIN cohort ";
         innerJoinQuery += "on student.cohort_id=cohort.cohort_id";
         connection.query(innerJoinQuery, function(err, joins) {
-          
+
           console.log(joins);
-        
+
           // console.log(list);
           res.render('index', {
               students: students,
-              schools: schools  
+              schools: schools,
+              joins: joins
           });
         });
       });
     });
   });
-  
+
   //Student routes
   app.get('/students',ensureLog, function(req, res) {
     connection.query("SELECT student.student_id, student.student_first_name, student.student_phone, student.student_last_name, school.school_name, cohort.cohort_year, student.guardian_one_name, student.guardian_one_phone FROM student INNER JOIN cohort ON student.cohort_id=cohort.cohort_id INNER JOIN school ON cohort.school_id=school.school_id;", function(err, rows){
@@ -101,7 +102,7 @@ module.exports = function(app, passport, env) {
     res.redirect('/students');
     console.log(req.body);
     stmt = 'INSERT INTO student(student_gender, cohort_id,student_first_name,student_last_name,student_phone,student_dob,student_start_date,student_email,guardian_one_name,guardian_one_phone,guardian_one_email,guardian_two_name,guardian_two_phone,guardian_two_email,middleschool_suspensions,highschool_absences,highschool_suspensions) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);';
-    connection.query(stmt,[req.body.gender,req.body.cohort,req.body.student_first_name,req.body.student_last_name,req.body.student_phone,new Date(req.body.student_dob),Date.now(),req.body.student_email,req.body.parentone_name,req.body.parentone_num,req.body.parentone_email,req.body.parenttwo_name,req.body.parenttwo_num,req.body.parenttwo_email,req.body.mssuspensions,req.body.hssuspensions,req.body.hsabsences], function(err, rows){ 
+    connection.query(stmt,[req.body.gender,req.body.cohort,req.body.student_first_name,req.body.student_last_name,req.body.student_phone,new Date(req.body.student_dob),Date.now(),req.body.student_email,req.body.parentone_name,req.body.parentone_num,req.body.parentone_email,req.body.parenttwo_name,req.body.parenttwo_num,req.body.parenttwo_email,req.body.mssuspensions,req.body.hssuspensions,req.body.hsabsences], function(err, rows){
       if (err) { dialog.err('Sorry, an error occured while trying to add the student. Please make sure you fill out all required fields indicated by the *.', 'Failed to Add Student'); }
       console.log(err);
     });
@@ -189,10 +190,10 @@ app.post('/students/:id/edit', ensureLog, function(req, res) {
   var query = "UPDATE student SET   student_first_name = ?, student_last_name = ?, student_dob = ?, student_gender = ?, student_phone = ?, student_email = ?, guardian_one_name = ?, guardian_one_email = ?, guardian_one_phone = ?, guardian_two_name = ?, guardian_two_email = ?, guardian_two_phone = ?, middleschool_suspensions = ?, highschool_absences = ?, highschool_suspensions = ?, cumulative_gpa = ?, total_credits_earned = ?, date_modified = ?, user_modified = ? WHERE student_id = ?;"
   connection.query(query, [req.body.student_first_name,req.body.student_last_name,req.body.student_dob,req.body.gender,req.body.student_phone,req.body.student_email,req.body.guardian_one_name,req.body.guardian_one_email,req.body.guardian_one_phone,req.body.guardian_two_name,req.body.guardian_two_email,req.body.guardian_two_phone,req.body.middleschool_suspensions,req.body.highschool_absence,req.body.highschool_suspensions,req.body.cumulative_gpa,req.body.total_credits_earned,req.body.date_modified,req.body.user_modified, req.params.id], function(err, rows) {
     console.log(err);
-    res.redirect('/students/' + req.params.id + '/profile'); 
+    res.redirect('/students/' + req.params.id + '/profile');
   });
 });
-  
+
   // //Partner routes
   // app.get('/partners',ensureLog, function(req, res) {
   //   res.render('partners');
@@ -201,6 +202,5 @@ app.post('/students/:id/edit', ensureLog, function(req, res) {
   //   res.render('addPartner');
   // });
 
-  
+
 };
-  

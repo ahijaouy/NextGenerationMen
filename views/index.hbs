@@ -773,7 +773,7 @@
                 </div>
                 < End to do list >
 
-                
+
               </div-->
             </div-->
           </div>
@@ -787,7 +787,7 @@
           <div class="clearfix"></div>
         </footer>
         <!-- /footer content -->
-       
+
       </div>
     </div>
 
@@ -841,46 +841,32 @@
 
 
       $(document).ready(function() {
-        // function objectToStudent(object) {
-        //   return {first_name: object.first_name,
-        //           last_name: object.last_name};
-        // }
+        var counts = [];
+        {{#each joins}}
+        if (counts[{{this.school_id}}] == null) {
+            counts[{{this.school_id}}] = 0;
+        }
+        counts[{{this.school_id}}]++;
+        {{/each}}
 
-        // function objectToString(object) {
-        //   console.log(object.first_name + " " + object.last_name);
-        // }
+        var data = []
+        var pos = 2;
+        console.log("counts: " + counts);
+        for (x in counts) {
+            data.push([pos, counts[x]]);
+            pos = pos + 3;
+        }
+        console.log("data: " + data);
+        var schoolTicks = [];
+        pos = 2;
+        {{#each schools}}
+            schoolTicks.push([pos, "{{this.school_name}}"]);
+            pos = pos + 3;
+        {{/each}}
+        console.log("schoolTicks: " + schoolTicks);
 
-        // console.log("{{students}}");
-        {{#each students}}
-          console.log("Hello");
-          console.log("Hello2");
-
-        {{/each}} 
-        // var students1 = [[13],[25]];
-        // var students = [];
-        // console.log("students");
-        // for (student in ) {
-        //   list.push(student);
-        // }
-        // console.log(students);
-        // $.each(studs, function(student) {
-        //   students.push(student);
-        // }); 
-        // var students = JQuery.makeArray(studs);
-        // console.log([{first:"hello",tomorrow:"plopo"},{first:"hello",tomorrow:"plopo"}]);
-        // console.log(students);
-        // for (var i = 0; i < {{students}}.length; i++) {
-        //   console.log("{{students.i.gender}}");
-        // }
-        var data1 = [[2,8],[5,10],[8,12]];
-        var schoolTicks = [
-          [2, "{{schools.0.school_name}}"],
-          [5, "{{schools.1.school_name}}"],
-          [8, "school3"]
-        ];
-        
         $("#canvas_dahs").length && $.plot($("#canvas_dahs"), [
-          data1
+          data
         ], {
           series: {
             lines: {
@@ -920,7 +906,7 @@
             tickColor: "rgba(51, 51, 51, 0.06)",
           },
           tooltip: false
-        });   
+        });
       });
     </script>
     <!-- /Flot -->
