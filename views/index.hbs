@@ -841,6 +841,11 @@
 
 
       $(document).ready(function() {
+         {{#each student}}
+            console.log("Hello");
+        {{/each}}
+
+
         var counts = [];
         {{#each joins}}
         if (counts[{{this.school_id}}] == null) {

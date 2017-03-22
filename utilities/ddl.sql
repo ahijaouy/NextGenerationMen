@@ -144,5 +144,3 @@ CREATE TABLE `survey_response` (
   CONSTRAINT `fk_survey_question` FOREIGN KEY (`survey_question_id`) REFERENCES `survey_question` (`survey_question_id`),
   CONSTRAINT `fk_semester_record` FOREIGN KEY (`semester_record_id`) REFERENCES `semester_record` (`semester_record_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-

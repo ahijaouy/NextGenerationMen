@@ -60,10 +60,6 @@ module.exports = function(app, passport, env) {
         var innerJoinQuery = "SELECT * FROM student INNER JOIN cohort ";
         innerJoinQuery += "on student.cohort_id=cohort.cohort_id";
         connection.query(innerJoinQuery, function(err, joins) {
-
-          console.log(joins);
-
-          // console.log(list);
           res.render('index', {
               students: students,
               schools: schools,
@@ -84,10 +80,49 @@ module.exports = function(app, passport, env) {
 
   app.get('/students/:id/profile',ensureLog, function(req, res) {
     var query = "SELECT * FROM student INNER JOIN cohort on student.cohort_id=cohort.cohort_id INNER JOIN school on cohort.school_id=school.school_id WHERE student_id=" + req.params.id + ";";
-
+    var surveyQueryString = "Select response from survey_response inner join survey_question on survey_question.survey_question_id=survey_response.survey_question_id where student_id=" + req.params.id;
+    var surveyQueries = [];
+    for (var i = 1; i <= 7; i++) {
+        surveyQueries.push(surveyQueryString + " and survey_category_id=" +  i + ";");
+    }
     connection.query(query, function(err, rows){
-      //rows[0].student_dob = rows[0].student_dob.toDateString(); //properly set date.
-      res.render('profile', { student: rows[0]});
+    connection.query(surveyQueries[0], function(err, grit) {
+    connection.query(surveyQueries[1], function(err, problemSolving) {
+    connection.query(surveyQueries[2], function(err, academicSelfEfficacy) {
+    connection.query(surveyQueries[3], function(err, teamwork) {
+    connection.query(surveyQueries[4], function(err, socialCompetence) {
+    connection.query(surveyQueries[5], function(err, growthMindset) {
+    connection.query(surveyQueries[6], function(err, academicBehaviors) {
+      surveyQueries = [];
+      surveyQueries.push(grit);
+      surveyQueries.push(problemSolving);
+      surveyQueries.push(academicSelfEfficacy);
+      surveyQueries.push(teamwork);
+      surveyQueries.push(socialCompetence);
+      surveyQueries.push(growthMindset);
+      surveyQueries.push(academicBehaviors);
+      var data = [];
+      for (var i = 0; i < surveyQueries.length; i++) {
+          var num = 0;
+          for (var j = 0; j < surveyQueries[i].length; j++) {
+              num += surveyQueries[i][j];
+          }
+          num = num / surveyQueries[i].length;
+          num = num / 5 * 100;
+          data.push[num];
+      }
+      console.log(data);
+      res.render('profile', {
+          student: rows[0],
+          surveyData: data
+      });
+    });
+    });
+    });
+    });
+    });
+    });
+    });
     });
   });
 
