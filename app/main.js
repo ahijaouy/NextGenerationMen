@@ -80,7 +80,7 @@ module.exports = function(app, passport, env) {
 
   app.get('/students/:id/profile',ensureLog, function(req, res) {
     var query = "SELECT * FROM student INNER JOIN cohort on student.cohort_id=cohort.cohort_id INNER JOIN school on cohort.school_id=school.school_id WHERE student_id=" + req.params.id + ";";
-    var surveyQueryString = "Select response from survey_response inner join survey_question on survey_question.survey_question_id=survey_response.survey_question_id where student_id=" + req.params.id;
+    var surveyQueryString = "Select response from survey_response inner join survey_question on survey_question.survey_question_id=survey_response.survey_question_id inner join semester_record on semester_record.semester_record_id=survey_response.semester_record_id where student_id=" + req.params.id;
     var surveyQueries = [];
     for (var i = 1; i <= 7; i++) {
         surveyQueries.push(surveyQueryString + " and survey_category_id=" +  i + ";");
@@ -104,12 +104,16 @@ module.exports = function(app, passport, env) {
       var data = [];
       for (var i = 0; i < surveyQueries.length; i++) {
           var num = 0;
-          for (var j = 0; j < surveyQueries[i].length; j++) {
-              num += surveyQueries[i][j];
-          }
-          num = num / surveyQueries[i].length;
-          num = num / 5 * 100;
-          data.push[num];
+          if (surveyQueries[i] != null) {
+            for (var j = 0; j < surveyQueries[i].length; j++) {
+                num += surveyQueries[i][j].response;
+            }
+            num = num / surveyQueries[i].length;
+            num = num / 5 * 100;
+            console.log("not null");
+          } 
+          data.push(num);
+          // console.log("null");
       }
       console.log(data);
       res.render('profile', {

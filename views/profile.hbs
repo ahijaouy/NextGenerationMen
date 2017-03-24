@@ -159,44 +159,44 @@
                         <li>
                           <p>Grit</p>
                           <div class="progress progress_sm">
-                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="{{surveyData.0}}"></div>
+                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal={{surveyData.[0]}}></div>
                           </div>
                         </li>
                         <li>
                           <p>Problem Solving</p>
                           <div class="progress progress_sm">
-                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="{{surveyData.1}}"></div>
+                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="{{surveyData.[1]}}"></div>
                           </div>
                         </li>
                         <li>
                           <p>Academic Self-Efficacy</p>
                           <div class="progress progress_sm">
-                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="{{surveyData.2}}"></div>
+                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="{{surveyData.[2]}}"></div>
                           </div>
                         </li>
                         <li>
                           <p>Teamwork</p>
                           <div class="progress progress_sm">
-                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="{{surveyData.3}}"></div>
+                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="{{surveyData.[3]}}"></div>
                           </div>
                         </li>
                         <li>
                           <p>Social Competence</p>
                           <div class="progress progress_sm">
-                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="{{surveyData.4}}"></div>
+                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="{{surveyData.[4]}}"></div>
                           </div>
                         </li>
                         <li>
                         <li>
                           <p>Growth Mindset</p>
                           <div class="progress progress_sm">
-                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="{{surveyData.5}}"></div>
+                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="{{surveyData.[5]}}"></div>
                           </div>
                         </li>
                         <li>
                           <p>Academic Behaviors</p>
                           <div class="progress progress_sm">
-                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="{{surveyData.6}}"></div>
+                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="{{surveyData.[6]}}"></div>
                           </div>
                         </li>
                       </ul>
@@ -704,6 +704,13 @@
 
     <script>
       $(function() {
+        
+        var data = []
+        {{#each semesterRecord}} 
+          data.push( {"semester-record": "{{this.semester_number}}", "gpa": {{this.cumulative_gpa}} })
+        {{/each}}
+
+
         Morris.Line({
           element: 'graph_line',
           data: [

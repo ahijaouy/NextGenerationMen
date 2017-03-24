@@ -28,13 +28,13 @@ INSERT INTO survey_question (survey_question_id,survey_category_id,question,ques
 INSERT INTO survey_question (survey_question_id,survey_category_id,question,question_negated,date_modified,user_modified) VALUES (12,(SELECT survey_category_id from survey_category where survey_category_id=2),'I try to get all the facts before trying to solve a problem.',0,now(),1);
 INSERT INTO survey_question (survey_question_id,survey_category_id,question,question_negated,date_modified,user_modified) VALUES (13,(SELECT survey_category_id from survey_category where survey_category_id=2),'I try to look at the long term results of each possible solution.',0,now(),1);
 
-# Teamwork
+# Academic Self-Efficacy
 INSERT INTO survey_question (survey_question_id,survey_category_id,question,question_negated,date_modified,user_modified) VALUES (14,(SELECT survey_category_id from survey_category where survey_category_id=3),"I'm certain I can understand the most difficult material presented in texts.",0,now(),1);
 INSERT INTO survey_question (survey_question_id,survey_category_id,question,question_negated,date_modified,user_modified) VALUES (15,(SELECT survey_category_id from survey_category where survey_category_id=3),"I'm confident I can understand the most complex material presented by the teacher.",0,now(),1);
 INSERT INTO survey_question (survey_question_id,survey_category_id,question,question_negated,date_modified,user_modified) VALUES (16,(SELECT survey_category_id from survey_category where survey_category_id=3),'When faced with a problem, I wait to see if it will go away.',1,now(),1);
 INSERT INTO survey_question (survey_question_id,survey_category_id,question,question_negated,date_modified,user_modified) VALUES (17,(SELECT survey_category_id from survey_category where survey_category_id=3),"I'm certain I can master the skills being taught in school.",0,now(),1);
 
-#Social Competence
+# Teamwork
 INSERT INTO survey_question (survey_question_id,survey_category_id,question,question_negated,date_modified,user_modified) VALUES (18,(SELECT survey_category_id from survey_category where survey_category_id=4),"I can be a good group leader.",0,now(),1);
 INSERT INTO survey_question (survey_question_id,survey_category_id,question,question_negated,date_modified,user_modified) VALUES (19,(SELECT survey_category_id from survey_category where survey_category_id=4),"I can help a group be successful.",0,now(),1);
 INSERT INTO survey_question (survey_question_id,survey_category_id,question,question_negated,date_modified,user_modified) VALUES (20,(SELECT survey_category_id from survey_category where survey_category_id=4),"I can be happy even when my group has decided to do something I don't want to do.",0,now(),1);
@@ -44,13 +44,15 @@ INSERT INTO survey_question (survey_question_id,survey_category_id,question,ques
 INSERT INTO survey_question (survey_question_id,survey_category_id,question,question_negated,date_modified,user_modified) VALUES (24,(SELECT survey_category_id from survey_category where survey_category_id=4),"I can be a team-player in a small group.",0,now(),1);
 INSERT INTO survey_question (survey_question_id,survey_category_id,question,question_negated,date_modified,user_modified) VALUES (25,(SELECT survey_category_id from survey_category where survey_category_id=4),"I know I can get along with other people in a small group.",0,now(),1);
 
-# Growth Mindset
+# Social Competence
 INSERT INTO survey_question (survey_question_id,survey_category_id,question,question_negated,date_modified,user_modified) VALUES (26,(SELECT survey_category_id from survey_category where survey_category_id=5),"I work well with other students.",0,now(),1);
 INSERT INTO survey_question (survey_question_id,survey_category_id,question,question_negated,date_modified,user_modified) VALUES (27,(SELECT survey_category_id from survey_category where survey_category_id=5),"I can solve problems with other students without being aggressive.",0,now(),1);
 INSERT INTO survey_question (survey_question_id,survey_category_id,question,question_negated,date_modified,user_modified) VALUES (28,(SELECT survey_category_id from survey_category where survey_category_id=5),"I often think about the feelings of other students.",0,now(),1);
 INSERT INTO survey_question (survey_question_id,survey_category_id,question,question_negated,date_modified,user_modified) VALUES (29,(SELECT survey_category_id from survey_category where survey_category_id=5),"I usually cooperate with other students without being told to do so.",0,now(),1);
 INSERT INTO survey_question (survey_question_id,survey_category_id,question,question_negated,date_modified,user_modified) VALUES (30,(SELECT survey_category_id from survey_category where survey_category_id=5),"I understand the feelings of other students.",0,now(),1);
 INSERT INTO survey_question (survey_question_id,survey_category_id,question,question_negated,date_modified,user_modified) VALUES (31,(SELECT survey_category_id from survey_category where survey_category_id=5),"I can resolve problems with other students on my own.",0,now(),1);
+
+# Growth Mindset
 INSERT INTO survey_question (survey_question_id,survey_category_id,question,question_negated,date_modified,user_modified) VALUES (32,(SELECT survey_category_id from survey_category where survey_category_id=6),"You have a certain amount of intelligence and you can't really do much to change it.",1,now(),1);
 INSERT INTO survey_question (survey_question_id,survey_category_id,question,question_negated,date_modified,user_modified) VALUES (33,(SELECT survey_category_id from survey_category where survey_category_id=6),"Your intelligence is something about you that you can't change very much.",1,now(),1);
 INSERT INTO survey_question (survey_question_id,survey_category_id,question,question_negated,date_modified,user_modified) VALUES (34,(SELECT survey_category_id from survey_category where survey_category_id=6),"You can learn new things but you can't really change your basic intelligence.",1,now(),1);
