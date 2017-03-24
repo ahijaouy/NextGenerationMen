@@ -110,12 +110,9 @@ module.exports = function(app, passport, env) {
             }
             num = num / surveyQueries[i].length;
             num = num / 5 * 100;
-            console.log("not null");
           } 
           data.push(num);
-          // console.log("null");
       }
-      console.log(data);
       res.render('profile', {
           student: rows[0],
           surveyData: data

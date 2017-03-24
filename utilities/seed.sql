@@ -23,7 +23,7 @@ INSERT INTO student VALUES (97423,(SELECT cohort_id FROM cohort WHERE cohort_id=
 INSERT INTO student VALUES (99757,(SELECT cohort_id FROM cohort WHERE cohort_id=3),"Garrett","Cohen",2001-5-03,"Male",2014-9-27,"5018123452","GCohen02@gmail.com","Willie","WCohen42@gmail.com","6523009421","Mary","MCohen@gmail.com","3596131425",2,1,4,2.76,21,Now(),1);
 INSERT INTO student VALUES (95147,(SELECT cohort_id FROM cohort WHERE cohort_id=3),"Frances","Logan", 2002-4-21,"Female", 2016-8-12,"9598980952","FLogan10@gmail.com","Raymond","RLogan56@gmail.com","6529276521","Marianne","MLogan18@gmail.com","2942983490",5,8,2,2.82,24,Now(),1);
 
-# Semester Records
+# Semester Records	
 INSERT INTO semester_record VALUES (1, (SELECT student_id FROM student WHERE student_id=96047), 6, 5, 3, 1, "3", "4",3.32, 15, Now(), 1);
 INSERT INTO semester_record VALUES (2, (SELECT student_id FROM student WHERE student_id=96057), 8, 6, 3, 1, "4", "4",3.44, 18, Now(), 1);
 INSERT INTO semester_record VALUES (3, (SELECT student_id FROM student WHERE student_id=95047), 6, 8, 3, 1, "2", "4",3.65, 18, Now(), 1);
