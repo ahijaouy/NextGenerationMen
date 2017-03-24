@@ -24,13 +24,20 @@ INSERT INTO student VALUES (99757,(SELECT cohort_id FROM cohort WHERE cohort_id=
 INSERT INTO student VALUES (95147,(SELECT cohort_id FROM cohort WHERE cohort_id=3),"Frances","Logan",2002-4-21,2016-8-12,9598980952,"FLogan10@gmail.com","Raymond","RLogan56@gmail.com",6529276521,"Marianne","MLogan18@gmail.com",2942983490,5,8,2,2.82,24,Now(),1);
 
 # Semester Records
-INSERT INTO semester_record VALUES (1, (SELECT student_id FROM student WHERE student_id=96047), 6, 5, 3, 1, 3.32, 15, Now(), 1);
-INSERT INTO semester_record VALUES (2, (SELECT student_id FROM student WHERE student_id=96057), 8, 6, 3, 1, 3.44, 18, Now(), 1);
-INSERT INTO semester_record VALUES (3, (SELECT student_id FROM student WHERE student_id=95047), 6, 8, 3, 1, 3.65, 18, Now(), 1);
-INSERT INTO semester_record VALUES (4, (SELECT student_id FROM student WHERE student_id=92347), 10, 5, 2, 3, 3.75, 20, Now(), 1);
-INSERT INTO semester_record VALUES (5, (SELECT student_id FROM student WHERE student_id=16057), 10, 2, 0, 0, 3.95, 12, Now(), 1);
-INSERT INTO semester_record VALUES (6, (SELECT student_id FROM student WHERE student_id=75840), 10, 5, 3, 2, 3.6, 20, Now(), 1);
-INSERT INTO semester_record VALUES (7, (SELECT student_id FROM student WHERE student_id=97423), 11, 5, 3, 2, 3.65, 21, Now(), 1);
-INSERT INTO semester_record VALUES (8, (SELECT student_id FROM student WHERE student_id=99757), 10, 8, 0, 0, 4.0, 18, Now(), 1);
-INSERT INTO semester_record VALUES (9, (SELECT student_id FROM student WHERE student_id=95147), 10, 5, 0, 0, 3.95, 15, Now(), 1);
+INSERT INTO semester_record VALUES (1, (SELECT student_id FROM student WHERE student_id=96047), 6, 5, 3, 1, "3", "4",3.32, 15, Now(), 1);
+INSERT INTO semester_record VALUES (2, (SELECT student_id FROM student WHERE student_id=96057), 8, 6, 3, 1, "4", "4",3.44, 18, Now(), 1);
+INSERT INTO semester_record VALUES (3, (SELECT student_id FROM student WHERE student_id=95047), 6, 8, 3, 1, "2", "4",3.65, 18, Now(), 1);
+INSERT INTO semester_record VALUES (4, (SELECT student_id FROM student WHERE student_id=92347), 10, 5, 2, 3, "2", "4",3.75, 20, Now(), 1);
+INSERT INTO semester_record VALUES (5, (SELECT student_id FROM student WHERE student_id=16057), 10, 2, 0, 0, "2", "4",3.95, 12, Now(), 1);
+INSERT INTO semester_record VALUES (6, (SELECT student_id FROM student WHERE student_id=75840), 10, 5, 3, 2, "1", "4",3.6, 20, Now(), 1);
+INSERT INTO semester_record VALUES (7, (SELECT student_id FROM student WHERE student_id=97423), 11, 5, 3, 2, "1", "4",3.65, 21, Now(), 1);
+INSERT INTO semester_record VALUES (8, (SELECT student_id FROM student WHERE student_id=99757), 10, 8, 0, 0, "3", "4",4.0, 18, Now(), 1);
+INSERT INTO semester_record VALUES (9, (SELECT student_id FROM student WHERE student_id=95147), 10, 5, 0, 0, "3", "4",3.95, 15, Now(), 1);
 
+# Survey Responses 
+INSERT INTO survey_response VALUES(1, (SELECT survey_question_id FROM survey_question where survey_question_id=1), (SELECT semester_record_id FROM semester_record WHERE semester_record_id=1), 4, Now(), 1)
+INSERT INTO survey_response VALUES(2, (SELECT survey_question_id FROM survey_question where survey_question_id=8), (SELECT semester_record_id FROM semester_record WHERE semester_record_id=1), 3, Now(), 1)
+INSERT INTO survey_response VALUES(3, (SELECT survey_question_id FROM survey_question where survey_question_id=16), (SELECT semester_record_id FROM semester_record WHERE semester_record_id=1), 5, Now(), 1)
+INSERT INTO survey_response VALUES(4, (SELECT survey_question_id FROM survey_question where survey_question_id=19), (SELECT semester_record_id FROM semester_record WHERE semester_record_id=1), 2, Now(), 1)
+INSERT INTO survey_response VALUES(5, (SELECT survey_question_id FROM survey_question where survey_question_id=30), (SELECT semester_record_id FROM semester_record WHERE semester_record_id=1), 3, Now(), 1)
+INSERT INTO survey_response VALUES(6, (SELECT survey_question_id FROM survey_question where survey_question_id=41), (SELECT semester_record_id FROM semester_record WHERE semester_record_id=1), 1, Now(), 1)
