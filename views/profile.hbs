@@ -697,20 +697,21 @@
 
     <script>
       $(function() {
+         var a = [];
+         {{#each gpas}}
+         a.push({"semester_number": "{{this.semester_number}}", "semester_gpa": "{{this.semester_gpa}}" });
+        {{/each}}
+        console.log(a);
+
+        //console.log({{gpas}});
         Morris.Line({
           element: 'graph_line',
-          data: [
-          { y: '2006', a: 100 },
-          { y: '2007', a: 75 },
-          { y: '2008', a: 50 },
-          { y: '2009', a: 75 },
-          { y: '2010', a: 50 },
-          { y: '2011', a: 75 },
-          { y: '2012', a: 100 }
-          ],
-          xkey: 'y',
-          ykeys: ['a'],
-          labels: ['Series A'],
+          data: a,
+          
+
+           xkey: 'semester_number',
+           ykeys: ['semester_gpa'],
+          labels: ['GPA'],
           parseTime: false,
           hideHover: 'auto',
           });
@@ -721,8 +722,14 @@
       });
     </script>
 
+    
+
+
+
+
     <!-- datepicker -->
     <script type="text/javascript">
+    
       $(document).ready(function() {
 
         var cb = function(start, end, label) {
@@ -730,6 +737,8 @@
           $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
           //alert("Callback has fired: [" + start.format('MMMM D, YYYY') + " to " + end.format('MMMM D, YYYY') + ", label = " + label + "]");
         }
+        
+
 
         var optionSet1 = {
           startDate: moment().subtract(29, 'days'),

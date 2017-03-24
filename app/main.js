@@ -84,10 +84,13 @@ module.exports = function(app, passport, env) {
 
   app.get('/students/:id/profile',ensureLog, function(req, res) {
     var query = "SELECT * FROM student INNER JOIN cohort on student.cohort_id=cohort.cohort_id INNER JOIN school on cohort.school_id=school.school_id WHERE student_id=" + req.params.id + ";";
-
+    var query1 = "SELECT semester_number,semester_gpa FROM semester_record WHERE student_id=" + req.params.id + ";";
     connection.query(query, function(err, rows){
+      connection.query(query1, function(err, gpas){
       //rows[0].student_dob = rows[0].student_dob.toDateString(); //properly set date.
-      res.render('profile', { student: rows[0]});
+      res.render('profile', { student: rows[0],
+                              gpas: gpas});
+    });
     });
   });
 
@@ -152,8 +155,12 @@ app.get('/schools/:id/delete',ensureLog, function(req, res) {
 
 app.get('/schools/:id/profile',ensureLog, function(req, res) {
   var query = "SELECT * FROM school WHERE school_id=" + req.params.id;
+  var query1 = "SELECT semester_gpa FROM semester_record";
   connection.query(query, function(err, rows) {
-    res.render('schoolDetail', {school: rows[0]});
+    connection.query(query1, function(err, gpas){
+    res.render('schoolDetail', {school: rows[0],
+                                gpas: gpas});
+  });
   });
 });
 
