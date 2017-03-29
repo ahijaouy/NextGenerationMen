@@ -704,13 +704,6 @@
 
     <script>
       $(function() {
-        
-        var data = []
-        {{#each semesterRecord}} 
-          data.push( {"semester-record": "{{this.semester_number}}", "gpa": {{this.cumulative_gpa}} })
-        {{/each}}
-
-
         Morris.Line({
           element: 'graph_line',
           data: [
