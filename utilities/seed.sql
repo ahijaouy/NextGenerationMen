@@ -42,6 +42,32 @@ INSERT INTO semester_record VALUES (15, (SELECT student_id FROM student WHERE st
 INSERT INTO semester_record VALUES (16, (SELECT student_id FROM student WHERE student_id=97423), 11, 5, 3, 2, "2", "4",3.0, 21, Now(), 1);
 INSERT INTO semester_record VALUES (17, (SELECT student_id FROM student WHERE student_id=99757), 10, 8, 0, 0, "2", "4",3.0, 18, Now(), 1);
 INSERT INTO semester_record VALUES (18, (SELECT student_id FROM student WHERE student_id=95147), 10, 5, 0, 0, "2", "4",3.5, 15, Now(), 1);
-
+INSERT INTO semester_record VALUES (19, (SELECT student_id FROM student WHERE student_id=96047), 6, 5, 3, 1, "3", "4",3.1, 15, Now(), 1);
+INSERT INTO semester_record VALUES (20, (SELECT student_id FROM student WHERE student_id=96057), 8, 6, 3, 1, "3", "4",2.8, 18, Now(), 1);
+INSERT INTO semester_record VALUES (21, (SELECT student_id FROM student WHERE student_id=95047), 6, 8, 3, 1, "3", "4",3.9, 18, Now(), 1);
+INSERT INTO semester_record VALUES (22, (SELECT student_id FROM student WHERE student_id=92347), 10, 5, 2, 3, "3", "4",4.0, 20, Now(), 1);
+INSERT INTO semester_record VALUES (23, (SELECT student_id FROM student WHERE student_id=16057), 10, 2, 0, 0, "3", "4",2.05, 12, Now(), 1);
+INSERT INTO semester_record VALUES (24, (SELECT student_id FROM student WHERE student_id=75840), 10, 5, 3, 2, "3", "4",3.75, 20, Now(), 1);
+INSERT INTO semester_record VALUES (25, (SELECT student_id FROM student WHERE student_id=97423), 11, 5, 3, 2, "3", "4",2.0, 21, Now(), 1);
+INSERT INTO semester_record VALUES (26, (SELECT student_id FROM student WHERE student_id=99757), 10, 8, 0, 0, "3", "4",4.0, 18, Now(), 1);
+INSERT INTO semester_record VALUES (27, (SELECT student_id FROM student WHERE student_id=95147), 10, 5, 0, 0, "3", "4",3.83, 15, Now(), 1);
+INSERT INTO semester_record VALUES (28, (SELECT student_id FROM student WHERE student_id=96047), 6, 5, 3, 1, "4", "4",2.7, 15, Now(), 1);
+INSERT INTO semester_record VALUES (29, (SELECT student_id FROM student WHERE student_id=96057), 8, 6, 3, 1, "4", "4",4.0, 18, Now(), 1);
+INSERT INTO semester_record VALUES (30, (SELECT student_id FROM student WHERE student_id=95047), 6, 8, 3, 1, "4", "4",3.1, 18, Now(), 1);
+INSERT INTO semester_record VALUES (31, (SELECT student_id FROM student WHERE student_id=92347), 10, 5, 2, 3, "4", "4",3.0, 20, Now(), 1);
+INSERT INTO semester_record VALUES (32, (SELECT student_id FROM student WHERE student_id=16057), 10, 2, 0, 0, "4", "4",2.65, 12, Now(), 1);
+INSERT INTO semester_record VALUES (33, (SELECT student_id FROM student WHERE student_id=75840), 10, 5, 3, 2, "4", "4",2.75, 20, Now(), 1);
+INSERT INTO semester_record VALUES (34, (SELECT student_id FROM student WHERE student_id=97423), 11, 5, 3, 2, "4", "4",2.9, 21, Now(), 1);
+INSERT INTO semester_record VALUES (35, (SELECT student_id FROM student WHERE student_id=99757), 10, 8, 0, 0, "4", "4",3.6, 18, Now(), 1);
+INSERT INTO semester_record VALUES (36, (SELECT student_id FROM student WHERE student_id=95147), 10, 5, 0, 0, "4", "4",3.1, 15, Now(), 1);
+INSERT INTO semester_record VALUES (37, (SELECT student_id FROM student WHERE student_id=96047), 6, 5, 3, 1, "5", "4",3.32, 15, Now(), 1);
+INSERT INTO semester_record VALUES (38, (SELECT student_id FROM student WHERE student_id=96057), 8, 6, 3, 1, "5", "4",3.44, 18, Now(), 1);
+INSERT INTO semester_record VALUES (39, (SELECT student_id FROM student WHERE student_id=95047), 6, 8, 3, 1, "5", "4",3.65, 18, Now(), 1);
+INSERT INTO semester_record VALUES (40, (SELECT student_id FROM student WHERE student_id=92347), 10, 5, 2, 3, "5", "4",3.75, 20, Now(), 1);
+INSERT INTO semester_record VALUES (41, (SELECT student_id FROM student WHERE student_id=16057), 10, 2, 0, 0, "5", "4",3.95, 12, Now(), 1);
+INSERT INTO semester_record VALUES (42, (SELECT student_id FROM student WHERE student_id=75840), 10, 5, 3, 2, "5", "4",3.6, 20, Now(), 1);
+INSERT INTO semester_record VALUES (43, (SELECT student_id FROM student WHERE student_id=97423), 11, 5, 3, 2, "5", "4",3.65, 21, Now(), 1);
+INSERT INTO semester_record VALUES (44, (SELECT student_id FROM student WHERE student_id=99757), 10, 8, 0, 0, "5", "4",4.0, 18, Now(), 1);
+INSERT INTO semester_record VALUES (45, (SELECT student_id FROM student WHERE student_id=95147), 10, 5, 0, 0, "5", "4",3.95, 15, Now(), 1);
 
 
