@@ -155,12 +155,24 @@
                   <div class="col-md-6">
                     <h3>School Performance <small>Graph title sub-title</small></h3>
                   </div>
-                  <div class="col-md-6">
+
+                  <div class="col-md-3 col-md-offset-2 dropdown" id="graphSelect">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Graph Type
+                    <span class="caret"></span></button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1" style="text-align:center;">
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">HTML</a></li>
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">CSS</a></li>
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">JavaScript</a></li>
+                      <li role="presentation" class="divider"></li>
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">About Us</a></li>
+                    </ul>
+                  </div>
+                  <!-- <div class="col-md-6">
                     <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
                       <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
                       <span>December 30, 2014 - January 28, 2016</span> <b class="caret"></b>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
 
                 <div class="col-md-9 col-sm-9 col-xs-12">
@@ -838,7 +850,12 @@
 
     <!-- Flot -->
     <script>
-
+      $('#number1 a').click(function(){
+        $('#selected').text($(this).text());
+          if ($(this).text() == "Option 1") {
+            $('#testText').text("Option 1");
+          }
+      });
 
       $(document).ready(function() {
          {{#each student}}
