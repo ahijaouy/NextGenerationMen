@@ -55,29 +55,21 @@ module.exports = function(app, passport, env) {
 
   //index route
   app.get('/index',ensureLog, function(req, res) {
-    connection.query("SELECT * FROM student order by date_modified", function(err, students){
-      connection.query("SELECT * FROM school", function(err, schools){
+    connection.query("SELECT * FROM student order by date_modified;", function(err, students){
+      connection.query("SELECT * FROM school;", function(err, schools){
         var innerJoinQuery = "SELECT * FROM student INNER JOIN cohort ";
-        innerJoinQuery += "on student.cohort_id=cohort.cohort_id";
+        innerJoinQuery += "on student.cohort_id=cohort.cohort_id;";
         connection.query(innerJoinQuery, function(err, joins) {
-          var maleCounter = 0;
-          var femaleCounter = 0;
-          console.log("student_gender: " + students[0].student_gender);
-          console.log("Class: " + typeof students[0].student_gender);
-          console.log("student_gender.toUpperCase(): " + students[0].student_gender.toUpperCase());   
-          for (var i = 0; i < students.length; i++) {
-            if (students[i].student_gender.toUpperCase() == "MALE") {
-              maleCounter++;
-            } else if (students[i].student_gender.toUpperCase() == "FEMALE") {
-              femaleCounter++;
-            }
-          }
-          res.render('index', {
-              students: students,
-              schools: schools,
-              joins: joins,
-              maleCounter: maleCounter,
-              femaleCounter: femaleCounter
+          connection.query("SELECT COUNT(student_gender) as count from student where student_gender=\"Male\"",function(err, maleCounter) {
+            connection.query("SELECT COUNT(student_gender) as count from student where student_gender=\"Female\"", function(err, femaleCounter) {
+              res.render('index', {
+                  students: students,
+                  schools: schools,
+                  joins: joins,
+                  maleCounter: maleCounter[0].count,
+                  femaleCounter: femaleCounter[0].count
+              });
+            });
           });
         });
       });
