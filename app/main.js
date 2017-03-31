@@ -60,10 +60,24 @@ module.exports = function(app, passport, env) {
         var innerJoinQuery = "SELECT * FROM student INNER JOIN cohort ";
         innerJoinQuery += "on student.cohort_id=cohort.cohort_id";
         connection.query(innerJoinQuery, function(err, joins) {
+          var maleCounter = 0;
+          var femaleCounter = 0;
+          console.log("student_gender: " + students[0].student_gender);
+          console.log("Class: " + typeof students[0].student_gender);
+          console.log("student_gender.toUpperCase(): " + students[0].student_gender.toUpperCase());   
+          for (var i = 0; i < students.length; i++) {
+            if (students[i].student_gender.toUpperCase() == "MALE") {
+              maleCounter++;
+            } else if (students[i].student_gender.toUpperCase() == "FEMALE") {
+              femaleCounter++;
+            }
+          }
           res.render('index', {
               students: students,
               schools: schools,
-              joins: joins
+              joins: joins,
+              maleCounter: maleCounter,
+              femaleCounter: femaleCounter
           });
         });
       });
