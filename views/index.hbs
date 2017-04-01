@@ -156,15 +156,14 @@
                     <h3>School Performance <small>Graph title sub-title</small></h3>
                   </div>
 
-                  <div class="col-md-3 col-md-offset-2 dropdown" id="graphSelect">
+                  <div class="col-md-3 col-md-offset-2 dropdown" >
                     <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Graph Type
                     <span class="caret"></span></button>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1" style="text-align:center;">
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">HTML</a></li>
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">CSS</a></li>
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">JavaScript</a></li>
-                      <li role="presentation" class="divider"></li>
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">About Us</a></li>
+                    <ul class="dropdown-menu" role="menu" id="graphSelect" aria-labelledby="menu1" style="text-align:center;">
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Students per School</a></li>
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Graph 2</a></li>
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Graph 3</a></li>
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Graph 4</a></li>
                     </ul>
                   </div>
                   <!-- <div class="col-md-6">
@@ -850,14 +849,16 @@
 
     <!-- Flot -->
     <script>
-      $('#number1 a').click(function(){
-        $('#selected').text($(this).text());
-          if ($(this).text() == "Option 1") {
-            $('#testText').text("Option 1");
+      $('#graphSelect li a').click(function() {
+        $('#menu1').text($(this).text());
+          if ($(this).text() == "Students per School") {
+            studentsPerSchool();
+          } else {
+            emptyGraph();
           }
       });
 
-      $(document).ready(function() {
+      function studentsPerSchool() {
          {{#each student}}
             console.log("Hello");
         {{/each}}
@@ -929,7 +930,52 @@
           },
           tooltip: false
         });
-      });
+      }
+
+      function emptyGraph() {
+        $("#canvas_dahs").length && $.plot($("#canvas_dahs"), [
+          []
+        ], {
+          series: {
+            lines: {
+              show: false,
+              fill: false,
+            },
+            bars: {
+              show: true,
+              fill: true,
+              barWidth: 2,
+              align: "center"
+            },
+            points: {
+              },
+          },
+          grid: {
+            padding: 10,
+            verticalLines: true,
+            hoverable: true,
+            clickable: true,
+            tickColor: "#d5d5d5",
+            borderWidth: 10,
+            color: '#fff',
+          },
+          colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
+          xaxis: {
+            ticks: 2,
+            tickColor: "rgba(51, 51, 51, 0.06)",
+            tickSize: 5,
+            axisLabel: "Date",
+            axisLabelUseCanvas: true,
+            axisLabelFontSizePixels: 12,
+            axisLabelFontFamily: 'Verda na, Arial'
+          },
+          yaxis: {
+            axisLabelUseCanvas: true,
+            tickColor: "rgba(51, 51, 51, 0.06)",
+          },
+          tooltip: false
+        });
+      }
     </script>
     <!-- /Flot -->
 
