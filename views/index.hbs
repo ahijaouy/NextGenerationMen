@@ -849,23 +849,98 @@
 
     <!-- Flot -->
     <script>
-      $('#graphSelect li a').click(function() {
-        $('#menu1').text($(this).text());
-          if ($(this).text() == "Students per School") {
-            studentsPerSchool();
-          } else {
-            emptyGraph();
-          }
+      $(document).ready(function() {
+        gpaPerSchool();
       });
 
-      function studentsPerSchool() {
-         {{#each student}}
-            console.log("Hello");
-        {{/each}}
+      $('#graphSelect li a').click(function() {
+        $('#menu1').text($(this).text());
+        if ($(this).text() == "Students per School") {
+          studentsPerSchool();
+        } else {
+          gpaPerSchool();
+        }
+      });
 
-
-        var counts = [];
+      function gpaPerSchool() {
+        var gradeInfo = [];
         {{#each joins}}
+          if (gradeInfo[{{this.school_id}}] == null) {
+            gradeInfo[{{this.school_id}}] = {
+              avg: {{this.semester_gpa}},
+              gpas: [{{this.semester_gpa}}]
+            };
+          } else if (gradeInfo[{{this.school_id}}] != null) {
+            var gradeInfoObj = gradeInfo[{{this.school_id}}];
+            var newAvg = gradeInfoObj.avg * gradeInfoObj.gpas.length;
+            newAvg += {{this.semester_gpa}};
+            newAvg /= gradeInfoObj.gpas.length + 1;
+            gradeInfo[{{this.school_id}}].gpas.push({{this.semester_gpa}});
+            gradeInfo[{{this.school_id}}].avg = newAvg;
+          }
+        {{/each}}
+        var data = []
+        var pos = 2;
+        for (x in gradeInfo) {
+            data.push([pos, gradeInfo[x].avg]);
+            pos = pos + 3;
+        }
+        console.log("data: " + data);
+        var schoolTicks = [];
+        pos = 2;
+        {{#each schools}}
+            schoolTicks.push([pos, "{{this.school_name}}"]);
+            pos = pos + 3;
+        {{/each}}
+        console.log("schoolTicks: " + schoolTicks);
+
+        $("#canvas_dahs").length && $.plot($("#canvas_dahs"), [
+          data
+        ], {
+          series: {
+            lines: {
+              show: false,
+              fill: false,
+            },
+            bars: {
+              show: true,
+              fill: true,
+              barWidth: 2,
+              align: "center"
+            },
+            points: {
+              },
+          },
+          grid: {
+            padding: 10,
+            verticalLines: true,
+            hoverable: true,
+            clickable: true,
+            tickColor: "#d5d5d5",
+            borderWidth: 10,
+            color: '#fff',
+          },
+          colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
+          xaxis: {
+            ticks: schoolTicks,
+            tickColor: "rgba(51, 51, 51, 0.06)",
+            tickSize: 5,
+            axisLabel: "Date",
+            axisLabelUseCanvas: true,
+            axisLabelFontSizePixels: 12,
+            axisLabelFontFamily: 'Verda na, Arial'
+          },
+          yaxis: {
+            axisLabelUseCanvas: true,
+            tickColor: "rgba(51, 51, 51, 0.06)",
+          },
+          tooltip: false
+        });
+      }
+
+      function studentsPerSchool() {
+        var counts = [];
+        {{#each joins}} 
         if (counts[{{this.school_id}}] == null) {
             counts[{{this.school_id}}] = 0;
         }
