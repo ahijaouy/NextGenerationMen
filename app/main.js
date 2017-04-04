@@ -134,7 +134,7 @@ app.get('/students/:id/edit', ensureLog, function(req, res) {
   var query = "SELECT * FROM student WHERE student_id=" + req.params.id;
   connection.query(query, function(err, rows) {
     console.log(err);
-    res.render('editStudent', {student: rows[0]});
+    res.render('editStudent', {student: rows[0], cohorts: rows});
   });
 });
 
@@ -143,8 +143,7 @@ app.post('/students/:id/edit', ensureLog, function(req, res) {
     stmt = "UPDATE student SET student_gender = ?, student_first_name = ?, student_last_name = ?, student_phone = ?, student_dob = ?, student_start_date = ?, student_email = ?, guardian_one_name = ?, guardian_one_phone = ?, guardian_one_email = ?, guardian_two_name = ?, guardian_two_phone = ?, guardian_two_email = ?, middleschool_suspensions = ?, highschool_suspensions = ?, highschool_absences = ? WHERE student_id = " + req.params.id;
     connection.query(stmt,[req.body.gender,req.body.student_first_name,req.body.student_last_name,req.body.student_phone,new Date(req.body.student_dob),Date.now(),req.body.student_email,req.body.parentone_name,req.body.parentone_num,req.body.parentone_email,req.body.parenttwo_name,req.body.parenttwo_num,req.body.parenttwo_email,req.body.mssuspensions,req.body.hssuspensions,req.body.hsabsences], function(err, rows){ 
       console.log(err);
-      console.log(req.body);
-      if (err) { dialog.err('Sorry, an error occured while editing the student.', 'Failed to Edit Student'); }
+      if (err) { dialog.err('Sorry, an error occured while editing the student. No changes are saved.', 'Failed to Edit Student'); }
     });
 });
 
@@ -230,18 +229,10 @@ app.post('/addCohort',ensureLog, function(req, res) {
   });
 });
 
-// app.post('/students/:id/edit', ensureLog, function(req, res) {
-//   var query = "UPDATE student SET   student_first_name = ?, student_last_name = ?, student_dob = ?, student_gender = ?, student_phone = ?, student_email = ?, guardian_one_name = ?, guardian_one_email = ?, guardian_one_phone = ?, guardian_two_name = ?, guardian_two_email = ?, guardian_two_phone = ?, middleschool_suspensions = ?, highschool_absences = ?, highschool_suspensions = ?, cumulative_gpa = ?, total_credits_earned = ?, date_modified = ?, user_modified = ? WHERE student_id = ?;"
-//   connection.query(query, [req.body.student_first_name,req.body.student_last_name,req.body.student_dob,req.body.gender,req.body.student_phone,req.body.student_email,req.body.guardian_one_name,req.body.guardian_one_email,req.body.guardian_one_phone,req.body.guardian_two_name,req.body.guardian_two_email,req.body.guardian_two_phone,req.body.middleschool_suspensions,req.body.highschool_absence,req.body.highschool_suspensions,req.body.cumulative_gpa,req.body.total_credits_earned,req.body.date_modified,req.body.user_modified, req.params.id], function(err, rows) {
-//     console.log(err);
-//     res.redirect('/students/' + req.params.id + '/profile'); 
-//   });
+
+// app.get('/cohorts/:id/edit', ensureLog, function(req, res) {
+
 // });
-
-
-app.get('/cohorts/:id/edit', ensureLog, function(req, res) {
-
-});
 
 app.get('/cohorts/:id/delete', ensureLog, function(req, res) {
   connection.query("DELETE FROM cohort WHERE cohort_id=" + req.params.id, function(err, rows) {

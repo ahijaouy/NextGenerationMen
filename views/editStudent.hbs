@@ -151,7 +151,7 @@
                             <div class="x_content">
 
                                 <!--Smart Wizard -->
-                                <p>This is the form to add a new student. Please fill out all the information.</p>
+                                <p>This is the form to edit a new student. Fill out all the information you want to change or add.</p>
                                 <form id="notWizard" class="form-horizontal" method="post">
                                     <div id="wizard" class="form_wizard wizard_horizontal">
                                         <ul class="wizard_steps">
@@ -179,6 +179,15 @@
                                                     <span class="step_descr">
                                               Step 3<br/>
                                               <small>Pre-Program Information</small>
+                                          </span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#step-4">
+                                                    <span class="step_no">4</span>
+                                                    <span class="step_descr">
+                                              Step 4<br/>
+                                              <small>Current School Information</small>
                                           </span>
                                                 </a>
                                             </li>
@@ -377,6 +386,34 @@
                                                            class="form-control col-md-7 col-xs-12" value="{{student.highschool_absences}}">
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div id="step-4">
+
+                                        <!-- Cohort -->
+                                        <!-- <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                                   for="cohort">Cohort <span
+                                                    class="required">*</span>
+                                            </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <select class="form-control" name="cohort">
+                                                    {{#each cohorts}}
+                                                    <option value="{{this.cohort_id}}">{{this.school_name}} Class of {{this.cohort_year}}</option>
+                                                    {{/each}}
+                                                </select>
+                                            </div>
+                                        </div> -->
+
+                                        <!-- Program Start Date -->
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Program Start Date <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <input type="date" class="form-control" id="startdate" name="startdate" value="{{student.student_start_date}}">
+                                            </div>
+                                        </div>
+                                        </div>
+
                                         </div>
                                     </div>
                                 </form>
