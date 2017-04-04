@@ -161,7 +161,7 @@
                     <span class="caret"></span></button>
                     <ul class="dropdown-menu" role="menu" id="graphSelect" aria-labelledby="menu1" style="text-align:center;">
                       <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Students per School</a></li>
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Graph 2</a></li>
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">GPA per School</a></li>
                       <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Graph 3</a></li>
                       <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Graph 4</a></li>
                     </ul>
@@ -850,15 +850,17 @@
     <!-- Flot -->
     <script>
       $(document).ready(function() {
-        gpaPerSchool();
+        emptyGraph();
       });
 
       $('#graphSelect li a').click(function() {
         $('#menu1').text($(this).text());
         if ($(this).text() == "Students per School") {
           studentsPerSchool();
-        } else {
+        } else if($(this).text() == "GPA per School") {
           gpaPerSchool();
+        } else {
+          emptyGraph();
         }
       });
 
