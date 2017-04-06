@@ -60,16 +60,18 @@ module.exports = function(app, passport, env) {
         var innerJoinQuery = "SELECT * FROM student ";
         innerJoinQuery += "INNER JOIN cohort on student.cohort_id=cohort.cohort_id ";
         innerJoinQuery += "INNER JOIN semester_record on semester_record.student_id=student.student_id; ";
-        // innerJoinQuery += "INNER JOIN school on school.school_id=cohort.school_id;"
         connection.query(innerJoinQuery, function(err, joins) {
           connection.query("SELECT COUNT(student_gender) as count from student where student_gender=\"Male\"",function(err, maleCounter) {
             connection.query("SELECT COUNT(student_gender) as count from student where student_gender=\"Female\"", function(err, femaleCounter) {
-              res.render('index', {
-                  students: students,
-                  schools: schools,
-                  joins: joins,
-                  maleCounter: maleCounter[0].count,
-                  femaleCounter: femaleCounter[0].count
+              connection.query("SELECT * from survey_response;", function(err, survey_responses) {
+                res.render('index', {
+                    students: students,
+                    schools: schools,
+                    joins: joins,
+                    survey_response: survey_responses,
+                    maleCounter: maleCounter[0].count,
+                    femaleCounter: femaleCounter[0].count
+                });
               });
             });
           });
