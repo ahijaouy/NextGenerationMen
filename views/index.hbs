@@ -969,7 +969,20 @@
                 surveyInfo[semesterRecordId].behaveAvg = avg;
               }
             }
-            var compositeAvg = [];
+            
+
+
+            console.log("surveyQuestionId: " + surveyQuestionId);
+          }
+          
+          
+        {{/each}}
+        console.log(surveyInfo[1]);
+        console.log("7 | 13 | 17 | 25 | 31 | 34 | 44");
+        for (x in surveyInfo[1]) {
+          console.log(x + ": " + surveyInfo[1][x]);
+        }
+        var compositeAvg = [];
             for (x in surveyInfo) {
               
               if (surveyInfo[x] != null) {
@@ -984,14 +997,14 @@
             var data = [];
             var pos = 2;
             for (x in compositeAvg) {
-                data.push([pos, compositveAvg[x]]);
+                data.push([pos, compositeAvg[x]]);
                 pos = pos + 3;
             }
             console.log("data: " + data);
             var schoolTicks = [];
             pos = 2;
             {{#each survey_response}}
-                schoolTicks.push([pos, "{{this.school_name}}"]);
+                schoolTicks.push([pos, "Semester #{{this.semester_number}}"]);
                 pos = pos + 3;
             {{/each}}
             console.log("schoolTicks: " + schoolTicks);
@@ -1038,71 +1051,9 @@
               },
               tooltip: false
             });
-
-
-            console.log("surveyQuestionId: " + surveyQuestionId);
-            // var avg;
-            // if (surveyQuestionId <= 7) {
-            //   avg = surveyInfo[semesterRecordId].gritAvg;
-            //   avg[0] *= avg[1];
-            //   avg[0] += {{this.response}};
-            //   avg[0] /= avg[1] + 1;
-            //   avg[1]++;
-            //   surveyInfo[semesterRecordId].gritAvg = avg;
-            // } else if (surveyQuestionId <= 13) {
-            //   avg = surveyInfo[semesterRecordId].probSolvAvg;
-            //   avg[0] *= avg[1];
-            //   avg[0] += {{this.response}};
-            //   avg[0] /= avg[1] + 1;
-            //   avg[1]++;
-            //   surveyInfo[semesterRecordId].probSolvAvg = avg;
-            // } else if (surveyQuestionId <= 17) {
-            //   avg = surveyInfo[semesterRecordId].aseAvg;
-            //   avg[0] *= avg[1];
-            //   avg[0] += {{this.response}};
-            //   avg[0] /= avg[1] + 1;
-            //   avg[1]++;
-            //   surveyInfo[semesterRecordId].aseAvg = avg;
-            // } else if (surveyQuestionId <= 25) {
-            //   avg = surveyInfo[semesterRecordId].tmwrkAvg;
-            //   avg[0] *= avg[1];
-            //   avg[0] += {{this.response}};
-            //   avg[0] /= avg[1] + 1;
-            //   avg[1]++;
-            //   surveyInfo[semesterRecordId].tmwrkAvg = avg;
-            // } else if (surveyQuestionId <= 31) {
-            //   avg = surveyInfo[semesterRecordId].scompAvg;
-            //   avg[0] *= avg[1];
-            //   avg[0] += {{this.response}};
-            //   avg[0] /= avg[1] + 1;
-            //   avg[1]++;
-            //   surveyInfo[semesterRecordId].scompAvg = avg;
-            // } else if (surveyQuestionId <= 34) {
-            //   avg = surveyInfo[semesterRecordId].grwthAvg;
-            //   avg[0] *= avg[1];
-            //   avg[0] += {{this.response}};
-            //   avg[0] /= avg[1] + 1;
-            //   avg[1]++;
-            //   surveyInfo[semesterRecordId].grwthAvg = avg;
-            // } else if (surveyQuestionId <= 48) {
-            //   avg = surveyInfo[semesterRecordId].gritAvg;
-            //   avg[0] *= avg[1];
-            //   avg[0] += {{this.response}};
-            //   avg[0] /= avg[1] + 1;
-            //   avg[1]++;
-            //   surveyInfo[semesterRecordId].gritAvg = avg;
-          //   }
-          }
-          
-          
-        {{/each}}
         // console.log("counter: " + counter);
         // console.log("surveyInfo: " + surveyInfo);
-        console.log(surveyInfo[1]);
-        console.log("7 | 13 | 17 | 25 | 31 | 34 | 44");
-        for (x in surveyInfo[1]) {
-          console.log(x + ": " + surveyInfo[1][x]);
-        }
+        
       }
 
       function gpaPerSchool() {
