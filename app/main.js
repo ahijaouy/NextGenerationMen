@@ -57,20 +57,23 @@ module.exports = function(app, passport, env) {
   app.get('/index',ensureLog, function(req, res) {
     connection.query("SELECT * FROM student order by date_modified;", function(err, students){
       connection.query("SELECT * FROM school;", function(err, schools){
-        var innerJoinQuery = "SELECT * FROM student ";
-        innerJoinQuery += "INNER JOIN cohort on student.cohort_id=cohort.cohort_id ";
-        innerJoinQuery += "INNER JOIN semester_record on semester_record.student_id=student.student_id; ";
-        connection.query(innerJoinQuery, function(err, joins) {
-          connection.query("SELECT COUNT(student_gender) as count from student where student_gender=\"Male\"",function(err, maleCounter) {
-            connection.query("SELECT COUNT(student_gender) as count from student where student_gender=\"Female\"", function(err, femaleCounter) {
-              connection.query("SELECT * from survey_response;", function(err, survey_responses) {
-                res.render('index', {
-                    students: students,
-                    schools: schools,
-                    joins: joins,
-                    survey_response: survey_responses,
-                    maleCounter: maleCounter[0].count,
-                    femaleCounter: femaleCounter[0].count
+        connection.query("SELECT * FROM cohort;", function(err, cohorts) {
+          var innerJoinQuery = "SELECT * FROM student ";
+          innerJoinQuery += "INNER JOIN cohort on student.cohort_id=cohort.cohort_id ";
+          innerJoinQuery += "INNER JOIN semester_record on semester_record.student_id=student.student_id; ";
+          connection.query(innerJoinQuery, function(err, joins) {
+            connection.query("SELECT COUNT(student_gender) as count from student where student_gender=\"Male\"",function(err, maleCounter) {
+              connection.query("SELECT COUNT(student_gender) as count from student where student_gender=\"Female\"", function(err, femaleCounter) {
+                connection.query("SELECT * from survey_response;", function(err, survey_responses) {
+                  res.render('index', {
+                      students: students,
+                      schools: schools,
+                      cohorts: cohorts,
+                      joins: joins,
+                      survey_response: survey_responses,
+                      maleCounter: maleCounter[0].count,
+                      femaleCounter: femaleCounter[0].count
+                  });
                 });
               });
             });

@@ -152,17 +152,18 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="dashboard_graph">
                 <div class="row x_title">
-                  <div class="col-md-9">
-                    <h3>School Performance <small>Graph title sub-title</small>
+                  <div class="col-lg-8">
+                    <h3 id="Graph-Title">School Performance</h3>
+                  </div>
+                  <div class='col-lg-3'>
                     <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Graph Type
                     <span class="caret"></span></button>
                     <ul class="dropdown-menu" role="menu" id="graphSelect" aria-labelledby="menu1" style="text-align:center;">
                       <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Students per School</a></li>
                       <li role="presentation"><a role="menuitem" tabindex="-1" href="#">GPA per School</a></li>
                       <li role="presentation"><a role="menuitem" tabindex="-1" href="#">GPA per Cohort</a></li>
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Graph 4</a></li>
-                    </ul>
-                    </h3>
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Survey Response over Time</a></li>
+                    </ul> 
                   </div>
                   <!-- <div class="col-md-6">
                     <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
@@ -855,16 +856,19 @@
         $('#menu1').text($(this).text());
         if ($(this).text() == "Students per School") {
           studentsPerSchool();
-        } else if($(this).text() == "GPA per School") {
+        } else if ($(this).text() == "GPA per School") {
           gpaPerSchool();
-        } else if($(this).text() == "GPA per Cohort") {
+        } else if ($(this).text() == "GPA per Cohort") {
           gpaPerCohort();
+        } else if ($(this).text() == "Survey Response over Time") {
+          survey_responseOverTime();
         } else {
           emptyGraph();
         }
       });
 
       function survey_responseOverTime() {
+        $('#Graph-Title').text("Survey Response Over Time");
         var surveyInfo = [];
         var counter = 0;
         {{#each survey_response}}
@@ -1014,16 +1018,18 @@
             ], {
               series: {
                 lines: {
-                  show: false,
-                  fill: false,
+                  show: true,
+                  fill: true,
                 },
                 bars: {
-                  show: true,
+                  show: false,
                   fill: true,
                   barWidth: 2,
                   align: "center"
                 },
                 points: {
+                  show:true,
+                  fill:true
                   },
               },
               grid: {
@@ -1051,12 +1057,11 @@
               },
               tooltip: false
             });
-        // console.log("counter: " + counter);
-        // console.log("surveyInfo: " + surveyInfo);
-        
       }
 
       function gpaPerSchool() {
+        $('#Graph-Title').text("GPA Per School");
+
         var gradeInfo = [];
         {{#each joins}}
           if (gradeInfo[{{this.school_id}}] == null) {
@@ -1079,15 +1084,12 @@
             data.push([pos, gradeInfo[x].avg]);
             pos = pos + 3;
         }
-        console.log("data: " + data);
         var schoolTicks = [];
         pos = 2;
         {{#each schools}}
             schoolTicks.push([pos, "{{this.school_name}}"]);
             pos = pos + 3;
         {{/each}}
-        console.log("schoolTicks: " + schoolTicks);
-
         $("#canvas_dahs").length && $.plot($("#canvas_dahs"), [
           data
         ], {
@@ -1133,6 +1135,8 @@
       }
 
       function gpaPerCohort() {
+        $('#Graph-Title').text("GPA Per Cohort");
+
         var gradeInfo = [];
         {{#each joins}}
           if (gradeInfo[{{this.cohort_id}}] == null) {
@@ -1155,14 +1159,12 @@
             data.push([pos, gradeInfo[x].avg]);
             pos = pos + 3;
         }
-        console.log("data: " + data);
         var schoolTicks = [];
         pos = 2;
-        {{#each schools}}
+        {{#each cohorts}}
             schoolTicks.push([pos, "{{this.cohort_year}}"]);
             pos = pos + 3;
         {{/each}}
-        console.log("schoolTicks: " + schoolTicks);
 
         $("#canvas_dahs").length && $.plot($("#canvas_dahs"), [
           data
@@ -1209,6 +1211,8 @@
       }
 
       function studentsPerSchool() {
+        $('#Graph-Title').text("Students Per School");
+
         var counts = [];
         {{#each joins}}
         if (counts[{{this.school_id}}] == null) {
@@ -1219,19 +1223,16 @@
 
         var data = []
         var pos = 2;
-        console.log("counts: " + counts);
         for (x in counts) {
             data.push([pos, counts[x]]);
             pos = pos + 3;
         }
-        console.log("data: " + data);
         var schoolTicks = [];
         pos = 2;
         {{#each schools}}
             schoolTicks.push([pos, "{{this.school_name}}"]);
             pos = pos + 3;
         {{/each}}
-        console.log("schoolTicks: " + schoolTicks);
 
         $("#canvas_dahs").length && $.plot($("#canvas_dahs"), [
           data
@@ -1278,6 +1279,9 @@
       }
 
       function emptyGraph() {
+        $('#Graph-Title').text("Empty Graph");
+
+
         $("#canvas_dahs").length && $.plot($("#canvas_dahs"), [
           []
         ], {
