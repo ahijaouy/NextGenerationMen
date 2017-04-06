@@ -132,7 +132,7 @@ app.get('/students/:id/delete',ensureLog, function(req, res) {
 
 app.get('/students/:id/edit', ensureLog, function(req, res) {
   var query = "SELECT * FROM student WHERE student_id=" + req.params.id;
-  var query2 = "SELECT * FROM cohort"
+  var query2 = "SELECT * FROM cohort INNER JOIN school ON cohort.school_id=school.school_id";
   connection.query(query, function(err, rows) {
     console.log(err);
     connection.query(query2, function(err, rows2) {
