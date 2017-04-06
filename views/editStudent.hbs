@@ -53,6 +53,7 @@
                       <li><a href="/index"><i class="fa fa-home"></i>Dashboard</a></li>
                       <li><a href="/schools"><i class="fa fa-graduation-cap"></i>Schools</a></li>
                       <li><a href="/students"><i class="fa fa-users"></i>Students</a></li>
+                      <li><a href="/alumni"><i class="fa fa-users"></i>Alumni</a></li>
                      {{!--  <li><a href="/partners"><i class="fa fa-building"></i>Partners</a></li> --}}
                       <li><a><i class="fa fa-plus"></i>Add<span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
@@ -151,7 +152,7 @@
                             <div class="x_content">
 
                                 <!--Smart Wizard -->
-                                <p>This is the form to add a new student. Please fill out all the information.</p>
+                                <p>This is the form to edit a new student. Fill out all the information you want to change or add.</p>
                                 <form id="notWizard" class="form-horizontal" method="post">
                                     <div id="wizard" class="form_wizard wizard_horizontal">
                                         <ul class="wizard_steps">
@@ -179,6 +180,15 @@
                                                     <span class="step_descr">
                                               Step 3<br/>
                                               <small>Pre-Program Information</small>
+                                          </span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#step-4">
+                                                    <span class="step_no">4</span>
+                                                    <span class="step_descr">
+                                              Step 4<br/>
+                                              <small>Current School Information</small>
                                           </span>
                                                 </a>
                                             </li>
@@ -216,7 +226,7 @@
                                                     Birth <span class="required">*</span>
                                                 </label>
                                                 <div class="col-sm-6 col-smd-6 col-xs-12">
-                                                    <input type="date" class="form-control" id="student_dob" name="student_dob" value="{{student.student_dob}}">
+                                                    <input type="date" class="form-control" id="student_dob" name="student_dob" value=date("{{student.student_dob}}")>
                                                 </div>
                                             </div>
 
@@ -235,7 +245,7 @@
                                                         <label class="btn btn-default"
                                                                data-toggle-class="btn-primary"
                                                                data-toggle-passive-class="btn-default">
-                                                            <input type="radio" name="gender" value="female"> Female
+                                                            <input type="radio" name="gender" value="{{student.student_gender}}"> Female
                                                         </label>
                                                     </div>
                                                 </div>
@@ -377,6 +387,34 @@
                                                            class="form-control col-md-7 col-xs-12" value="{{student.highschool_absences}}">
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div id="step-4">
+
+                                        <!-- Cohort -->
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                                   for="cohort">Cohort <span
+                                                    class="required">*</span>
+                                            </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <select class="form-control" name="cohort">
+                                                    {{#each cohorts}}
+                                                    <option value="{{this.cohort_id}}">{{this.school_name}} Class of {{this.cohort_year}}</option>
+                                                    {{/each}}
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <!-- Program Start Date -->
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Program Start Date <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <input type="date" class="form-control" id="startdate" name="startdate" value="{{student.student_start_date}}">
+                                            </div>
+                                        </div>
+                                        </div>
+
                                         </div>
                                     </div>
                                 </form>
