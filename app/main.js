@@ -242,6 +242,18 @@ app.get('/cohorts/:id/delete', ensureLog, function(req, res) {
     res.redirect('/schools');
   });
 });
+
+//Alumni Routes
+// app.get('/alumni', ensureLog, function(req, res) {
+//   res.render('alumni');
+// });
+
+app.get('/alumni',ensureLog, function(req, res) {
+    connection.query("SELECT student.student_id, student.student_first_name, student.student_phone, student.student_last_name, school.school_name, cohort.cohort_year, student.guardian_one_name, student.guardian_one_phone FROM student INNER JOIN cohort ON student.cohort_id=cohort.cohort_id INNER JOIN school ON cohort.school_id=school.school_id;", function(err, rows){
+      console.log(err);
+      res.render('alumni', { students: rows});
+    });
+  });
   
   // //Partner routes
   // app.get('/partners',ensureLog, function(req, res) {
