@@ -132,9 +132,13 @@ app.get('/students/:id/delete',ensureLog, function(req, res) {
 
 app.get('/students/:id/edit', ensureLog, function(req, res) {
   var query = "SELECT * FROM student WHERE student_id=" + req.params.id;
+  var query2 = "SELECT * FROM cohort"
   connection.query(query, function(err, rows) {
     console.log(err);
-    res.render('editStudent', {student: rows[0], cohorts: rows});
+    connection.query(query2, function(err, rows2) {
+      console.log(err);
+      res.render('editStudent', {student: rows[0], cohorts: rows2});
+    })
   });
 });
 

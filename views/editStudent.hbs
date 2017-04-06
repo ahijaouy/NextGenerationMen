@@ -225,7 +225,7 @@
                                                     Birth <span class="required">*</span>
                                                 </label>
                                                 <div class="col-sm-6 col-smd-6 col-xs-12">
-                                                    <input type="date" class="form-control" id="student_dob" name="student_dob" value="{{student.student_dob}}">
+                                                    <input type="date" class="form-control" id="student_dob" name="student_dob" value=date("{{student.student_dob}}")>
                                                 </div>
                                             </div>
 
@@ -244,7 +244,7 @@
                                                         <label class="btn btn-default"
                                                                data-toggle-class="btn-primary"
                                                                data-toggle-passive-class="btn-default">
-                                                            <input type="radio" name="gender" value="female"> Female
+                                                            <input type="radio" name="gender" value="{{student.student_gender}}"> Female
                                                         </label>
                                                     </div>
                                                 </div>
