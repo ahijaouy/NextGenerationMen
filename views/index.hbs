@@ -152,10 +152,10 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="dashboard_graph">
                 <div class="row x_title">
-                  <div class="col-lg-8">
+                  <div class="col-lg-8 col-md-8 col-sm-6">
                     <h3 id="Graph-Title">School Performance</h3>
                   </div>
-                  <div class='col-lg-3'>
+                  <div class='col-lg-3 col-md-3 col-sm-2'>
                     <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Graph Type
                     <span class="caret"></span></button>
                     <ul class="dropdown-menu" role="menu" id="graphSelect" aria-labelledby="menu1" style="text-align:center;">
@@ -849,7 +849,7 @@
     <!-- Flot -->
     <script>
       $(document).ready(function() {
-        survey_responseOverTime();
+        studentsPerSchool();
       });
 
       $('#graphSelect li a').click(function() {
