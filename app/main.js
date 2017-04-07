@@ -100,9 +100,9 @@ module.exports = function(app, passport, env) {
 
   app.get('/students/:id/profile',ensureLog, function(req, res) {
     var query = "SELECT * FROM student INNER JOIN cohort on student.cohort_id=cohort.cohort_id INNER JOIN school on cohort.school_id=school.school_id WHERE student_id=" + req.params.id + ";";
-
     connection.query(query, function(err, rows) {
       //rows[0].student_dob = rows[0].student_dob.toDateString(); //properly set date.
+      
       var academicRecord = "SELECT * FROM semester_record WHERE student_id=" + req.params.id + ";";
       connection.query(academicRecord, function(err, recordRows) {
         if (recordRows === undefined) {

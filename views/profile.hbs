@@ -776,20 +776,17 @@
 
     <script>
       $(function() {
+        var a = [];
+        {{#each record}}
+
+        a.push({"semester_number": "{{this.semester_number}}", "semester_gpa": "{{this.semester_gpa}}"});
+        {{/each}}
         Morris.Line({
           element: 'graph_line',
-          data: [
-          { y: '2006', a: 100 },
-          { y: '2007', a: 75 },
-          { y: '2008', a: 50 },
-          { y: '2009', a: 75 },
-          { y: '2010', a: 50 },
-          { y: '2011', a: 75 },
-          { y: '2012', a: 100 }
-          ],
-          xkey: 'y',
-          ykeys: ['a'],
-          labels: ['Series A'],
+          data: a,
+          xkey: 'semester_number',
+          ykeys: ['semester_gpa'],
+          labels: ['GPA'],
           parseTime: false,
           hideHover: 'auto',
           });
