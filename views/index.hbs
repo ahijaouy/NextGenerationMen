@@ -867,6 +867,141 @@
         }
       });
 
+      function survey_responsesOverTimeSByCategory() {
+        $('#Graph-Title').text("Survey Responses Over Time By Category");
+        var surveyInfo = [];
+        var counter = 0;
+        {{#each survey_response}}
+          counter++;
+          var semesterRecordId = {{this.semester_record_id}};
+          var surveyQuestionId = {{this.survey_question_id}};
+          if (surveyInfo[semesterRecordId] == null) {
+            surveyInfo[semesterRecordId] = {};
+            if (surveyQuestionId <= 7) {
+              surveyInfo[semesterRecordId].gritAvg = [{{this.response}}, 1];
+            } else if (surveyQuestionId <= 13) {
+              surveyInfo[semesterRecordId].probSolvAvg = [{{this.response}}, 1];
+            } else if (surveyQuestionId <= 17) {
+              surveyInfo[semesterRecordId].aseAvg = [{{this.response}}, 1];
+            } else if (surveyQuestionId <= 25) {
+              surveyInfo[semesterRecordId].tmwrkAvg = [{{this.response}}, 1];
+            } else if (surveyQuestionId <= 31) {
+              surveyInfo[semesterRecordId].scompAvg = [{{this.response}}, 1];
+            } else if (surveyQuestionId <= 34) {
+              surveyInfo[semesterRecordId].grwthAvg = [{{this.response}}, 1];
+            } else if (surveyQuestionId <= 48) {
+              surveyInfo[semesterRecordId].behaveAvg = [{{this.response}}, 1];
+            }
+          } else {
+            var avg;
+            if (surveyQuestionId <= 7) {
+              if (surveyInfo[semesterRecordId].gritAvg == null) {
+                surveyInfo[semesterRecordId].gritAvg = [{{this.response}}, 1];
+              } else {
+                avg = surveyInfo[semesterRecordId].gritAvg;
+                avg[0] *= avg[1];
+                avg[0] += {{this.response}};
+                avg[0] /= avg[1] + 1;
+                avg[1]++;
+                surveyInfo[semesterRecordId].gritAvg = avg;
+              }
+            } else if (surveyQuestionId <= 13) {
+              if (surveyInfo[semesterRecordId].probSolvAvg == null) {
+                surveyInfo[semesterRecordId].probSolvAvg = [{{this.response}}, 1];
+              } else {
+                avg = surveyInfo[semesterRecordId].probSolvAvg;
+                avg[0] *= avg[1];
+                avg[0] += {{this.response}};
+                avg[0] /= avg[1] + 1;
+                avg[1]++; 
+                surveyInfo[semesterRecordId].probSolvAvg = avg;
+              }
+            } else if (surveyQuestionId <= 17) {
+              if (surveyInfo[semesterRecordId].aseAvg == null) {    
+                surveyInfo[semesterRecordId].aseAvg = [{{this.response}}, 1];
+              } else {
+                avg = surveyInfo[semesterRecordId].aseAvg;
+                avg[0] *= avg[1];
+                avg[0] += {{this.response}};
+                avg[0] /= avg[1] + 1;
+                avg[1]++; 
+              surveyInfo[semesterRecordId].aseAvg = avg;
+              }
+            } else if (surveyQuestionId <= 25) {
+              if (surveyInfo[semesterRecordId].tmwrkAvg == null) {
+                surveyInfo[semesterRecordId].tmwrkAvg = [{{this.response}}, 1];
+              } else {
+                avg = surveyInfo[semesterRecordId].tmwrkAvg;
+                avg[0] *= avg[1];
+                avg[0] += {{this.response}};
+                avg[0] /= avg[1] + 1;
+                avg[1]++;
+                surveyInfo[semesterRecordId].tmwrkAvg = avg;
+
+              }
+            } else if (surveyQuestionId <= 31) {
+              if (surveyInfo[semesterRecordId].scompAvg == null) {
+                surveyInfo[semesterRecordId].scompAvg = [{{this.response}}, 1];
+              } else {
+                avg = surveyInfo[semesterRecordId].scompAvg;
+                avg[0] *= avg[1];
+                avg[0] += {{this.response}};
+                avg[0] /= avg[1] + 1;
+                avg[1]++;
+                surveyInfo[semesterRecordId].scompAvg = avg;
+              }
+            } else if (surveyQuestionId <= 34) {
+              if (surveyInfo[semesterRecordId].grwthAvg == null) {
+                surveyInfo[semesterRecordId].grwthAvg = [{{this.response}}, 1];
+              } else {
+                avg = surveyInfo[semesterRecordId].grwthAvg;
+                avg[0] *= avg[1];
+                avg[0] += {{this.response}};
+                avg[0] /= avg[1] + 1;
+                avg[1]++;
+                surveyInfo[semesterRecordId].grwthAvg = avg;
+              }
+            } else if (surveyQuestionId <= 48) {
+              if (surveyInfo[semesterRecordId].behaveAvg == null) {
+                surveyInfo[semesterRecordId].behaveAvg = [{{this.response}}, 1];
+              } else {
+                avg = surveyInfo[semesterRecordId].behaveAvg;
+                avg[0] *= avg[1];
+                avg[0] += {{this.response}};
+                avg[0] /= avg[1] + 1;
+                avg[1]++;
+                surveyInfo[semesterRecordId].behaveAvg = avg;
+              }
+            }            
+          }          
+        {{/each}}
+        var gritAvg = [];
+        var probSolvAvg = [];
+        var aseAvg = [];
+        var tmwrkAvg = [];
+        var scompAvg = [];
+        var grwthAvg = [];
+        var behaveAvg = [];
+        var compositeData = [];
+        for (x in surveyInfo) {
+          if (surveyInfo[x] != null) {
+            compositeData[x] = [];
+            for (y in surveyInfo[x]) {
+              compositeData[x].push(surveyInfo[x][y][0]);
+            }
+          }
+        }
+        for (x in compositeData) {
+          gritAvg.push(compositeData[x][0]);
+          probSolvAvg.push(compositeData[x][1]);
+          aseAvg.push(compositeData[x][2]);
+          tmwrkAvg.push(compositeData[x][3]);
+          scompAvg.push(compositeData[x][4]);
+          grwthAvg.push(compositeData[x][5]);
+          behaveAvg.push(compositeData[x][6]);
+        }
+      }
+
       function survey_responseOverTime() {
         $('#Graph-Title').text("Survey Response Over Time");
         var surveyInfo = [];
@@ -972,11 +1107,7 @@
                 avg[1]++;
                 surveyInfo[semesterRecordId].behaveAvg = avg;
               }
-            }
-            
-
-
-            console.log("surveyQuestionId: " + surveyQuestionId);
+            }            
           }
           
           

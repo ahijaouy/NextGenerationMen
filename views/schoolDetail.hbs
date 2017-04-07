@@ -120,8 +120,6 @@
         <!-- page content -->
         <div class="right_col" role="main">
           <div class="">
-            
-
             <div class="row">
               <div class="col-md-12">
                 <div class="x_panel">
@@ -151,64 +149,106 @@
 
                       <div id="mainb" style="height:350px;"></div>
 
-                      <div>
-
-                        <h4>Recent Activity</h4>
-
-                        <!-- end of user messages -->
-                        <ul class="messages">
-                          <li>
-                            <img src="../../images/img.jpg" class="avatar" alt="Avatar">
-                            <div class="message_date">
-                              <h3 class="date text-info">24</h3>
-                              <p class="month">May</p>
-                            </div>
-                            <div class="message_wrapper">
-                              <h4 class="heading">Desmond Davison</h4>
-                              <blockquote class="message">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth.</blockquote>
-                              <br />
-                              <p class="url">
-                                <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
-                                <a href="#"><i class="fa fa-paperclip"></i> User Acceptance Test.doc </a>
-                              </p>
-                            </div>
+                      <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                        <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                          <li role="presentation" class="active"><a href="#tab_content1" id="notes-tab" role="tab" data-toggle="tab" aria-expanded="true">Notes</a>
                           </li>
-                          <li>
-                            <img src="../../images/img.jpg" class="avatar" alt="Avatar">
-                            <div class="message_date">
-                              <h3 class="date text-error">21</h3>
-                              <p class="month">May</p>
-                            </div>
-                            <div class="message_wrapper">
-                              <h4 class="heading">Brian Michaels</h4>
-                              <blockquote class="message">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth.</blockquote>
-                              <br />
-                              <p class="url">
-                                <span class="fs1" aria-hidden="true" data-icon=""></span>
-                                <a href="#" data-original-title="">Download</a>
-                              </p>
-                            </div>
+                          <li role="presentation" class=""><a href="#tab_content2" role="tab" id="students-tab" data-toggle="tab" aria-expanded="false">Students</a>
                           </li>
-                          <li>
-                            <img src="../../images/img.jpg" class="avatar" alt="Avatar">
-                            <div class="message_date">
-                              <h3 class="date text-info">24</h3>
-                              <p class="month">May</p>
-                            </div>
-                            <div class="message_wrapper">
-                              <h4 class="heading">Desmond Davison</h4>
-                              <blockquote class="message">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth.</blockquote>
-                              <br />
-                              <p class="url">
-                                <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
-                                <a href="#"><i class="fa fa-paperclip"></i> User Acceptance Test.doc </a>
-                              </p>
-                            </div>
+                          <li role="presentation" class=""><a href="#tab_content3" role="tab" id="academic-tab" data-toggle="tab" aria-expanded="false">Cohorts</a>
                           </li>
                         </ul>
-                        <!-- end of user messages -->
+                        <div id="myTabContent" class="tab-content">
 
+                          <!-- Notes Tab -->
+                          <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
 
+                            <!-- start NGM Notes about Student -->
+                            <ul class="messages">
+                              <li>
+                                <img src="../../images/img.jpg" class="avatar" alt="Avatar">
+                                <div class="message_date">
+                                  <h3 class="date text-info">24</h3>
+                                  <p class="month">May</p>
+                                </div>
+                                <div class="message_wrapper">
+                                  <h4 class="heading">Desmond Davison</h4>
+                                  <blockquote class="message">This is an example of a note a NGM user might leave on this profile?</blockquote>
+                                  <br />
+                                  <p class="url">
+                                    <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
+                                    <a href="#"><i class="fa fa-paperclip"></i> User Acceptance Test.doc </a>
+                                  </p>
+                                </div>
+                              </li>
+                            </ul>
+                            <!-- end Notes -->
+                          </div>
+
+                          <!--Student Tab -->
+                          <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="students-tab">
+                            <div class="x_content">
+                              <table id="student_table" class="table table-striped table-bordered display" cellspacing="0" width="100%">
+                                <thead>
+                                  <tr>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Cohort</th>
+                                    <th>Cell Phone</th>
+                                    <th>Primary Guardian</th>
+                                    <th>Primary Guardian Cell Phone</th>
+                                    <th>Actions</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                {{#each students}}
+                                  <tr>
+                                    <td>{{this.student_first_name}}</td>
+                                    <td>{{this.student_last_name}}</td>
+                                    <td>Class of {{this.cohort_year}}</td>
+                                    <td>{{this.student_phone}}</td>
+                                    <td>{{this.guardian_one_name}}</td>
+                                    <td>{{this.guardian_one_phone}}</td>
+                                    <td>
+                                      <a href="/students/{{this.student_id}}/profile" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+                                      <a href="/students/{{this.student_id}}/edit" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                                      <a href="/students/{{this.student_id}}/delete" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete</a>
+                                    </td>
+                                  </tr>
+                                {{/each}}
+                                </tbody>
+                              </table>
+                            </div>
+
+                          </div>
+
+                          <!--Begin Cohort Tab -->
+                          <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="academic-tab">
+                            <div class="x_content">
+                              <table id="cohort_table" class="table table-striped table-bordered display" cellspacing="0" width="100%">
+                                <thead>
+                                  <tr>
+                                    <th>Cohort Year</th>
+                                    <th>Number of Students</th>
+                                    <th>Actions</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                {{#each cohorts}}
+                                  <tr>
+                                    <td>{{this.cohort_year}}</td>
+                                    <td>some number </td>
+                                    <td>
+                                      <a href="/cohorts/{{this.cohort_id}}/edit" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                                      <a href="/cohorts/{{this.cohort_id}}/delete" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete</a>
+                                    </td>
+                                  </tr>
+                                {{/each}}
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
                       </div>
 
 
@@ -352,6 +392,7 @@
                     </div>
                     <!-- end project-detail sidebar -->
 
+<<<<<<< HEAD
 
                             <p class="title">School Address</p>
                             <p>{{school.school_address}}</p>
@@ -361,6 +402,9 @@
                             <p>{{school.principle}}</p>
                             <p class="title">Principle's Phone Number</p>
                             <p>{{school.school_phone}}</p>
+=======
+                            
+>>>>>>> 61e52dcd6bc91c5ff287aa65973e8693ba8ac7f3
                           </div>
                         </div>
 
