@@ -66,18 +66,14 @@ module.exports = function(app, passport, env) {
             connection.query("SELECT COUNT(student_gender) as count from student where student_gender=\"Male\"",function(err, maleCounter) {
               connection.query("SELECT COUNT(student_gender) as count from student where student_gender=\"Female\"", function(err, femaleCounter) {
                 connection.query("SELECT * from survey_response;", function(err, survey_responses) {
-                  // console.log('Joins:' + joins);
-                  // console.log(schools);
-                  // console.log(cohorts);
-                  // console.log(students);
                   res.render('index', {
-                      students: students,
-                      schools: schools,
-                      cohorts: cohorts,
-                      joins: joins,
-                      survey_response: survey_responses,
-                      maleCounter: maleCounter[0].count,
-                      femaleCounter: femaleCounter[0].count
+                    students: students,
+                    schools: schools,
+                    cohorts: cohorts,
+                    joins: joins,
+                    survey_response: survey_responses,
+                    maleCounter: maleCounter[0].count,
+                    femaleCounter: femaleCounter[0].count
                   });
                 });
               });
@@ -154,9 +150,24 @@ app.get('/students/:id/delete',ensureLog, function(req, res) {
 
 app.get('/students/:id/edit', ensureLog, function(req, res) {
   var query = "SELECT * FROM student WHERE student_id=" + req.params.id;
+  var query2 = "SELECT cohort.cohort_id, cohort.cohort_year, school.school_name from cohort INNER JOIN school on school.school_id=cohort.school_id;"
   connection.query(query, function(err, rows) {
+    if (err) {console.log(err);}
+    connection.query(query2, function(err2, rows2) {
+      if (err2) {console.log(err2);}
+      res.render('editStudent', {
+        student: rows[0],
+        cohorts: rows2});
+    });
+    
+  });
+});
+
+app.post('/students/:id/edit', ensureLog, function(req, res) {
+  var query = "UPDATE student SET   student_first_name = ?, student_last_name = ?, student_dob = ?, student_gender = ?, student_phone = ?, student_email = ?, guardian_one_name = ?, guardian_one_email = ?, guardian_one_phone = ?, guardian_two_name = ?, guardian_two_email = ?, guardian_two_phone = ?, middleschool_suspensions = ?, highschool_absences = ?, highschool_suspensions = ?, cumulative_gpa = ?, total_credits_earned = ?, date_modified = ?, user_modified = ? WHERE student_id = ?;"
+  connection.query(query, [req.body.student_first_name,req.body.student_last_name,req.body.student_dob,req.body.gender,req.body.student_phone,req.body.student_email,req.body.guardian_one_name,req.body.guardian_one_email,req.body.guardian_one_phone,req.body.guardian_two_name,req.body.guardian_two_email,req.body.guardian_two_phone,req.body.middleschool_suspensions,req.body.highschool_absence,req.body.highschool_suspensions,req.body.cumulative_gpa,req.body.total_credits_earned,Date.now(),req.body.user_modified, req.params.id], function(err, rows) {
     console.log(err);
-    res.render('editStudent', {student: rows[0]});
+    res.redirect('/students/' + req.params.id + '/profile'); 
   });
 });
 
@@ -242,13 +253,7 @@ app.post('/addCohort',ensureLog, function(req, res) {
   });
 });
 
-app.post('/students/:id/edit', ensureLog, function(req, res) {
-  var query = "UPDATE student SET   student_first_name = ?, student_last_name = ?, student_dob = ?, student_gender = ?, student_phone = ?, student_email = ?, guardian_one_name = ?, guardian_one_email = ?, guardian_one_phone = ?, guardian_two_name = ?, guardian_two_email = ?, guardian_two_phone = ?, middleschool_suspensions = ?, highschool_absences = ?, highschool_suspensions = ?, cumulative_gpa = ?, total_credits_earned = ?, date_modified = ?, user_modified = ? WHERE student_id = ?;"
-  connection.query(query, [req.body.student_first_name,req.body.student_last_name,req.body.student_dob,req.body.gender,req.body.student_phone,req.body.student_email,req.body.guardian_one_name,req.body.guardian_one_email,req.body.guardian_one_phone,req.body.guardian_two_name,req.body.guardian_two_email,req.body.guardian_two_phone,req.body.middleschool_suspensions,req.body.highschool_absence,req.body.highschool_suspensions,req.body.cumulative_gpa,req.body.total_credits_earned,req.body.date_modified,req.body.user_modified, req.params.id], function(err, rows) {
-    console.log(err);
-    res.redirect('/students/' + req.params.id + '/profile'); 
-  });
-});
+
 
 
 app.get('/cohorts/:id/edit', ensureLog, function(req, res) {

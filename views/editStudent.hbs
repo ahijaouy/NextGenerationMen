@@ -239,13 +239,13 @@
                                                         <label class="btn btn-default"
                                                                data-toggle-class="btn-primary"
                                                                data-toggle-passive-class="btn-default">
-                                                            <input type="radio" name="gender" value="male" checked="true"> &nbsp;
+                                                            <input id="malebutton" type="radio" name="gender" value="male"> &nbsp;
                                                             Male &nbsp;
                                                         </label>
                                                         <label class="btn btn-default"
                                                                data-toggle-class="btn-primary"
                                                                data-toggle-passive-class="btn-default">
-                                                            <input type="radio" name="gender" value="{{student.student_gender}}"> Female
+                                                            <input id="femalebutton" type="radio" name="gender" value="female"> Female
                                                         </label>
                                                     </div>
                                                 </div>
@@ -279,11 +279,11 @@
                                             <!-- Gaurdian 1 Name -->
                                             <div class="form-group">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                                                       for="parentone_name">Primary Guardian Name <span
+                                                       for="guardian_one_name">Primary Guardian Name <span
                                                         class="required">*</span>
                                                 </label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <input type="text" id="parentone_name" name="parentone_name"
+                                                    <input type="text" id="guardian_one_name" name="guardian_one_name"
                                                            required="required"
                                                            class="form-control col-md-7 col-xs-12" value="{{student.guardian_one_name}}">
                                                 </div>
@@ -292,11 +292,11 @@
                                             <!-- Gaurdian 1 phone -->
                                             <div class="form-group">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                                                       for="parentone_num">Primary Guardian Cell Phone <span
+                                                       for="guardian_one_phone">Primary Guardian Cell Phone <span
                                                         class="required">*</span>
                                                 </label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <input type="tel" id="parentone_num" name="parentone_num"
+                                                    <input type="tel" id="guardian_one_phone" name="guardian_one_phone"
                                                            required="required"
                                                            class="form-control col-md-7 col-xs-12" value="{{student.guardian_one_phone}}">
                                                 </div>
@@ -305,11 +305,11 @@
                                             <!-- Guardian 1 Email -->
                                             <div class="form-group">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                                                       for="parentone_email">Primary Guardian Email <span
+                                                       for="guardian_one_email">Primary Guardian Email <span
                                                         class="required">*</span>
                                                 </label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <input type="email" id="parentone_email" name="parentone_email"
+                                                    <input type="email" id="guardian_one_email" name="guardian_one_email"
                                                            required="required"
                                                            class="form-control col-md-7 col-xs-12" value="{{student.guardian_one_email}}">
                                                 </div>
@@ -320,9 +320,9 @@
                                             <!-- Gaurdian 2 Name -->
                                             <div class="form-group">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                                                       for="parenttwo_name">Secondary Guardian Name</label>
+                                                       for="guardian_two_name">Secondary Guardian Name</label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <input type="text" id="parenttwo_name" name="parenttwo_name"
+                                                    <input type="text" id="guardian_two_name" name="guardian_two_name"
                                                            class="form-control col-md-7 col-xs-12" value="{{student.guardian_two_name}}">
                                                 </div>
                                             </div>
@@ -330,9 +330,9 @@
                                             <!-- Gaurdian 2 phone -->
                                             <div class="form-group">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                                                       for="parenttwo_num">Secondary Guardian Cell Phone</label>
+                                                       for="guardian_two_phone">Secondary Guardian Cell Phone</label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <input type="tel" id="parenttwo_num" name="parenttwo_num"
+                                                    <input type="tel" id="guardian_two_phone" name="guardian_two_phone"
                                                            class="form-control col-md-7 col-xs-12" value="{{student.guardian_two_phone}}">
                                                 </div>
                                             </div>
@@ -340,9 +340,9 @@
                                             <!-- Guardian 2 Email -->
                                             <div class="form-group">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                                                       for="parenttwo_email">Secondary Guardian Email</label>
+                                                       for="guardian_two_email">Secondary Guardian Email</label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <input type="email" id="parenttwo_email" name="parenttwo_email"
+                                                    <input type="email" id="guardian_two_email" name="guardian_two_email"
                                                            class="form-control col-md-7 col-xs-12" value="{{student.guardian_two_email}}">
                                                 </div>
                                             </div>
@@ -353,11 +353,11 @@
                                             <!-- MS Suspensions -->
                                             <div class="form-group">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                                                       for="mssuspensions">MS Suspensions <span
+                                                       for="middleschool_suspensions">MS Suspensions <span
                                                         class="required">*</span>
                                                 </label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <input type="text" id="mssuspensions" name="mssuspensions"
+                                                    <input type="text" id="middleschool_suspensions" name="middleschool_suspensions"
                                                            required="required"
                                                            class="form-control col-md-7 col-xs-12" value="{{student.middleschool_suspensions}}">
                                                 </div>
@@ -366,11 +366,11 @@
                                             <!-- HS Suspensions -->
                                             <div class="form-group">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                                                       for="hssuspensions">HS Suspensions <span
+                                                       for="highschool_suspensions">HS Suspensions <span
                                                         class="required">*</span>
                                                 </label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <input type="text" id="hssuspensions" name="hssuspensions"
+                                                    <input type="text" id="highschool_suspensions" name="highschool_suspensions"
                                                            required="required"
                                                            class="form-control col-md-7 col-xs-12" value="{{student.highschool_suspensions}}">
                                                 </div>
@@ -379,10 +379,10 @@
                                             <!-- HS Absences -->
                                             <div class="form-group">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                                                       for="hsabsences">HS Absences <span class="required">*</span>
+                                                       for="highschool_absences">HS Absences <span class="required">*</span>
                                                 </label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <input type="text" id="hsabsences" name="hsabsences"
+                                                    <input type="text" id="highschool_absences" name="highschool_absences"
                                                            required="required"
                                                            class="form-control col-md-7 col-xs-12" value="{{student.highschool_absences}}">
                                                 </div>
@@ -393,11 +393,11 @@
                                         <!-- Cohort -->
                                         <div class="form-group">
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                                                   for="cohort">Cohort <span
+                                                   for="cohort_year">Cohort <span
                                                     class="required">*</span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <select class="form-control" name="cohort">
+                                                <select id="cohortselect" class="form-control" name="cohort_year">
                                                     {{#each cohorts}}
                                                     <option value="{{this.cohort_id}}">{{this.school_name}} Class of {{this.cohort_year}}</option>
                                                     {{/each}}
@@ -410,7 +410,7 @@
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Program Start Date <span class="required">*</span>
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <input type="date" class="form-control" id="startdate" name="startdate" value="{{student.student_start_date}}">
+                                                <input type="date" class="form-control" id="student_start_date" name="student_start_date" value="{{student.student_start_date}}">
                                             </div>
                                         </div>
                                         </div>
@@ -455,20 +455,35 @@
 
 <!-- jQuery Smart Wizard -->
 <script>
+
+    var dob = document.getElementById("student_dob");
+    var date = new Date("{{student.student_dob}}");
+    date = date.toISOString().substring(0,10);
+    dob.value = date;
+
+    var startdate = document.getElementById("student_start_date");
+    var date2 = new Date("{{student.student_start_date}}");
+    date2 = date2.toISOString().substring(0,10);
+    startdate.value = date2;
+
+    var cohort = document.getElementById("cohortselect");
+    cohort.value="{{student.cohort_id}}";
+
+    var gender = "{{student.student_gender}}";
+    console.log(gender);
+    if(gender == "male") {
+        $('#malebutton').closest('.btn').button('toggle');
+    } else {
+        $('#femalebutton').closest('.btn').button('toggle');
+    }
+    
+
     $(document).ready(function () {
-        //$('#wizard').smartWizard({onFinish: callback});
         $('#wizard').smartWizard();
 
         $('#wizard_verticle').smartWizard({
             transitionEffect: 'slide'
         });
-
-        function callback(result) {
-//          $('#wizard').smartWizard('showMessage','Finish Clicked');
-//          console.log(result);
-            console.log('test');
-            //$('#wizard').serializeArray();
-        }
 
 
         $('.buttonNext').addClass('btn btn-success');
