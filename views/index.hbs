@@ -181,7 +181,7 @@
                 <div class="col-md-3 col-sm-12 col-xs-12">
                       <div>
                         <div class="x_title">
-                          <h2>Top Profiles</h2>
+                          <h2>Recently Added Students</h2>
                           <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                             </li>
@@ -200,61 +200,19 @@
                           <div class="clearfix"></div>
                         </div>
                         <ul class="list-unstyled top_profiles scroll-view">
+                        {{#each students}}
                           <li class="media event">
                             <a class="pull-left border-aero profile_thumb">
                               <i class="fa fa-user aero"></i>
                             </a>
                             <div class="media-body">
-                              <a class="title" href="#">{{students.0.student_first_name}} {{students.0.student_last_name}}</a>
-                              <p><strong>{{students.0.student_dob}} </strong> Date Joined </p>
-                              <p> <small>{{students.0.student_id}}</small>
-                              </p>
+                              <a class="title" href="/students/{{this.student_id}}/profile">{{this.student_first_name}} {{this.student_last_name}}</a>
+                              <p><strong>{{this.school_name}}</strong>  </p>
+                              <p>Class Of {{this.cohort_year}}</p>
+                              
                             </div>
                           </li>
-                          <li class="media event">
-                            <a class="pull-left border-green profile_thumb">
-                              <i class="fa fa-user green"></i>
-                            </a>
-                            <div class="media-body">
-                                <a class="title" href="#">{{students.1.student_first_name}} {{students.1.student_last_name}}</a>
-                                <p><strong>{{students.1.student_dob}} </strong> Date Joined </p>
-                                <p> <small>{{students.1.student_id}}</small>
-                                </p>
-                            </div>
-                          </li>
-                          <li class="media event">
-                            <a class="pull-left border-blue profile_thumb">
-                              <i class="fa fa-user blue"></i>
-                            </a>
-                            <div class="media-body">
-                                <a class="title" href="#">{{students.2.student_first_name}} {{students.2.student_last_name}}</a>
-                                <p><strong>{{students.2.student_dob}} </strong> Date Joined </p>
-                                <p> <small>{{students.2.student_id}}</small>
-                                </p>
-                            </div>
-                          </li>
-                          <li class="media event">
-                            <a class="pull-left border-aero profile_thumb">
-                              <i class="fa fa-user aero"></i>
-                            </a>
-                            <div class="media-body">
-                                <a class="title" href="#">{{students.3.student_first_name}} {{students.3.student_last_name}}</a>
-                                <p><strong>{{students.3.student_dob}} </strong> Date Joined </p>
-                                <p> <small>{{students.3.student_id}}</small>
-                                </p>
-                            </div>
-                          </li>
-                          <li class="media event">
-                            <a class="pull-left border-green profile_thumb">
-                              <i class="fa fa-user green"></i>
-                            </a>
-                            <div class="media-body">
-                                <a class="title" href="#">{{students.4.student_first_name}} {{students.4.student_last_name}}</a>
-                                <p><strong>{{students.4.student_dob}} </strong> Date Joined </p>
-                                <p> <small>{{students.4.student_id}}</small>
-                                </p>
-                            </div>
-                          </li>
+                          {{/each}}
                         </ul>
                       </div>
                     </div>
