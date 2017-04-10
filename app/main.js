@@ -76,13 +76,14 @@ module.exports = function(app, passport, env) {
             if (err4) {console.log(err4)}
             connection.query("SELECT COUNT(student_gender) as count from student where student_gender=\"Male\"",function(err, maleCounter) {
               connection.query("SELECT COUNT(student_gender) as count from student where student_gender=\"Female\"", function(err, femaleCounter) {
-                connection.query("SELECT * from survey_response;", function(err5, survey_responses) {
+                connection.query("SELECT * from survey_response inner join semester_record on survey_response.semester_record_id=semester_record.semester_record_id;", function(err5, survey_responses) {
                   res.render('index', {
                     students: students,
                     schools: schools,
                     cohorts: cohorts,
                     joins: joins,
                     survey_response: survey_responses,
+                    studentCounter: maleCounter[0].count + femaleCounter[0].count,
                     maleCounter: maleCounter[0].count,
                     femaleCounter: femaleCounter[0].count
                   });

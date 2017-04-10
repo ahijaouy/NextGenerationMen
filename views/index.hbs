@@ -120,7 +120,7 @@
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-clock-o"></i> Total Students</span>
-              <div class="count green">{{students.length}}</div>
+              <div class="count green">{{studentCounter}}</div>
               <!-- <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> From last Week</span> -->
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
@@ -160,7 +160,8 @@
                       <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Students per School</a></li>
                       <li role="presentation"><a role="menuitem" tabindex="-1" href="#">GPA per School</a></li>
                       <li role="presentation"><a role="menuitem" tabindex="-1" href="#">GPA per Cohort</a></li>
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Survey Response over Time</a></li>
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Composite Survey Response over Time</a></li>
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Survey Response over Time by Category</a></li>
                     </ul> 
                   </div>
                   <!-- <div class="col-md-6">
@@ -297,18 +298,21 @@
           gpaPerSchool();
         } else if ($(this).text() == "GPA per Cohort") {
           gpaPerCohort();
-        } else if ($(this).text() == "Survey Response over Time") {
+        } else if ($(this).text() == "Composite Survey Response over Time") {
           survey_responseOverTime();
+        } else if ($(this).text() == "Survey Response over Time by Category") {
+          survey_responsesOverTimeSByCategory();
         } else {
           emptyGraph();
         }
       });
 
       function survey_responsesOverTimeSByCategory() {
-        $('#Graph-Title').text("Survey Responses Over Time By Category");
+        $('#Graph-Title').text("Composite Survey Responses Over Time By Category");
         
         var surveyInfo = [];
         var counter = 0;
+        // console.log("survey_response: " + {{survey_response}});
         {{#each survey_response}}
           counter++;
           var semesterRecordId = {{this.semester_record_id}};
@@ -429,15 +433,83 @@
             }
           }
         }
+        pos = 2;
+        // console.log(compositeData[1]);
         for (x in compositeData) {
-          gritAvg.push(compositeData[x][0]);
-          probSolvAvg.push(compositeData[x][1]);
-          aseAvg.push(compositeData[x][2]);
-          tmwrkAvg.push(compositeData[x][3]);
-          scompAvg.push(compositeData[x][4]);
-          grwthAvg.push(compositeData[x][5]);
-          behaveAvg.push(compositeData[x][6]);
+          gritAvg.push([pos, compositeData[x][0]]);
+          probSolvAvg.push([pos, compositeData[x][1]]);
+          aseAvg.push([pos, compositeData[x][2]]);
+          tmwrkAvg.push([pos, compositeData[x][3]]);
+          scompAvg.push([pos, compositeData[x][4]]);
+          grwthAvg.push([pos, compositeData[x][5]]);
+          behaveAvg.push([pos, compositeData[x][6]]);
+          pos += 3;
         }
+        var schoolTicks = [];
+        pos = 2;
+        {{#each survey_response}}
+            schoolTicks.push([pos, "Semester #{{this.semester_number}}"]);
+            pos = pos + 3;
+        {{/each}}
+        // console.log("schoolTicks: " + schoolTicks);
+        data = [ 
+             {label: "Grit", data: gritAvg},
+             {label: "Problem Solving", data: probSolvAvg},
+             {label: "Academic Self-Efficacy", data: aseAvg},
+             {label: "Social Competence", data: scompAvg},
+             {label: "Teamwork", data: scompAvg},
+             {label: "Growth", data: grwthAvg},
+             {label: "Behavior", data: behaveAvg}
+        ];
+
+        $("#canvas_dahs").length && $.plot($("#canvas_dahs"), 
+        data, {
+          series: {
+            data: data,
+            lines: {
+              show: true,
+              fill: true,
+            },
+            points: {
+              show:true
+              },
+            clickable: true,
+            hoverable: true
+          },
+          grid: {
+            padding: 10,  
+            verticalLines: true,
+            hoverable: true,
+            clickable: true,
+            tickColor: "#d5d5d5",
+            borderWidth: 10,
+            color: '#fff',
+          },
+
+          colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
+          legend: {
+            show: true,
+            labelFormatter: function(label, series) {
+              return '<p style="color:black;">' + label + '</p>';
+            },
+            labelBoxBorderColor: "rgb(0, 0, 0)",
+          },
+          xaxis: {
+            ticks: schoolTicks,
+            tickColor: "rgba(51, 51, 51, 0.06)",
+            tickSize: 5,
+            axisLabel: "Date",
+            axisLabelUseCanvas: true,
+            axisLabelFontSizePixels: 12,
+            axisLabelFontFamily: 'Verda na, Arial'
+          },
+          yaxis: {
+            axisLabelUseCanvas: true,
+            tickColor: "rgba(51, 51, 51, 0.06)",
+          },
+          tooltip: false
+        });
+
       }
 
       function survey_responsePerSchool() {
@@ -550,11 +622,11 @@
           
           
         {{/each}}
-        console.log(surveyInfo[1]);
-        console.log("7 | 13 | 17 | 25 | 31 | 34 | 44");
-        for (x in surveyInfo[1]) {
-          console.log(x + ": " + surveyInfo[1][x]);
-        }
+        // console.log(surveyInfo[1]);
+        // console.log("7 | 13 | 17 | 25 | 31 | 34 | 44");
+        // for (x in surveyInfo[1]) {
+        //   console.log(x + ": " + surveyInfo[1][x]);
+        // }
         var compositeAvg = [];
             for (x in surveyInfo) {
               
@@ -573,14 +645,14 @@
                 data.push([pos, compositeAvg[x]]);
                 pos = pos + 3;
             }
-            console.log("data: " + data);
+            // console.log("data: " + data);
             var schoolTicks = [];
             pos = 2;
             {{#each survey_response}}
                 schoolTicks.push([pos, "Semester #{{this.semester_number}}"]);
                 pos = pos + 3;
             {{/each}}
-            console.log("schoolTicks: " + schoolTicks);
+            // console.log("schoolTicks: " + schoolTicks);
 
             $("#canvas_dahs").length && $.plot($("#canvas_dahs"), [
               data
@@ -738,11 +810,11 @@
           
           
         {{/each}}
-        console.log(surveyInfo[1]);
-        console.log("7 | 13 | 17 | 25 | 31 | 34 | 44");
-        for (x in surveyInfo[1]) {
-          console.log(x + ": " + surveyInfo[1][x]);
-        }
+        // console.log(surveyInfo[1]);
+        // console.log("7 | 13 | 17 | 25 | 31 | 34 | 44");
+        // for (x in surveyInfo[1]) {
+        //   console.log(x + ": " + surveyInfo[1][x]);
+        // }
         var compositeAvg = [];
             for (x in surveyInfo) {
               
@@ -761,14 +833,14 @@
                 data.push([pos, compositeAvg[x]]);
                 pos = pos + 3;
             }
-            console.log("data: " + data);
+            // console.log("data: " + data);
             var schoolTicks = [];
             pos = 2;
             {{#each survey_response}}
                 schoolTicks.push([pos, "Semester #{{this.semester_number}}"]);
                 pos = pos + 3;
             {{/each}}
-            console.log("schoolTicks: " + schoolTicks);
+            // console.log("schoolTicks: " + schoolTicks);
 
             $("#canvas_dahs").length && $.plot($("#canvas_dahs"), [
               data
