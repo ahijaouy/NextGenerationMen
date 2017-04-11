@@ -157,11 +157,13 @@
                     <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Graph Type
                     <span class="caret"></span></button>
                     <ul class="dropdown-menu" role="menu" id="graphSelect" aria-labelledby="menu1" style="text-align:center;">
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Students per school</a></li>
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">GPA per school</a></li>
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Students per School</a></li>
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">GPA per School</a></li>
                       <li role="presentation"><a role="menuitem" tabindex="-1" href="#">GPA per Cohort</a></li>
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Composite Survey Response over Time</a></li>
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Survey Response over Time by Category</a></li>
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Survey Responses over Time</a></li>
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Survey Responses by School</a></li>
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Survey Responses by Cohort</a></li>
+
                     </ul> 
                   </div>
                   <!-- <div class="col-md-6">
@@ -287,28 +289,30 @@
     <!-- Flot -->
     <script>
       $(document).ready(function() {
-        survey_responsesByCohort();
+        studentsPerSchool();
       });
 
       $('#graphSelect li a').click(function() {
         $('#menu1').text($(this).text());
-        if ($(this).text() == "Students per school") {
-          studentsPerschool();
-        } else if ($(this).text() == "GPA per school") {
-          gpaPerschool();
+        if ($(this).text() == "Students per School") {
+          studentsPerSchool();
+        } else if ($(this).text() == "GPA per School") {
+          gpaPerSchool();
         } else if ($(this).text() == "GPA per Cohort") {
           gpaPerCohort();
-        } else if ($(this).text() == "Composite Survey Response over Time") {
-          survey_responseOverTime();
-        } else if ($(this).text() == "Survey Response over Time by Category") {
+        } else if ($(this).text() == "Survey Responses over Time") {
           survey_responsesOverTimeByCategory();
+        } else if ($(this).text() == "Survey Responses by School") {
+          survey_responsesBySchool();
+        } else if ($(this).text() == "Survey Responses by Cohort") {
+          survey_responsesByCohort();
         } else {
           emptyGraph();
         }
       });
 
       function survey_responsesOverTimeByCategory() {
-        $('#Graph-Title').text("Composite Survey Responses Over Time By school");
+        $('#Graph-Title').text("Survey Responses Over Time");
         
         var surveyInfo = [];
         var counter = 0;
@@ -513,7 +517,7 @@
       }
 
       function survey_responsesByCohort() {
-        $('#Graph-Title').text("Survey Response By Cohort");
+        $('#Graph-Title').text("Survey Responses By Cohort");
         
         var surveyInfo = [];
         var counter = 0;
@@ -722,7 +726,7 @@
       }
 
       function survey_responsesBySchool() {
-        $('#Graph-Title').text("Survey Response By School");
+        $('#Graph-Title').text("Survey Responses By School");
         var surveyInfo = [];
         var counter = 0;
         {{#each joins}}
@@ -931,7 +935,7 @@
       }
 
       function survey_responseOverTime() {
-        $('#Graph-Title').text("Survey Response Over Time");
+        $('#Graph-Title').text("Survey Responses Over Time");
         var surveyInfo = [];
         var counter = 0;
         {{#each joins}}
@@ -1118,7 +1122,7 @@
             });
       }
 
-      function gpaPerschool() {
+      function gpaPerSchool() {
         $('#Graph-Title').text("GPA Per school");
 
         var gradeInfo = [];
@@ -1269,7 +1273,7 @@
         });
       }
 
-      function studentsPerschool() {
+      function studentsPerSchool() {
         
         $('#Graph-Title').text("Students Per school");
 
