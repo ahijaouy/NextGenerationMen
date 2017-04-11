@@ -71,12 +71,18 @@ module.exports = function(app, passport, env) {
           if (err3) {console.log(err3)}
           var innerJoinQuery = "SELECT * FROM student ";
           innerJoinQuery += "INNER JOIN cohort on student.cohort_id=cohort.cohort_id ";
-          innerJoinQuery += "INNER JOIN semester_record on semester_record.student_id=student.student_id; ";
+          innerJoinQuery += "INNER JOIN school on cohort.school_id=school.school_id "
+          innerJoinQuery += "INNER JOIN semester_record on semester_record.student_id=student.student_id ";
+          innerJoinQuery += "INNER JOIN survey_response on survey_response.semester_record_id=semester_record.semester_record_id;";
           connection.query(innerJoinQuery, function(err4, joins) {
             if (err4) {console.log(err4)}
             connection.query("SELECT COUNT(student_gender) as count from student where student_gender=\"Male\"",function(err, maleCounter) {
               connection.query("SELECT COUNT(student_gender) as count from student where student_gender=\"Female\"", function(err, femaleCounter) {
-                connection.query("SELECT * from survey_response inner join semester_record on survey_response.semester_record_id=semester_record.semester_record_id;", function(err5, survey_responses) {
+                var survey_responseQuery = "SELECT * from survey_response ";
+                survey_responseQuery += "inner join semester_record on survey_response.semester_record_id=semester_record.semester_record_id ";
+                survey_responseQuery += ";";
+                connection.query(survey_responseQuery, function(err5, survey_responses) {
+                  console.log(joins);
                   res.render('index', {
                     students: students,
                     schools: schools,
