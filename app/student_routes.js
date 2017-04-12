@@ -25,21 +25,64 @@ router.route('/:id/profile')
     var query = "SELECT * FROM student INNER JOIN cohort on student.cohort_id=cohort.cohort_id INNER JOIN school on cohort.school_id=school.school_id WHERE student_id=" + req.params.id + ";";
     connection.query(query, function(err, rows) {
       if (err) {console.log(err)}
-      rows[0].student_dob = rows[0].student_dob.toDateString(); //properly set date.
+      // rows[0].student_dob = rows[0].student_dob.toDateString(); //properly set date.
       
       var academicRecord = "SELECT * FROM semester_record WHERE student_id=" + req.params.id + ";";
       connection.query(academicRecord, function(err, recordRows) {
         var attendanceRecord = "SELECT * FROM attendance_record WHERE student_id=" + req.params.id + ";";
         connection.query(attendanceRecord, function(err, attendanceRows) {
-          if (recordRows === undefined && attendanceRows === undefined) {
-            res.render('profile', {student: rows[0], record: [], attendance: []});
-          } else if (recordRows === undefined && attendanceRows != undefined){
-            res.render('profile', { student: rows[0], record: [], attendance: attendanceRows});
-          } else if (recordRows != undefined && attendanceRows === undefined) {
-            res.render('profile', { student: rows[0], record: recordRows, attendance: []});
-          } else {
-            res.render('profile', { student: rows[0], record: recordRows, attendance: attendanceRows});
+        var surveyQueryString = "Select response from survey_response inner join survey_question on survey_question.survey_question_id=survey_response.survey_question_id ";
+        surveyQueryString += "inner join semester_record on semester_record.semester_record_id=survey_response.semester_record_id where student_id=" + req.params.id;
+        var surveyQueries = [];
+        for (var i = 1; i <= 7; i++) {
+            surveyQueries.push(surveyQueryString + " and survey_category_id=" +  i + ";");
+        }
+        connection.query(query, function(err, rows){
+        connection.query(surveyQueries[0], function(err, grit) {
+        connection.query(surveyQueries[1], function(err, problemSolving) {
+        connection.query(surveyQueries[2], function(err, academicSelfEfficacy) {
+        connection.query(surveyQueries[3], function(err, teamwork) {
+        connection.query(surveyQueries[4], function(err, socialCompetence) {
+        connection.query(surveyQueries[5], function(err, growthMindset) {
+        connection.query(surveyQueries[6], function(err, academicBehaviors) {
+          surveyQueries = [];
+          surveyQueries.push(grit);
+          surveyQueries.push(problemSolving);
+          surveyQueries.push(academicSelfEfficacy);
+          surveyQueries.push(teamwork);
+          surveyQueries.push(socialCompetence);
+          surveyQueries.push(growthMindset);
+          surveyQueries.push(academicBehaviors);
+          var data = [];
+          for (var i = 0; i < surveyQueries.length; i++) {
+              var num = 0;
+              if (surveyQueries[i] != null) {
+                for (var j = 0; j < surveyQueries[i].length; j++) {
+                    num += surveyQueries[i][j].response;
+                }
+                num = num / surveyQueries[i].length;
+                num = num / 5 * 100;
+              } 
+              data.push(num);
           }
+        
+          if (recordRows === undefined && attendanceRows === undefined) {
+            res.render('profile', {student: rows[0], record: [], attendance: [], surveyData: data});
+          } else if (recordRows === undefined && attendanceRows != undefined){
+            res.render('profile', { student: rows[0], record: [], attendance: attendanceRows, surveyData: data});
+          } else if (recordRows != undefined && attendanceRows === undefined) {
+            res.render('profile', { student: rows[0], record: recordRows, attendance: [], surveyData: data});
+          } else {
+            res.render('profile', { student: rows[0], record: recordRows, attendance: attendanceRows, surveyData: data});
+          }
+        });
+        });
+        });
+        });
+        });
+        });
+        });
+        });
         });
       });
     });
