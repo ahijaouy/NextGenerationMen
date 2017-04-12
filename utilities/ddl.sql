@@ -100,6 +100,21 @@ CREATE TABLE `semester_record` (
   CONSTRAINT `fk_student` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
+CREATE TABLE `attendance_record` (
+  `attendance_record_id` int(11) NOT NULL AUTO_INCREMENT,
+  `student_id` int(11) NOT NULL,
+  `classes_missed` int(11) DEFAULT NULL,
+  `days_missed` int(11) DEFAULT NULL,
+  `suspensions` int(11) DEFAULT NULL,
+  `semester_number` varchar(45) NOT NULL,
+  `grade` varchar(45) NOT NULL,
+  `date_modified` date NOT NULL,
+  `user_modified` int(11) NOT NULL,
+  PRIMARY KEY (`attendance_record_id`),
+  KEY `fk_student2` (`student_id`),
+  CONSTRAINT `fk_student2` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+
 CREATE TABLE `survey` (
   `survey_id` int(11) NOT NULL AUTO_INCREMENT,
   `survey_name` varchar(45) NOT NULL,

@@ -319,7 +319,7 @@
         // console.log("survey_response: " + {{survey_response}});
         {{#each joins}}
           counter++;
-          var semesterRecordId = {{this.semester_record_id}};
+          var semesterRecordId = {{this.semester_number}};
           var surveyQuestionId = {{this.survey_question_id}};
           if (surveyInfo[semesterRecordId] == null) {
             surveyInfo[semesterRecordId] = {};
@@ -455,6 +455,7 @@
             schoolTicks.push([pos, "Semester #{{this.semester_number}}"]);
             pos = pos + 3;
         {{/each}}
+        // schoolTicks=[[2, "Semester #1"]];
         // console.log("schoolTicks: " + schoolTicks);
         data = [ 
              {label: "Grit", data: gritAvg},
@@ -472,7 +473,7 @@
             data: data,
             lines: {
               show: true,
-              fill: true,
+              fill: false,
             },
             points: {
               show:true

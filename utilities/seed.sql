@@ -35,12 +35,12 @@ INSERT INTO semester_record VALUES (8, (SELECT student_id FROM student WHERE stu
 INSERT INTO semester_record VALUES (9, (SELECT student_id FROM student WHERE student_id=95147), 10, 5, 0, 0, "3", "4",3.95, 15, Now(), 1);
 
 # Survey Responses 
-INSERT INTO survey_response VALUES(1, (SELECT survey_question_id FROM survey_question where survey_question_id=1), (SELECT semester_record_id FROM semester_record WHERE semester_record_id=1), 4, Now(), 1)
-INSERT INTO survey_response VALUES(2, (SELECT survey_question_id FROM survey_question where survey_question_id=8), (SELECT semester_record_id FROM semester_record WHERE semester_record_id=1), 3, Now(), 1)
-INSERT INTO survey_response VALUES(3, (SELECT survey_question_id FROM survey_question where survey_question_id=16), (SELECT semester_record_id FROM semester_record WHERE semester_record_id=1), 5, Now(), 1)
-INSERT INTO survey_response VALUES(4, (SELECT survey_question_id FROM survey_question where survey_question_id=19), (SELECT semester_record_id FROM semester_record WHERE semester_record_id=1), 2, Now(), 1)
-INSERT INTO survey_response VALUES(5, (SELECT survey_question_id FROM survey_question where survey_question_id=30), (SELECT semester_record_id FROM semester_record WHERE semester_record_id=1), 3, Now(), 1)
-INSERT INTO survey_response VALUES(6, (SELECT survey_question_id FROM survey_question where survey_question_id=41), (SELECT semester_record_id FROM semester_record WHERE semester_record_id=1), 1, Now(), 1)
+INSERT INTO survey_response VALUES(1, (SELECT survey_question_id FROM survey_question where survey_question_id=1), (SELECT semester_record_id FROM semester_record WHERE semester_record_id=1), 4, Now(), 1);
+INSERT INTO survey_response VALUES(2, (SELECT survey_question_id FROM survey_question where survey_question_id=8), (SELECT semester_record_id FROM semester_record WHERE semester_record_id=1), 3, Now(), 1);
+INSERT INTO survey_response VALUES(3, (SELECT survey_question_id FROM survey_question where survey_question_id=16), (SELECT semester_record_id FROM semester_record WHERE semester_record_id=1), 5, Now(), 1);
+INSERT INTO survey_response VALUES(4, (SELECT survey_question_id FROM survey_question where survey_question_id=19), (SELECT semester_record_id FROM semester_record WHERE semester_record_id=1), 2, Now(), 1);
+INSERT INTO survey_response VALUES(5, (SELECT survey_question_id FROM survey_question where survey_question_id=30), (SELECT semester_record_id FROM semester_record WHERE semester_record_id=1), 3, Now(), 1);
+INSERT INTO survey_response VALUES(6, (SELECT survey_question_id FROM survey_question where survey_question_id=41), (SELECT semester_record_id FROM semester_record WHERE semester_record_id=1), 1, Now(), 1);
 
 # Survey Responses 
 INSERT INTO survey_response VALUES (1, (SELECT survey_question_id FROM survey_question where survey_question_id=1), (SELECT semester_record_id FROM semester_record WHERE semester_record_id=1), 4, Now(), 1);
@@ -53,3 +53,25 @@ INSERT INTO survey_response VALUES (7, (SELECT survey_question_id FROM survey_qu
 INSERT INTO survey_response VALUES (8, (SELECT survey_question_id FROM survey_question where survey_question_id=42), (SELECT semester_record_id FROM semester_record WHERE semester_record_id=1), 3, Now(), 1);
 INSERT INTO survey_response VALUES (9, (SELECT survey_question_id FROM survey_question where survey_question_id=40), (SELECT semester_record_id FROM semester_record WHERE semester_record_id=1), 3, Now(), 1);
 INSERT INTO survey_response VALUES (10, (SELECT survey_question_id FROM survey_question where survey_question_id=43), (SELECT semester_record_id FROM semester_record WHERE semester_record_id=1), 3, Now(), 1);
+
+INSERT INTO survey_response VALUES (11, (SELECT survey_question_id FROM survey_question where survey_question_id=1), (SELECT semester_record_id FROM semester_record WHERE semester_record_id=49), 5, Now(), 1);
+INSERT INTO survey_response VALUES (12, (SELECT survey_question_id FROM survey_question where survey_question_id=8), (SELECT semester_record_id FROM semester_record WHERE semester_record_id=49), 3, Now(), 1);
+INSERT INTO survey_response VALUES (13, (SELECT survey_question_id FROM survey_question where survey_question_id=16), (SELECT semester_record_id FROM semester_record WHERE semester_record_id=49), 2, Now(), 1);
+INSERT INTO survey_response VALUES (14, (SELECT survey_question_id FROM survey_question where survey_question_id=19), (SELECT semester_record_id FROM semester_record WHERE semester_record_id=49), 1, Now(), 1);
+INSERT INTO survey_response VALUES (15, (SELECT survey_question_id FROM survey_question where survey_question_id=30), (SELECT semester_record_id FROM semester_record WHERE semester_record_id=49), 3, Now(), 1);
+INSERT INTO survey_response VALUES (16, (SELECT survey_question_id FROM survey_question where survey_question_id=33), (SELECT semester_record_id FROM semester_record WHERE semester_record_id=49), 4, Now(), 1);
+INSERT INTO survey_response VALUES (17, (SELECT survey_question_id FROM survey_question where survey_question_id=41), (SELECT semester_record_id FROM semester_record WHERE semester_record_id=49), 5, Now(), 1);
+INSERT INTO survey_response VALUES (18, (SELECT survey_question_id FROM survey_question where survey_question_id=42), (SELECT semester_record_id FROM semester_record WHERE semester_record_id=49), 0, Now(), 1);
+INSERT INTO survey_response VALUES (19, (SELECT survey_question_id FROM survey_question where survey_question_id=40), (SELECT semester_record_id FROM semester_record WHERE semester_record_id=49), 0, Now(), 1);
+INSERT INTO survey_response VALUES (20, (SELECT survey_question_id FROM survey_question where survey_question_id=43), (SELECT semester_record_id FROM semester_record WHERE semester_record_id=49), 2, Now(), 1);
+
+INSERT INTO survey_response VALUES (21, (SELECT survey_question_id FROM survey_question where survey_question_id=1), (SELECT semester_record_id FROM semester_record WHERE semester_record_id=33), 2, Now(), 1);
+INSERT INTO survey_response VALUES (22, (SELECT survey_question_id FROM survey_question where survey_question_id=8), (SELECT semester_record_id FROM semester_record WHERE semester_record_id=33), 2, Now(), 1);
+INSERT INTO survey_response VALUES (23, (SELECT survey_question_id FROM survey_question where survey_question_id=16), (SELECT semester_record_id FROM semester_record WHERE semester_record_id=33), 1, Now(), 1);
+INSERT INTO survey_response VALUES (24, (SELECT survey_question_id FROM survey_question where survey_question_id=19), (SELECT semester_record_id FROM semester_record WHERE semester_record_id=33), 4, Now(), 1);
+INSERT INTO survey_response VALUES (25, (SELECT survey_question_id FROM survey_question where survey_question_id=30), (SELECT semester_record_id FROM semester_record WHERE semester_record_id=33), 0, Now(), 1);
+INSERT INTO survey_response VALUES (26, (SELECT survey_question_id FROM survey_question where survey_question_id=33), (SELECT semester_record_id FROM semester_record WHERE semester_record_id=33), 4, Now(), 1);
+INSERT INTO survey_response VALUES (27, (SELECT survey_question_id FROM survey_question where survey_question_id=41), (SELECT semester_record_id FROM semester_record WHERE semester_record_id=33), 0, Now(), 1);
+INSERT INTO survey_response VALUES (28, (SELECT survey_question_id FROM survey_question where survey_question_id=42), (SELECT semester_record_id FROM semester_record WHERE semester_record_id=33), 4, Now(), 1);
+INSERT INTO survey_response VALUES (29, (SELECT survey_question_id FROM survey_question where survey_question_id=40), (SELECT semester_record_id FROM semester_record WHERE semester_record_id=33), 3, Now(), 1);
+INSERT INTO survey_response VALUES (30, (SELECT survey_question_id FROM survey_question where survey_question_id=43), (SELECT semester_record_id FROM semester_record WHERE semester_record_id=33), 2, Now(), 1);
