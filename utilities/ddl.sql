@@ -41,7 +41,7 @@ CREATE TABLE `school` (
   `date_modified` date DEFAULT NULL,
   `user_modified` int(11) DEFAULT NULL,
   PRIMARY KEY (`school_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 ;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `cohort` (
   `cohort_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -52,7 +52,7 @@ CREATE TABLE `cohort` (
   PRIMARY KEY (`cohort_id`),
   KEY `fk_school_id` (`school_id`),
   CONSTRAINT `fk_school_id` FOREIGN KEY (`school_id`) REFERENCES `school` (`school_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `student` (
   `student_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -66,7 +66,7 @@ CREATE TABLE `student` (
   `student_email` varchar(255) DEFAULT NULL,
   `guardian_one_name` varchar(255) DEFAULT NULL,
   `guardian_one_email` varchar(255) DEFAULT NULL,
-  `guardian_one_phone` varchar(20) DEFAULT NULL,
+  `guardian_one_phone` varchar(255) DEFAULT NULL,
   `guardian_two_name` varchar(255) DEFAULT NULL,
   `guardian_two_email` varchar(255) DEFAULT NULL,
   `guardian_two_phone` varchar(20) DEFAULT NULL,
@@ -80,7 +80,7 @@ CREATE TABLE `student` (
   PRIMARY KEY (`student_id`),
   KEY `fk_cohort` (`cohort_id`),
   CONSTRAINT `fk_cohort` FOREIGN KEY (`cohort_id`) REFERENCES `cohort` (`cohort_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=99758 DEFAULT CHARSET=utf8 ;
+) ENGINE=InnoDB AUTO_INCREMENT=99855 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `semester_record` (
   `semester_record_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -98,7 +98,7 @@ CREATE TABLE `semester_record` (
   PRIMARY KEY (`semester_record_id`),
   KEY `fk_student` (`student_id`),
   CONSTRAINT `fk_student` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=163 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `attendance_record` (
   `attendance_record_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -113,7 +113,7 @@ CREATE TABLE `attendance_record` (
   PRIMARY KEY (`attendance_record_id`),
   KEY `fk_student2` (`student_id`),
   CONSTRAINT `fk_student2` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `survey` (
   `survey_id` int(11) NOT NULL AUTO_INCREMENT,

@@ -14,7 +14,7 @@ router.route('/')
   .get(function(req, res, next) {
     connection.query("SELECT student.student_id, student.student_first_name, student.student_phone, student.student_last_name, school.school_name, cohort.cohort_year, student.guardian_one_name, student.guardian_one_phone FROM student INNER JOIN cohort ON student.cohort_id=cohort.cohort_id INNER JOIN school ON cohort.school_id=school.school_id;", function(err, rows){
       console.log(err);
-      res.render('students', { students: rows});
+      res.render('students', { students: rows, user: req.user._json.user_metadata});
     });
   });
 
@@ -67,13 +67,13 @@ router.route('/:id/profile')
           }
         
           if (recordRows === undefined && attendanceRows === undefined) {
-            res.render('profile', {student: rows[0], record: [], attendance: [], surveyData: data});
+            res.render('profile', {user: req.user._json.user_metadata, student: rows[0], record: [], attendance: [], surveyData: data});
           } else if (recordRows === undefined && attendanceRows != undefined){
-            res.render('profile', { student: rows[0], record: [], attendance: attendanceRows, surveyData: data});
+            res.render('profile', { user: req.user._json.user_metadata, student: rows[0], record: [], attendance: attendanceRows, surveyData: data});
           } else if (recordRows != undefined && attendanceRows === undefined) {
-            res.render('profile', { student: rows[0], record: recordRows, attendance: [], surveyData: data});
+            res.render('profile', { user: req.user._json.user_metadata, student: rows[0], record: recordRows, attendance: [], surveyData: data});
           } else {
-            res.render('profile', { student: rows[0], record: recordRows, attendance: attendanceRows, surveyData: data});
+            res.render('profile', { user: req.user._json.user_metadata, student: rows[0], record: recordRows, attendance: attendanceRows, surveyData: data});
           }
         });
         });
@@ -136,7 +136,8 @@ router.route('/:id/edit')
         if (err2) {console.log(err2);}
         res.render('editStudent', {
           student: rows[0],
-          cohorts: rows2});
+          cohorts: rows2, 
+          user: req.user._json.user_metadata});
       });
       
     });

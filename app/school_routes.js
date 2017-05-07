@@ -13,7 +13,7 @@ router.route('/')
   .get(function(req, res, next) {
     connection.query("SELECT * FROM school", function(err, rows){
       if (err) {console.log(err)}
-      res.render('schools', { schools: rows});
+      res.render('schools', { schools: rows, user: req.user._json.user_metadata});
     });
   });
 
@@ -44,7 +44,8 @@ router.route('/:id/profile')
           res.render('schoolDetail', {
             school: rows1[0],
             cohorts: rows2,
-            students: rows3
+            students: rows3,
+            user: req.user._json.user_metadata
           });
         });
       });
@@ -59,7 +60,7 @@ router.route('/:id/edit')
     var query = "SELECT * FROM school WHERE school_id=" + req.params.id;
     connection.query(query, function(err, rows) {
       if (err) {console.log(err)}
-      res.render('editSchool', {school: rows[0]});
+      res.render('editSchool', {school: rows[0], user: req.user._json.user_metadata});
     })
   })
   .post(function(req, res, next) {

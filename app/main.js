@@ -82,6 +82,7 @@ module.exports = function(app, passport, env) {
                   connection.query("SELECT COUNT(student_id) as count FROM student;", function(err6, count) {
                     if (err5) {console.log(err5);}
                     res.render('index', {
+                      user: req.user._json.user_metadata,
                       students: students,
                       count: count[0].count,
                       schools: schools,
@@ -108,7 +109,7 @@ module.exports = function(app, passport, env) {
   app.get('/addStudent',ensureLog, function(req, res) {
     connection.query("SELECT cohort.cohort_id, cohort.cohort_year, school.school_name FROM cohort INNER JOIN school ON cohort.school_id=school.school_id;", function(err, rows) {
       console.log(err);
-      res.render('addStudent', {cohorts: rows});
+      res.render('addStudent', {cohorts: rows, user: req.user._json.user_metadata});
     });
   });
 
@@ -122,7 +123,7 @@ module.exports = function(app, passport, env) {
   });
 
 app.get('/addSchool',ensureLog, function(req, res) {
-  res.render('addSchool');
+  res.render('addSchool', {user: req.user._json.user_metadata});
 });
 
 app.post('/addSchool',ensureLog, function(req, res) {
@@ -136,7 +137,7 @@ app.post('/addSchool',ensureLog, function(req, res) {
 app.get('/addCohort',ensureLog, function(req, res) {
   connection.query("SELECT school_id, school_name from school", function(err, rows) {
     console.log(err);
-    res.render('addCohort', {schools: rows});
+    res.render('addCohort', {schools: rows, user: req.user._json.user_metadata});
   });
 });
 
@@ -180,6 +181,49 @@ app.get('/alumni',ensureLog, function(req, res) {
   //   res.render('addPartner');
   // });
 
+
+ // app.get('/admin', ensureLog, function(req, res) {
+ //    console.log(req.user._json.user_metadata.name);
+ //    callAuth0("get", "logs", function(response) {
+ //      console.log(response);
+ //    });
+   
+ //    res.render('admin');
+ //  });
+var generateToken = function(callback) {
+    //Auth0 API Access Code
+    var options = { method: 'Post',
+      url: 'https://ngmatl.auth0.com/oauth/token',
+      headers: { 'content-type': 'application/json' },
+      body: 
+       { grant_type: 'client_credentials',
+         client_id: 'T4zfzFLTpefPOzcusSDe5pNckdtqs33D',
+         client_secret: 'Tvdhw9Icvz-fEyMYq7z2yKOU3SmFDnv1W1YKUDwUomrj3vhCOL6xLaiGHbBhGQGt',
+         audience: 'https://ngmatl.auth0.com/api/v2/' },
+      json: true };
+
+    request(options, function (error, response, body) {
+      if (error) throw new Error(error);
+      callback(body.access_token);
+    });
+  };
+  var callAuth0 = function(requestMethod, requestUrl, callback) {
+    var url = "https://ngmatl.auth0.com/api/v2/";
+    
+    generateToken(function(token) {
+      var options = { 
+        method: requestMethod,
+        url: url + requestUrl,
+            headers: 
+           { authorization: 'Bearer ' + token,
+             'content-type': 'application/json' } };
+
+      request(options, function (error, response, body) {
+        if (error) throw new Error(error);
+        callback(body);
+      });
+    });
+  };
   
 };
   
