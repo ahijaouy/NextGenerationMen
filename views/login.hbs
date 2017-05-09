@@ -14,17 +14,7 @@
         closable: false,
         languageDictionary: {title: "Next Generation Men"},
         params: {scope: 'openid name email picture'},
-        allowSignUp: true ,
-        additionalSignUpFields: [{
-          name: "Name",
-          placeholder: "enter your name",
-          validator: function(name) {
-            return {
-               valid: name.length >= 2,
-               hint: "Must have 10 or more chars" // optional
-            };
-          }
-        }]
+        allowSignUp: false
         
       });
       lock.show();

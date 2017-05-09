@@ -1,9 +1,10 @@
 module.exports = function(app, passport, env) {
 
-  var mysql          = require('mysql'),
-      ensureLog      = require('connect-ensure-login').ensureLoggedIn(),
-      students        = require('./student_routes'),
-      schools        = require('./school_routes');
+  var mysql       = require('mysql'),
+      ensureLog   = require('connect-ensure-login').ensureLoggedIn(),
+      students    = require('./student_routes'),
+      schools     = require('./school_routes'),
+      request     = require('request');
 
 
   var dbconfig = {
@@ -166,12 +167,45 @@ app.get('/cohorts/:id/delete', ensureLog, function(req, res) {
   });
 });
 
-app.get('/alumni',ensureLog, function(req, res) {
-    connection.query("SELECT student.student_id, student.student_first_name, student.student_phone, student.student_last_name, school.school_name, cohort.cohort_year, student.guardian_one_name, student.guardian_one_phone FROM student INNER JOIN cohort ON student.cohort_id=cohort.cohort_id INNER JOIN school ON cohort.school_id=school.school_id;", function(err, rows){
-      console.log(err);
-      res.render('alumni', { students: rows});
-    });
+// app.get('/alumni',ensureLog, function(req, res) {
+//   connection.query("SELECT student.student_id, student.student_first_name, student.student_phone, student.student_last_name, school.school_name, cohort.cohort_year, student.guardian_one_name, student.guardian_one_phone FROM student INNER JOIN cohort ON student.cohort_id=cohort.cohort_id INNER JOIN school ON cohort.school_id=school.school_id;", function(err, rows){
+//     console.log(err);
+//     res.render('alumni', { students: rows});
+//   });
+// });
+
+app.get('/editProfile', ensureLog, function(req, res) {
+  
+  res.render('editUserProfile', {user: req.user._json});
+  
+});
+
+app.post('/editProfile', ensureLog, function(req, res) {
+  var body = {"email":req.body.email, "user_metadata": {"name": req.body.name }};
+
+  callAuth0("PATCH", "users/auth0|58c60dde6c180767800c2fa8",body, function(response) {
+    res.redirect('index');
   });
+});
+
+app.get('/resetPassword', ensureLog, function(req, res) {
+  var options = { method: 'POST',
+    url: 'https://ngmatl.auth0.com/dbconnections/change_password',
+    headers: { 'content-type': 'application/json' },
+    body: 
+     { client_id: 'T4zfzFLTpefPOzcusSDe5pNckdtqs33D',
+       email: req.user._json.email,
+       connection: 'Username-Password-Authentication' },
+    json: true 
+  };
+
+  request(options, function (error, response, body) {
+    if (error) throw new Error(error);
+
+  });
+  res.redirect('/index');
+});
+
   
   // //Partner routes
   // app.get('/partners',ensureLog, function(req, res) {
@@ -207,16 +241,18 @@ var generateToken = function(callback) {
       callback(body.access_token);
     });
   };
-  var callAuth0 = function(requestMethod, requestUrl, callback) {
+  var callAuth0 = function(requestMethod, requestUrl, requestBody, callback) {
     var url = "https://ngmatl.auth0.com/api/v2/";
     
     generateToken(function(token) {
       var options = { 
         method: requestMethod,
         url: url + requestUrl,
-            headers: 
-           { authorization: 'Bearer ' + token,
-             'content-type': 'application/json' } };
+        headers: { authorization: 'Bearer ' + token, 'content-type': 'application/json' },
+        body: requestBody,
+        json: true
+          
+      };
 
       request(options, function (error, response, body) {
         if (error) throw new Error(error);
