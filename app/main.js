@@ -71,27 +71,36 @@ module.exports = function(app, passport, env) {
           if (err3) {console.log(err3)}
           var innerJoinQuery = "SELECT * FROM student ";
           innerJoinQuery += "INNER JOIN cohort on student.cohort_id=cohort.cohort_id ";
-          innerJoinQuery += "INNER JOIN school on cohort.school_id=school.school_id "
-          innerJoinQuery += "INNER JOIN semester_record on semester_record.student_id=student.student_id ";
-          innerJoinQuery += "INNER JOIN survey_response on survey_response.semester_record_id=semester_record.semester_record_id;";
-          connection.query(innerJoinQuery, function(err4, joins) {
+          innerJoinQuery += "INNER JOIN school on cohort.school_id=school.school_id ";
+          connection.query(innerJoinQuery + ";", function(err4, studentCohortSchoolJoin) {
             if (err4) {console.log(err4)}
-            connection.query("SELECT COUNT(student_gender) as count from student where student_gender=\"Male\"",function(err, maleCounter) {
-              connection.query("SELECT COUNT(student_gender) as count from student where student_gender=\"Female\"", function(err, femaleCounter) {
-                connection.query("SELECT * from survey_response;", function(err5, survey_responses) {
-                  connection.query("SELECT COUNT(student_id) as count FROM student;", function(err6, count) {
-                    if (err5) {console.log(err5);}
-                    res.render('index', {
-                      user: req.user._json.user_metadata,
-                      students: students,
-                      count: count[0].count,
-                      schools: schools,
-                      cohorts: cohorts,
-                      joins: joins,
-                      survey_response: survey_responses,
-                      studentCounter: maleCounter[0].count + femaleCounter[0].count,
-                      maleCounter: maleCounter[0].count,
-                      femaleCounter: femaleCounter[0].count
+            innerJoinQuery += "INNER JOIN semester_record on semester_record.student_id=student.student_id ";
+            connection.query(innerJoinQuery + ";", function(err7, semesterRecordJoin) { 
+              var newQuery = "SELECT * FROM student ";
+              newQuery += "INNER JOIN semester_record ON semester_record.student_id=student.student_id ";
+              newQuery += "INNER JOIN survey_response ON survey_response.semester_record_id=semester_record.semester_record_id";
+              innerJoinQuery += "INNER JOIN survey_response ON survey_response.semester_record_id=semester_record.semester_record_id";
+              connection.query(innerJoinQuery + ";", function(err8, surveyResponseJoin) {
+                connection.query("SELECT COUNT(student_gender) as count from student where student_gender=\"Male\"",function(err, maleCounter) {
+                  connection.query("SELECT COUNT(student_gender) as count from student where student_gender=\"Female\"", function(err, femaleCounter) {
+                    connection.query("SELECT * from survey_response;", function(err5, survey_responses) {
+                      connection.query("SELECT COUNT(student_id) as count FROM student;", function(err6, count) {
+                        if (err5) {console.log(err5);}
+                        res.render('index', {
+                          user: req.user._json.user_metadata,
+                          students: students,
+                          count: count[0].count,
+                          schools: schools,
+                          cohorts: cohorts,
+                          studentCohortSchoolJoin: studentCohortSchoolJoin,
+                          semesterRecordJoin: semesterRecordJoin,
+                          surveyResponseJoin: surveyResponseJoin,
+                          survey_response: survey_responses,
+                          studentCounter: maleCounter[0].count + femaleCounter[0].count,
+                          maleCounter: maleCounter[0].count,
+                          femaleCounter: femaleCounter[0].count
+                        });
+                      });
                     });
                   });
                 });
