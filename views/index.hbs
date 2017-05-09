@@ -449,7 +449,7 @@
         }
         var schoolTicks = [];
         pos = 2;
-        {{#each joins}}
+        {{#each surveyResponseJoin}}
             schoolTicks.push([pos, "Semester #{{this.semester_number}}"]);
             pos = pos + 3;
         {{/each}}
@@ -857,7 +857,7 @@
         }
         var schoolTicks = [];
         pos = 2;
-        {{#each joins}}
+        {{#each surveyResponseJoin}}
             schoolTicks.push([pos, "{{this.school_name}}"]);
             pos = pos + 3;
         {{/each}}
@@ -1054,7 +1054,7 @@
             }
             var schoolTicks = [];
             pos = 2;
-            {{#each joins}}
+            {{#each surveyResponseJoin}}
                 schoolTicks.push([pos, "Semester #{{this.semester_number}}"]);
                 pos = pos + 3;
             {{/each}}
@@ -1132,10 +1132,11 @@
         }
         var schoolTicks = [];
         pos = 2;
-        {{#each schools}}
+        {{#each semesterRecordJoin}}
             schoolTicks.push([pos, "{{this.school_name}}"]);
             pos = pos + 3;
         {{/each}}
+        console.log("schoolTicks: " + schoolTicks);
         $("#canvas_dahs").length && $.plot($("#canvas_dahs"), [
           data
         ], {
@@ -1260,25 +1261,30 @@
         
         $('#Graph-Title').text("Students Per School");
         var counts = [];
+        var schoolTicks = [];
+        var pos = 2;
         {{#each studentCohortSchoolJoin}}
           if (counts[{{this.school_id}}] == null) {
               counts[{{this.school_id}}] = 0;
+              schoolTicks.push([pos, "{{this.school_name}}"]);
+              pos += 3;
           }
           counts[{{this.school_id}}]++;
         {{/each}}
 
         var data = []
-        var pos = 2;
+        pos = 2;
+        
         for (x in counts) {
             data.push([pos, counts[x]]);
             pos = pos + 3;
         }
-        var schoolTicks = [];
-        pos = 2;
-        {{#each schools}}
-            schoolTicks.push([pos, "{{this.school_name}}"]);
-            pos = pos + 3;
-        {{/each}}
+        
+        
+        // {{#each schools}}
+        //     schoolTicks.push([pos, "{{this.school_name}}"]);
+        //     pos = pos + 3;
+        // {{/each}}
 
 
         $("#canvas_dahs").length && $.plot($("#canvas_dahs"), [
