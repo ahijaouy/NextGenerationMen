@@ -286,7 +286,7 @@
         studentsPerSchool();
       });
 
-      $('#graphSelect li a').click(function() {
+      $('#graphSelect li a').click(function() {           
         $('#menu1').text($(this).text());
         if ($(this).text() == "Students per School") {
           studentsPerSchool();
@@ -310,8 +310,7 @@
         
         var surveyInfo = [];
         var counter = 0;
-        // console.log("survey_response: " + {{survey_response}});
-        {{#each joins}}
+        {{#each surveyResponseJoin}}
           counter++;
           var semesterRecordId = {{this.semester_number}};
           var surveyQuestionId = {{this.survey_question_id}};
@@ -432,7 +431,6 @@
           }
         }
         pos = 2;
-        // console.log(compositeData[1]);
         for (x in compositeData) {
           gritAvg.push([pos, compositeData[x][0]]);
           probSolvAvg.push([pos, compositeData[x][1]]);
@@ -449,8 +447,6 @@
             schoolTicks.push([pos, "Semester #{{this.semester_number}}"]);
             pos = pos + 3;
         {{/each}}
-        // schoolTicks=[[2, "Semester #1"]];
-        // console.log("schoolTicks: " + schoolTicks);
         data = [ 
              {label: "Grit", data: gritAvg},
              {label: "Problem Solving", data: probSolvAvg},
@@ -516,8 +512,7 @@
         
         var surveyInfo = [];
         var counter = 0;
-        // console.log("survey_response: " + {{survey_response}});
-        {{#each joins}}
+        {{#each surveyResponseJoin}}
           counter++;
           var cohortId = {{this.cohort_id}};
           var surveyQuestionId = {{this.survey_question_id}};
@@ -638,7 +633,6 @@
           }
         }
         pos = 2;
-        // console.log(compositeData[1]);
         for (x in compositeData) {
           gritAvg.push([pos, compositeData[x][0]]);
           probSolvAvg.push([pos, compositeData[x][1]]);
@@ -651,11 +645,10 @@
         }
         var schoolTicks = [];
         pos = 2;
-        {{#each joins}}
+        {{#each surveyResponseJoin}}
             schoolTicks.push([pos, "{{this.cohort_year}}"]);
             pos = pos + 3;
         {{/each}}
-        // console.log("schoolTicks: " + schoolTicks);
         data = [ 
              {label: "Grit", data: gritAvg},
              {label: "Problem Solving", data: probSolvAvg},
@@ -665,7 +658,6 @@
              {label: "Growth", data: grwthAvg},
              {label: "Behavior", data: behaveAvg}
         ];
-        console.log(data[0].data);
         $("#canvas_dahs").length && $.plot($("#canvas_dahs"),
           data, {
           series: {
@@ -724,7 +716,7 @@
         $('#Graph-Title').text("Survey Responses By School");
         var surveyInfo = [];
         var counter = 0;
-        {{#each joins}}
+        {{#each surveyResponseJoin}}
           counter++;
           var school = {{this.school_id}};
           var surveyQuestionId = {{this.survey_question_id}};
@@ -847,7 +839,6 @@
           }
         }
         pos = 2;
-        // console.log(compositeData[1]);
         for (x in compositeData) {
           gritAvg.push([pos, compositeData[x][0]]);
           probSolvAvg.push([pos, compositeData[x][1]]);
@@ -864,7 +855,6 @@
             schoolTicks.push([pos, "{{this.school_name}}"]);
             pos = pos + 3;
         {{/each}}
-        // console.log("schoolTicks: " + schoolTicks);
         data = [ 
              {label: "Grit", data: gritAvg},
              {label: "Problem Solving", data: probSolvAvg},
@@ -874,7 +864,6 @@
              {label: "Growth", data: grwthAvg},
              {label: "Behavior", data: behaveAvg}
         ];
-        console.log(data[0].data);
         $("#canvas_dahs").length && $.plot($("#canvas_dahs"),
           data, {
           series: {
@@ -933,7 +922,7 @@
         $('#Graph-Title').text("Survey Responses Over Time");
         var surveyInfo = [];
         var counter = 0;
-        {{#each joins}}
+        {{#each surveyResponseJoin}}
           counter++;
           var semesterRecordId = {{this.semester_record_id}};
           var surveyQuestionId = {{this.survey_question_id}};
@@ -1039,11 +1028,6 @@
           
           
         {{/each}}
-        // console.log(surveyInfo[1]);
-        // console.log("7 | 13 | 17 | 25 | 31 | 34 | 44");
-        // for (x in surveyInfo[1]) {
-        //   console.log(x + ": " + surveyInfo[1][x]);
-        // }
         var compositeAvg = [];
             for (x in surveyInfo) {
               
@@ -1062,14 +1046,12 @@
                 data.push([pos, compositeAvg[x]]);
                 pos = pos + 3;
             }
-            // console.log("data: " + data);
             var schoolTicks = [];
             pos = 2;
             {{#each joins}}
                 schoolTicks.push([pos, "Semester #{{this.semester_number}}"]);
                 pos = pos + 3;
             {{/each}}
-            // console.log("schoolTicks: " + schoolTicks);
 
             $("#canvas_dahs").length && $.plot($("#canvas_dahs"), [
               data
@@ -1118,10 +1100,10 @@
       }
 
       function gpaPerSchool() {
-        $('#Graph-Title').text("GPA Per school");
+        $('#Graph-Title').text("GPA Per School");
 
         var gradeInfo = [];
-        {{#each joins}}
+        {{#each semesterRecordJoin}}
           if (gradeInfo[{{this.school_id}}] == null) {
             gradeInfo[{{this.school_id}}] = {
               avg: {{this.semester_gpa}},
@@ -1196,7 +1178,7 @@
         $('#Graph-Title').text("GPA Per Cohort");
 
         var gradeInfo = [];
-        {{#each joins}}
+        {{#each semesterRecordJoin}}
           if (gradeInfo[{{this.cohort_id}}] == null) {
             gradeInfo[{{this.cohort_id}}] = {
               avg: {{this.semester_gpa}},
@@ -1270,14 +1252,13 @@
 
       function studentsPerSchool() {
         
-        $('#Graph-Title').text("Students Per school");
-
+        $('#Graph-Title').text("Students Per School");
         var counts = [];
-        {{#each joins}}
-        if (counts[{{this.school_id}}] == null) {
-            counts[{{this.school_id}}] = 0;
-        }
-        counts[{{this.school_id}}]++;
+        {{#each studentCohortSchoolJoin}}
+          if (counts[{{this.school_id}}] == null) {
+              counts[{{this.school_id}}] = 0;
+          }
+          counts[{{this.school_id}}]++;
         {{/each}}
 
         var data = []
@@ -1292,6 +1273,7 @@
             schoolTicks.push([pos, "{{this.school_name}}"]);
             pos = pos + 3;
         {{/each}}
+
 
         $("#canvas_dahs").length && $.plot($("#canvas_dahs"), [
           data
