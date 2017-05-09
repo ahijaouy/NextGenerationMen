@@ -651,7 +651,7 @@
         }
         var schoolTicks = [];
         pos = 2;
-        {{#each joins}}
+        {{#each surveyResponseJoin}}
             schoolTicks.push([pos, "{{this.cohort_year}}"]);
             pos = pos + 3;
         {{/each}}
@@ -1106,7 +1106,7 @@
       }
 
       function gpaPerSchool() {
-        $('#Graph-Title').text("GPA Per school");
+        $('#Graph-Title').text("GPA Per School");
 
         var gradeInfo = [];
         {{#each semesterRecordJoin}}
@@ -1258,7 +1258,7 @@
 
       function studentsPerSchool() {
         
-        $('#Graph-Title').text("Students Per school");
+        $('#Graph-Title').text("Students Per School");
         var counts = [];
         {{#each studentCohortSchoolJoin}}
           if (counts[{{this.school_id}}] == null) {
