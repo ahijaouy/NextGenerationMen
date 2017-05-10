@@ -151,7 +151,7 @@
               <div class="dashboard_graph">
                 <div class="row x_title">
                   <div class="col-lg-8 col-md-8 col-sm-6">
-                    <h3 id="Graph-Title">school Performance</h3>
+                    <h3 id="Graph-Title">Students Per School</h3>
                   </div>
                   <div class='col-lg-3 col-md-3 col-sm-2'>
                     <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Graph Type
@@ -285,6 +285,8 @@
     <script src="../build/js/custom.min.js"></script>
 
     <!--script src="../build/js/demo.js"></script-->
+
+    <script src="../build/js/Index-Graph.js"></script>
 
     <!-- Flot -->
     <script>
@@ -655,15 +657,15 @@
             schoolTicks.push([pos, "{{this.cohort_year}}"]);
             pos = pos + 3;
         {{/each}}
-        data = [ 
-             {label: "Grit", data: gritAvg},
-             {label: "Problem Solving", data: probSolvAvg},
-             {label: "Academic Self-Efficacy", data: aseAvg},
-             {label: "Social Competence", data: scompAvg},
-             {label: "Teamwork", data: scompAvg},
-             {label: "Growth", data: grwthAvg},
-             {label: "Behavior", data: behaveAvg}
-        ];
+        data = [];
+        data.push({label: "Grit", data: gritAvg});
+        data.push({label: "Problem Solving", data: probSolvAvg});
+        data.push({label: "Academic Self-Efficacy", data: aseAvg});
+        data.push({label: "Social Competence", data: scompAvg});
+        data.push({label: "Teamwork", data: scompAvg});
+        data.push({label: "Growth", data: grwthAvg});
+        data.push({label: "Behavior", data: behaveAvg});
+        // barGraph(data, schoolTicks);
         $("#canvas_dahs").length && $.plot($("#canvas_dahs"),
           data, {
           series: {
@@ -870,239 +872,7 @@
              {label: "Growth", data: grwthAvg},
              {label: "Behavior", data: behaveAvg}
         ];
-        $("#canvas_dahs").length && $.plot($("#canvas_dahs"),
-          data, {
-          series: {
-            data: data,
-            lines: {
-              show: false,
-              fill: true,
-            },
-            bars: {
-              show: true,
-              fill: true,
-              barWidth: 2,
-              align: "center"
-            },
-            stack: true,
-            points: {
-              show:false,
-              fill:true
-              },
-          },
-          grid: {
-            padding: 10,
-            verticalLines: true,
-            hoverable: true,
-            clickable: true,
-            tickColor: "#d5d5d5",
-            borderWidth: 10,
-            color: '#fff',
-          },
-          colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
-          legend: {
-            show: true,
-            labelFormatter: function(label, series) {
-              return '<p style="color:black;">' + label + '</p>';
-            },
-            labelBoxBorderColor: "rgb(0, 0, 0)",
-          },
-          xaxis: {
-            ticks: schoolTicks,
-            tickColor: "rgba(51, 51, 51, 0.06)",
-            tickSize: 5,
-            axisLabel: "Date",
-            axisLabelUseCanvas: true,
-            axisLabelFontSizePixels: 12,
-            axisLabelFontFamily: 'Verda na, Arial'
-          },
-          yaxis: {
-            axisLabelUseCanvas: true,
-            tickColor: "rgba(51, 51, 51, 0.06)",
-          },
-          tooltip: false
-        });
-      }
-
-      function survey_responseOverTime() {
-        $('#Graph-Title').text("Survey Responses Over Time");
-        var surveyInfo = [];
-        var counter = 0;
-        {{#each surveyResponseJoin}}
-          counter++;
-          var semesterRecordId = {{this.semester_record_id}};
-          var surveyQuestionId = {{this.survey_question_id}};
-          if (surveyInfo[semesterRecordId] == null) {
-            surveyInfo[semesterRecordId] = {};
-            if (surveyQuestionId <= 7) {
-              surveyInfo[semesterRecordId].gritAvg = [{{this.response}}, 1];
-            } else if (surveyQuestionId <= 13) {
-              surveyInfo[semesterRecordId].probSolvAvg = [{{this.response}}, 1];
-            } else if (surveyQuestionId <= 17) {
-              surveyInfo[semesterRecordId].aseAvg = [{{this.response}}, 1];
-            } else if (surveyQuestionId <= 25) {
-              surveyInfo[semesterRecordId].tmwrkAvg = [{{this.response}}, 1];
-            } else if (surveyQuestionId <= 31) {
-              surveyInfo[semesterRecordId].scompAvg = [{{this.response}}, 1];
-            } else if (surveyQuestionId <= 34) {
-              surveyInfo[semesterRecordId].grwthAvg = [{{this.response}}, 1];
-            } else if (surveyQuestionId <= 48) {
-              surveyInfo[semesterRecordId].behaveAvg = [{{this.response}}, 1];
-            }
-          } else {
-            var avg;
-            if (surveyQuestionId <= 7) {
-              if (surveyInfo[semesterRecordId].gritAvg == null) {
-                surveyInfo[semesterRecordId].gritAvg = [{{this.response}}, 1];
-              } else {
-                avg = surveyInfo[semesterRecordId].gritAvg;
-                avg[0] *= avg[1];
-                avg[0] += {{this.response}};
-                avg[0] /= avg[1] + 1;
-                avg[1]++;
-                surveyInfo[semesterRecordId].gritAvg = avg;
-              }
-            } else if (surveyQuestionId <= 13) {
-              if (surveyInfo[semesterRecordId].probSolvAvg == null) {
-                surveyInfo[semesterRecordId].probSolvAvg = [{{this.response}}, 1];
-              } else {
-                avg = surveyInfo[semesterRecordId].probSolvAvg;
-                avg[0] *= avg[1];
-                avg[0] += {{this.response}};
-                avg[0] /= avg[1] + 1;
-                avg[1]++; 
-                surveyInfo[semesterRecordId].probSolvAvg = avg;
-              }
-            } else if (surveyQuestionId <= 17) {
-              if (surveyInfo[semesterRecordId].aseAvg == null) {    
-                surveyInfo[semesterRecordId].aseAvg = [{{this.response}}, 1];
-              } else {
-                avg = surveyInfo[semesterRecordId].aseAvg;
-                avg[0] *= avg[1];
-                avg[0] += {{this.response}};
-                avg[0] /= avg[1] + 1;
-                avg[1]++; 
-              surveyInfo[semesterRecordId].aseAvg = avg;
-              }
-            } else if (surveyQuestionId <= 25) {
-              if (surveyInfo[semesterRecordId].tmwrkAvg == null) {
-                surveyInfo[semesterRecordId].tmwrkAvg = [{{this.response}}, 1];
-              } else {
-                avg = surveyInfo[semesterRecordId].tmwrkAvg;
-                avg[0] *= avg[1];
-                avg[0] += {{this.response}};
-                avg[0] /= avg[1] + 1;
-                avg[1]++;
-                surveyInfo[semesterRecordId].tmwrkAvg = avg;
-
-              }
-            } else if (surveyQuestionId <= 31) {
-              if (surveyInfo[semesterRecordId].scompAvg == null) {
-                surveyInfo[semesterRecordId].scompAvg = [{{this.response}}, 1];
-              } else {
-                avg = surveyInfo[semesterRecordId].scompAvg;
-                avg[0] *= avg[1];
-                avg[0] += {{this.response}};
-                avg[0] /= avg[1] + 1;
-                avg[1]++;
-                surveyInfo[semesterRecordId].scompAvg = avg;
-              }
-            } else if (surveyQuestionId <= 34) {
-              if (surveyInfo[semesterRecordId].grwthAvg == null) {
-                surveyInfo[semesterRecordId].grwthAvg = [{{this.response}}, 1];
-              } else {
-                avg = surveyInfo[semesterRecordId].grwthAvg;
-                avg[0] *= avg[1];
-                avg[0] += {{this.response}};
-                avg[0] /= avg[1] + 1;
-                avg[1]++;
-                surveyInfo[semesterRecordId].grwthAvg = avg;
-              }
-            } else if (surveyQuestionId <= 48) {
-              if (surveyInfo[semesterRecordId].behaveAvg == null) {
-                surveyInfo[semesterRecordId].behaveAvg = [{{this.response}}, 1];
-              } else {
-                avg = surveyInfo[semesterRecordId].behaveAvg;
-                avg[0] *= avg[1];
-                avg[0] += {{this.response}};
-                avg[0] /= avg[1] + 1;
-                avg[1]++;
-                surveyInfo[semesterRecordId].behaveAvg = avg;
-              }
-            }            
-          }
-          
-          
-        {{/each}}
-        var compositeAvg = [];
-            for (x in surveyInfo) {
-              
-              if (surveyInfo[x] != null) {
-                var sumAvg = 0;
-                for (y in surveyInfo[x]) {
-                  sumAvg += surveyInfo[x][y][0];
-                }
-              }
-              compositeAvg.push(sumAvg);
-            }
-
-            var data = [];
-            var pos = 2;
-            for (x in compositeAvg) {
-                data.push([pos, compositeAvg[x]]);
-                pos = pos + 3;
-            }
-            var schoolTicks = [];
-            pos = 2;
-            {{#each surveyResponseJoin}}
-                schoolTicks.push([pos, "Semester #{{this.semester_number}}"]);
-                pos = pos + 3;
-            {{/each}}
-
-            $("#canvas_dahs").length && $.plot($("#canvas_dahs"), [
-              data
-            ], {
-              series: {
-                lines: {
-                  show: true,
-                  fill: true,
-                },
-                bars: {
-                  show: false,
-                  fill: true,
-                  barWidth: 2,
-                  align: "center"
-                },
-                points: {
-                  show:true,
-                  fill:true
-                  },
-              },
-              grid: {
-                padding: 10,
-                verticalLines: true,
-                hoverable: true,
-                clickable: true,
-                tickColor: "#d5d5d5",
-                borderWidth: 10,
-                color: '#fff',
-              },
-              colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
-              xaxis: {
-                ticks: schoolTicks,
-                tickColor: "rgba(51, 51, 51, 0.06)",
-                tickSize: 5,
-                axisLabel: "Date",
-                axisLabelUseCanvas: true,
-                axisLabelFontSizePixels: 12,
-                axisLabelFontFamily: 'Verda na, Arial'
-              },
-              yaxis: {
-                axisLabelUseCanvas: true,
-                tickColor: "rgba(51, 51, 51, 0.06)",
-              },
-              tooltip: false
-            });
+        barGraph(data, schoolTicks);
       }
 
       function gpaPerSchool() {
@@ -1136,49 +906,7 @@
             schoolTicks.push([pos, "{{this.school_name}}"]);
             pos = pos + 3;
         {{/each}}
-        console.log("schoolTicks: " + schoolTicks);
-        $("#canvas_dahs").length && $.plot($("#canvas_dahs"), [
-          data
-        ], {
-          series: {
-            lines: {
-              show: false,
-              fill: false,
-            },
-            bars: {
-              show: true,
-              fill: true,
-              barWidth: 2,
-              align: "center"
-            },
-            points: {
-              },
-          },
-          grid: {
-            padding: 10,
-            verticalLines: true,
-            hoverable: true,
-            clickable: true,
-            tickColor: "#d5d5d5",
-            borderWidth: 10,
-            color: '#fff',
-          },
-          colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
-          xaxis: {
-            ticks: schoolTicks,
-            tickColor: "rgba(51, 51, 51, 0.06)",
-            tickSize: 5,
-            axisLabel: "Date",
-            axisLabelUseCanvas: true,
-            axisLabelFontSizePixels: 12,
-            axisLabelFontFamily: 'Verda na, Arial'
-          },
-          yaxis: {
-            axisLabelUseCanvas: true,
-            tickColor: "rgba(51, 51, 51, 0.06)",
-          },
-          tooltip: false
-        });
+        barGraph(data, schoolTicks);
       }
 
       function gpaPerCohort() {
@@ -1213,52 +941,10 @@
             pos = pos + 3;
         {{/each}}
 
-        $("#canvas_dahs").length && $.plot($("#canvas_dahs"), [
-          data
-        ], {
-          series: {
-            lines: {
-              show: false,
-              fill: false,
-            },
-            bars: {
-              show: true,
-              fill: true,
-              barWidth: 2,
-              align: "center"
-            },
-            points: {
-              },
-          },
-          grid: {
-            padding: 10,
-            verticalLines: true,
-            hoverable: true,
-            clickable: true,
-            tickColor: "#d5d5d5",
-            borderWidth: 10,
-            color: '#fff',
-          },
-          colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
-          xaxis: {
-            ticks: schoolTicks,
-            tickColor: "rgba(51, 51, 51, 0.06)",
-            tickSize: 5,
-            axisLabel: "Date",
-            axisLabelUseCanvas: true,
-            axisLabelFontSizePixels: 12,
-            axisLabelFontFamily: 'Verda na, Arial'
-          },
-          yaxis: {
-            axisLabelUseCanvas: true,
-            tickColor: "rgba(51, 51, 51, 0.06)",
-          },
-          tooltip: false
-        });
+        barGraph(data, schoolTicks);
       }
 
       function studentsPerSchool() {
-        
         $('#Graph-Title').text("Students Per School");
         var counts = [];
         var schoolTicks = [];
@@ -1279,17 +965,13 @@
             data.push([pos, counts[x]]);
             pos = pos + 3;
         }
-        
-        
-        // {{#each schools}}
-        //     schoolTicks.push([pos, "{{this.school_name}}"]);
-        //     pos = pos + 3;
-        // {{/each}}
+        barGraph(data, schoolTicks);
+      }
 
-
-        $("#canvas_dahs").length && $.plot($("#canvas_dahs"), [
-          data
-        ], {
+      function barGraph(data, ticks) {
+        $("#canvas_dahs").length && $.plot($("#canvas_dahs"),
+        [data]
+        , {
           series: {
             lines: {
               show: false,
@@ -1301,6 +983,7 @@
               barWidth: 2,
               align: "center"
             },
+            stack: true,
             points: {
               },
           },
@@ -1314,8 +997,15 @@
             color: '#fff',
           },
           colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
+          legend: {
+            show: true,
+            labelFormatter: function(label, series) {
+              return '<p style="color:black;">' + label + '</p>';
+            },
+            labelBoxBorderColor: "rgb(0, 0, 0)",
+          },
           xaxis: {
-            ticks: schoolTicks,
+            ticks: ticks,
             tickColor: "rgba(51, 51, 51, 0.06)",
             tickSize: 5,
             axisLabel: "Date",

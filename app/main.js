@@ -76,11 +76,13 @@ module.exports = function(app, passport, env) {
             if (err4) {console.log(err4)}
             innerJoinQuery += "INNER JOIN semester_record on semester_record.student_id=student.student_id ";
             connection.query(innerJoinQuery + ";", function(err7, semesterRecordJoin) { 
+              if (err7) {console.log(err7)}
               var newQuery = "SELECT * FROM student ";
               newQuery += "INNER JOIN semester_record ON semester_record.student_id=student.student_id ";
               newQuery += "INNER JOIN survey_response ON survey_response.semester_record_id=semester_record.semester_record_id";
               innerJoinQuery += "INNER JOIN survey_response ON survey_response.semester_record_id=semester_record.semester_record_id";
               connection.query(innerJoinQuery + ";", function(err8, surveyResponseJoin) {
+                if (err8) {console.log(err8)}
                 connection.query("SELECT COUNT(student_gender) as count from student where student_gender=\"Male\"",function(err, maleCounter) {
                   connection.query("SELECT COUNT(student_gender) as count from student where student_gender=\"Female\"", function(err, femaleCounter) {
                     connection.query("SELECT * from survey_response;", function(err5, survey_responses) {
