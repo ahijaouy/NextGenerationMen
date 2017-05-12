@@ -4,6 +4,7 @@ module.exports = function(app, passport, env) {
       ensureLog   = require('connect-ensure-login').ensureLoggedIn(),
       students    = require('./student_routes'),
       schools     = require('./school_routes'),
+      surveys     = require('./survey_routes'),
       request     = require('request');
 
 
@@ -19,6 +20,7 @@ module.exports = function(app, passport, env) {
   //Use the subroutes defined in different files
   app.use('/students', students);
   app.use('/schools', schools);
+  app.use('/surveys', surveys);
   
   connection.query('USE ' + process.env.DATABASE);
 
@@ -215,6 +217,26 @@ app.get('/resetPassword', ensureLog, function(req, res) {
   res.redirect('/index');
 });
 
+
+// app.get('/surveys', ensureLog, function(req, res) {
+//   res.render('surveys', {user: req.user._json});
+// });
+
+app.get('/addSurvey/category', ensureLog, function(req, res) {
+  res.render('addSurveyCategory',{user: req.user._json});
+});
+
+app.post('/addSurvey/category/:next', ensureLog, function(req, res) {
+  if(req.params.next == 'new') {
+    res.redirect('/addSurvey/category');
+  } else {
+    res.redirect('/addSurvey/question');
+  }
+});
+
+app.get('/addSurvey/question', ensureLog, function(req, res) {
+  res.render('addSurveyQuestion', {user: req.user._json});
+});
   
   // //Partner routes
   // app.get('/partners',ensureLog, function(req, res) {

@@ -51,7 +51,7 @@ CREATE TABLE `cohort` (
   `user_modified` int(11) DEFAULT NULL,
   PRIMARY KEY (`cohort_id`),
   KEY `fk_school_id` (`school_id`),
-  CONSTRAINT `fk_school_id` FOREIGN KEY (`school_id`) REFERENCES `school` (`school_id`)
+  CONSTRAINT `fk_school_id` FOREIGN KEY (`school_id`) REFERENCES `school` (`school_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `student` (
@@ -79,7 +79,7 @@ CREATE TABLE `student` (
   `user_modified` int(11) DEFAULT NULL,
   PRIMARY KEY (`student_id`),
   KEY `fk_cohort` (`cohort_id`),
-  CONSTRAINT `fk_cohort` FOREIGN KEY (`cohort_id`) REFERENCES `cohort` (`cohort_id`)
+  CONSTRAINT `fk_cohort` FOREIGN KEY (`cohort_id`) REFERENCES `cohort` (`cohort_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=99855 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `semester_record` (
@@ -97,7 +97,7 @@ CREATE TABLE `semester_record` (
   `user_modified` int(11) NOT NULL,
   PRIMARY KEY (`semester_record_id`),
   KEY `fk_student` (`student_id`),
-  CONSTRAINT `fk_student` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`)
+  CONSTRAINT `fk_student` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=163 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `attendance_record` (
@@ -112,7 +112,7 @@ CREATE TABLE `attendance_record` (
   `user_modified` int(11) NOT NULL,
   PRIMARY KEY (`attendance_record_id`),
   KEY `fk_student2` (`student_id`),
-  CONSTRAINT `fk_student2` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`)
+  CONSTRAINT `fk_student2` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `survey` (
@@ -131,7 +131,7 @@ CREATE TABLE `survey_category` (
   `user_modified` int(11) NOT NULL,
   PRIMARY KEY (`survey_category_id`),
   KEY `fk_survey` (`survey_id`),
-  CONSTRAINT `fk_survey` FOREIGN KEY (`survey_id`) REFERENCES `survey` (`survey_id`)
+  CONSTRAINT `fk_survey` FOREIGN KEY (`survey_id`) REFERENCES `survey` (`survey_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `survey_question` (
@@ -139,11 +139,12 @@ CREATE TABLE `survey_question` (
   `survey_category_id` int(11) NOT NULL,
   `question` varchar(255) NOT NULL,
   `question_negated` tinyint(4) NOT NULL,
+  `max_score` tinyint(4) NOT NULL,
   `date_modified` date NOT NULL,
-  `user_modified` int(11) NOT NULL,
+  `user_modified` varchar(45) NOT NULL,
   PRIMARY KEY (`survey_question_id`),
   KEY `fk_survey_category` (`survey_category_id`),
-  CONSTRAINT `fk_survey_category` FOREIGN KEY (`survey_category_id`) REFERENCES `survey_category` (`survey_category_id`)
+  CONSTRAINT `fk_survey_category` FOREIGN KEY (`survey_category_id`) REFERENCES `survey_category` (`survey_category_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `survey_response` (
@@ -152,10 +153,10 @@ CREATE TABLE `survey_response` (
   `semester_record_id` int(11) NOT NULL,
   `response` tinyint(4) NOT NULL,
   `date_modified` date NOT NULL,
-  `user_modified` int(11) NOT NULL,
+  `user_modified` varchar(45) NOT NULL,
   PRIMARY KEY (`survey_response_id`),
   KEY `fk_survey_question` (`survey_question_id`),
   KEY `fk_semester_record` (`semester_record_id`),
-  CONSTRAINT `fk_survey_question` FOREIGN KEY (`survey_question_id`) REFERENCES `survey_question` (`survey_question_id`),
-  CONSTRAINT `fk_semester_record` FOREIGN KEY (`semester_record_id`) REFERENCES `semester_record` (`semester_record_id`)
+  CONSTRAINT `fk_survey_question` FOREIGN KEY (`survey_question_id`) REFERENCES `survey_question` (`survey_question_id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_semester_record` FOREIGN KEY (`semester_record_id`) REFERENCES `semester_record` (`semester_record_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

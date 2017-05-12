@@ -10,14 +10,13 @@
     <title>Next Generation Men</title>
 
     <!-- Bootstrap -->
-    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../../../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- NProgress -->
-    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
-
+    <link href="../../../../vendors/nprogress/nprogress.css" rel="stylesheet">
     <!-- Custom Theme Style -->
-    <link href="../build/css/custom.min.css" rel="stylesheet">
+    <link href="../../../../build/css/custom.min.css" rel="stylesheet">
   </head>
 
   <body class="nav-md">
@@ -34,7 +33,7 @@
             <!-- menu profile quick info -->
             <div class="profile">
               <div class="profile_pic">
-                <img src="images/{{user.user_metadata.pic}}" alt="..." class="img-circle profile_img">
+                <img src="../../../../images/{{user.user_metadata.pic}}" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
@@ -78,7 +77,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="images/{{user.user_metadata.pic}}" alt="">{{user.user_metadata.name}}
+                    <img src="../../../../images/{{user.user_metadata.pic}}" alt="">{{user.user_metadata.name}}
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -98,48 +97,68 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Edit Account Information</h3>
+                <h3>Next Generation Men</h3>
               </div>
             </div>
-            
             <div class="clearfix"></div>
+            
             <div class="row">
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>{{user.user_metadata.name}}'s Account Information</h2>
-
+                    <h2>Creating Survey: {{survey.survey_name}}</h2>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                    <p>You may need to logout and log back in before your name change is reflected on the webapp</p>
-                    <form class="form-horizontal" action="editProfile" method="POST" role="form">
-                      <!-- Name -->
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Name<span class="required">*</span></label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="name" name="name" required="required" class="form-control" value="{{user.user_metadata.name}}">
-                        </div>
-                      </div>
-                      <br/>
+                  <p>At this point in time we have created the survey called {{survey.survey_name}}. Now it's time to add the Question Categories you want to associate with this Survey. Enter the name of a Survey Category below and click the corresponding button. You will be able to populate the actual Questions after you finish adding categories.</p>
 
-                      <!-- Email -->
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email<span class="required">*</span></label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="email" id="email" name="email" required="required" class="form-control" value="{{user.email}}">
+                 
+                    <form action="addSurvey" method="POST" class="form-horizontal" role="form">
+                        <div class="form-group">
+                          <legend>Add Survey Category</legend>
                         </div>
-                      </div>
-                      <br/>
 
-                      <div align="center">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                      </div>
+                        <div class="form-group row">
+                          <label for="category_name" class="col-sm-2 col-form-label col-form-label-lg">Category Name</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control form-control-lg" name="category_name" placeholder="Name of Category of Survey Questions" required="required">
+                          </div>
+                        </div>
+                        
+                        
+                        <div class="form-group">
+                          <div class="col-sm-10 col-sm-offset-2">
+                            <button type="submit" formaction="/surveys/new/{{survey.survey_id}}/category/0" class="btn btn-primary">Add Another Category</button>
+                            <button type="submit" formaction="/surveys/new/{{survey.survey_id}}/category/1" class="btn btn-primary">Save & Continue</button>
+                          </div>
+                        </div>
                     </form>
                   </div>
                 </div>
               </div>
             </div>
+            {{#if categories}}
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Current Survey Categories</h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                  <p>Below you will find a list of all the survey categories added so far.</p>
+                  <ul>
+                    {{#each categories}}
+                      <li>{{this.survey_category_name}}</li>
+                    {{/each}}
+                    </ul>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+            {{/if}}
           </div>
         </div>
         <!-- /page content -->
@@ -156,17 +175,36 @@
     </div>
 
     <!-- jQuery -->
-    <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <script src="../../../../vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
-    <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../../../../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- FastClick -->
-    <script src="../vendors/fastclick/lib/fastclick.js"></script>
+    <script src="../../../../vendors/fastclick/lib/fastclick.js"></script>
     <!-- NProgress -->
-    <script src="../vendors/nprogress/nprogress.js"></script>
+    <script src="../../../../vendors/nprogress/nprogress.js"></script>
     <!-- jQuery Smart Wizard -->
-    <script src="../vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js"></script>
+    <script src="../../../../vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js"></script>
     <!-- Custom Theme Scripts -->
-    <script src="../build/js/custom.min.js"></script>
+    <script src="../../../../build/js/custom.min.js"></script>
+
+    <!-- Datatables -->
+    <script src="../../../../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+
+    <script src="../../../../vendors/jszip/dist/jszip.min.js"></script>
+    <script src="../../../../vendors/pdfmake/build/pdfmake.min.js"></script>
+    <script src="../../../vendors/pdfmake/build/vfs_fonts.js"></script>
+    
+    <!-- Datatables -->
+    <script>
+      $(document).ready(function() {
+        $('#datatable').DataTable({
+          "searching" : true
+        });
+
+      } );
+    </script>
+    <!-- /Datatables -->
+
 
   </body>
 </html>
