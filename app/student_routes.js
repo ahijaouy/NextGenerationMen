@@ -7,7 +7,6 @@ var express       = require('express'),
 
 connection.query('USE ' + process.env.DATABASE);
 
-
 //Default Route to students page
 router.route('/')
   .all(authenticate, function (req, res, next) {next();})
@@ -23,9 +22,19 @@ router.route('/:id/profile')
   .all(authenticate, function (req, res, next) {next();})
   .get(function(req, res, next) {
     var query = "SELECT * FROM student INNER JOIN cohort on student.cohort_id=cohort.cohort_id INNER JOIN school on cohort.school_id=school.school_id WHERE student_id=" + req.params.id + ";";
+    var surveyTabQuery = "SELECT * FROM survey_record INNER JOIN survey on survey.survey_id=survey_record.survey_id where student_id=" + req.params.id + ";";
+    var surveyTypes = "SELECT survey_name, survey_id FROM survey;";
     connection.query(query, function(err, rows) {
       if (err) {console.log(err)}
       // rows[0].student_dob = rows[0].student_dob.toDateString(); //properly set date.
+      connection.query(surveyTabQuery, function(err, surveyRows) {
+        connection.query(surveyTypes, function(err, surveyKinds) {
+
+
+        if (err) {console.log(err);};
+        surveyRows.forEach(function(element) {
+          element.date_surveyed = new Date(element.date_surveyed).toDateString();
+        })
       
       var academicRecord = "SELECT * FROM semester_record WHERE student_id=" + req.params.id + ";";
       connection.query(academicRecord, function(err, recordRows) {
@@ -73,8 +82,10 @@ router.route('/:id/profile')
           } else if (recordRows != undefined && attendanceRows === undefined) {
             res.render('profile', { user: req.user._json.user_metadata, student: rows[0], record: recordRows, attendance: [], surveyData: data});
           } else {
-            res.render('profile', { user: req.user._json.user_metadata, student: rows[0], record: recordRows, attendance: attendanceRows, surveyData: data});
+            res.render('profile', { surveySelect: surveyKinds, surveys: surveyRows, user: req.user._json.user_metadata, student: rows[0], record: recordRows, attendance: attendanceRows, surveyData: data});
           }
+        });
+        });
         });
         });
         });
@@ -88,6 +99,100 @@ router.route('/:id/profile')
     });
   });
 
+//Route to view a survey response for a student
+router.route('/:studentId/survey/:surveyId/view/:responseId')
+  .all(authenticate, function(req, res, next){next();})
+  .get(function(req, res) {
+    var query1 = "SELECT survey_name FROM survey where survey_id=" + req.params.surveyId + ";";
+    connection.query(query1, function(err, surveyName){
+      if (err) {console.log(err)}
+      getSurveyQuestionsAndCategoriesAndResponses(req.params.surveyId, req.params.responseId, function(compositeList) {
+        res.render('viewSurveyResponse', { composite: compositeList, survey_name: surveyName[0].survey_name, user: req.user._json});
+      });
+    });
+  });
+
+//Route to edit a survey response for a student
+router.route('/:studentId/survey/:surveyId/edit/:recordId')
+  .all(authenticate, function(req, res, next){next();})
+  .get(function(req, res) {
+    var query1 = "SELECT survey_name FROM survey where survey_id=" + req.params.surveyId + ";";
+    connection.query(query1, function(err, surveyName){
+      if (err) {console.log(err)}
+      getSurveyQuestionsAndCategoriesAndResponses(req.params.surveyId, req.params.recordId, function(compositeList) {
+        
+        res.render('editSurveyResponse', { composite: compositeList, survey_name: surveyName[0].survey_name, user: req.user._json});
+      });
+    });
+  })
+  .post(function(req, res){
+    // var query = "UPDATE student SET   student_first_name = ?, student_last_name = ?, student_dob = ?, student_gender = ?, student_phone = ?, student_email = ?, guardian_one_name = ?, guardian_one_email = ?, guardian_one_phone = ?, guardian_two_name = ?, guardian_two_email = ?, guardian_two_phone = ?, middleschool_suspensions = ?, highschool_absences = ?, highschool_suspensions = ?, cumulative_gpa = ?, total_credits_earned = ?, date_modified = ?, user_modified = ? WHERE student_id = ?;"
+    // connection.query(query, [req.body.student_first_name,req.body.student_last_name,req.body.student_dob,req.body.gender,req.body.student_phone,req.body.student_email,req.body.guardian_one_name,req.body.guardian_one_email,req.body.guardian_one_phone,req.body.guardian_two_name,req.body.guardian_two_email,req.body.guardian_two_phone,req.body.middleschool_suspensions,req.body.highschool_absence,req.body.highschool_suspensions,req.body.cumulative_gpa,req.body.total_credits_earned,new Date(Date.now()),req.user._json.user_metadata.name, req.params.id], function(err, rows) {
+    //   if (err) {console.log(err);}
+    //   res.redirect('/students/' + req.params.id + '/profile'); 
+    // });
+    // 
+    
+    var formData = Object.keys(req.body).map(function(key) { return [key, req.body[key]]});
+    var questionQuery = "UPDATE  survey_response SET response=?, date_modified=?, user_modified=? WHERE survey_response_id=?;"
+   
+    formData.forEach(function(element) {
+      connection.query(questionQuery, [element[1], new Date(Date.now()), req.user._json.user_metadata.name, element[0]], function(err2, questionResult) {
+        if (err2){console.log(err2);};
+      });
+    });
+    res.redirect('/students/' + req.params.studentId + '/survey/' + req.params.surveyId + '/view/' + req.params.recordId);
+   
+    
+  });
+
+//Route to delete a survey response for a student
+router.route('/:studentId/survey/:surveyId/delete/:recordId')
+  .all(authenticate, function(req, res, next){next();})
+  .get(function(req, res) {
+    var query1 = "DELETE FROM survey_record where survey_record_id=" + req.params.recordId + ";";
+    connection.query(query1, function(err, surveyName){
+      if (err) {console.log(err)}
+      res.redirect("/students/" + req.params.studentId + "/profile");
+    });
+  });
+
+//Route to create a new survey response
+router.route('/:studentId/survey/:surveyId/add')
+  .all(authenticate, function(req, res, next){next();})
+  .get(function(req, res) {
+    var query1 = "SELECT survey_name, survey_id FROM survey where survey_id=" + req.params.surveyId + ";";
+    connection.query(query1, function(err, surveyName){
+      if (err) {console.log(err)}
+      getSurveyQuestionsAndCategories(req.params.surveyId, function(compositeList) {
+        res.render('addSurveyResponse', { student_id: req.params.studentId, composite: compositeList, survey: surveyName[0], user: req.user._json});
+      });
+    });
+  })
+  .post(function(req, res){
+
+    var formData = Object.keys(req.body).map(function(key) { return [key, req.body[key]]});
+
+    var recordQuery = "INSERT into survey_record(student_id, survey_id,date_surveyed, date_modified, user_modified) VALUES (?,?,?,?,?);";
+    var questionQuery = "INSERT into survey_response(survey_question_id, survey_record_id, response, date_modified, user_modified) VALUES (?,?,?,?,?);"
+    connection.query(recordQuery,[req.params.studentId, req.params.surveyId, new Date(Date.now()),new Date(Date.now()),req.user._json.user_metadata.name], function(err, recordQueryResult){
+      //console.log(recordQueryResult.insertId);
+      formData.forEach(function(element) {
+        connection.query(questionQuery, [element[0], recordQueryResult.insertId, element[1], new Date(Date.now()), req.user._json.user_metadata.name], function(err2, questionResult) {
+          if (err2){console.log(err2);};
+        });
+      });
+      res.redirect('/students/' + req.params.studentId + '/survey/' + req.params.surveyId + '/view/' + recordQueryResult.insertId);
+    });
+    
+  })
+
+//Route to add a survey response for a student
+router.route('/:studentId/profile/survey')
+  .all(authenticate, function(req, res, next){next();})
+  .post(function(req, res) {
+    res.redirect('/students/' + req.params.studentId + "/survey/" + req.body.survey_id + "/add");
+  });
 //Post Semester Record
 router.route('/:id/profile/academic')
   .all(authenticate, function (req, res, next) {next();})
@@ -95,7 +200,7 @@ router.route('/:id/profile/academic')
     res.redirect('/students/' + req.params.id +'/profile');
     var stmt = 'INSERT INTO semester_record(student_id, number_as, number_bs, number_cs, number_ds, semester_number, grade, semester_gpa, semester_credits, date_modified, user_modified) VALUES (?,?,?,?,?,?,?,?,?,?,?);';
     var gpa = ((parseInt(req.body.number_as) * 4) + (parseInt(req.body.number_bs) * 3) + (parseInt(req.body.number_cs) * 2)) / (parseInt(req.body.number_as) + parseInt(req.body.number_bs) + parseInt(req.body.number_cs) + parseInt(req.body.number_ds));
-    connection.query(stmt, [req.params.id, req.body.number_as, req.body.number_bs, req.body.number_cs, req.body.number_ds, req.body.semester_number, req.body.grade, gpa, req.body.semester_credits, new Date(Date.now()), "Username"], function(err, rows) {
+    connection.query(stmt, [req.params.id, req.body.number_as, req.body.number_bs, req.body.number_cs, req.body.number_ds, req.body.semester_number, req.body.grade, gpa, req.body.semester_credits, new Date(Date.now()), req.user._json.user_metadata.name], function(err, rows) {
       if (err) {console.log(err)}
     });
   });
@@ -106,7 +211,7 @@ router.route('/:id/profile/attendance')
   .post(function (req, res, next) {
     res.redirect('/students/' + req.params.id +'/profile');
     var stmt = 'INSERT INTO attendance_record(student_id, classes_missed, days_missed, suspensions, semester_number, grade, date_modified, user_modified) VALUES (?,?,?,?,?,?,?,?);';
-    connection.query(stmt, [req.params.id, req.body.classes_missed, req.body.days_missed, req.body.suspensions, req.body.semester_number, req.body.grade, new Date(Date.now()), "Username"], function(err, rows) {
+    connection.query(stmt, [req.params.id, req.body.classes_missed, req.body.days_missed, req.body.suspensions, req.body.semester_number, req.body.grade, new Date(Date.now()), req.user._json.user_metadata.name], function(err, rows) {
       if (err) {console.log(err)}
     });
   });
@@ -144,11 +249,160 @@ router.route('/:id/edit')
   })
   .post(function(req, res, next) {
     var query = "UPDATE student SET   student_first_name = ?, student_last_name = ?, student_dob = ?, student_gender = ?, student_phone = ?, student_email = ?, guardian_one_name = ?, guardian_one_email = ?, guardian_one_phone = ?, guardian_two_name = ?, guardian_two_email = ?, guardian_two_phone = ?, middleschool_suspensions = ?, highschool_absences = ?, highschool_suspensions = ?, cumulative_gpa = ?, total_credits_earned = ?, date_modified = ?, user_modified = ? WHERE student_id = ?;"
-    connection.query(query, [req.body.student_first_name,req.body.student_last_name,req.body.student_dob,req.body.gender,req.body.student_phone,req.body.student_email,req.body.guardian_one_name,req.body.guardian_one_email,req.body.guardian_one_phone,req.body.guardian_two_name,req.body.guardian_two_email,req.body.guardian_two_phone,req.body.middleschool_suspensions,req.body.highschool_absence,req.body.highschool_suspensions,req.body.cumulative_gpa,req.body.total_credits_earned,new Date(Date.now()),req.body.user_modified, req.params.id], function(err, rows) {
+    connection.query(query, [req.body.student_first_name,req.body.student_last_name,req.body.student_dob,req.body.gender,req.body.student_phone,req.body.student_email,req.body.guardian_one_name,req.body.guardian_one_email,req.body.guardian_one_phone,req.body.guardian_two_name,req.body.guardian_two_email,req.body.guardian_two_phone,req.body.middleschool_suspensions,req.body.highschool_absence,req.body.highschool_suspensions,req.body.cumulative_gpa,req.body.total_credits_earned,new Date(Date.now()),req.user._json.user_metadata.name, req.params.id], function(err, rows) {
       if (err) {console.log(err);}
       res.redirect('/students/' + req.params.id + '/profile'); 
     });
   });
 
+
+/***************************************************************
+ * HELPER METHODS START HERE
+ ****************************************************************/
+
+
+/**
+ * Helper Method to get the questions for a specific category
+ *
+ * parameters:
+ * categoryId -> from DB the category_id to get questions for
+ * array      -> variable to pass in all the questions to. 
+ * callback   -> method to pass parameters to
+ */
+var getQuestionsFromCategory = function(categoryId, array, callback) {
+
+  var query = "SELECT  question, survey_question_id, max_score FROM survey_question where survey_category_id=" + categoryId + ";";
+  
+  connection.query(query, function(err, questions) {
+    if (err) {console.log(err)};
+    array.push(questions);
+    callback();
+  });
+};
+
+
+
+/**
+ * Helper Method to get the questions and Responses for a specific category
+ *
+ * parameters:
+ * categoryId -> from DB the category_id to get questions for
+ * responseId -> what survey_response record we are referencing
+ * array      -> variable to pass in all the questions to. 
+ * callback   -> method to pass parameters to
+ */
+var getQuestionsAndResponsesFromCategory = function(categoryId, responseId, array, callback) {
+
+  var query = "SELECT  survey_question.question, survey_question.survey_question_id, survey_response.response, survey_response.survey_response_id" 
+      + " FROM survey_question INNER JOIN survey_response ON survey_question.survey_question_id=survey_response.survey_question_id" 
+      + " where survey_category_id=" + categoryId + " and survey_record_id=" + responseId + ";";
+  
+  connection.query(query, function(err, questions) {
+    if (err) {console.log(err)};
+    array.push(questions);
+    callback();
+  });
+};
+
+
+/**
+ * Helper Method to get the categories for a specific survey
+ *
+ * parameters:
+ * surveyId -> from DB the survey_id to get categories for
+ * callback -> method to pass parameters to
+ */
+var getCategoriesFromSurvey = function(surveyId,callback) {
+
+
+  var query = "SELECT  survey_category_name, survey_category_id FROM survey_category where survey_id=" + surveyId + ";";
+  
+  connection.query(query, function(err, categories) {
+    if (err) {console.log(err)};
+    
+    callback(categories);
+  });
+};
+
+
+/**
+ * Helper Method to compile all the survey categories and questions
+ * into a JSON object to be parsed by handelbars.
+ *
+ * parameters:
+ * surveyId -> from DB the survey_id to get categories/questions for
+ * callback -> method to pass parameters to
+ */
+var getSurveyQuestionsAndCategoriesAndResponses = function(surveyId, responseId, callback) {
+
+  //temp vars
+  var compositeList = []; 
+  var questionsList = [];
+
+  getCategoriesFromSurvey(surveyId, function(categories) {
+    var j = 0;
+
+    for (var i = 0; i < categories.length; i++) {
+      getQuestionsAndResponsesFromCategory(categories[i].survey_category_id, responseId, questionsList, function(){
+        
+        var toAdd = {
+          category: categories[j].survey_category_name, 
+          categroyId:categories[j].survey_category_id, 
+          question: questionsList[j]
+        };
+        j++;
+        compositeList.push(toAdd);
+
+        //after going through full list initiate callback
+        if (questionsList.length == i) {
+
+          callback(compositeList)
+        }
+      });
+    }
+  });
+  
+}
+
+
+/**
+ * Helper Method to compile all the survey categories and questions
+ * into a JSON object to be parsed by handelbars.
+ *
+ * parameters:
+ * surveyId -> from DB the survey_id to get categories/questions for
+ * callback -> method to pass parameters to
+ */
+var getSurveyQuestionsAndCategories = function(surveyId, callback) {
+
+  //temp vars
+  var compositeList = []; 
+  var questionsList = [];
+
+  getCategoriesFromSurvey(surveyId, function(categories) {
+    var j = 0;
+
+    for (var i = 0; i < categories.length; i++) {
+      getQuestionsFromCategory(categories[i].survey_category_id, questionsList, function(){
+        
+        var toAdd = {
+          category: categories[j].survey_category_name, 
+          categroyId:categories[j].survey_category_id, 
+          question: questionsList[j]
+        };
+        j++;
+        compositeList.push(toAdd);
+
+        //after going through full list initiate callback
+        if (questionsList.length == i) {
+
+          callback(compositeList)
+        }
+      });
+    }
+  });
+  
+}
+  
 
 module.exports = router;
