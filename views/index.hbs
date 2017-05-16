@@ -291,7 +291,7 @@
     <!-- Flot -->
     <script>
       $(function() {
-        absencesPerSchool();
+        absencesPerCohort();
       });
 
       $('#graphSelect li a').click(function() {           
@@ -328,6 +328,33 @@
           }
           days_missedCounts[{{this.school_id}}] += {{this.days_missed}};
           classes_missedCounts[{{this.school_id}}] += {{this.classes_missed}};
+        {{/each}}
+
+        var data = []
+        pos = 2;
+        for (x in days_missedCounts) {
+            data.push([pos, days_missedCounts[x]]);
+            data.push([pos, classes_missedCounts[x]]);
+            pos = pos + 3;
+        }
+        barGraph(data, schoolTicks);
+      }
+
+      function absencesPerCohort() {
+        $('#Graph-Title').text("Absences Per Cohort");
+        var days_missedCounts = [];
+        var classes_missedCounts = [];
+        var schoolTicks = [];
+        var pos = 2;
+        {{#each absenceJoin}}
+          if (days_missedCounts[{{this.cohort_id}}] == null) {
+              days_missedCounts[{{this.cohort_id}}] = 0;
+              classes_missedCounts[{{this.cohort_id}}] = 0;
+              schoolTicks.push([pos, "{{this.cohort_year}}"]);
+              pos += 3;
+          }
+          days_missedCounts[{{this.cohort_id}}] += {{this.days_missed}};
+          classes_missedCounts[{{this.cohort_id}}] += {{this.classes_missed}};
         {{/each}}
 
         var data = []
@@ -1070,6 +1097,7 @@
         [data]
         , {
           series: {
+            data: data,
             lines: {
               show: false,
               fill: false,
