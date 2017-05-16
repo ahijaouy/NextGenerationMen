@@ -74,7 +74,10 @@ module.exports = function(app, passport, env) {
           innerJoinQuery += "INNER JOIN school on cohort.school_id=school.school_id ";
           connection.query(innerJoinQuery + ";", function(err4, studentCohortSchoolJoin) {
             if (err4) {console.log(err4)}
+            var absenceQuery = innerJoinQuery + "INNER JOIN attendance_record ON attendance_record.student_id=student.student_id ";
             innerJoinQuery += "INNER JOIN semester_record on semester_record.student_id=student.student_id ";
+            
+            connection.query(absenceQuery + ";", function(err9, absenceJoin) {
             connection.query(innerJoinQuery + ";", function(err7, semesterRecordJoin) { 
               if (err7) {console.log(err7)}
               var newQuery = "SELECT * FROM student ";
@@ -89,11 +92,12 @@ module.exports = function(app, passport, env) {
                       connection.query("SELECT COUNT(student_id) as count FROM student;", function(err6, count) {
                         if (err5) {console.log(err5);}
                         res.render('index', {
-                          user: req.user._json.user_metadata,
+                          user: req.user._json.user_metadPa,
                           students: students,
                           count: count[0].count,
                           schools: schools,
                           cohorts: cohorts,
+                          absenceJoin: absenceJoin,
                           studentCohortSchoolJoin: studentCohortSchoolJoin,
                           semesterRecordJoin: semesterRecordJoin,
                           surveyResponseJoin: surveyResponseJoin,
@@ -108,6 +112,8 @@ module.exports = function(app, passport, env) {
                 });
               });
             });
+            });
+          
           });
         });
       });

@@ -290,8 +290,8 @@
 
     <!-- Flot -->
     <script>
-      $(document).ready(function() {
-        studentsPerSchool();
+      $(function() {
+        absencesPerSchool();
       });
 
       $('#graphSelect li a').click(function() {           
@@ -312,6 +312,57 @@
           emptyGraph();
         }
       });
+
+      function absencesPerSchool() {
+        $('#Graph-Title').text("Absences Per School");
+        var days_missedCounts = [];
+        var classes_missedCounts = [];
+        var schoolTicks = [];
+        var pos = 2;
+        {{#each absenceJoin}}
+          if (days_missedCounts[{{this.school_id}}] == null) {
+              days_missedCounts[{{this.school_id}}] = 0;
+              classes_missedCounts[{{this.school_id}}] = 0;
+              schoolTicks.push([pos, "{{this.school_name}}"]);
+              pos += 3;
+          }
+          days_missedCounts[{{this.school_id}}] += {{this.days_missed}};
+          classes_missedCounts[{{this.school_id}}] += {{this.classes_missed}};
+        {{/each}}
+
+        var data = []
+        pos = 2;
+        for (x in days_missedCounts) {
+            data.push([pos, days_missedCounts[x]]);
+            data.push([pos, classes_missedCounts[x]]);
+            pos = pos + 3;
+        }
+        barGraph(data, schoolTicks);
+      }
+
+      function studentsPerSchool() {
+        $('#Graph-Title').text("Students Per School");
+        var counts = [];
+        var schoolTicks = [];
+        var pos = 2;
+        {{#each studentCohortSchoolJoin}}
+          if (counts[{{this.school_id}}] == null) {
+              counts[{{this.school_id}}] = 0;
+              schoolTicks.push([pos, "{{this.school_name}}"]);
+              pos += 3;
+          }
+          counts[{{this.school_id}}]++;
+        {{/each}}
+
+        var data = []
+        pos = 2;
+        
+        for (x in counts) {
+            data.push([pos, counts[x]]);
+            pos = pos + 3;
+        }
+        barGraph(data, schoolTicks);
+      }
 
       function survey_responsesOverTimeByCategory() {
         $('#Graph-Title').text("Survey Responses Over Time");
@@ -512,12 +563,10 @@
           },
           tooltip: false
         });
-
       }
 
       function survey_responsesByCohort() {
         $('#Graph-Title').text("Survey Responses By Cohort");
-        
         var surveyInfo = [];
         var counter = 0;
         {{#each surveyResponseJoin}}
@@ -827,8 +876,6 @@
               }
             }            
           }
-          
-          
         {{/each}}
         var gritAvg = [];
         var probSolvAvg = [];
@@ -872,8 +919,58 @@
              {label: "Growth", data: grwthAvg},
              {label: "Behavior", data: behaveAvg}
         ];
-        barGraph(data, schoolTicks);
-      }
+        $("#canvas_dahs").length && $.plot($("#canvas_dahs"),
+          data, {
+          series: {
+            data: data,
+            lines: {
+              show: false,
+              fill: true,
+            },
+            bars: {
+              show: true,
+              fill: true,
+              barWidth: 2,
+              align: "center"
+            },
+            stack: true,
+            points: {
+              show:false,
+              fill:true
+              },
+          },
+          grid: {
+            padding: 10,
+            verticalLines: true,
+            hoverable: true,
+            clickable: true,
+            tickColor: "#d5d5d5",
+            borderWidth: 10,
+            color: '#fff',
+          },
+          colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
+          legend: {
+            show: true,
+            labelFormatter: function(label, series) {
+              return '<p style="color:black;">' + label + '</p>';
+            },
+            labelBoxBorderColor: "rgb(0, 0, 0)",
+          },
+          xaxis: {
+            ticks: schoolTicks,
+            tickColor: "rgba(51, 51, 51, 0.06)",
+            tickSize: 5,
+            axisLabel: "Date",
+            axisLabelUseCanvas: true,
+            axisLabelFontSizePixels: 12,
+            axisLabelFontFamily: 'Verda na, Arial'
+          },
+          yaxis: {
+            axisLabelUseCanvas: true,
+            tickColor: "rgba(51, 51, 51, 0.06)",
+          },
+          tooltip: false
+        });      }
 
       function gpaPerSchool() {
         $('#Graph-Title').text("GPA Per School");
@@ -1023,8 +1120,6 @@
 
       function emptyGraph() {
         $('#Graph-Title').text("Empty Graph");
-
-
         $("#canvas_dahs").length && $.plot($("#canvas_dahs"), [
           []
         ], {
