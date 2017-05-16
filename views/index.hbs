@@ -163,7 +163,8 @@
                       <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Survey Responses over Time</a></li>
                       <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Survey Responses by School</a></li>
                       <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Survey Responses by Cohort</a></li>
-
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Absences Per School</a></li>
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Absences Per Cohort</a></li>
                     </ul> 
                   </div>
                   <!-- <div class="col-md-6">
@@ -291,7 +292,7 @@
     <!-- Flot -->
     <script>
       $(function() {
-        absencesPerCohort();
+        studentsPerSchool();
       });
 
       $('#graphSelect li a').click(function() {           
@@ -308,6 +309,10 @@
           survey_responsesBySchool();
         } else if ($(this).text() == "Survey Responses by Cohort") {
           survey_responsesByCohort();
+        } else if ($(this).text() == "Absences Per School") {
+          absencesPerSchool();
+        } else if ($(this).text() == "Absences Per Cohort") {
+          absencesPerCohort();
         } else {
           emptyGraph();
         }
