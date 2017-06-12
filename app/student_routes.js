@@ -242,8 +242,8 @@ router.route('/:id/edit')
   })
   .post(function(req, res, next) {
     console.log(req.body.gender);
-    var query = "UPDATE student SET   student_start_date = ?, cohort_id = ?, student_first_name = ?, student_last_name = ?, student_dob = ?, student_gender = ?, student_phone = ?, student_email = ?, guardian_one_name = ?, guardian_one_email = ?, guardian_one_phone = ?, guardian_two_name = ?, guardian_two_email = ?, guardian_two_phone = ?, cumulative_gpa = ?, total_credits_earned = ?, date_modified = ?, user_modified = ? WHERE student_id = ?;"
-    connection.query(query, [req.body.student_start_date, req.body.cohortselect, req.body.student_first_name,req.body.student_last_name,req.body.student_dob,req.body.gender,req.body.student_phone,req.body.student_email,req.body.guardian_one_name,req.body.guardian_one_email,req.body.guardian_one_phone,req.body.guardian_two_name,req.body.guardian_two_email,req.body.guardian_two_phone,req.body.cumulative_gpa,req.body.total_credits_earned,new Date(Date.now()),req.user._json.user_metadata.name, req.params.id], function(err, rows) {
+    var query = "UPDATE student SET   student_start_date = ?,  student_first_name = ?, student_last_name = ?, student_dob = ?, student_gender = ?, student_phone = ?, student_email = ?, guardian_one_name = ?, guardian_one_email = ?, guardian_one_phone = ?, guardian_two_name = ?, guardian_two_email = ?, guardian_two_phone = ?, cumulative_gpa = ?, total_credits_earned = ?, date_modified = ?, user_modified = ? WHERE student_id = ?;"
+    connection.query(query, [req.body.student_start_date, req.body.student_first_name,req.body.student_last_name,req.body.student_dob,req.body.gender,req.body.student_phone,req.body.student_email,req.body.guardian_one_name,req.body.guardian_one_email,req.body.guardian_one_phone,req.body.guardian_two_name,req.body.guardian_two_email,req.body.guardian_two_phone,req.body.cumulative_gpa,req.body.total_credits_earned,new Date(Date.now()),req.user._json.user_metadata.name, req.params.id], function(err, rows) {
       if (err) {console.log(err);}
       res.redirect('/students/' + req.params.id + '/profile'); 
     });
