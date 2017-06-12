@@ -10,9 +10,9 @@ connection.query('USE ' + process.env.DATABASE);
 //Default Route to students page
 router.route('/')
   .all(authenticate, function (req, res, next) {next();})
-  .get(function(req, res, next) {
+  .get(function(req, res) {
     connection.query("SELECT student.student_id, student.student_first_name, student.student_phone, student.student_last_name, school.school_name, cohort.cohort_year, student.guardian_one_name, student.guardian_one_phone FROM student INNER JOIN cohort ON student.cohort_id=cohort.cohort_id INNER JOIN school ON cohort.school_id=school.school_id;", function(err, rows){
-      console.log(err);
+      if (err) {console.log(err);};
       res.render('students', { students: rows, user: req.user._json.user_metadata});
     });
   });
@@ -20,13 +20,14 @@ router.route('/')
 //Get Student Profile & Post Semester Record
 router.route('/:id/profile')
   .all(authenticate, function (req, res, next) {next();})
-  .get(function(req, res, next) {
+  .get(function(req, res) {
     var query = "SELECT * FROM student INNER JOIN cohort on student.cohort_id=cohort.cohort_id INNER JOIN school on cohort.school_id=school.school_id WHERE student_id=" + req.params.id + ";";
     var surveyTabQuery = "SELECT * FROM survey_record INNER JOIN survey on survey.survey_id=survey_record.survey_id where student_id=" + req.params.id + ";";
     var surveyTypes = "SELECT survey_name, survey_id FROM survey;";
     connection.query(query, function(err, rows) {
       if (err) {console.log(err)}
-      // rows[0].student_dob = rows[0].student_dob.toDateString(); //properly set date.
+      rows[0].student_dob = new Date(rows[0].student_dob).toDateString(); //properly set date.
+      console.log(rows[0].student_dob);
       connection.query(surveyTabQuery, function(err, surveyRows) {
         connection.query(surveyTypes, function(err, surveyKinds) {
 
@@ -46,7 +47,6 @@ router.route('/:id/profile')
         for (var i = 1; i <= 7; i++) {
             surveyQueries.push(surveyQueryString + " and survey_category_id=" +  i + ";");
         }
-        connection.query(query, function(err, rows){
         connection.query(surveyQueries[0], function(err, grit) {
         connection.query(surveyQueries[1], function(err, problemSolving) {
         connection.query(surveyQueries[2], function(err, academicSelfEfficacy) {
@@ -82,9 +82,9 @@ router.route('/:id/profile')
           } else if (recordRows != undefined && attendanceRows === undefined) {
             res.render('profile', { user: req.user._json.user_metadata, student: rows[0], record: recordRows, attendance: [], surveyData: data});
           } else {
+            console.log(rows[0]);
             res.render('profile', { surveySelect: surveyKinds, surveys: surveyRows, user: req.user._json.user_metadata, student: rows[0], record: recordRows, attendance: attendanceRows, surveyData: data});
           }
-        });
         });
         });
         });
@@ -126,13 +126,6 @@ router.route('/:studentId/survey/:surveyId/edit/:recordId')
     });
   })
   .post(function(req, res){
-    // var query = "UPDATE student SET   student_first_name = ?, student_last_name = ?, student_dob = ?, student_gender = ?, student_phone = ?, student_email = ?, guardian_one_name = ?, guardian_one_email = ?, guardian_one_phone = ?, guardian_two_name = ?, guardian_two_email = ?, guardian_two_phone = ?, middleschool_suspensions = ?, highschool_absences = ?, highschool_suspensions = ?, cumulative_gpa = ?, total_credits_earned = ?, date_modified = ?, user_modified = ? WHERE student_id = ?;"
-    // connection.query(query, [req.body.student_first_name,req.body.student_last_name,req.body.student_dob,req.body.gender,req.body.student_phone,req.body.student_email,req.body.guardian_one_name,req.body.guardian_one_email,req.body.guardian_one_phone,req.body.guardian_two_name,req.body.guardian_two_email,req.body.guardian_two_phone,req.body.middleschool_suspensions,req.body.highschool_absence,req.body.highschool_suspensions,req.body.cumulative_gpa,req.body.total_credits_earned,new Date(Date.now()),req.user._json.user_metadata.name, req.params.id], function(err, rows) {
-    //   if (err) {console.log(err);}
-    //   res.redirect('/students/' + req.params.id + '/profile'); 
-    // });
-    // 
-    
     var formData = Object.keys(req.body).map(function(key) { return [key, req.body[key]]});
     var questionQuery = "UPDATE  survey_response SET response=?, date_modified=?, user_modified=? WHERE survey_response_id=?;"
    
@@ -248,8 +241,9 @@ router.route('/:id/edit')
     });
   })
   .post(function(req, res, next) {
-    var query = "UPDATE student SET   student_first_name = ?, student_last_name = ?, student_dob = ?, student_gender = ?, student_phone = ?, student_email = ?, guardian_one_name = ?, guardian_one_email = ?, guardian_one_phone = ?, guardian_two_name = ?, guardian_two_email = ?, guardian_two_phone = ?, middleschool_suspensions = ?, highschool_absences = ?, highschool_suspensions = ?, cumulative_gpa = ?, total_credits_earned = ?, date_modified = ?, user_modified = ? WHERE student_id = ?;"
-    connection.query(query, [req.body.student_first_name,req.body.student_last_name,req.body.student_dob,req.body.gender,req.body.student_phone,req.body.student_email,req.body.guardian_one_name,req.body.guardian_one_email,req.body.guardian_one_phone,req.body.guardian_two_name,req.body.guardian_two_email,req.body.guardian_two_phone,req.body.middleschool_suspensions,req.body.highschool_absence,req.body.highschool_suspensions,req.body.cumulative_gpa,req.body.total_credits_earned,new Date(Date.now()),req.user._json.user_metadata.name, req.params.id], function(err, rows) {
+    console.log(req.body.gender);
+    var query = "UPDATE student SET   student_start_date = ?, cohort_id = ?, student_first_name = ?, student_last_name = ?, student_dob = ?, student_gender = ?, student_phone = ?, student_email = ?, guardian_one_name = ?, guardian_one_email = ?, guardian_one_phone = ?, guardian_two_name = ?, guardian_two_email = ?, guardian_two_phone = ?, cumulative_gpa = ?, total_credits_earned = ?, date_modified = ?, user_modified = ? WHERE student_id = ?;"
+    connection.query(query, [req.body.student_start_date, req.body.cohortselect, req.body.student_first_name,req.body.student_last_name,req.body.student_dob,req.body.gender,req.body.student_phone,req.body.student_email,req.body.guardian_one_name,req.body.guardian_one_email,req.body.guardian_one_phone,req.body.guardian_two_name,req.body.guardian_two_email,req.body.guardian_two_phone,req.body.cumulative_gpa,req.body.total_credits_earned,new Date(Date.now()),req.user._json.user_metadata.name, req.params.id], function(err, rows) {
       if (err) {console.log(err);}
       res.redirect('/students/' + req.params.id + '/profile'); 
     });
