@@ -1,436 +1,298 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Meta, title, CSS, favicons, etc. -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Next Generation Men </title>
-
-    <!-- Bootstrap -->
-    <link href="../../../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="../../../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- NProgress -->
-    <link href="../../../vendors/nprogress/nprogress.css" rel="stylesheet">
-    <!-- iCheck -->
-    <link href="../../../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
-    <!-- Custom Theme Style -->
-    <link href="../../../build/css/custom.min.css" rel="stylesheet">
-
-    <!-- dropdown menus -->
-    <link href="../../../css/dropdown.css" rel="stylesheet">
- </head>
-
-  <body class="nav-md">
-    <div class="container body">
-      <div class="main_container">
-        <div class="col-md-3 left_col">
-          <div class="left_col scroll-view">
-            <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>NGM</span></a>
-            </div>
-
-            <div class="clearfix"></div>
-
-            <!-- menu profile quick info -->
-            <div class="profile clearfix">
-              <div class="profile_pic">
-                <img src="../../images/{{user.pic}}" alt="..." class="img-circle profile_img">
-              </div>
-              <div class="profile_info">
-                <span>Welcome,</span>
-                <h2>John Doe</h2>
-              </div>
-            </div>
-            <!-- /menu profile quick info -->
-
-            <br />
-
-            <!-- sidebar menu -->
-            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-              <div class="menu_section">
-                <h3>General</h3>
-                <ul class="nav side-menu">
-                  <li><a href="/index"><i class="fa fa-home"></i>Dashboard</a></li>
-                  <li><a href="/schools"><i class="fa fa-graduation-cap"></i>Schools</a></li>
-                  <li><a href="/students"><i class="fa fa-users"></i>Students</a></li>
-                  <li><a href="/surveys"><i class="fa fa-book"></i>Surveys</a></li>
-                  {{!-- <li><a href="/alumni"><i class="fa fa-users"></i>Alumni</a></li> --}}
-
-
-                 {{!--  <li><a href="/partners"><i class="fa fa-building"></i>Partners</a></li> --}}
-
-                  <li><a href="/partners"><i class="fa fa-building"></i>Partners</a></li>
-
-                  <li><a><i class="fa fa-plus"></i>Add<span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="/addStudent">Students</a></li>
-                      <li><a href="/addCohort">Cohorts</a></li>
-                      <li><a href="/addSchool">Schools</a></li>
-
-
-                      {{!-- <li><a href="/addPartner">Partners</a></li> --}}
-
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <!-- /sidebar menu -->
+<div class="right_col" role="main">
+  <div class="">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="x_panel">
+          <div class="x_title">
+            <h3>{{school.school_name}} School Profile</h3>
           </div>
-        </div>
 
-        <!-- top navigation -->
-        <div class="top_nav">
-          <div class="nav_menu">
-            <nav>
-              <div class="nav toggle">
-                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-              </div>
+          <div class="x_content">
 
-              <ul class="nav navbar-nav navbar-right">
-                <li class="">
-                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="../../images/{{user.pic}}" alt="">John Doe
-                    <span class=" fa fa-angle-down"></span>
-                  </a>
-                  <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="editProfile">Edit Profile</a></li>
-                    <li><a href="resetPassword">Reset Password</a></li>
-                    <li><a href="logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
-                  </ul>
+            <div class="col-md-9 col-sm-9 col-xs-12">
+
+              <ul class="stats-overview">
+                <li>
+                  <span class="name"> Estimated budget </span>
+                  <span class="value text-success"> 2300 </span>
+                </li>
+                <li>
+                  <span class="name"> Total amount spent </span>
+                  <span class="value text-success"> 2000 </span>
+                </li>
+                <li class="hidden-phone">
+                  <span class="name"> Estimated project duration </span>
+                  <span class="value text-success"> 20 </span>
                 </li>
               </ul>
-            </nav>
-          </div>
-        </div>
-        <!-- /top navigation -->
+              <br />
 
-        <!-- page content -->
-        <div class="right_col" role="main">
-          <div class="">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h3>{{school.school_name}} School Profile</h3>
+              <div id="mainb" style="height:350px;"></div>
+
+              <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                  <li role="presentation" class="active"><a href="#tab_content1" id="notes-tab" role="tab" data-toggle="tab" aria-expanded="true">Notes</a>
+                  </li>
+                  <li role="presentation" class=""><a href="#tab_content2" role="tab" id="students-tab" data-toggle="tab" aria-expanded="false">Students</a>
+                  </li>
+                  <li role="presentation" class=""><a href="#tab_content3" role="tab" id="academic-tab" data-toggle="tab" aria-expanded="false">Cohorts</a>
+                  </li>
+                </ul>
+                <div id="myTabContent" class="tab-content">
+
+                  <!-- Notes Tab -->
+                  <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+
+                    <!-- start NGM Notes about Student -->
+                    <ul class="messages">
+                      <li>
+                        <img src="../../images/{{user.pic}}" class="avatar" alt="Avatar">
+                        <div class="message_date">
+                          <h3 class="date text-info">24</h3>
+                          <p class="month">May</p>
+                        </div>
+                        <div class="message_wrapper">
+                          <h4 class="heading">Desmond Davison</h4>
+                          <blockquote class="message">This is an example of a note a NGM user might leave on this profile?</blockquote>
+                          <br />
+                          <p class="url">
+                            <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
+                            <a href="#"><i class="fa fa-paperclip"></i> User Acceptance Test.doc </a>
+                          </p>
+                        </div>
+                      </li>
+                    </ul>
+                    <!-- end Notes -->
                   </div>
 
-                  <div class="x_content">
+                  <!--Student Tab -->
+                  <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="students-tab">
+                    <div class="x_content">
+                      <table id="student_table" class="table table-striped table-bordered display" cellspacing="0" width="100%">
+                        <thead>
+                          <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Cohort</th>
+                            <th>Cell Phone</th>
+                            <th>Primary Guardian</th>
+                            <th>Primary Guardian Cell Phone</th>
+                            <th>Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        {{#each students}}
+                          <tr>
+                            <td>{{this.student_first_name}}</td>
+                            <td>{{this.student_last_name}}</td>
+                            <td>Class of {{this.cohort_year}}</td>
+                            <td>{{this.student_phone}}</td>
+                            <td>{{this.guardian_one_name}}</td>
+                            <td>{{this.guardian_one_phone}}</td>
+                            <td>
+                              <a href="/students/{{this.student_id}}/profile" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+                              <a href="/students/{{this.student_id}}/edit" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                              <a href="/students/{{this.student_id}}/delete" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete</a>
+                            </td>
+                          </tr>
+                        {{/each}}
+                        </tbody>
+                      </table>
+                    </div>
 
-                    <div class="col-md-9 col-sm-9 col-xs-12">
+                  </div>
 
-                      <ul class="stats-overview">
-                        <li>
-                          <span class="name"> Estimated budget </span>
-                          <span class="value text-success"> 2300 </span>
-                        </li>
-                        <li>
-                          <span class="name"> Total amount spent </span>
-                          <span class="value text-success"> 2000 </span>
-                        </li>
-                        <li class="hidden-phone">
-                          <span class="name"> Estimated project duration </span>
-                          <span class="value text-success"> 20 </span>
-                        </li>
-                      </ul>
-                      <br />
+                  <!--Begin Cohort Tab -->
+                  <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="academic-tab">
+                    <div class="x_content">
+                      <table id="cohort_table" class="table table-striped table-bordered display" cellspacing="0" width="100%">
+                        <thead>
+                          <tr>
+                            <th>Cohort Year</th>
+                            <th>Number of Students</th>
+                            <th>Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        {{#each cohorts}}
+                          <tr>
+                            <td>{{this.cohort_year}}</td>
+                            <td>some number </td>
+                            <td>
+                              <a href="/cohorts/{{this.cohort_id}}/edit" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                              <a href="/cohorts/{{this.cohort_id}}/delete" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete</a>
+                            </td>
+                          </tr>
+                        {{/each}}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-                      <div id="mainb" style="height:350px;"></div>
 
-                      <div class="" role="tabpanel" data-example-id="togglable-tabs">
-                        <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                          <li role="presentation" class="active"><a href="#tab_content1" id="notes-tab" role="tab" data-toggle="tab" aria-expanded="true">Notes</a>
-                          </li>
-                          <li role="presentation" class=""><a href="#tab_content2" role="tab" id="students-tab" data-toggle="tab" aria-expanded="false">Students</a>
-                          </li>
-                          <li role="presentation" class=""><a href="#tab_content3" role="tab" id="academic-tab" data-toggle="tab" aria-expanded="false">Cohorts</a>
-                          </li>
-                        </ul>
-                        <div id="myTabContent" class="tab-content">
+            </div>
 
-                          <!-- Notes Tab -->
-                          <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+            <!-- start project-detail sidebar -->
+            <div class="col-md-3 col-sm-3 col-xs-12">
 
-                            <!-- start NGM Notes about Student -->
-                            <ul class="messages">
-                              <li>
-                                <img src="../../images/{{user.pic}}" class="avatar" alt="Avatar">
-                                <div class="message_date">
-                                  <h3 class="date text-info">24</h3>
-                                  <p class="month">May</p>
-                                </div>
-                                <div class="message_wrapper">
-                                  <h4 class="heading">Desmond Davison</h4>
-                                  <blockquote class="message">This is an example of a note a NGM user might leave on this profile?</blockquote>
-                                  <br />
-                                  <p class="url">
-                                    <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
-                                    <a href="#"><i class="fa fa-paperclip"></i> User Acceptance Test.doc </a>
-                                  </p>
-                                </div>
-                              </li>
-                            </ul>
-                            <!-- end Notes -->
-                          </div>
+              <section class="panel">
 
-                          <!--Student Tab -->
-                          <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="students-tab">
+                <div class="x_title">
+                  <h2>School Description</h2>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="panel-body">
+                  <h3 class="green">{{school.school_name}}</h3>
+
+                  <div class="project_detail">
+
+                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+                      <!-- Panel One -->
+                      <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingOne">
+                          <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                              Primary School Information
+                            </a>
+                          </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                          <div class="panel-body">
                             <div class="x_content">
-                              <table id="student_table" class="table table-striped table-bordered display" cellspacing="0" width="100%">
-                                <thead>
-                                  <tr>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Cohort</th>
-                                    <th>Cell Phone</th>
-                                    <th>Primary Guardian</th>
-                                    <th>Primary Guardian Cell Phone</th>
-                                    <th>Actions</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                {{#each students}}
-                                  <tr>
-                                    <td>{{this.student_first_name}}</td>
-                                    <td>{{this.student_last_name}}</td>
-                                    <td>Class of {{this.cohort_year}}</td>
-                                    <td>{{this.student_phone}}</td>
-                                    <td>{{this.guardian_one_name}}</td>
-                                    <td>{{this.guardian_one_phone}}</td>
-                                    <td>
-                                      <a href="/students/{{this.student_id}}/profile" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                                      <a href="/students/{{this.student_id}}/edit" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                                      <a href="/students/{{this.student_id}}/delete" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete</a>
-                                    </td>
-                                  </tr>
-                                {{/each}}
-                                </tbody>
-                              </table>
+                              <p><b>School Name: </b>{{school.school_name}}</p>
+                              <p><b>School Address: </b>{{school.school_address}}</p>
+                              <p><b>School Phone: </b>{{school.school_phone}}</p>
+                              <p><b>Principal Name: </b>{{school.principal_name}}</p>
+                              <p><b>Principal Phone: </b>{{school.principal_phone}}</p>
+                              <p><b>Principal Email: </b>{{school.principal_email}}</p>
                             </div>
-
                           </div>
+                        </div>
+                      </div> 
 
-                          <!--Begin Cohort Tab -->
-                          <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="academic-tab">
+                      <!-- Panel Two -->
+                      <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingTwo">
+                          <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                              Assistant Principal and Cohort Coach Information
+                            </a>
+                          </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                          <div class="panel-body">
                             <div class="x_content">
-                              <table id="cohort_table" class="table table-striped table-bordered display" cellspacing="0" width="100%">
-                                <thead>
-                                  <tr>
-                                    <th>Cohort Year</th>
-                                    <th>Number of Students</th>
-                                    <th>Actions</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                {{#each cohorts}}
-                                  <tr>
-                                    <td>{{this.cohort_year}}</td>
-                                    <td>some number </td>
-                                    <td>
-                                      <a href="/cohorts/{{this.cohort_id}}/edit" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                                      <a href="/cohorts/{{this.cohort_id}}/delete" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete</a>
-                                    </td>
-                                  </tr>
-                                {{/each}}
-                                </tbody>
-                              </table>
+                              <p><b>Assistant Principal Name: </b>{{school.assistant_principal_name}}</p>
+                              <p><b>Assistant Principal Phone: </b>{{school.assistant_principal_phone}}</p>
+                              <p><b>Assistant Principal Email: </b>{{school.assistant_principal_email}}</p>
+                              <p><b>Cohort Coach Name: </b>{{school.cohort_coach_name}}</p>
+                              <p><b>Cohort Coach Phone: </b>{{school.cohort_coach_phone}}</p>
+                              <p><b>Cohort Coach Email: </b>{{school.cohort_coach_email}}</p>
                             </div>
                           </div>
                         </div>
                       </div>
 
-
-                    </div>
-
-                    <!-- start project-detail sidebar -->
-                    <div class="col-md-3 col-sm-3 col-xs-12">
-
-                      <section class="panel">
-
-                        <div class="x_title">
-                          <h2>School Description</h2>
-                          <div class="clearfix"></div>
+                      <!-- Panel Three -->
+                      <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingThree">
+                          <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                              NGM Fellow and Counselor Information
+                            </a>
+                          </h4>
                         </div>
-                        <div class="panel-body">
-                          <h3 class="green">{{school.school_name}}</h3>
-
-                          <div class="project_detail">
-
-                            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-
-                              <!-- Panel One -->
-                              <div class="panel panel-default">
-                                <div class="panel-heading" role="tab" id="headingOne">
-                                  <h4 class="panel-title">
-                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                      Primary School Information
-                                    </a>
-                                  </h4>
-                                </div>
-                                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                                  <div class="panel-body">
-                                    <div class="x_content">
-                                      <p><b>School Name: </b>{{school.school_name}}</p>
-                                      <p><b>School Address: </b>{{school.school_address}}</p>
-                                      <p><b>School Phone: </b>{{school.school_phone}}</p>
-                                      <p><b>Principal Name: </b>{{school.principal_name}}</p>
-                                      <p><b>Principal Phone: </b>{{school.principal_phone}}</p>
-                                      <p><b>Principal Email: </b>{{school.principal_email}}</p>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div> 
-
-                              <!-- Panel Two -->
-                              <div class="panel panel-default">
-                                <div class="panel-heading" role="tab" id="headingTwo">
-                                  <h4 class="panel-title">
-                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                      Assistant Principal and Cohort Coach Information
-                                    </a>
-                                  </h4>
-                                </div>
-                                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                                  <div class="panel-body">
-                                    <div class="x_content">
-                                      <p><b>Assistant Principal Name: </b>{{school.assistant_principal_name}}</p>
-                                      <p><b>Assistant Principal Phone: </b>{{school.assistant_principal_phone}}</p>
-                                      <p><b>Assistant Principal Email: </b>{{school.assistant_principal_email}}</p>
-                                      <p><b>Cohort Coach Name: </b>{{school.cohort_coach_name}}</p>
-                                      <p><b>Cohort Coach Phone: </b>{{school.cohort_coach_phone}}</p>
-                                      <p><b>Cohort Coach Email: </b>{{school.cohort_coach_email}}</p>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-
-                              <!-- Panel Three -->
-                              <div class="panel panel-default">
-                                <div class="panel-heading" role="tab" id="headingThree">
-                                  <h4 class="panel-title">
-                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                      NGM Fellow and Counselor Information
-                                    </a>
-                                  </h4>
-                                </div>
-                                <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                                  <div class="panel-body">
-                                    <div class="x_content">
-                                      <p><b>NGM Fellow Name: </b>{{school.ngm_fellow_name}}</p>
-                                      <p><b>NGM Fellow Phone: </b>{{school.ngm_fellow_phone}}</p>
-                                      <p><b>NGM Fellow Email: </b>{{school.ngm_fellow_email}}</p>
-                                      <p><b>Counselor Name: </b>{{school.counselor_name}}</p>
-                                      <p><b>Counselor Phone: </b>{{school.counselor_phone}}</p>
-                                      <p><b>Counselor Email: </b>{{school.counselor_email}}</p>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div> 
-
-                              <!-- Panel Four -->
-                              <div class="panel panel-default">
-                                <div class="panel-heading" role="tab" id="headingFour">
-                                  <h4 class="panel-title">
-                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                      Social Worker and Data Liason Information
-                                    </a>
-                                  </h4>
-                                </div>
-                                <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
-                                  <div class="panel-body">
-                                    <div class="x_content">
-                                      <p><b>Social Worker Name: </b>{{school.social_worker_name}}</p>
-                                      <p><b>Social Worker Phone: </b>{{school.social_worker_phone}}</p>
-                                      <p><b>Social Worker Email: </b>{{school.social_worker_email}}</p>
-                                      <p><b>Data Liason Name: </b>{{school.data_liason_name}}</p>
-                                      <p><b>Data Liason Phone: </b>{{school.data_liason_phone}}</p>
-                                      <p><b>Data Liason Email: </b>{{school.data_liason_email}}</p>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>  
-
-                              <!-- Panel Five -->
-                              <div class="panel panel-default">
-                                <div class="panel-heading" role="tab" id="headingFive">
-                                  <h4 class="panel-title">
-                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                      CIS Coordinator and College Coach Information
-                                    </a>
-                                  </h4>
-                                </div>
-                                <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
-                                  <div class="panel-body">
-                                    <div class="x_content">
-                                      <p><b>CIS Coordinator Name: </b>{{school.cis_coordinator_name}}</p>
-                                      <p><b>CIS Coordinator Phone: </b>{{school.cis_coordinator_phone}}</p>
-                                      <p><b>CIS Coordinator Email: </b>{{school.cis_coordinator_email}}</p>
-                                      <p><b>College Coach Name: </b>{{school.college_coach_name}}</p>
-                                      <p><b>College Coach Phone: </b>{{school.college_coach_phone}}</p>
-                                      <p><b>College Coach Email: </b>{{school.college_coach_email}}</p>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>                                                         
+                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                          <div class="panel-body">
+                            <div class="x_content">
+                              <p><b>NGM Fellow Name: </b>{{school.ngm_fellow_name}}</p>
+                              <p><b>NGM Fellow Phone: </b>{{school.ngm_fellow_phone}}</p>
+                              <p><b>NGM Fellow Email: </b>{{school.ngm_fellow_email}}</p>
+                              <p><b>Counselor Name: </b>{{school.counselor_name}}</p>
+                              <p><b>Counselor Phone: </b>{{school.counselor_phone}}</p>
+                              <p><b>Counselor Email: </b>{{school.counselor_email}}</p>
                             </div>
                           </div>
-                          <!-- end Survey Data -->                              
                         </div>
-                      </section>
-                    </div>
-                    <!-- end project-detail sidebar -->
-                            <p class="title">School Address</p>
-                            <p>{{school.school_address}}</p>
-                            <p class="title">School Phone Number</p>
-                            <p>{{school.school_phone}}</p>
-                            <p class="title">Principle</p>
-                            <p>{{school.principle}}</p>
-                            <p class="title">Principle's Phone Number</p>
-                            <p>{{school.school_phone}}</p>
+                      </div> 
+
+                      <!-- Panel Four -->
+                      <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingFour">
+                          <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                              Social Worker and Data Liason Information
+                            </a>
+                          </h4>
+                        </div>
+                        <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                          <div class="panel-body">
+                            <div class="x_content">
+                              <p><b>Social Worker Name: </b>{{school.social_worker_name}}</p>
+                              <p><b>Social Worker Phone: </b>{{school.social_worker_phone}}</p>
+                              <p><b>Social Worker Email: </b>{{school.social_worker_email}}</p>
+                              <p><b>Data Liason Name: </b>{{school.data_liason_name}}</p>
+                              <p><b>Data Liason Phone: </b>{{school.data_liason_phone}}</p>
+                              <p><b>Data Liason Email: </b>{{school.data_liason_email}}</p>
+                            </div>
                           </div>
                         </div>
+                      </div>  
 
-                      </section>
-
+                      <!-- Panel Five -->
+                      <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingFive">
+                          <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                              CIS Coordinator and College Coach Information
+                            </a>
+                          </h4>
+                        </div>
+                        <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+                          <div class="panel-body">
+                            <div class="x_content">
+                              <p><b>CIS Coordinator Name: </b>{{school.cis_coordinator_name}}</p>
+                              <p><b>CIS Coordinator Phone: </b>{{school.cis_coordinator_phone}}</p>
+                              <p><b>CIS Coordinator Email: </b>{{school.cis_coordinator_email}}</p>
+                              <p><b>College Coach Name: </b>{{school.college_coach_name}}</p>
+                              <p><b>College Coach Phone: </b>{{school.college_coach_phone}}</p>
+                              <p><b>College Coach Email: </b>{{school.college_coach_email}}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>                                                         
                     </div>
-                    <!-- end project-detail sidebar -->
-
                   </div>
-                </div>g
-              </div>
+                  <!-- end Survey Data -->                              
+                </div>
+              </section>
             </div>
+            <!-- end project-detail sidebar -->
+                 
+
           </div>
         </div>
-        <!-- /page content -->
-
-        <!-- footer content -->
-        <footer>
-          <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-          </div>
-          <div class="clearfix"></div>
-        </footer>
-        <!-- /footer content -->
       </div>
     </div>
+  </div>
+</div>
+<!-- /page content -->
 
-    <!-- jQuery -->
-    <script src="../../../vendors/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap -->
-    <script src="../../../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- FastClick -->
-    <script src="../../../vendors/fastclick/lib/fastclick.js"></script>
-    <!-- NProgress -->
-    <script src="../../../vendors/nprogress/nprogress.js"></script>
-    <!-- ECharts -->
-    <script src="../../../vendors/echarts/dist/echarts.min.js"></script>
 
-    <!-- Custom Theme Scripts -->
-    <script src="../../../build/js/custom.min.js"></script>
+<!-- jQuery -->
+<script src="../../../vendors/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="../../../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="../../../vendors/fastclick/lib/fastclick.js"></script>
+<!-- NProgress -->
+<script src="../../../vendors/nprogress/nprogress.js"></script>
+<!-- ECharts -->
+<script src="../../../vendors/echarts/dist/echarts.min.js"></script>
 
-  </body>
-</html>
+<!-- Custom Theme Scripts -->
+<script src="../../../build/js/custom.min.js"></script>
+

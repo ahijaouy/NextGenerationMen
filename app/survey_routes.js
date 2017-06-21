@@ -15,7 +15,7 @@ router.route('/')
     var query2 = "SELECT COUNT(*) FROM survey_category"
     connection.query("SELECT * FROM survey", function(err, rows){
       if (err) {console.log(err)}
-      res.render('surveys', { surveys: rows, user: req.user._json});
+      res.render('surveys', { surveys: rows, user: req.user._json.user_metadata});
     });
   })
   .post(function(req, res) {
@@ -38,7 +38,7 @@ router.route('/:id/view')
     connection.query(query1, function(err, surveyName){
       if (err) {console.log(err)}
       getSurveyQuestionsAndCategories(req.params.id, function(compositeList) {
-        res.render('viewSurvey', { composite: compositeList, survey_name: surveyName[0].survey_name, user: req.user._json});
+        res.render('viewSurvey', { composite: compositeList, survey_name: surveyName[0].survey_name, user: req.user._json.user_metadata, buffer: "../../../"});
       });
     });
   });
@@ -64,7 +64,7 @@ router.route('/:id/edit')
       if (err) {console.log(err)}
       getSurveyQuestionsAndCategories(req.params.id, function(compositeList) {
         res.render('editSurvey', 
-          { composite: compositeList, survey_name: surveyName[0].survey_name, survey_id:surveyName[0].survey_id, user: req.user._json});
+          { composite: compositeList, survey_name: surveyName[0].survey_name, survey_id:surveyName[0].survey_id, user: req.user._json.user_metadata, buffer: "../../../"});
       });
     });
   })
@@ -88,7 +88,7 @@ router.route('/:surveyId/category/:categoryId/edit')
     connection.query(query1, function(err1, rows1){
       if (err1) {console.log(err1)};
       connection.query(query2, function(err2, rows2){
-        res.render('editSurveyCategory', { survey: rows2[0], current: rows1[0], user: req.user._json});
+        res.render('editSurveyCategory', { survey: rows2[0], current: rows1[0], user: req.user._json.user_metadata, buffer: "../../../../"});
       });
     });
   })
@@ -120,7 +120,8 @@ router.route('/:surveyId/question/:questionId/edit')
             { survey: rows2[0], 
               categories: rows1, 
               current: rows3[0],
-              user: req.user._json
+              user: req.user._json.user_metadata,
+              buffer: "../../../../"
             });
         });
       });
@@ -150,7 +151,7 @@ router.route('/new/:id/category/:done')
     connection.query(query1, function(err1, rows1){
       if (err1) {console.log(err1)};
       connection.query(query2, function(err2, rows2){
-        res.render('addSurveyCategory', { survey: rows2[0], categories: rows1, user: req.user._json});
+        res.render('addSurveyCategory', { survey: rows2[0], categories: rows1, user: req.user._json.user_metadata, buffer: "../../../"});
       });
     });
   })
@@ -182,7 +183,7 @@ router.route('/new/:id/question/:done')
         if (err2) {console.log(err2)};
         getSurveyQuestionsAndCategories(req.params.id, function(compositeList) {
           res.render('addSurveyQuestion', 
-            { survey: rows2[0], categories: rows1, user: req.user._json, composite: compositeList});
+            { survey: rows2[0], categories: rows1, user: req.user._json.user_metadata, composite: compositeList, buffer: "../../../"});
         });
         
       });

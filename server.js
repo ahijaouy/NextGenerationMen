@@ -12,7 +12,6 @@ var express       = require('express'),
     helmet        = require('helmet'),
     flash         = require('connect-flash'),
     app           = express();
-    //authtoken     = require('./app/authenticationapi');
 
 
 env('.env');
@@ -36,8 +35,21 @@ var sessionStore = new MySQLStore(dbconfig);
 
 
 //Set View Engine
-app.engine('hbs', exphbs({defaultLayout: false, extname:'.hbs',}));
-app.set('view engine', 'hbs');
+// app.engine('hbs', exphbs({defaultLayout: main, extname:'.hbs',}));
+// app.set('view engine', 'hbs');
+// 
+// Handlabars setup
+app.engine('.hbs', exphbs({
+  helpers: {
+        niceDate: function (uglyDate) { 
+          return uglyDate.toDateString(); },
+        setDate: function(uglyDate) {
+          return uglyDate.toISOString().substr(0, 10);
+        }
+    },
+  defaultLayout: 'main', 
+  extname: '.hbs'}));
+app.set('view engine', '.hbs');
 
 //Set static path
 app.use("/vendors",express.static(__dirname + "/vendors"));
