@@ -27,7 +27,6 @@ router.route('/:id/profile')
     connection.query(query, function(err, rows) {
       if (err) {console.log(err)}
       rows[0].student_dob = new Date(rows[0].student_dob).toDateString(); //properly set date.
-      console.log(rows[0].student_dob);
       connection.query(surveyTabQuery, function(err, surveyRows) {
         connection.query(surveyTypes, function(err, surveyKinds) {
 
@@ -82,7 +81,6 @@ router.route('/:id/profile')
           } else if (recordRows != undefined && attendanceRows === undefined) {
             res.render('profile', { buffer: "../../", user: req.user._json.user_metadata, student: rows[0], record: recordRows, attendance: [], surveyData: data});
           } else {
-            console.log(rows[0]);
             res.render('profile', { buffer: "../../", surveySelect: surveyKinds, surveys: surveyRows, user: req.user._json.user_metadata, student: rows[0], record: recordRows, attendance: attendanceRows, surveyData: data});
           }
         });
@@ -215,12 +213,15 @@ router.route('/:id/delete')
   .get(function(req, res, next) {
     connection.query("DELETE FROM semester_record WHERE student_id=" + req.params.id, function(err, rows) {
       if (err) {console.log(err)}
-    connection.query("DELETE FROM student WHERE student_id=" + req.params.id, function(err2, rows) {
-      if (err2) {console.log(err2)}
-      res.redirect('/students');
+      connection.query("DELETE FROM attendance_record WHERE student_id=" + req.params.id, function(err3, rows3) {
+        if (err3) {console.log(err3)}
+        connection.query("DELETE FROM student WHERE student_id=" + req.params.id, function(err2, rows) {
+          if (err2) {console.log(err2)}
+          res.redirect('/students');
+        });
+      });
     });
   });
-});
 
 //Get and Post Edit Students
 router.route('/:id/edit')
