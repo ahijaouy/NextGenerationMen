@@ -43,7 +43,8 @@ module.exports = function(app, passport, env) {
 
   //Login Route
   app.get('/login', function(req, res){
-    res.render('login', { 
+    res.render('login', {
+      layout: false,
     domain: process.env.AUTH0_DOMAIN,
     client: process.env.AUTH0_CLIENT,
     callback: process.env.AUTH0_CALLBACK });
@@ -51,7 +52,7 @@ module.exports = function(app, passport, env) {
 
   //Default Route to login
   app.get('/', function(req, res) {
-      res.render('login', { 
+      res.render('login', { layout: false, 
     domain: process.env.AUTH0_DOMAIN,
     client: process.env.AUTH0_CLIENT,
     callback: process.env.AUTH0_CALLBACK });
@@ -187,7 +188,7 @@ app.get('/cohorts/:id/delete', ensureLog, function(req, res) {
 
 app.get('/editProfile', ensureLog, function(req, res) {
   
-  res.render('editUserProfile', {user: req.user._json});
+  res.render('editUserProfile', {user: req.user._json.user_metadata});
   
 });
 

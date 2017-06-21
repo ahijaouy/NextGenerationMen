@@ -76,14 +76,14 @@ router.route('/:id/profile')
           }
         
           if (recordRows === undefined && attendanceRows === undefined) {
-            res.render('profile', {user: req.user._json.user_metadata, student: rows[0], record: [], attendance: [], surveyData: data});
+            res.render('profile', {buffer: "../../", user: req.user._json.user_metadata, student: rows[0], record: [], attendance: [], surveyData: data});
           } else if (recordRows === undefined && attendanceRows != undefined){
-            res.render('profile', { user: req.user._json.user_metadata, student: rows[0], record: [], attendance: attendanceRows, surveyData: data});
+            res.render('profile', { buffer: "../../", user: req.user._json.user_metadata, student: rows[0], record: [], attendance: attendanceRows, surveyData: data});
           } else if (recordRows != undefined && attendanceRows === undefined) {
-            res.render('profile', { user: req.user._json.user_metadata, student: rows[0], record: recordRows, attendance: [], surveyData: data});
+            res.render('profile', { buffer: "../../", user: req.user._json.user_metadata, student: rows[0], record: recordRows, attendance: [], surveyData: data});
           } else {
             console.log(rows[0]);
-            res.render('profile', { surveySelect: surveyKinds, surveys: surveyRows, user: req.user._json.user_metadata, student: rows[0], record: recordRows, attendance: attendanceRows, surveyData: data});
+            res.render('profile', { buffer: "../../", surveySelect: surveyKinds, surveys: surveyRows, user: req.user._json.user_metadata, student: rows[0], record: recordRows, attendance: attendanceRows, surveyData: data});
           }
         });
         });
@@ -107,7 +107,7 @@ router.route('/:studentId/survey/:surveyId/view/:responseId')
     connection.query(query1, function(err, surveyName){
       if (err) {console.log(err)}
       getSurveyQuestionsAndCategoriesAndResponses(req.params.surveyId, req.params.responseId, function(compositeList) {
-        res.render('viewSurveyResponse', { composite: compositeList, survey_name: surveyName[0].survey_name, user: req.user._json});
+        res.render('viewSurveyResponse', { composite: compositeList, survey_name: surveyName[0].survey_name, user: req.user._json.user_metadata, buffer: "../../../../../",});
       });
     });
   });
@@ -121,7 +121,7 @@ router.route('/:studentId/survey/:surveyId/edit/:recordId')
       if (err) {console.log(err)}
       getSurveyQuestionsAndCategoriesAndResponses(req.params.surveyId, req.params.recordId, function(compositeList) {
         
-        res.render('editSurveyResponse', { composite: compositeList, survey_name: surveyName[0].survey_name, user: req.user._json});
+        res.render('editSurveyResponse', { composite: compositeList, survey_name: surveyName[0].survey_name, user: req.user._json.user_metadata, buffer: "../../../../",});
       });
     });
   })
@@ -158,7 +158,7 @@ router.route('/:studentId/survey/:surveyId/add')
     connection.query(query1, function(err, surveyName){
       if (err) {console.log(err)}
       getSurveyQuestionsAndCategories(req.params.surveyId, function(compositeList) {
-        res.render('addSurveyResponse', { student_id: req.params.studentId, composite: compositeList, survey: surveyName[0], user: req.user._json});
+        res.render('addSurveyResponse', { student_id: req.params.studentId, composite: compositeList, survey: surveyName[0], user: req.user._json.user_metadata, buffer: "../../../../",});
       });
     });
   })
@@ -235,7 +235,9 @@ router.route('/:id/edit')
         res.render('editStudent', {
           student: rows[0],
           cohorts: rows2, 
-          user: req.user._json.user_metadata});
+          user: req.user._json.user_metadata, 
+          buffer: "../../",
+          });
       });
       
     });

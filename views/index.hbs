@@ -1,209 +1,123 @@
-<div class="container body">
-  <div class="main_container">
-    <div class="col-md-3 left_col">
-      <div class="left_col scroll-view">
-        <div class="navbar nav_title" style="border: 0;">
-          <a href="/index" class="site_title"><i class="fa fa-paw"></i> <span>NGM</span></a>
-        </div>
-
-        <div class="clearfix"></div>
-
-        <!-- menu profile quick info -->
-        <div class="profile">
-          <div class="profile_pic">
-            <img src="images/{{user.pic}}" alt="..." class="img-circle profile_img">
-          </div>
-          <div class="profile_info">
-            <span>Welcome,</span>
-            <h2>{{user.name}}</h2> 
-          </div>
-        </div>
-        <!-- /menu profile quick info -->
-
-        <br />
-
-        <!-- sidebar menu -->
-        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-          <div class="menu_section">
-            <h3>General</h3>
-            <ul class="nav side-menu">
-              <li><a href="/index"><i class="fa fa-home"></i>Dashboard</a></li>
-              <li><a href="/schools"><i class="fa fa-graduation-cap"></i>Schools</a></li>
-              <li><a href="/students"><i class="fa fa-users"></i>Students</a></li>
-              <li><a href="/surveys"><i class="fa fa-book"></i>Surveys</a></li>
-              {{!-- <li><a href="/partners"><i class="fa fa-building"></i>Partners</a></li> --}}
-              <li><a><i class="fa fa-plus"></i>Add<span class="fa fa-chevron-down"></span></a>
-                <ul class="nav child_menu">
-                  <li><a href="/addStudent">Students</a></li>
-                  <li><a href="/addCohort">Cohorts</a></li>
-                  <li><a href="/addschool">schools</a></li>
-                  {{!-- <li><a href="/addPartner">Partners</a></li> --}}
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <!-- /sidebar menu -->]
-      </div>
+<div class="right_col" role="main">
+  <!-- top tiles -->
+  <div class="row tile_count">
+    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+      <span class="count_top"><i class="fa fa-user"></i> Total schools</span>
+      <div class="count">{{schools.length}}</div>
+     <!--  <span class="count_bottom"><i class="green">4% </i> From last Week</span> -->
     </div>
-
-    <!-- top navigation -->
-    <div class="top_nav">
-      <div class="nav_menu">
-        <nav>
-          <div class="nav toggle">
-            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-          </div>
-
-          <ul class="nav navbar-nav navbar-right">
-            <li class="">
-              <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                <img src="images/{{user.pic}}" alt="">{{user.name}}
-                <span class=" fa fa-angle-down"></span>
-              </a>
-              <ul class="dropdown-menu dropdown-usermenu pull-right">
-                <li><a href="editProfile">Edit Profile</a></li>
-                <li><a href="resetPassword">Reset Password</a></li>
-                <li><a href="logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
-              </ul>
-            </li>
-          </ul>
-        </nav>
-      </div>
+    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+      <span class="count_top"><i class="fa fa-clock-o"></i> Total Students</span>
+      <div class="count green">{{studentCounter}}</div>
+      <!-- <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> From last Week</span> -->
     </div>
-    <!-- /top navigation -->
+    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+      <span class="count_top"><i class="fa fa-user"></i> Total Males</span>
+      <div class="count">{{maleCounter}}</div>
+      <!-- <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span> -->
+    </div>
+    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+      <span class="count_top"><i class="fa fa-user"></i> Total Females</span>
+      <div class="count">{{femaleCounter}}</div>
+      <!-- <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> From last Week</span> -->
+    </div>
+    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+      <span class="count_top"><i class="fa fa-user"></i> Total Partners</span>
+      <div class="count">n/a</div>
+      <!-- <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span> -->
+    </div>
+    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+      <span class="count_top"><i class="fa fa-user"></i> Total Connections</span>
+      <div class="count">n/a</div>
+      <!-- <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span> -->
+    </div>
+  </div>
+  <!-- /top tiles -->
 
-    <!-- page content -->
-    <div class="right_col" role="main">
-      <!-- top tiles -->
-      <div class="row tile_count">
-        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-          <span class="count_top"><i class="fa fa-user"></i> Total schools</span>
-          <div class="count">{{schools.length}}</div>
-         <!--  <span class="count_bottom"><i class="green">4% </i> From last Week</span> -->
-        </div>
-        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-          <span class="count_top"><i class="fa fa-clock-o"></i> Total Students</span>
-          <div class="count green">{{studentCounter}}</div>
-          <!-- <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> From last Week</span> -->
-        </div>
-        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-          <span class="count_top"><i class="fa fa-user"></i> Total Males</span>
-          <div class="count">{{maleCounter}}</div>
-          <!-- <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span> -->
-        </div>
-        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-          <span class="count_top"><i class="fa fa-user"></i> Total Females</span>
-          <div class="count">{{femaleCounter}}</div>
-          <!-- <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> From last Week</span> -->
-        </div>
-        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-          <span class="count_top"><i class="fa fa-user"></i> Total Partners</span>
-          <div class="count">n/a</div>
-          <!-- <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span> -->
-        </div>
-        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-          <span class="count_top"><i class="fa fa-user"></i> Total Connections</span>
-          <div class="count">n/a</div>
-          <!-- <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span> -->
-        </div>
-      </div>
-      <!-- /top tiles -->
+  <div class="row"> 
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="dashboard_graph">
+        <div class="row x_title">
+          <div class="col-lg-8 col-md-8 col-sm-6">
+            <h3 id="Graph-Title">school Performance</h3>
+          </div>
+          <div class='col-lg-3 col-md-3 col-sm-2'>
+            <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Graph Type
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu" role="menu" id="graphSelect" aria-labelledby="menu1" style="text-align:center;">
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Students per School</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">GPA per School</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">GPA per Cohort</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Survey Responses over Time</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Survey Responses by School</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Survey Responses by Cohort</a></li>
 
-      <div class="row"> 
-        <div class="col-md-12 col-sm-12 col-xs-12">
-          <div class="dashboard_graph">
-            <div class="row x_title">
-              <div class="col-lg-8 col-md-8 col-sm-6">
-                <h3 id="Graph-Title">school Performance</h3>
-              </div>
-              <div class='col-lg-3 col-md-3 col-sm-2'>
-                <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Graph Type
-                <span class="caret"></span></button>
-                <ul class="dropdown-menu" role="menu" id="graphSelect" aria-labelledby="menu1" style="text-align:center;">
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Students per School</a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">GPA per School</a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">GPA per Cohort</a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Survey Responses over Time</a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Survey Responses by School</a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Survey Responses by Cohort</a></li>
-
-                </ul> 
-              </div>
-              <!-- <div class="col-md-6">
-                <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
-                  <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-                  <span>December 30, 2014 - January 28, 2016</span> <b class="caret"></b>
-                </div>
-              </div> -->
+            </ul> 
+          </div>
+          <!-- <div class="col-md-6">
+            <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+              <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+              <span>December 30, 2014 - January 28, 2016</span> <b class="caret"></b>
             </div>
+          </div> -->
+        </div>
 
-            <div class="col-md-9 col-sm-9 col-xs-12">
-              <div id="placeholder33" style="height: 260px; display: none" class="demo-placeholder"></div>
-              <div style="width: 100%;">
-                <div id="canvas_dahs" class="demo-placeholder" style="width: 100%; height:270px;"></div>
-              </div>
-            </div>
-            
-            <div class="col-md-3 col-sm-12 col-xs-12">
-                  <div>
-                    <div class="x_title">
-                      <h2>Recently Added Students</h2>
-                      <ul class="nav navbar-right panel_toolbox">
-                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+        <div class="col-md-9 col-sm-9 col-xs-12">
+          <div id="placeholder33" style="height: 260px; display: none" class="demo-placeholder"></div>
+          <div style="width: 100%;">
+            <div id="canvas_dahs" class="demo-placeholder" style="width: 100%; height:270px;"></div>
+          </div>
+        </div>
+        
+        <div class="col-md-3 col-sm-12 col-xs-12">
+              <div>
+                <div class="x_title">
+                  <h2>Recently Added Students</h2>
+                  <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Settings 1</a>
                         </li>
-                        <li class="dropdown">
-                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                          <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Settings 1</a>
-                            </li>
-                            <li><a href="#">Settings 2</a>
-                            </li>
-                          </ul>
-                        </li>
-                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                        <li><a href="#">Settings 2</a>
                         </li>
                       </ul>
-                      <div class="clearfix"></div>
-                    </div>
-                    <ul class="list-unstyled top_profiles scroll-view">
-                    {{#each students}}
-                      <li class="media event">
-                        <a class="pull-left border-aero profile_thumb">
-                          <i class="fa fa-user aero"></i>
-                        </a>
-                        <div class="media-body">
-                          <a class="title" href="/students/{{this.student_id}}/profile">{{this.student_first_name}} {{this.student_last_name}}</a>
-                          <p><strong>{{this.school_name}}</strong>  </p>
-                          <p>Class Of {{this.cohort_year}}</p>
-                          
-                        </div>
-                      </li>
-                      {{/each}}
-                    </ul>
-                  </div>
+                    </li>
+                    <li><a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                  </ul>
+                  <div class="clearfix"></div>
                 </div>
-            <div class="clearfix"></div>
-          </div>
-        </div>
-
-      </div>
-      <br />
-
+                <ul class="list-unstyled top_profiles scroll-view">
+                {{#each students}}
+                  <li class="media event">
+                    <a class="pull-left border-aero profile_thumb">
+                      <i class="fa fa-user aero"></i>
+                    </a>
+                    <div class="media-body">
+                      <a class="title" href="/students/{{this.student_id}}/profile">{{this.student_first_name}} {{this.student_last_name}}</a>
+                      <p><strong>{{this.school_name}}</strong>  </p>
+                      <p>Class Of {{this.cohort_year}}</p>
+                      
+                    </div>
+                  </li>
+                  {{/each}}
+                </ul>
+              </div>
+            </div>
+        <div class="clearfix"></div>
       </div>
     </div>
-    <!-- /page content -->
-    <!-- footer content -->
-    <footer>
-      <div class="pull-right">
-        Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-      </div>
-      <div class="clearfix"></div>
-    </footer>
-    <!-- /footer content -->
-   
+
+  </div>
+  <br />
+
   </div>
 </div>
+<!-- /page content -->
+
 
 <!-- jQuery -->
 <script src="../vendors/jquery/dist/jquery.min.js"></script>
@@ -252,164 +166,769 @@
 
 <!-- Flot -->
 <script>
-  $(document).ready(function() {
-    studentsPerSchool();
-  });
+$(document).ready(function() {
+studentsPerSchool();
+});
 
-  $('#graphSelect li a').click(function() {           
-    $('#menu1').text($(this).text());
-    if ($(this).text() == "Students per School") {
-      studentsPerSchool();
-    } else if ($(this).text() == "GPA per School") {
-      gpaPerSchool();
-    } else if ($(this).text() == "GPA per Cohort") {
-      gpaPerCohort();
-    } else if ($(this).text() == "Survey Responses over Time") {
-      survey_responsesOverTimeByCategory();
-    } else if ($(this).text() == "Survey Responses by School") {
-      survey_responsesBySchool();
-    } else if ($(this).text() == "Survey Responses by Cohort") {
-      survey_responsesByCohort();
-    } else {
-      emptyGraph();
+$('#graphSelect li a').click(function() {           
+$('#menu1').text($(this).text());
+if ($(this).text() == "Students per School") {
+  studentsPerSchool();
+} else if ($(this).text() == "GPA per School") {
+  gpaPerSchool();
+} else if ($(this).text() == "GPA per Cohort") {
+  gpaPerCohort();
+} else if ($(this).text() == "Survey Responses over Time") {
+  survey_responsesOverTimeByCategory();
+} else if ($(this).text() == "Survey Responses by School") {
+  survey_responsesBySchool();
+} else if ($(this).text() == "Survey Responses by Cohort") {
+  survey_responsesByCohort();
+} else {
+  emptyGraph();
+}
+});
+
+function survey_responsesOverTimeByCategory() {
+$('#Graph-Title').text("Survey Responses Over Time");
+
+var surveyInfo = [];
+var counter = 0;
+{{#each surveyResponseJoin}}
+  counter++;
+  var semesterRecordId = {{this.semester_number}};
+  var surveyQuestionId = {{this.survey_question_id}};
+  if (surveyInfo[semesterRecordId] == null) {
+    surveyInfo[semesterRecordId] = {};
+    if (surveyQuestionId <= 7) {
+      surveyInfo[semesterRecordId].gritAvg = [{{this.response}}, 1];
+    } else if (surveyQuestionId <= 13) {
+      surveyInfo[semesterRecordId].probSolvAvg = [{{this.response}}, 1];
+    } else if (surveyQuestionId <= 17) {
+      surveyInfo[semesterRecordId].aseAvg = [{{this.response}}, 1];
+    } else if (surveyQuestionId <= 25) {
+      surveyInfo[semesterRecordId].tmwrkAvg = [{{this.response}}, 1];
+    } else if (surveyQuestionId <= 31) {
+      surveyInfo[semesterRecordId].scompAvg = [{{this.response}}, 1];
+    } else if (surveyQuestionId <= 34) {
+      surveyInfo[semesterRecordId].grwthAvg = [{{this.response}}, 1];
+    } else if (surveyQuestionId <= 48) {
+      surveyInfo[semesterRecordId].behaveAvg = [{{this.response}}, 1];
     }
-  });
-
-  function survey_responsesOverTimeByCategory() {
-    $('#Graph-Title').text("Survey Responses Over Time");
-    
-    var surveyInfo = [];
-    var counter = 0;
-    {{#each surveyResponseJoin}}
-      counter++;
-      var semesterRecordId = {{this.semester_number}};
-      var surveyQuestionId = {{this.survey_question_id}};
-      if (surveyInfo[semesterRecordId] == null) {
-        surveyInfo[semesterRecordId] = {};
-        if (surveyQuestionId <= 7) {
-          surveyInfo[semesterRecordId].gritAvg = [{{this.response}}, 1];
-        } else if (surveyQuestionId <= 13) {
-          surveyInfo[semesterRecordId].probSolvAvg = [{{this.response}}, 1];
-        } else if (surveyQuestionId <= 17) {
-          surveyInfo[semesterRecordId].aseAvg = [{{this.response}}, 1];
-        } else if (surveyQuestionId <= 25) {
-          surveyInfo[semesterRecordId].tmwrkAvg = [{{this.response}}, 1];
-        } else if (surveyQuestionId <= 31) {
-          surveyInfo[semesterRecordId].scompAvg = [{{this.response}}, 1];
-        } else if (surveyQuestionId <= 34) {
-          surveyInfo[semesterRecordId].grwthAvg = [{{this.response}}, 1];
-        } else if (surveyQuestionId <= 48) {
-          surveyInfo[semesterRecordId].behaveAvg = [{{this.response}}, 1];
-        }
+  } else {
+    var avg;
+    if (surveyQuestionId <= 7) {
+      if (surveyInfo[semesterRecordId].gritAvg == null) {
+        surveyInfo[semesterRecordId].gritAvg = [{{this.response}}, 1];
       } else {
-        var avg;
-        if (surveyQuestionId <= 7) {
-          if (surveyInfo[semesterRecordId].gritAvg == null) {
-            surveyInfo[semesterRecordId].gritAvg = [{{this.response}}, 1];
-          } else {
-            avg = surveyInfo[semesterRecordId].gritAvg;
-            avg[0] *= avg[1];
-            avg[0] += {{this.response}};
-            avg[0] /= avg[1] + 1;
-            avg[1]++;
-            surveyInfo[semesterRecordId].gritAvg = avg;
-          }
-        } else if (surveyQuestionId <= 13) {
-          if (surveyInfo[semesterRecordId].probSolvAvg == null) {
-            surveyInfo[semesterRecordId].probSolvAvg = [{{this.response}}, 1];
-          } else {
-            avg = surveyInfo[semesterRecordId].probSolvAvg;
-            avg[0] *= avg[1];
-            avg[0] += {{this.response}};
-            avg[0] /= avg[1] + 1;
-            avg[1]++; 
-            surveyInfo[semesterRecordId].probSolvAvg = avg;
-          }
-        } else if (surveyQuestionId <= 17) {
-          if (surveyInfo[semesterRecordId].aseAvg == null) {    
-            surveyInfo[semesterRecordId].aseAvg = [{{this.response}}, 1];
-          } else {
-            avg = surveyInfo[semesterRecordId].aseAvg;
-            avg[0] *= avg[1];
-            avg[0] += {{this.response}};
-            avg[0] /= avg[1] + 1;
-            avg[1]++; 
-          surveyInfo[semesterRecordId].aseAvg = avg;
-          }
-        } else if (surveyQuestionId <= 25) {
-          if (surveyInfo[semesterRecordId].tmwrkAvg == null) {
-            surveyInfo[semesterRecordId].tmwrkAvg = [{{this.response}}, 1];
-          } else {
-            avg = surveyInfo[semesterRecordId].tmwrkAvg;
-            avg[0] *= avg[1];
-            avg[0] += {{this.response}};
-            avg[0] /= avg[1] + 1;
-            avg[1]++;
-            surveyInfo[semesterRecordId].tmwrkAvg = avg;
+        avg = surveyInfo[semesterRecordId].gritAvg;
+        avg[0] *= avg[1];
+        avg[0] += {{this.response}};
+        avg[0] /= avg[1] + 1;
+        avg[1]++;
+        surveyInfo[semesterRecordId].gritAvg = avg;
+      }
+    } else if (surveyQuestionId <= 13) {
+      if (surveyInfo[semesterRecordId].probSolvAvg == null) {
+        surveyInfo[semesterRecordId].probSolvAvg = [{{this.response}}, 1];
+      } else {
+        avg = surveyInfo[semesterRecordId].probSolvAvg;
+        avg[0] *= avg[1];
+        avg[0] += {{this.response}};
+        avg[0] /= avg[1] + 1;
+        avg[1]++; 
+        surveyInfo[semesterRecordId].probSolvAvg = avg;
+      }
+    } else if (surveyQuestionId <= 17) {
+      if (surveyInfo[semesterRecordId].aseAvg == null) {    
+        surveyInfo[semesterRecordId].aseAvg = [{{this.response}}, 1];
+      } else {
+        avg = surveyInfo[semesterRecordId].aseAvg;
+        avg[0] *= avg[1];
+        avg[0] += {{this.response}};
+        avg[0] /= avg[1] + 1;
+        avg[1]++; 
+      surveyInfo[semesterRecordId].aseAvg = avg;
+      }
+    } else if (surveyQuestionId <= 25) {
+      if (surveyInfo[semesterRecordId].tmwrkAvg == null) {
+        surveyInfo[semesterRecordId].tmwrkAvg = [{{this.response}}, 1];
+      } else {
+        avg = surveyInfo[semesterRecordId].tmwrkAvg;
+        avg[0] *= avg[1];
+        avg[0] += {{this.response}};
+        avg[0] /= avg[1] + 1;
+        avg[1]++;
+        surveyInfo[semesterRecordId].tmwrkAvg = avg;
 
-          }
-        } else if (surveyQuestionId <= 31) {
-          if (surveyInfo[semesterRecordId].scompAvg == null) {
-            surveyInfo[semesterRecordId].scompAvg = [{{this.response}}, 1];
-          } else {
-            avg = surveyInfo[semesterRecordId].scompAvg;
-            avg[0] *= avg[1];
-            avg[0] += {{this.response}};
-            avg[0] /= avg[1] + 1;
-            avg[1]++;
-            surveyInfo[semesterRecordId].scompAvg = avg;
-          }
-        } else if (surveyQuestionId <= 34) {
-          if (surveyInfo[semesterRecordId].grwthAvg == null) {
-            surveyInfo[semesterRecordId].grwthAvg = [{{this.response}}, 1];
-          } else {
-            avg = surveyInfo[semesterRecordId].grwthAvg;
-            avg[0] *= avg[1];
-            avg[0] += {{this.response}};
-            avg[0] /= avg[1] + 1;
-            avg[1]++;
-            surveyInfo[semesterRecordId].grwthAvg = avg;
-          }
-        } else if (surveyQuestionId <= 48) {
-          if (surveyInfo[semesterRecordId].behaveAvg == null) {
-            surveyInfo[semesterRecordId].behaveAvg = [{{this.response}}, 1];
-          } else {
-            avg = surveyInfo[semesterRecordId].behaveAvg;
-            avg[0] *= avg[1];
-            avg[0] += {{this.response}};
-            avg[0] /= avg[1] + 1;
-            avg[1]++;
-            surveyInfo[semesterRecordId].behaveAvg = avg;
-          }
-        }            
-      }          
-    {{/each}}
-    var gritAvg = [];
-    var probSolvAvg = [];
-    var aseAvg = [];
-    var tmwrkAvg = [];
-    var scompAvg = [];
-    var grwthAvg = [];
-    var behaveAvg = [];
-    var compositeData = [];
+      }
+    } else if (surveyQuestionId <= 31) {
+      if (surveyInfo[semesterRecordId].scompAvg == null) {
+        surveyInfo[semesterRecordId].scompAvg = [{{this.response}}, 1];
+      } else {
+        avg = surveyInfo[semesterRecordId].scompAvg;
+        avg[0] *= avg[1];
+        avg[0] += {{this.response}};
+        avg[0] /= avg[1] + 1;
+        avg[1]++;
+        surveyInfo[semesterRecordId].scompAvg = avg;
+      }
+    } else if (surveyQuestionId <= 34) {
+      if (surveyInfo[semesterRecordId].grwthAvg == null) {
+        surveyInfo[semesterRecordId].grwthAvg = [{{this.response}}, 1];
+      } else {
+        avg = surveyInfo[semesterRecordId].grwthAvg;
+        avg[0] *= avg[1];
+        avg[0] += {{this.response}};
+        avg[0] /= avg[1] + 1;
+        avg[1]++;
+        surveyInfo[semesterRecordId].grwthAvg = avg;
+      }
+    } else if (surveyQuestionId <= 48) {
+      if (surveyInfo[semesterRecordId].behaveAvg == null) {
+        surveyInfo[semesterRecordId].behaveAvg = [{{this.response}}, 1];
+      } else {
+        avg = surveyInfo[semesterRecordId].behaveAvg;
+        avg[0] *= avg[1];
+        avg[0] += {{this.response}};
+        avg[0] /= avg[1] + 1;
+        avg[1]++;
+        surveyInfo[semesterRecordId].behaveAvg = avg;
+      }
+    }            
+  }          
+{{/each}}
+var gritAvg = [];
+var probSolvAvg = [];
+var aseAvg = [];
+var tmwrkAvg = [];
+var scompAvg = [];
+var grwthAvg = [];
+var behaveAvg = [];
+var compositeData = [];
+for (x in surveyInfo) {
+  if (surveyInfo[x] != null) {
+    compositeData[x] = [];
+    for (y in surveyInfo[x]) {
+      compositeData[x].push(surveyInfo[x][y][0]);
+    }
+  }
+}
+pos = 2;
+for (x in compositeData) {
+  gritAvg.push([pos, compositeData[x][0]]);
+  probSolvAvg.push([pos, compositeData[x][1]]);
+  aseAvg.push([pos, compositeData[x][2]]);
+  tmwrkAvg.push([pos, compositeData[x][3]]);
+  scompAvg.push([pos, compositeData[x][4]]);
+  grwthAvg.push([pos, compositeData[x][5]]);
+  behaveAvg.push([pos, compositeData[x][6]]);
+  pos += 3;
+}
+var schoolTicks = [];
+pos = 2;
+{{#each joins}}
+    schoolTicks.push([pos, "Semester #{{this.semester_number}}"]);
+    pos = pos + 3;
+{{/each}}
+data = [ 
+     {label: "Grit", data: gritAvg},
+     {label: "Problem Solving", data: probSolvAvg},
+     {label: "Academic Self-Efficacy", data: aseAvg},
+     {label: "Social Competence", data: scompAvg},
+     {label: "Teamwork", data: scompAvg},
+     {label: "Growth", data: grwthAvg},
+     {label: "Behavior", data: behaveAvg}
+];
+
+$("#canvas_dahs").length && $.plot($("#canvas_dahs"), 
+data, {
+  series: {
+    data: data,
+    lines: {
+      show: true,
+      fill: false,
+    },
+    points: {
+      show:true
+      },
+    clickable: true,
+    hoverable: true
+  },
+  grid: {
+    padding: 10,  
+    verticalLines: true,
+    hoverable: true,
+    clickable: true,
+    tickColor: "#d5d5d5",
+    borderWidth: 10,
+    color: '#fff',
+  },
+
+  colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
+  legend: {
+    show: true,
+    labelFormatter: function(label, series) {
+      return '<p style="color:black;">' + label + '</p>';
+    },
+    labelBoxBorderColor: "rgb(0, 0, 0)",
+  },
+  xaxis: {
+    ticks: schoolTicks,
+    tickColor: "rgba(51, 51, 51, 0.06)",
+    tickSize: 5,
+    axisLabel: "Date",
+    axisLabelUseCanvas: true,
+    axisLabelFontSizePixels: 12,
+    axisLabelFontFamily: 'Verda na, Arial'
+  },
+  yaxis: {
+    axisLabelUseCanvas: true,
+    tickColor: "rgba(51, 51, 51, 0.06)",
+  },
+  tooltip: false
+});
+
+}
+
+function survey_responsesByCohort() {
+$('#Graph-Title').text("Survey Responses By Cohort");
+
+var surveyInfo = [];
+var counter = 0;
+{{#each surveyResponseJoin}}
+  counter++;
+  var cohortId = {{this.cohort_id}};
+  var surveyQuestionId = {{this.survey_question_id}};
+  if (surveyInfo[cohortId] == null) {
+    surveyInfo[cohortId] = {};
+    if (surveyQuestionId <= 7) {
+      surveyInfo[cohortId].gritAvg = [{{this.response}}, 1];
+    } else if (surveyQuestionId <= 13) {
+      surveyInfo[cohortId].probSolvAvg = [{{this.response}}, 1];
+    } else if (surveyQuestionId <= 17) {
+      surveyInfo[cohortId].aseAvg = [{{this.response}}, 1];
+    } else if (surveyQuestionId <= 25) {
+      surveyInfo[cohortId].tmwrkAvg = [{{this.response}}, 1];
+    } else if (surveyQuestionId <= 31) {
+      surveyInfo[cohortId].scompAvg = [{{this.response}}, 1];
+    } else if (surveyQuestionId <= 34) {
+      surveyInfo[cohortId].grwthAvg = [{{this.response}}, 1];
+    } else if (surveyQuestionId <= 48) {
+      surveyInfo[cohortId].behaveAvg = [{{this.response}}, 1];
+    }
+  } else {
+    var avg;
+    if (surveyQuestionId <= 7) {
+      if (surveyInfo[cohortId].gritAvg == null) {
+        surveyInfo[cohortId].gritAvg = [{{this.response}}, 1];
+      } else {
+        avg = surveyInfo[cohortId].gritAvg;
+        avg[0] *= avg[1];
+        avg[0] += {{this.response}};
+        avg[0] /= avg[1] + 1;
+        avg[1]++;
+        surveyInfo[cohortId].gritAvg = avg;
+      }
+    } else if (surveyQuestionId <= 13) {
+      if (surveyInfo[cohortId].probSolvAvg == null) {
+        surveyInfo[cohortId].probSolvAvg = [{{this.response}}, 1];
+      } else {
+        avg = surveyInfo[cohortId].probSolvAvg;
+        avg[0] *= avg[1];
+        avg[0] += {{this.response}};
+        avg[0] /= avg[1] + 1;
+        avg[1]++; 
+        surveyInfo[cohortId].probSolvAvg = avg;
+      }
+    } else if (surveyQuestionId <= 17) {
+      if (surveyInfo[cohortId].aseAvg == null) {    
+        surveyInfo[cohortId].aseAvg = [{{this.response}}, 1];
+      } else {
+        avg = surveyInfo[cohortId].aseAvg;
+        avg[0] *= avg[1];
+        avg[0] += {{this.response}};
+        avg[0] /= avg[1] + 1;
+        avg[1]++; 
+      surveyInfo[cohortId].aseAvg = avg;
+      }
+    } else if (surveyQuestionId <= 25) {
+      if (surveyInfo[cohortId].tmwrkAvg == null) {
+        surveyInfo[cohortId].tmwrkAvg = [{{this.response}}, 1];
+      } else {
+        avg = surveyInfo[cohortId].tmwrkAvg;
+        avg[0] *= avg[1];
+        avg[0] += {{this.response}};
+        avg[0] /= avg[1] + 1;
+        avg[1]++;
+        surveyInfo[cohortId].tmwrkAvg = avg;
+
+      }
+    } else if (surveyQuestionId <= 31) {
+      if (surveyInfo[cohortId].scompAvg == null) {
+        surveyInfo[cohortId].scompAvg = [{{this.response}}, 1];
+      } else {
+        avg = surveyInfo[cohortId].scompAvg;
+        avg[0] *= avg[1];
+        avg[0] += {{this.response}};
+        avg[0] /= avg[1] + 1;
+        avg[1]++;
+        surveyInfo[cohortId].scompAvg = avg;
+      }
+    } else if (surveyQuestionId <= 34) {
+      if (surveyInfo[cohortId].grwthAvg == null) {
+        surveyInfo[cohortId].grwthAvg = [{{this.response}}, 1];
+      } else {
+        avg = surveyInfo[cohortId].grwthAvg;
+        avg[0] *= avg[1];
+        avg[0] += {{this.response}};
+        avg[0] /= avg[1] + 1;
+        avg[1]++;
+        surveyInfo[cohortId].grwthAvg = avg;
+      }
+    } else if (surveyQuestionId <= 48) {
+      if (surveyInfo[cohortId].behaveAvg == null) {
+        surveyInfo[cohortId].behaveAvg = [{{this.response}}, 1];
+      } else {
+        avg = surveyInfo[cohortId].behaveAvg;
+        avg[0] *= avg[1];
+        avg[0] += {{this.response}};
+        avg[0] /= avg[1] + 1;
+        avg[1]++;
+        surveyInfo[cohortId].behaveAvg = avg;
+      }
+    }            
+  }          
+{{/each}}
+var gritAvg = [];
+var probSolvAvg = [];
+var aseAvg = [];
+var tmwrkAvg = [];
+var scompAvg = [];
+var grwthAvg = [];
+var behaveAvg = [];
+var compositeData = [];
+for (x in surveyInfo) {
+  if (surveyInfo[x] != null) {
+    compositeData[x] = [];
+    for (y in surveyInfo[x]) {
+      compositeData[x].push(surveyInfo[x][y][0]);
+    }
+  }
+}
+pos = 2;
+for (x in compositeData) {
+  gritAvg.push([pos, compositeData[x][0]]);
+  probSolvAvg.push([pos, compositeData[x][1]]);
+  aseAvg.push([pos, compositeData[x][2]]);
+  tmwrkAvg.push([pos, compositeData[x][3]]);
+  scompAvg.push([pos, compositeData[x][4]]);
+  grwthAvg.push([pos, compositeData[x][5]]);
+  behaveAvg.push([pos, compositeData[x][6]]);
+  pos += 3;
+}
+var schoolTicks = [];
+pos = 2;
+{{#each surveyResponseJoin}}
+    schoolTicks.push([pos, "{{this.cohort_year}}"]);
+    pos = pos + 3;
+{{/each}}
+data = [ 
+     {label: "Grit", data: gritAvg},
+     {label: "Problem Solving", data: probSolvAvg},
+     {label: "Academic Self-Efficacy", data: aseAvg},
+     {label: "Social Competence", data: scompAvg},
+     {label: "Teamwork", data: scompAvg},
+     {label: "Growth", data: grwthAvg},
+     {label: "Behavior", data: behaveAvg}
+];
+$("#canvas_dahs").length && $.plot($("#canvas_dahs"),
+  data, {
+  series: {
+    data: data,
+    lines: {
+      show: false,
+      fill: true,
+    },
+    bars: {
+      show: true,
+      fill: true,
+      barWidth: 2,
+      align: "center"
+    },
+    stack: true,
+    points: {
+      show:false,
+      fill:true
+      },
+  },
+  grid: {
+    padding: 10,
+    verticalLines: true,
+    hoverable: true,
+    clickable: true,
+    tickColor: "#d5d5d5",
+    borderWidth: 10,
+    color: '#fff',
+  },
+  colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
+  legend: {
+    show: true,
+    labelFormatter: function(label, series) {
+      return '<p style="color:black;">' + label + '</p>';
+    },
+    labelBoxBorderColor: "rgb(0, 0, 0)",
+  },
+  xaxis: {
+    ticks: schoolTicks,
+    tickColor: "rgba(51, 51, 51, 0.06)",
+    tickSize: 5,
+    axisLabel: "Date",
+    axisLabelUseCanvas: true,
+    axisLabelFontSizePixels: 12,
+    axisLabelFontFamily: 'Verda na, Arial'
+  },
+  yaxis: {
+    axisLabelUseCanvas: true,
+    tickColor: "rgba(51, 51, 51, 0.06)",
+  },
+  tooltip: false
+});
+}
+
+function survey_responsesBySchool() {
+$('#Graph-Title').text("Survey Responses By School");
+var surveyInfo = [];
+var counter = 0;
+{{#each surveyResponseJoin}}
+  counter++;
+  var school = {{this.school_id}};
+  var surveyQuestionId = {{this.survey_question_id}};
+  if (surveyInfo[school] == null) {
+    surveyInfo[school] = {};
+    if (surveyQuestionId <= 7) {
+      surveyInfo[school].gritAvg = [{{this.response}}, 1];
+    } else if (surveyQuestionId <= 13) {
+      surveyInfo[school].probSolvAvg = [{{this.response}}, 1];
+    } else if (surveyQuestionId <= 17) {
+      surveyInfo[school].aseAvg = [{{this.response}}, 1];
+    } else if (surveyQuestionId <= 25) {
+      surveyInfo[school].tmwrkAvg = [{{this.response}}, 1];
+    } else if (surveyQuestionId <= 31) {
+      surveyInfo[school].scompAvg = [{{this.response}}, 1];
+    } else if (surveyQuestionId <= 34) {
+      surveyInfo[school].grwthAvg = [{{this.response}}, 1];
+    } else if (surveyQuestionId <= 48) {
+      surveyInfo[school].behaveAvg = [{{this.response}}, 1];
+    }
+  } else {
+    var avg;
+    if (surveyQuestionId <= 7) {
+      if (surveyInfo[school].gritAvg == null) {
+        surveyInfo[school].gritAvg = [{{this.response}}, 1];
+      } else {
+        avg = surveyInfo[school].gritAvg;
+        avg[0] *= avg[1];
+        avg[0] += {{this.response}};
+        avg[0] /= avg[1] + 1;
+        avg[1]++;
+        surveyInfo[school].gritAvg = avg;
+      }
+    } else if (surveyQuestionId <= 13) {
+      if (surveyInfo[school].probSolvAvg == null) {
+        surveyInfo[school].probSolvAvg = [{{this.response}}, 1];
+      } else {
+        avg = surveyInfo[school].probSolvAvg;
+        avg[0] *= avg[1];
+        avg[0] += {{this.response}};
+        avg[0] /= avg[1] + 1;
+        avg[1]++; 
+        surveyInfo[school].probSolvAvg = avg;
+      }
+    } else if (surveyQuestionId <= 17) {
+      if (surveyInfo[school].aseAvg == null) {    
+        surveyInfo[school].aseAvg = [{{this.response}}, 1];
+      } else {
+        avg = surveyInfo[school].aseAvg;
+        avg[0] *= avg[1];
+        avg[0] += {{this.response}};
+        avg[0] /= avg[1] + 1;
+        avg[1]++; 
+      surveyInfo[school].aseAvg = avg;
+      }
+    } else if (surveyQuestionId <= 25) {
+      if (surveyInfo[school].tmwrkAvg == null) {
+        surveyInfo[school].tmwrkAvg = [{{this.response}}, 1];
+      } else {
+        avg = surveyInfo[school].tmwrkAvg;
+        avg[0] *= avg[1];
+        avg[0] += {{this.response}};
+        avg[0] /= avg[1] + 1;
+        avg[1]++;
+        surveyInfo[school].tmwrkAvg = avg;
+
+      }
+    } else if (surveyQuestionId <= 31) {
+      if (surveyInfo[school].scompAvg == null) {
+        surveyInfo[school].scompAvg = [{{this.response}}, 1];
+      } else {
+        avg = surveyInfo[school].scompAvg;
+        avg[0] *= avg[1];
+        avg[0] += {{this.response}};
+        avg[0] /= avg[1] + 1;
+        avg[1]++;
+        surveyInfo[school].scompAvg = avg;
+      }
+    } else if (surveyQuestionId <= 34) {
+      if (surveyInfo[school].grwthAvg == null) {
+        surveyInfo[school].grwthAvg = [{{this.response}}, 1];
+      } else {
+        avg = surveyInfo[school].grwthAvg;
+        avg[0] *= avg[1];
+        avg[0] += {{this.response}};
+        avg[0] /= avg[1] + 1;
+        avg[1]++;
+        surveyInfo[school].grwthAvg = avg;
+      }
+    } else if (surveyQuestionId <= 48) {
+      if (surveyInfo[school].behaveAvg == null) {
+        surveyInfo[school].behaveAvg = [{{this.response}}, 1];
+      } else {
+        avg = surveyInfo[school].behaveAvg;
+        avg[0] *= avg[1];
+        avg[0] += {{this.response}};
+        avg[0] /= avg[1] + 1;
+        avg[1]++;
+        surveyInfo[school].behaveAvg = avg;
+      }
+    }            
+  }
+  
+  
+{{/each}}
+var gritAvg = [];
+var probSolvAvg = [];
+var aseAvg = [];
+var tmwrkAvg = [];
+var scompAvg = [];
+var grwthAvg = [];
+var behaveAvg = [];
+var compositeData = [];
+for (x in surveyInfo) {
+  if (surveyInfo[x] != null) {
+    compositeData[x] = [];
+    for (y in surveyInfo[x]) {
+      compositeData[x].push(surveyInfo[x][y][0]);
+    }
+  }
+}
+pos = 2;
+for (x in compositeData) {
+  gritAvg.push([pos, compositeData[x][0]]);
+  probSolvAvg.push([pos, compositeData[x][1]]);
+  aseAvg.push([pos, compositeData[x][2]]);
+  tmwrkAvg.push([pos, compositeData[x][3]]);
+  scompAvg.push([pos, compositeData[x][4]]);
+  grwthAvg.push([pos, compositeData[x][5]]);
+  behaveAvg.push([pos, compositeData[x][6]]);
+  pos += 3;
+}
+var schoolTicks = [];
+pos = 2;
+{{#each joins}}
+    schoolTicks.push([pos, "{{this.school_name}}"]);
+    pos = pos + 3;
+{{/each}}
+data = [ 
+     {label: "Grit", data: gritAvg},
+     {label: "Problem Solving", data: probSolvAvg},
+     {label: "Academic Self-Efficacy", data: aseAvg},
+     {label: "Social Competence", data: scompAvg},
+     {label: "Teamwork", data: scompAvg},
+     {label: "Growth", data: grwthAvg},
+     {label: "Behavior", data: behaveAvg}
+];
+$("#canvas_dahs").length && $.plot($("#canvas_dahs"),
+  data, {
+  series: {
+    data: data,
+    lines: {
+      show: false,
+      fill: true,
+    },
+    bars: {
+      show: true,
+      fill: true,
+      barWidth: 2,
+      align: "center"
+    },
+    stack: true,
+    points: {
+      show:false,
+      fill:true
+      },
+  },
+  grid: {
+    padding: 10,
+    verticalLines: true,
+    hoverable: true,
+    clickable: true,
+    tickColor: "#d5d5d5",
+    borderWidth: 10,
+    color: '#fff',
+  },
+  colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
+  legend: {
+    show: true,
+    labelFormatter: function(label, series) {
+      return '<p style="color:black;">' + label + '</p>';
+    },
+    labelBoxBorderColor: "rgb(0, 0, 0)",
+  },
+  xaxis: {
+    ticks: schoolTicks,
+    tickColor: "rgba(51, 51, 51, 0.06)",
+    tickSize: 5,
+    axisLabel: "Date",
+    axisLabelUseCanvas: true,
+    axisLabelFontSizePixels: 12,
+    axisLabelFontFamily: 'Verda na, Arial'
+  },
+  yaxis: {
+    axisLabelUseCanvas: true,
+    tickColor: "rgba(51, 51, 51, 0.06)",
+  },
+  tooltip: false
+});
+}
+
+function survey_responseOverTime() {
+$('#Graph-Title').text("Survey Responses Over Time");
+var surveyInfo = [];
+var counter = 0;
+{{#each surveyResponseJoin}}
+  counter++;
+  var semesterRecordId = {{this.semester_record_id}};
+  var surveyQuestionId = {{this.survey_question_id}};
+  if (surveyInfo[semesterRecordId] == null) {
+    surveyInfo[semesterRecordId] = {};
+    if (surveyQuestionId <= 7) {
+      surveyInfo[semesterRecordId].gritAvg = [{{this.response}}, 1];
+    } else if (surveyQuestionId <= 13) {
+      surveyInfo[semesterRecordId].probSolvAvg = [{{this.response}}, 1];
+    } else if (surveyQuestionId <= 17) {
+      surveyInfo[semesterRecordId].aseAvg = [{{this.response}}, 1];
+    } else if (surveyQuestionId <= 25) {
+      surveyInfo[semesterRecordId].tmwrkAvg = [{{this.response}}, 1];
+    } else if (surveyQuestionId <= 31) {
+      surveyInfo[semesterRecordId].scompAvg = [{{this.response}}, 1];
+    } else if (surveyQuestionId <= 34) {
+      surveyInfo[semesterRecordId].grwthAvg = [{{this.response}}, 1];
+    } else if (surveyQuestionId <= 48) {
+      surveyInfo[semesterRecordId].behaveAvg = [{{this.response}}, 1];
+    }
+  } else {
+    var avg;
+    if (surveyQuestionId <= 7) {
+      if (surveyInfo[semesterRecordId].gritAvg == null) {
+        surveyInfo[semesterRecordId].gritAvg = [{{this.response}}, 1];
+      } else {
+        avg = surveyInfo[semesterRecordId].gritAvg;
+        avg[0] *= avg[1];
+        avg[0] += {{this.response}};
+        avg[0] /= avg[1] + 1;
+        avg[1]++;
+        surveyInfo[semesterRecordId].gritAvg = avg;
+      }
+    } else if (surveyQuestionId <= 13) {
+      if (surveyInfo[semesterRecordId].probSolvAvg == null) {
+        surveyInfo[semesterRecordId].probSolvAvg = [{{this.response}}, 1];
+      } else {
+        avg = surveyInfo[semesterRecordId].probSolvAvg;
+        avg[0] *= avg[1];
+        avg[0] += {{this.response}};
+        avg[0] /= avg[1] + 1;
+        avg[1]++; 
+        surveyInfo[semesterRecordId].probSolvAvg = avg;
+      }
+    } else if (surveyQuestionId <= 17) {
+      if (surveyInfo[semesterRecordId].aseAvg == null) {    
+        surveyInfo[semesterRecordId].aseAvg = [{{this.response}}, 1];
+      } else {
+        avg = surveyInfo[semesterRecordId].aseAvg;
+        avg[0] *= avg[1];
+        avg[0] += {{this.response}};
+        avg[0] /= avg[1] + 1;
+        avg[1]++; 
+      surveyInfo[semesterRecordId].aseAvg = avg;
+      }
+    } else if (surveyQuestionId <= 25) {
+      if (surveyInfo[semesterRecordId].tmwrkAvg == null) {
+        surveyInfo[semesterRecordId].tmwrkAvg = [{{this.response}}, 1];
+      } else {
+        avg = surveyInfo[semesterRecordId].tmwrkAvg;
+        avg[0] *= avg[1];
+        avg[0] += {{this.response}};
+        avg[0] /= avg[1] + 1;
+        avg[1]++;
+        surveyInfo[semesterRecordId].tmwrkAvg = avg;
+
+      }
+    } else if (surveyQuestionId <= 31) {
+      if (surveyInfo[semesterRecordId].scompAvg == null) {
+        surveyInfo[semesterRecordId].scompAvg = [{{this.response}}, 1];
+      } else {
+        avg = surveyInfo[semesterRecordId].scompAvg;
+        avg[0] *= avg[1];
+        avg[0] += {{this.response}};
+        avg[0] /= avg[1] + 1;
+        avg[1]++;
+        surveyInfo[semesterRecordId].scompAvg = avg;
+      }
+    } else if (surveyQuestionId <= 34) {
+      if (surveyInfo[semesterRecordId].grwthAvg == null) {
+        surveyInfo[semesterRecordId].grwthAvg = [{{this.response}}, 1];
+      } else {
+        avg = surveyInfo[semesterRecordId].grwthAvg;
+        avg[0] *= avg[1];
+        avg[0] += {{this.response}};
+        avg[0] /= avg[1] + 1;
+        avg[1]++;
+        surveyInfo[semesterRecordId].grwthAvg = avg;
+      }
+    } else if (surveyQuestionId <= 48) {
+      if (surveyInfo[semesterRecordId].behaveAvg == null) {
+        surveyInfo[semesterRecordId].behaveAvg = [{{this.response}}, 1];
+      } else {
+        avg = surveyInfo[semesterRecordId].behaveAvg;
+        avg[0] *= avg[1];
+        avg[0] += {{this.response}};
+        avg[0] /= avg[1] + 1;
+        avg[1]++;
+        surveyInfo[semesterRecordId].behaveAvg = avg;
+      }
+    }            
+  }
+  
+  
+{{/each}}
+var compositeAvg = [];
     for (x in surveyInfo) {
+      
       if (surveyInfo[x] != null) {
-        compositeData[x] = [];
+        var sumAvg = 0;
         for (y in surveyInfo[x]) {
-          compositeData[x].push(surveyInfo[x][y][0]);
+          sumAvg += surveyInfo[x][y][0];
         }
       }
+      compositeAvg.push(sumAvg);
     }
-    pos = 2;
-    for (x in compositeData) {
-      gritAvg.push([pos, compositeData[x][0]]);
-      probSolvAvg.push([pos, compositeData[x][1]]);
-      aseAvg.push([pos, compositeData[x][2]]);
-      tmwrkAvg.push([pos, compositeData[x][3]]);
-      scompAvg.push([pos, compositeData[x][4]]);
-      grwthAvg.push([pos, compositeData[x][5]]);
-      behaveAvg.push([pos, compositeData[x][6]]);
-      pos += 3;
+
+    var data = [];
+    var pos = 2;
+    for (x in compositeAvg) {
+        data.push([pos, compositeAvg[x]]);
+        pos = pos + 3;
     }
     var schoolTicks = [];
     pos = 2;
@@ -417,234 +936,23 @@
         schoolTicks.push([pos, "Semester #{{this.semester_number}}"]);
         pos = pos + 3;
     {{/each}}
-    data = [ 
-         {label: "Grit", data: gritAvg},
-         {label: "Problem Solving", data: probSolvAvg},
-         {label: "Academic Self-Efficacy", data: aseAvg},
-         {label: "Social Competence", data: scompAvg},
-         {label: "Teamwork", data: scompAvg},
-         {label: "Growth", data: grwthAvg},
-         {label: "Behavior", data: behaveAvg}
-    ];
 
-    $("#canvas_dahs").length && $.plot($("#canvas_dahs"), 
-    data, {
+    $("#canvas_dahs").length && $.plot($("#canvas_dahs"), [
+      data
+    ], {
       series: {
-        data: data,
         lines: {
           show: true,
-          fill: false,
-        },
-        points: {
-          show:true
-          },
-        clickable: true,
-        hoverable: true
-      },
-      grid: {
-        padding: 10,  
-        verticalLines: true,
-        hoverable: true,
-        clickable: true,
-        tickColor: "#d5d5d5",
-        borderWidth: 10,
-        color: '#fff',
-      },
-
-      colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
-      legend: {
-        show: true,
-        labelFormatter: function(label, series) {
-          return '<p style="color:black;">' + label + '</p>';
-        },
-        labelBoxBorderColor: "rgb(0, 0, 0)",
-      },
-      xaxis: {
-        ticks: schoolTicks,
-        tickColor: "rgba(51, 51, 51, 0.06)",
-        tickSize: 5,
-        axisLabel: "Date",
-        axisLabelUseCanvas: true,
-        axisLabelFontSizePixels: 12,
-        axisLabelFontFamily: 'Verda na, Arial'
-      },
-      yaxis: {
-        axisLabelUseCanvas: true,
-        tickColor: "rgba(51, 51, 51, 0.06)",
-      },
-      tooltip: false
-    });
-
-  }
-
-  function survey_responsesByCohort() {
-    $('#Graph-Title').text("Survey Responses By Cohort");
-    
-    var surveyInfo = [];
-    var counter = 0;
-    {{#each surveyResponseJoin}}
-      counter++;
-      var cohortId = {{this.cohort_id}};
-      var surveyQuestionId = {{this.survey_question_id}};
-      if (surveyInfo[cohortId] == null) {
-        surveyInfo[cohortId] = {};
-        if (surveyQuestionId <= 7) {
-          surveyInfo[cohortId].gritAvg = [{{this.response}}, 1];
-        } else if (surveyQuestionId <= 13) {
-          surveyInfo[cohortId].probSolvAvg = [{{this.response}}, 1];
-        } else if (surveyQuestionId <= 17) {
-          surveyInfo[cohortId].aseAvg = [{{this.response}}, 1];
-        } else if (surveyQuestionId <= 25) {
-          surveyInfo[cohortId].tmwrkAvg = [{{this.response}}, 1];
-        } else if (surveyQuestionId <= 31) {
-          surveyInfo[cohortId].scompAvg = [{{this.response}}, 1];
-        } else if (surveyQuestionId <= 34) {
-          surveyInfo[cohortId].grwthAvg = [{{this.response}}, 1];
-        } else if (surveyQuestionId <= 48) {
-          surveyInfo[cohortId].behaveAvg = [{{this.response}}, 1];
-        }
-      } else {
-        var avg;
-        if (surveyQuestionId <= 7) {
-          if (surveyInfo[cohortId].gritAvg == null) {
-            surveyInfo[cohortId].gritAvg = [{{this.response}}, 1];
-          } else {
-            avg = surveyInfo[cohortId].gritAvg;
-            avg[0] *= avg[1];
-            avg[0] += {{this.response}};
-            avg[0] /= avg[1] + 1;
-            avg[1]++;
-            surveyInfo[cohortId].gritAvg = avg;
-          }
-        } else if (surveyQuestionId <= 13) {
-          if (surveyInfo[cohortId].probSolvAvg == null) {
-            surveyInfo[cohortId].probSolvAvg = [{{this.response}}, 1];
-          } else {
-            avg = surveyInfo[cohortId].probSolvAvg;
-            avg[0] *= avg[1];
-            avg[0] += {{this.response}};
-            avg[0] /= avg[1] + 1;
-            avg[1]++; 
-            surveyInfo[cohortId].probSolvAvg = avg;
-          }
-        } else if (surveyQuestionId <= 17) {
-          if (surveyInfo[cohortId].aseAvg == null) {    
-            surveyInfo[cohortId].aseAvg = [{{this.response}}, 1];
-          } else {
-            avg = surveyInfo[cohortId].aseAvg;
-            avg[0] *= avg[1];
-            avg[0] += {{this.response}};
-            avg[0] /= avg[1] + 1;
-            avg[1]++; 
-          surveyInfo[cohortId].aseAvg = avg;
-          }
-        } else if (surveyQuestionId <= 25) {
-          if (surveyInfo[cohortId].tmwrkAvg == null) {
-            surveyInfo[cohortId].tmwrkAvg = [{{this.response}}, 1];
-          } else {
-            avg = surveyInfo[cohortId].tmwrkAvg;
-            avg[0] *= avg[1];
-            avg[0] += {{this.response}};
-            avg[0] /= avg[1] + 1;
-            avg[1]++;
-            surveyInfo[cohortId].tmwrkAvg = avg;
-
-          }
-        } else if (surveyQuestionId <= 31) {
-          if (surveyInfo[cohortId].scompAvg == null) {
-            surveyInfo[cohortId].scompAvg = [{{this.response}}, 1];
-          } else {
-            avg = surveyInfo[cohortId].scompAvg;
-            avg[0] *= avg[1];
-            avg[0] += {{this.response}};
-            avg[0] /= avg[1] + 1;
-            avg[1]++;
-            surveyInfo[cohortId].scompAvg = avg;
-          }
-        } else if (surveyQuestionId <= 34) {
-          if (surveyInfo[cohortId].grwthAvg == null) {
-            surveyInfo[cohortId].grwthAvg = [{{this.response}}, 1];
-          } else {
-            avg = surveyInfo[cohortId].grwthAvg;
-            avg[0] *= avg[1];
-            avg[0] += {{this.response}};
-            avg[0] /= avg[1] + 1;
-            avg[1]++;
-            surveyInfo[cohortId].grwthAvg = avg;
-          }
-        } else if (surveyQuestionId <= 48) {
-          if (surveyInfo[cohortId].behaveAvg == null) {
-            surveyInfo[cohortId].behaveAvg = [{{this.response}}, 1];
-          } else {
-            avg = surveyInfo[cohortId].behaveAvg;
-            avg[0] *= avg[1];
-            avg[0] += {{this.response}};
-            avg[0] /= avg[1] + 1;
-            avg[1]++;
-            surveyInfo[cohortId].behaveAvg = avg;
-          }
-        }            
-      }          
-    {{/each}}
-    var gritAvg = [];
-    var probSolvAvg = [];
-    var aseAvg = [];
-    var tmwrkAvg = [];
-    var scompAvg = [];
-    var grwthAvg = [];
-    var behaveAvg = [];
-    var compositeData = [];
-    for (x in surveyInfo) {
-      if (surveyInfo[x] != null) {
-        compositeData[x] = [];
-        for (y in surveyInfo[x]) {
-          compositeData[x].push(surveyInfo[x][y][0]);
-        }
-      }
-    }
-    pos = 2;
-    for (x in compositeData) {
-      gritAvg.push([pos, compositeData[x][0]]);
-      probSolvAvg.push([pos, compositeData[x][1]]);
-      aseAvg.push([pos, compositeData[x][2]]);
-      tmwrkAvg.push([pos, compositeData[x][3]]);
-      scompAvg.push([pos, compositeData[x][4]]);
-      grwthAvg.push([pos, compositeData[x][5]]);
-      behaveAvg.push([pos, compositeData[x][6]]);
-      pos += 3;
-    }
-    var schoolTicks = [];
-    pos = 2;
-    {{#each surveyResponseJoin}}
-        schoolTicks.push([pos, "{{this.cohort_year}}"]);
-        pos = pos + 3;
-    {{/each}}
-    data = [ 
-         {label: "Grit", data: gritAvg},
-         {label: "Problem Solving", data: probSolvAvg},
-         {label: "Academic Self-Efficacy", data: aseAvg},
-         {label: "Social Competence", data: scompAvg},
-         {label: "Teamwork", data: scompAvg},
-         {label: "Growth", data: grwthAvg},
-         {label: "Behavior", data: behaveAvg}
-    ];
-    $("#canvas_dahs").length && $.plot($("#canvas_dahs"),
-      data, {
-      series: {
-        data: data,
-        lines: {
-          show: false,
           fill: true,
         },
         bars: {
-          show: true,
+          show: false,
           fill: true,
           barWidth: 2,
           align: "center"
         },
-        stack: true,
         points: {
-          show:false,
+          show:true,
           fill:true
           },
       },
@@ -658,13 +966,6 @@
         color: '#fff',
       },
       colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
-      legend: {
-        show: true,
-        labelFormatter: function(label, series) {
-          return '<p style="color:black;">' + label + '</p>';
-        },
-        labelBoxBorderColor: "rgb(0, 0, 0)",
-      },
       xaxis: {
         ticks: schoolTicks,
         tickColor: "rgba(51, 51, 51, 0.06)",
@@ -680,845 +981,458 @@
       },
       tooltip: false
     });
+}
+
+function gpaPerSchool() {
+$('#Graph-Title').text("GPA Per School");
+
+var gradeInfo = [];
+{{#each semesterRecordJoin}}
+  if (gradeInfo[{{this.school_id}}] == null) {
+    gradeInfo[{{this.school_id}}] = {
+      avg: {{this.semester_gpa}},
+      gpas: [{{this.semester_gpa}}]
+    };
+  } else if (gradeInfo[{{this.school_id}}] != null) {
+    var gradeInfoObj = gradeInfo[{{this.school_id}}];
+    var newAvg = gradeInfoObj.avg * gradeInfoObj.gpas.length;
+    newAvg += {{this.semester_gpa}};
+    newAvg /= gradeInfoObj.gpas.length + 1;
+    gradeInfo[{{this.school_id}}].gpas.push({{this.semester_gpa}});
+    gradeInfo[{{this.school_id}}].avg = newAvg;
   }
+{{/each}}
+var data = []
+var pos = 2;
+for (x in gradeInfo) {
+    data.push([pos, gradeInfo[x].avg]);
+    pos = pos + 3;
+}
+var schoolTicks = [];
+pos = 2;
+{{#each schools}}
+    schoolTicks.push([pos, "{{this.school_name}}"]);
+    pos = pos + 3;
+{{/each}}
+$("#canvas_dahs").length && $.plot($("#canvas_dahs"), [
+  data
+], {
+  series: {
+    lines: {
+      show: false,
+      fill: false,
+    },
+    bars: {
+      show: true,
+      fill: true,
+      barWidth: 2,
+      align: "center"
+    },
+    points: {
+      },
+  },
+  grid: {
+    padding: 10,
+    verticalLines: true,
+    hoverable: true,
+    clickable: true,
+    tickColor: "#d5d5d5",
+    borderWidth: 10,
+    color: '#fff',
+  },
+  colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
+  xaxis: {
+    ticks: schoolTicks,
+    tickColor: "rgba(51, 51, 51, 0.06)",
+    tickSize: 5,
+    axisLabel: "Date",
+    axisLabelUseCanvas: true,
+    axisLabelFontSizePixels: 12,
+    axisLabelFontFamily: 'Verda na, Arial'
+  },
+  yaxis: {
+    axisLabelUseCanvas: true,
+    tickColor: "rgba(51, 51, 51, 0.06)",
+  },
+  tooltip: false
+});
+}
 
-  function survey_responsesBySchool() {
-    $('#Graph-Title').text("Survey Responses By School");
-    var surveyInfo = [];
-    var counter = 0;
-    {{#each surveyResponseJoin}}
-      counter++;
-      var school = {{this.school_id}};
-      var surveyQuestionId = {{this.survey_question_id}};
-      if (surveyInfo[school] == null) {
-        surveyInfo[school] = {};
-        if (surveyQuestionId <= 7) {
-          surveyInfo[school].gritAvg = [{{this.response}}, 1];
-        } else if (surveyQuestionId <= 13) {
-          surveyInfo[school].probSolvAvg = [{{this.response}}, 1];
-        } else if (surveyQuestionId <= 17) {
-          surveyInfo[school].aseAvg = [{{this.response}}, 1];
-        } else if (surveyQuestionId <= 25) {
-          surveyInfo[school].tmwrkAvg = [{{this.response}}, 1];
-        } else if (surveyQuestionId <= 31) {
-          surveyInfo[school].scompAvg = [{{this.response}}, 1];
-        } else if (surveyQuestionId <= 34) {
-          surveyInfo[school].grwthAvg = [{{this.response}}, 1];
-        } else if (surveyQuestionId <= 48) {
-          surveyInfo[school].behaveAvg = [{{this.response}}, 1];
-        }
-      } else {
-        var avg;
-        if (surveyQuestionId <= 7) {
-          if (surveyInfo[school].gritAvg == null) {
-            surveyInfo[school].gritAvg = [{{this.response}}, 1];
-          } else {
-            avg = surveyInfo[school].gritAvg;
-            avg[0] *= avg[1];
-            avg[0] += {{this.response}};
-            avg[0] /= avg[1] + 1;
-            avg[1]++;
-            surveyInfo[school].gritAvg = avg;
-          }
-        } else if (surveyQuestionId <= 13) {
-          if (surveyInfo[school].probSolvAvg == null) {
-            surveyInfo[school].probSolvAvg = [{{this.response}}, 1];
-          } else {
-            avg = surveyInfo[school].probSolvAvg;
-            avg[0] *= avg[1];
-            avg[0] += {{this.response}};
-            avg[0] /= avg[1] + 1;
-            avg[1]++; 
-            surveyInfo[school].probSolvAvg = avg;
-          }
-        } else if (surveyQuestionId <= 17) {
-          if (surveyInfo[school].aseAvg == null) {    
-            surveyInfo[school].aseAvg = [{{this.response}}, 1];
-          } else {
-            avg = surveyInfo[school].aseAvg;
-            avg[0] *= avg[1];
-            avg[0] += {{this.response}};
-            avg[0] /= avg[1] + 1;
-            avg[1]++; 
-          surveyInfo[school].aseAvg = avg;
-          }
-        } else if (surveyQuestionId <= 25) {
-          if (surveyInfo[school].tmwrkAvg == null) {
-            surveyInfo[school].tmwrkAvg = [{{this.response}}, 1];
-          } else {
-            avg = surveyInfo[school].tmwrkAvg;
-            avg[0] *= avg[1];
-            avg[0] += {{this.response}};
-            avg[0] /= avg[1] + 1;
-            avg[1]++;
-            surveyInfo[school].tmwrkAvg = avg;
+function gpaPerCohort() {
+$('#Graph-Title').text("GPA Per Cohort");
 
-          }
-        } else if (surveyQuestionId <= 31) {
-          if (surveyInfo[school].scompAvg == null) {
-            surveyInfo[school].scompAvg = [{{this.response}}, 1];
-          } else {
-            avg = surveyInfo[school].scompAvg;
-            avg[0] *= avg[1];
-            avg[0] += {{this.response}};
-            avg[0] /= avg[1] + 1;
-            avg[1]++;
-            surveyInfo[school].scompAvg = avg;
-          }
-        } else if (surveyQuestionId <= 34) {
-          if (surveyInfo[school].grwthAvg == null) {
-            surveyInfo[school].grwthAvg = [{{this.response}}, 1];
-          } else {
-            avg = surveyInfo[school].grwthAvg;
-            avg[0] *= avg[1];
-            avg[0] += {{this.response}};
-            avg[0] /= avg[1] + 1;
-            avg[1]++;
-            surveyInfo[school].grwthAvg = avg;
-          }
-        } else if (surveyQuestionId <= 48) {
-          if (surveyInfo[school].behaveAvg == null) {
-            surveyInfo[school].behaveAvg = [{{this.response}}, 1];
-          } else {
-            avg = surveyInfo[school].behaveAvg;
-            avg[0] *= avg[1];
-            avg[0] += {{this.response}};
-            avg[0] /= avg[1] + 1;
-            avg[1]++;
-            surveyInfo[school].behaveAvg = avg;
-          }
-        }            
-      }
-      
-      
-    {{/each}}
-    var gritAvg = [];
-    var probSolvAvg = [];
-    var aseAvg = [];
-    var tmwrkAvg = [];
-    var scompAvg = [];
-    var grwthAvg = [];
-    var behaveAvg = [];
-    var compositeData = [];
-    for (x in surveyInfo) {
-      if (surveyInfo[x] != null) {
-        compositeData[x] = [];
-        for (y in surveyInfo[x]) {
-          compositeData[x].push(surveyInfo[x][y][0]);
-        }
-      }
-    }
-    pos = 2;
-    for (x in compositeData) {
-      gritAvg.push([pos, compositeData[x][0]]);
-      probSolvAvg.push([pos, compositeData[x][1]]);
-      aseAvg.push([pos, compositeData[x][2]]);
-      tmwrkAvg.push([pos, compositeData[x][3]]);
-      scompAvg.push([pos, compositeData[x][4]]);
-      grwthAvg.push([pos, compositeData[x][5]]);
-      behaveAvg.push([pos, compositeData[x][6]]);
-      pos += 3;
-    }
-    var schoolTicks = [];
-    pos = 2;
-    {{#each joins}}
-        schoolTicks.push([pos, "{{this.school_name}}"]);
-        pos = pos + 3;
-    {{/each}}
-    data = [ 
-         {label: "Grit", data: gritAvg},
-         {label: "Problem Solving", data: probSolvAvg},
-         {label: "Academic Self-Efficacy", data: aseAvg},
-         {label: "Social Competence", data: scompAvg},
-         {label: "Teamwork", data: scompAvg},
-         {label: "Growth", data: grwthAvg},
-         {label: "Behavior", data: behaveAvg}
-    ];
-    $("#canvas_dahs").length && $.plot($("#canvas_dahs"),
-      data, {
-      series: {
-        data: data,
-        lines: {
-          show: false,
-          fill: true,
-        },
-        bars: {
-          show: true,
-          fill: true,
-          barWidth: 2,
-          align: "center"
-        },
-        stack: true,
-        points: {
-          show:false,
-          fill:true
-          },
-      },
-      grid: {
-        padding: 10,
-        verticalLines: true,
-        hoverable: true,
-        clickable: true,
-        tickColor: "#d5d5d5",
-        borderWidth: 10,
-        color: '#fff',
-      },
-      colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
-      legend: {
-        show: true,
-        labelFormatter: function(label, series) {
-          return '<p style="color:black;">' + label + '</p>';
-        },
-        labelBoxBorderColor: "rgb(0, 0, 0)",
-      },
-      xaxis: {
-        ticks: schoolTicks,
-        tickColor: "rgba(51, 51, 51, 0.06)",
-        tickSize: 5,
-        axisLabel: "Date",
-        axisLabelUseCanvas: true,
-        axisLabelFontSizePixels: 12,
-        axisLabelFontFamily: 'Verda na, Arial'
-      },
-      yaxis: {
-        axisLabelUseCanvas: true,
-        tickColor: "rgba(51, 51, 51, 0.06)",
-      },
-      tooltip: false
-    });
+var gradeInfo = [];
+{{#each semesterRecordJoin}}
+  if (gradeInfo[{{this.cohort_id}}] == null) {
+    gradeInfo[{{this.cohort_id}}] = {
+      avg: {{this.semester_gpa}},
+      gpas: [{{this.semester_gpa}}]
+    };
+  } else if (gradeInfo[{{this.cohort_id}}] != null) {
+    var gradeInfoObj = gradeInfo[{{this.cohort_id}}];
+    var newAvg = gradeInfoObj.avg * gradeInfoObj.gpas.length;
+    newAvg += {{this.semester_gpa}};
+    newAvg /= gradeInfoObj.gpas.length + 1;
+    gradeInfo[{{this.cohort_id}}].gpas.push({{this.semester_gpa}});
+    gradeInfo[{{this.cohort_id}}].avg = newAvg;
   }
+{{/each}}
+var data = []
+var pos = 2;
+for (x in gradeInfo) {
+    data.push([pos, gradeInfo[x].avg]);
+    pos = pos + 3;
+}
+var schoolTicks = [];
+pos = 2;
+{{#each cohorts}}
+    schoolTicks.push([pos, "{{this.cohort_year}}"]);
+    pos = pos + 3;
+{{/each}}
 
-  function survey_responseOverTime() {
-    $('#Graph-Title').text("Survey Responses Over Time");
-    var surveyInfo = [];
-    var counter = 0;
-    {{#each surveyResponseJoin}}
-      counter++;
-      var semesterRecordId = {{this.semester_record_id}};
-      var surveyQuestionId = {{this.survey_question_id}};
-      if (surveyInfo[semesterRecordId] == null) {
-        surveyInfo[semesterRecordId] = {};
-        if (surveyQuestionId <= 7) {
-          surveyInfo[semesterRecordId].gritAvg = [{{this.response}}, 1];
-        } else if (surveyQuestionId <= 13) {
-          surveyInfo[semesterRecordId].probSolvAvg = [{{this.response}}, 1];
-        } else if (surveyQuestionId <= 17) {
-          surveyInfo[semesterRecordId].aseAvg = [{{this.response}}, 1];
-        } else if (surveyQuestionId <= 25) {
-          surveyInfo[semesterRecordId].tmwrkAvg = [{{this.response}}, 1];
-        } else if (surveyQuestionId <= 31) {
-          surveyInfo[semesterRecordId].scompAvg = [{{this.response}}, 1];
-        } else if (surveyQuestionId <= 34) {
-          surveyInfo[semesterRecordId].grwthAvg = [{{this.response}}, 1];
-        } else if (surveyQuestionId <= 48) {
-          surveyInfo[semesterRecordId].behaveAvg = [{{this.response}}, 1];
-        }
-      } else {
-        var avg;
-        if (surveyQuestionId <= 7) {
-          if (surveyInfo[semesterRecordId].gritAvg == null) {
-            surveyInfo[semesterRecordId].gritAvg = [{{this.response}}, 1];
-          } else {
-            avg = surveyInfo[semesterRecordId].gritAvg;
-            avg[0] *= avg[1];
-            avg[0] += {{this.response}};
-            avg[0] /= avg[1] + 1;
-            avg[1]++;
-            surveyInfo[semesterRecordId].gritAvg = avg;
-          }
-        } else if (surveyQuestionId <= 13) {
-          if (surveyInfo[semesterRecordId].probSolvAvg == null) {
-            surveyInfo[semesterRecordId].probSolvAvg = [{{this.response}}, 1];
-          } else {
-            avg = surveyInfo[semesterRecordId].probSolvAvg;
-            avg[0] *= avg[1];
-            avg[0] += {{this.response}};
-            avg[0] /= avg[1] + 1;
-            avg[1]++; 
-            surveyInfo[semesterRecordId].probSolvAvg = avg;
-          }
-        } else if (surveyQuestionId <= 17) {
-          if (surveyInfo[semesterRecordId].aseAvg == null) {    
-            surveyInfo[semesterRecordId].aseAvg = [{{this.response}}, 1];
-          } else {
-            avg = surveyInfo[semesterRecordId].aseAvg;
-            avg[0] *= avg[1];
-            avg[0] += {{this.response}};
-            avg[0] /= avg[1] + 1;
-            avg[1]++; 
-          surveyInfo[semesterRecordId].aseAvg = avg;
-          }
-        } else if (surveyQuestionId <= 25) {
-          if (surveyInfo[semesterRecordId].tmwrkAvg == null) {
-            surveyInfo[semesterRecordId].tmwrkAvg = [{{this.response}}, 1];
-          } else {
-            avg = surveyInfo[semesterRecordId].tmwrkAvg;
-            avg[0] *= avg[1];
-            avg[0] += {{this.response}};
-            avg[0] /= avg[1] + 1;
-            avg[1]++;
-            surveyInfo[semesterRecordId].tmwrkAvg = avg;
+$("#canvas_dahs").length && $.plot($("#canvas_dahs"), [
+  data
+], {
+  series: {
+    lines: {
+      show: false,
+      fill: false,
+    },
+    bars: {
+      show: true,
+      fill: true,
+      barWidth: 2,
+      align: "center"
+    },
+    points: {
+      },
+  },
+  grid: {
+    padding: 10,
+    verticalLines: true,
+    hoverable: true,
+    clickable: true,
+    tickColor: "#d5d5d5",
+    borderWidth: 10,
+    color: '#fff',
+  },
+  colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
+  xaxis: {
+    ticks: schoolTicks,
+    tickColor: "rgba(51, 51, 51, 0.06)",
+    tickSize: 5,
+    axisLabel: "Date",
+    axisLabelUseCanvas: true,
+    axisLabelFontSizePixels: 12,
+    axisLabelFontFamily: 'Verda na, Arial'
+  },
+  yaxis: {
+    axisLabelUseCanvas: true,
+    tickColor: "rgba(51, 51, 51, 0.06)",
+  },
+  tooltip: false
+});
+}
 
-          }
-        } else if (surveyQuestionId <= 31) {
-          if (surveyInfo[semesterRecordId].scompAvg == null) {
-            surveyInfo[semesterRecordId].scompAvg = [{{this.response}}, 1];
-          } else {
-            avg = surveyInfo[semesterRecordId].scompAvg;
-            avg[0] *= avg[1];
-            avg[0] += {{this.response}};
-            avg[0] /= avg[1] + 1;
-            avg[1]++;
-            surveyInfo[semesterRecordId].scompAvg = avg;
-          }
-        } else if (surveyQuestionId <= 34) {
-          if (surveyInfo[semesterRecordId].grwthAvg == null) {
-            surveyInfo[semesterRecordId].grwthAvg = [{{this.response}}, 1];
-          } else {
-            avg = surveyInfo[semesterRecordId].grwthAvg;
-            avg[0] *= avg[1];
-            avg[0] += {{this.response}};
-            avg[0] /= avg[1] + 1;
-            avg[1]++;
-            surveyInfo[semesterRecordId].grwthAvg = avg;
-          }
-        } else if (surveyQuestionId <= 48) {
-          if (surveyInfo[semesterRecordId].behaveAvg == null) {
-            surveyInfo[semesterRecordId].behaveAvg = [{{this.response}}, 1];
-          } else {
-            avg = surveyInfo[semesterRecordId].behaveAvg;
-            avg[0] *= avg[1];
-            avg[0] += {{this.response}};
-            avg[0] /= avg[1] + 1;
-            avg[1]++;
-            surveyInfo[semesterRecordId].behaveAvg = avg;
-          }
-        }            
-      }
-      
-      
-    {{/each}}
-    var compositeAvg = [];
-        for (x in surveyInfo) {
-          
-          if (surveyInfo[x] != null) {
-            var sumAvg = 0;
-            for (y in surveyInfo[x]) {
-              sumAvg += surveyInfo[x][y][0];
-            }
-          }
-          compositeAvg.push(sumAvg);
-        }
+function studentsPerSchool() {
 
-        var data = [];
-        var pos = 2;
-        for (x in compositeAvg) {
-            data.push([pos, compositeAvg[x]]);
-            pos = pos + 3;
-        }
-        var schoolTicks = [];
-        pos = 2;
-        {{#each joins}}
-            schoolTicks.push([pos, "Semester #{{this.semester_number}}"]);
-            pos = pos + 3;
-        {{/each}}
-
-        $("#canvas_dahs").length && $.plot($("#canvas_dahs"), [
-          data
-        ], {
-          series: {
-            lines: {
-              show: true,
-              fill: true,
-            },
-            bars: {
-              show: false,
-              fill: true,
-              barWidth: 2,
-              align: "center"
-            },
-            points: {
-              show:true,
-              fill:true
-              },
-          },
-          grid: {
-            padding: 10,
-            verticalLines: true,
-            hoverable: true,
-            clickable: true,
-            tickColor: "#d5d5d5",
-            borderWidth: 10,
-            color: '#fff',
-          },
-          colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
-          xaxis: {
-            ticks: schoolTicks,
-            tickColor: "rgba(51, 51, 51, 0.06)",
-            tickSize: 5,
-            axisLabel: "Date",
-            axisLabelUseCanvas: true,
-            axisLabelFontSizePixels: 12,
-            axisLabelFontFamily: 'Verda na, Arial'
-          },
-          yaxis: {
-            axisLabelUseCanvas: true,
-            tickColor: "rgba(51, 51, 51, 0.06)",
-          },
-          tooltip: false
-        });
+$('#Graph-Title').text("Students Per School");
+var counts = [];
+{{#each studentCohortSchoolJoin}}
+  if (counts[{{this.school_id}}] == null) {
+      counts[{{this.school_id}}] = 0;
   }
+  counts[{{this.school_id}}]++;
+{{/each}}
 
-  function gpaPerSchool() {
-    $('#Graph-Title').text("GPA Per School");
-
-    var gradeInfo = [];
-    {{#each semesterRecordJoin}}
-      if (gradeInfo[{{this.school_id}}] == null) {
-        gradeInfo[{{this.school_id}}] = {
-          avg: {{this.semester_gpa}},
-          gpas: [{{this.semester_gpa}}]
-        };
-      } else if (gradeInfo[{{this.school_id}}] != null) {
-        var gradeInfoObj = gradeInfo[{{this.school_id}}];
-        var newAvg = gradeInfoObj.avg * gradeInfoObj.gpas.length;
-        newAvg += {{this.semester_gpa}};
-        newAvg /= gradeInfoObj.gpas.length + 1;
-        gradeInfo[{{this.school_id}}].gpas.push({{this.semester_gpa}});
-        gradeInfo[{{this.school_id}}].avg = newAvg;
-      }
-    {{/each}}
-    var data = []
-    var pos = 2;
-    for (x in gradeInfo) {
-        data.push([pos, gradeInfo[x].avg]);
-        pos = pos + 3;
-    }
-    var schoolTicks = [];
-    pos = 2;
-    {{#each schools}}
-        schoolTicks.push([pos, "{{this.school_name}}"]);
-        pos = pos + 3;
-    {{/each}}
-    $("#canvas_dahs").length && $.plot($("#canvas_dahs"), [
-      data
-    ], {
-      series: {
-        lines: {
-          show: false,
-          fill: false,
-        },
-        bars: {
-          show: true,
-          fill: true,
-          barWidth: 2,
-          align: "center"
-        },
-        points: {
-          },
-      },
-      grid: {
-        padding: 10,
-        verticalLines: true,
-        hoverable: true,
-        clickable: true,
-        tickColor: "#d5d5d5",
-        borderWidth: 10,
-        color: '#fff',
-      },
-      colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
-      xaxis: {
-        ticks: schoolTicks,
-        tickColor: "rgba(51, 51, 51, 0.06)",
-        tickSize: 5,
-        axisLabel: "Date",
-        axisLabelUseCanvas: true,
-        axisLabelFontSizePixels: 12,
-        axisLabelFontFamily: 'Verda na, Arial'
-      },
-      yaxis: {
-        axisLabelUseCanvas: true,
-        tickColor: "rgba(51, 51, 51, 0.06)",
-      },
-      tooltip: false
-    });
-  }
-
-  function gpaPerCohort() {
-    $('#Graph-Title').text("GPA Per Cohort");
-
-    var gradeInfo = [];
-    {{#each semesterRecordJoin}}
-      if (gradeInfo[{{this.cohort_id}}] == null) {
-        gradeInfo[{{this.cohort_id}}] = {
-          avg: {{this.semester_gpa}},
-          gpas: [{{this.semester_gpa}}]
-        };
-      } else if (gradeInfo[{{this.cohort_id}}] != null) {
-        var gradeInfoObj = gradeInfo[{{this.cohort_id}}];
-        var newAvg = gradeInfoObj.avg * gradeInfoObj.gpas.length;
-        newAvg += {{this.semester_gpa}};
-        newAvg /= gradeInfoObj.gpas.length + 1;
-        gradeInfo[{{this.cohort_id}}].gpas.push({{this.semester_gpa}});
-        gradeInfo[{{this.cohort_id}}].avg = newAvg;
-      }
-    {{/each}}
-    var data = []
-    var pos = 2;
-    for (x in gradeInfo) {
-        data.push([pos, gradeInfo[x].avg]);
-        pos = pos + 3;
-    }
-    var schoolTicks = [];
-    pos = 2;
-    {{#each cohorts}}
-        schoolTicks.push([pos, "{{this.cohort_year}}"]);
-        pos = pos + 3;
-    {{/each}}
-
-    $("#canvas_dahs").length && $.plot($("#canvas_dahs"), [
-      data
-    ], {
-      series: {
-        lines: {
-          show: false,
-          fill: false,
-        },
-        bars: {
-          show: true,
-          fill: true,
-          barWidth: 2,
-          align: "center"
-        },
-        points: {
-          },
-      },
-      grid: {
-        padding: 10,
-        verticalLines: true,
-        hoverable: true,
-        clickable: true,
-        tickColor: "#d5d5d5",
-        borderWidth: 10,
-        color: '#fff',
-      },
-      colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
-      xaxis: {
-        ticks: schoolTicks,
-        tickColor: "rgba(51, 51, 51, 0.06)",
-        tickSize: 5,
-        axisLabel: "Date",
-        axisLabelUseCanvas: true,
-        axisLabelFontSizePixels: 12,
-        axisLabelFontFamily: 'Verda na, Arial'
-      },
-      yaxis: {
-        axisLabelUseCanvas: true,
-        tickColor: "rgba(51, 51, 51, 0.06)",
-      },
-      tooltip: false
-    });
-  }
-
-  function studentsPerSchool() {
-    
-    $('#Graph-Title').text("Students Per School");
-    var counts = [];
-    {{#each studentCohortSchoolJoin}}
-      if (counts[{{this.school_id}}] == null) {
-          counts[{{this.school_id}}] = 0;
-      }
-      counts[{{this.school_id}}]++;
-    {{/each}}
-
-    var data = []
-    var pos = 2;
-    for (x in counts) {
-        data.push([pos, counts[x]]);
-        pos = pos + 3;
-    }
-    var schoolTicks = [];
-    pos = 2;
-    {{#each schools}}
-        schoolTicks.push([pos, "{{this.school_name}}"]);
-        pos = pos + 3;
-    {{/each}}
+var data = []
+var pos = 2;
+for (x in counts) {
+    data.push([pos, counts[x]]);
+    pos = pos + 3;
+}
+var schoolTicks = [];
+pos = 2;
+{{#each schools}}
+    schoolTicks.push([pos, "{{this.school_name}}"]);
+    pos = pos + 3;
+{{/each}}
 
 
-    $("#canvas_dahs").length && $.plot($("#canvas_dahs"), [
-      data
-    ], {
-      series: {
-        lines: {
-          show: false,
-          fill: false,
-        },
-        bars: {
-          show: true,
-          fill: true,
-          barWidth: 2,
-          align: "center"
-        },
-        points: {
-          },
+$("#canvas_dahs").length && $.plot($("#canvas_dahs"), [
+  data
+], {
+  series: {
+    lines: {
+      show: false,
+      fill: false,
+    },
+    bars: {
+      show: true,
+      fill: true,
+      barWidth: 2,
+      align: "center"
+    },
+    points: {
       },
-      grid: {
-        padding: 10,
-        verticalLines: true,
-        hoverable: true,
-        clickable: true,
-        tickColor: "#d5d5d5",
-        borderWidth: 10,
-        color: '#fff',
-      },
-      colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
-      xaxis: {
-        ticks: schoolTicks,
-        tickColor: "rgba(51, 51, 51, 0.06)",
-        tickSize: 5,
-        axisLabel: "Date",
-        axisLabelUseCanvas: true,
-        axisLabelFontSizePixels: 12,
-        axisLabelFontFamily: 'Verda na, Arial'
-      },
-      yaxis: {
-        axisLabelUseCanvas: true,
-        tickColor: "rgba(51, 51, 51, 0.06)",
-      },
-      tooltip: false
-    });
-  }
+  },
+  grid: {
+    padding: 10,
+    verticalLines: true,
+    hoverable: true,
+    clickable: true,
+    tickColor: "#d5d5d5",
+    borderWidth: 10,
+    color: '#fff',
+  },
+  colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
+  xaxis: {
+    ticks: schoolTicks,
+    tickColor: "rgba(51, 51, 51, 0.06)",
+    tickSize: 5,
+    axisLabel: "Date",
+    axisLabelUseCanvas: true,
+    axisLabelFontSizePixels: 12,
+    axisLabelFontFamily: 'Verda na, Arial'
+  },
+  yaxis: {
+    axisLabelUseCanvas: true,
+    tickColor: "rgba(51, 51, 51, 0.06)",
+  },
+  tooltip: false
+});
+}
 
-  function emptyGraph() {
-    $('#Graph-Title').text("Empty Graph");
+function emptyGraph() {
+$('#Graph-Title').text("Empty Graph");
 
 
-    $("#canvas_dahs").length && $.plot($("#canvas_dahs"), [
-      []
-    ], {
-      series: {
-        lines: {
-          show: false,
-          fill: false,
-        },
-        bars: {
-          show: true,
-          fill: true,
-          barWidth: 2,
-          align: "center"
-        },
-        points: {
-          },
+$("#canvas_dahs").length && $.plot($("#canvas_dahs"), [
+  []
+], {
+  series: {
+    lines: {
+      show: false,
+      fill: false,
+    },
+    bars: {
+      show: true,
+      fill: true,
+      barWidth: 2,
+      align: "center"
+    },
+    points: {
       },
-      grid: {
-        padding: 10,
-        verticalLines: true,
-        hoverable: true,
-        clickable: true,
-        tickColor: "#d5d5d5",
-        borderWidth: 10,
-        color: '#fff',
-      },
-      colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
-      xaxis: {
-        ticks: 2,
-        tickColor: "rgba(51, 51, 51, 0.06)",
-        tickSize: 5,
-        axisLabel: "Date",
-        axisLabelUseCanvas: true,
-        axisLabelFontSizePixels: 12,
-        axisLabelFontFamily: 'Verda na, Arial'
-      },
-      yaxis: {
-        axisLabelUseCanvas: true,
-        tickColor: "rgba(51, 51, 51, 0.06)",
-      },
-      tooltip: false
-    });
-  }
+  },
+  grid: {
+    padding: 10,
+    verticalLines: true,
+    hoverable: true,
+    clickable: true,
+    tickColor: "#d5d5d5",
+    borderWidth: 10,
+    color: '#fff',
+  },
+  colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
+  xaxis: {
+    ticks: 2,
+    tickColor: "rgba(51, 51, 51, 0.06)",
+    tickSize: 5,
+    axisLabel: "Date",
+    axisLabelUseCanvas: true,
+    axisLabelFontSizePixels: 12,
+    axisLabelFontFamily: 'Verda na, Arial'
+  },
+  yaxis: {
+    axisLabelUseCanvas: true,
+    tickColor: "rgba(51, 51, 51, 0.06)",
+  },
+  tooltip: false
+});
+}
 </script>
 <!-- /Flot -->
 
 <!-- JQVMap -->
 <script>
-  $(document).ready(function(){
-    $('#world-map-gdp').vectorMap({
-        map: 'world_en',
-        backgroundColor: null,
-        color: '#ffffff',
-        hoverOpacity: 0.7,
-        selectedColor: '#666666',
-        enableZoom: true,
-        showTooltip: true,
-        values: sample_data,
-        scaleColors: ['#E6F2F0', '#149B7E'],
-        normalizeFunction: 'polynomial'
-    });
-  });
+$(document).ready(function(){
+$('#world-map-gdp').vectorMap({
+    map: 'world_en',
+    backgroundColor: null,
+    color: '#ffffff',
+    hoverOpacity: 0.7,
+    selectedColor: '#666666',
+    enableZoom: true,
+    showTooltip: true,
+    values: sample_data,
+    scaleColors: ['#E6F2F0', '#149B7E'],
+    normalizeFunction: 'polynomial'
+});
+});
 </script>
 <!-- /JQVMap -->
 
 <!-- Skycons -->
 <!--script>
-  $(document).ready(function() {
-    var icons = new Skycons({
-        "color": "#73879C"
-      }),
-      list = [
-        "clear-day", "clear-night", "partly-cloudy-day",
-        "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
-        "fog"
-      ],
-      i;
+$(document).ready(function() {
+var icons = new Skycons({
+    "color": "#73879C"
+  }),
+  list = [
+    "clear-day", "clear-night", "partly-cloudy-day",
+    "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
+    "fog"
+  ],
+  i;
 
-    for (i = list.length; i--;)
-      icons.set(list[i], list[i]);
+for (i = list.length; i--;)
+  icons.set(list[i], list[i]);
 
-    icons.play();
-  });
+icons.play();
+});
 </script-->
 <!-- /Skycons -->
 
 <!-- Doughnut Chart -->
 <!--script>
-  $(document).ready(function(){
-    var options = {
-      legend: false,
-      responsive: false
-    };
+$(document).ready(function(){
+var options = {
+  legend: false,
+  responsive: false
+};
 
-    new Chart(document.getElementById("canvas1"), {
-      type: 'doughnut',
-      tooltipFillColor: "rgba(51, 51, 51, 0.55)",
-      data: {
-        labels: [
-          "Symbian",
-          "Blackberry",
-          "Other",
-          "Android",
-          "IOS"
-        ],
-        datasets: [{
-          data: [15, 20, 30, 10, 30],
-          backgroundColor: [
-            "#BDC3C7",
-            "#9B59B6",
-            "#E74C3C",
-            "#26B99A",
-            "#3498DB"
-          ],
-          hoverBackgroundColor: [
-            "#CFD4D8",
-            "#B370CF",
-            "#E95E4F",
-            "#36CAAB",
-            "#49A9EA"
-          ]
-        }]
-      },
-      options: options
-    });
-  });
+new Chart(document.getElementById("canvas1"), {
+  type: 'doughnut',
+  tooltipFillColor: "rgba(51, 51, 51, 0.55)",
+  data: {
+    labels: [
+      "Symbian",
+      "Blackberry",
+      "Other",
+      "Android",
+      "IOS"
+    ],
+    datasets: [{
+      data: [15, 20, 30, 10, 30],
+      backgroundColor: [
+        "#BDC3C7",
+        "#9B59B6",
+        "#E74C3C",
+        "#26B99A",
+        "#3498DB"
+      ],
+      hoverBackgroundColor: [
+        "#CFD4D8",
+        "#B370CF",
+        "#E95E4F",
+        "#36CAAB",
+        "#49A9EA"
+      ]
+    }]
+  },
+  options: options
+});
+});
 </script-->
 <!-- /Doughnut Chart -->
 
 <!-- bootstrap-daterangepicker -->
 <script>
-  $(document).ready(function() {
+$(document).ready(function() {
 
-    var cb = function(start, end, label) {
-      console.log(start.toISOString(), end.toISOString(), label);
-      $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-    };
+var cb = function(start, end, label) {
+  console.log(start.toISOString(), end.toISOString(), label);
+  $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+};
 
-    var optionSet1 = {
-      startDate: moment().subtract(29, 'days'),
-      endDate: moment(),
-      minDate: '01/01/2012',
-      maxDate: '12/31/2015',
-      dateLimit: {
-        days: 60
-      },
-      showDropdowns: true,
-      showWeekNumbers: true,
-      timePicker: false,
-      timePickerIncrement: 1,
-      timePicker12Hour: true,
-      ranges: {
-        'Today': [moment(), moment()],
-        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-        'This Month': [moment().startOf('month'), moment().endOf('month')],
-        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-      },
-      opens: 'left',
-      buttonClasses: ['btn btn-default'],
-      applyClass: 'btn-small btn-primary',
-      cancelClass: 'btn-small',
-      format: 'MM/DD/YYYY',
-      separator: ' to ',
-      locale: {
-        applyLabel: 'Submit',
-        cancelLabel: 'Clear',
-        fromLabel: 'From',
-        toLabel: 'To',
-        customRangeLabel: 'Custom',
-        daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-        monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-        firstDay: 1
-      }
-    };
-    $('#reportrange span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
-    $('#reportrange').daterangepicker(optionSet1, cb);
-    $('#reportrange').on('show.daterangepicker', function() {
-      console.log("show event fired");
-    });
-    $('#reportrange').on('hide.daterangepicker', function() {
-      console.log("hide event fired");
-    });
-    $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
-      console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
-    });
-    $('#reportrange').on('cancel.daterangepicker', function(ev, picker) {
-      console.log("cancel event fired");
-    });
-    $('#options1').click(function() {
-      $('#reportrange').data('daterangepicker').setOptions(optionSet1, cb);
-    });
-    $('#options2').click(function() {
-      $('#reportrange').data('daterangepicker').setOptions(optionSet2, cb);
-    });
-    $('#destroy').click(function() {
-      $('#reportrange').data('daterangepicker').remove();
-    });
-  });
+var optionSet1 = {
+  startDate: moment().subtract(29, 'days'),
+  endDate: moment(),
+  minDate: '01/01/2012',
+  maxDate: '12/31/2015',
+  dateLimit: {
+    days: 60
+  },
+  showDropdowns: true,
+  showWeekNumbers: true,
+  timePicker: false,
+  timePickerIncrement: 1,
+  timePicker12Hour: true,
+  ranges: {
+    'Today': [moment(), moment()],
+    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+    'This Month': [moment().startOf('month'), moment().endOf('month')],
+    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+  },
+  opens: 'left',
+  buttonClasses: ['btn btn-default'],
+  applyClass: 'btn-small btn-primary',
+  cancelClass: 'btn-small',
+  format: 'MM/DD/YYYY',
+  separator: ' to ',
+  locale: {
+    applyLabel: 'Submit',
+    cancelLabel: 'Clear',
+    fromLabel: 'From',
+    toLabel: 'To',
+    customRangeLabel: 'Custom',
+    daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+    monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+    firstDay: 1
+  }
+};
+$('#reportrange span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
+$('#reportrange').daterangepicker(optionSet1, cb);
+$('#reportrange').on('show.daterangepicker', function() {
+  console.log("show event fired");
+});
+$('#reportrange').on('hide.daterangepicker', function() {
+  console.log("hide event fired");
+});
+$('#reportrange').on('apply.daterangepicker', function(ev, picker) {
+  console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
+});
+$('#reportrange').on('cancel.daterangepicker', function(ev, picker) {
+  console.log("cancel event fired");
+});
+$('#options1').click(function() {
+  $('#reportrange').data('daterangepicker').setOptions(optionSet1, cb);
+});
+$('#options2').click(function() {
+  $('#reportrange').data('daterangepicker').setOptions(optionSet2, cb);
+});
+$('#destroy').click(function() {
+  $('#reportrange').data('daterangepicker').remove();
+});
+});
 </script>
 <!-- /bootstrap-daterangepicker -->
 
 <!-- gauge.js -->
 <!--script>
-  var opts = {
-      lines: 12,
-      angle: 0,
-      lineWidth: 0.4,
-      pointer: {
-          length: 0.75,
-          strokeWidth: 0.042,
-          color: '#1D212A'
-      },
-      limitMax: 'false',
-      colorStart: '#1ABC9C',
-      colorStop: '#1ABC9C',
-      strokeColor: '#F0F3F3',
-      generateGradient: true
-  };
-  var target = document.getElementById('foo'),
-      gauge = new Gauge(target).setOptions(opts);
+var opts = {
+  lines: 12,
+  angle: 0,
+  lineWidth: 0.4,
+  pointer: {
+      length: 0.75,
+      strokeWidth: 0.042,
+      color: '#1D212A'
+  },
+  limitMax: 'false',
+  colorStart: '#1ABC9C',
+  colorStop: '#1ABC9C',
+  strokeColor: '#F0F3F3',
+  generateGradient: true
+};
+var target = document.getElementById('foo'),
+  gauge = new Gauge(target).setOptions(opts);
 
-  gauge.maxValue = 6000;
-  gauge.animationSpeed = 32;
-  gauge.set(3200);
-  gauge.setTextField(document.getElementById("gauge-text"));
+gauge.maxValue = 6000;
+gauge.animationSpeed = 32;
+gauge.set(3200);
+gauge.setTextField(document.getElementById("gauge-text"));
 </script-->
 <!-- /gauge.js -->

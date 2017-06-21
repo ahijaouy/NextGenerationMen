@@ -45,7 +45,8 @@ router.route('/:id/profile')
             school: rows1[0],
             cohorts: rows2,
             students: rows3,
-            user: req.user._json.user_metadata
+            user: req.user._json.user_metadata,
+            buffer: "../"
           });
         });
       });
@@ -60,7 +61,7 @@ router.route('/:id/edit')
     var query = "SELECT * FROM school WHERE school_id=" + req.params.id;
     connection.query(query, function(err, rows) {
       if (err) {console.log(err)}
-      res.render('editSchool', {school: rows[0], user: req.user._json.user_metadata});
+      res.render('editSchool', {school: rows[0], user: req.user._json.user_metadata, buffer: "../../"});
     })
   })
   .post(function(req, res, next) {
