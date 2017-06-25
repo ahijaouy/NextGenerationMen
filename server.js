@@ -7,37 +7,14 @@ var express       = require('express'),
     cookieParser  = require('cookie-parser'),
     session       = require('express-session'),
     MySQLStore    = require('express-mysql-session')(session),
-    env           = require ('node-env-file'),
-    Auth0Strategy = require('passport-auth0'),
+    env           = require('node-env-file'),
     helmet        = require('helmet'),
-    flash         = require('connect-flash'),
     app           = express();
 
 
 env('.env');
-//for MySQLStore
-var dbconfig = {
-    host:     process.env.DATABASE_HOST,
-    user:     process.env.DATABASE_USER,
-    password: process.env.DATABASE_PASSWORD,
-    database: process.env.DATABASE,
-    createDatabaseTable: true,
-    schema: {
-        tableName: 'sessions',
-        columnNames: {
-            session_id: 'session_id',
-            expires: 'expires',
-            data: 'data'
-        }
-    }
-};
-var sessionStore = new MySQLStore(dbconfig);
+var port = process.env.PORT || 80;
 
-
-//Set View Engine
-// app.engine('hbs', exphbs({defaultLayout: main, extname:'.hbs',}));
-// app.set('view engine', 'hbs');
-// 
 // Handlabars setup
 app.engine('.hbs', exphbs({
   helpers: {
@@ -61,28 +38,41 @@ app.use(logger('dev'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(helmet());
-app.use(flash());
 app.use(session({
     key: 'NGM Session',
-    secret: 'GETABETTERSECRET',
-    store: sessionStore,
+    secret: 'p4uuprn7HwEugArJlVMmbxXMuQYGslPos',
+    store: new MySQLStore({
+        host:     process.env.DATABASE_HOST,
+        user:     process.env.DATABASE_USER,
+        password: process.env.DATABASE_PASSWORD,
+        database: process.env.DATABASE,
+        createDatabaseTable: true,
+        schema: {
+            tableName: 'sessions',
+            columnNames: {
+                session_id: 'session_id',
+                expires: 'expires',
+                data: 'data'
+            }
+        }
+    }),
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
 }));
+
+
+
+//Configure Passport
+require('./config/passport')(passport);
 app.use(passport.initialize());
 app.use(passport.session());
 
-
-
-//passport.js contains login/signup
-require('./config/passport')(passport, env);
-
 //main.js contains routes
-require('./app/main.js')(app, passport, env);
+var main = require('./app/main.js');
+app.use('/', main(express,passport));
 
-
-app.listen(80, function () {
-    console.log('Secure Server listening on port 80');
+app.listen(port, function () {
+    console.log('Secure Server listening on port ' + port);
 });
 
 module.exports = app;

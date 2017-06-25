@@ -1,13 +1,6 @@
-//var LocalStrategy   = require('passport-local').Strategy;
-var mysql           = require('mysql'); //MATCH this with package.json
-var bcrypt          = require('bcrypt-nodejs');
-
-
 var Auth0Strategy = require('passport-auth0');
 
-
 module.exports = function(passport) {
-  
   var strategy = new Auth0Strategy({
                  domain:       process.env.AUTH0_DOMAIN,
                  clientID:     process.env.AUTH0_CLIENT_ID,
@@ -22,8 +15,12 @@ module.exports = function(passport) {
                 }
               );
 
-  passport.use('test',strategy);
+  passport.use('auth0',strategy);
   
+
+  //Would be cool to make a real serialize function that uses the ID
+  //but the problem would be you would have to use Auth0 to 
+  //deserialize it
   passport.serializeUser(function(user, done) {
     done(null, user);
   });

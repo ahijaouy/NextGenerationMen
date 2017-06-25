@@ -1,15 +1,12 @@
-var express       = require('express'),
-    authenticate  = require('connect-ensure-login').ensureLoggedIn(),
-    router        = express.Router(),
-    mysql         = require('mysql'),
-    dbconfig      = {host: process.env.DATABASE_HOST, user: process.env.DATABASE_USER, password: process.env.DATABASE_PASSWORD, database: process.env.DATABASE},
-    connection    = mysql.createConnection(dbconfig);  
 
-connection.query('USE ' + process.env.DATABASE);
+module.exports = function(express, connection) {
+
+  var survey_helper = require('./helpers/survey_helpers.js')(connection), 
+      router        = express.Router(); 
+
 
 //Deafult route to Survey page
 router.route('/')
-  .all(authenticate, function (req, res, next) {next();})
   .get(function(req, res) {
     var query1 = "SELECT * FROM survey";
     var query2 = "SELECT COUNT(*) FROM survey_category"
@@ -31,13 +28,12 @@ router.route('/')
 
 //Route for viewing surveys
 router.route('/:id/view')
-  .all(authenticate, function (req, res, next) {next();})
   .get(function(req, res) {
     var query1 = "SELECT survey_name FROM survey where survey_id=" + req.params.id + ";";
     var query2 = "SELECT COUNT(*) FROM survey_category"
     connection.query(query1, function(err, surveyName){
       if (err) {console.log(err)}
-      getSurveyQuestionsAndCategories(req.params.id, function(compositeList) {
+      survey_helper.getSurveyQuestionsAndCategories(req.params.id, function(compositeList) {
         res.render('viewSurvey', { composite: compositeList, survey_name: surveyName[0].survey_name, user: req.user._json.user_metadata, buffer: "../../../"});
       });
     });
@@ -45,7 +41,6 @@ router.route('/:id/view')
 
 //Route for deleting surveys
 router.route('/:id/delete')
-  .all(authenticate, function (req, res, next) {next();})
   .get(function(req, res) {
     var query1 = "DELETE FROM survey where survey_id=" + req.params.id + ";";
     connection.query(query1, function(err, surveyName){
@@ -56,13 +51,12 @@ router.route('/:id/delete')
 
 //Route for editing surveys
 router.route('/:id/edit')
-  .all(authenticate, function (req, res, next) {next();})
   .get(function(req, res) {
     var query1 = "SELECT survey_name, survey_id FROM survey where survey_id=" + req.params.id + ";";
     var query2 = "SELECT COUNT(*) FROM survey_category"
     connection.query(query1, function(err, surveyName){
       if (err) {console.log(err)}
-      getSurveyQuestionsAndCategories(req.params.id, function(compositeList) {
+      survey_helper.getSurveyQuestionsAndCategories(req.params.id, function(compositeList) {
         res.render('editSurvey', 
           { composite: compositeList, survey_name: surveyName[0].survey_name, survey_id:surveyName[0].survey_id, user: req.user._json.user_metadata, buffer: "../../../"});
       });
@@ -79,7 +73,6 @@ router.route('/:id/edit')
   
 //Route to edit Category
 router.route('/:surveyId/category/:categoryId/edit')
-  .all(authenticate, function(req, res, next) {next();})
   .get(function(req, res) {
     var query1 = "SELECT survey_category_name FROM survey_category "
       + "where survey_category_id=" + req.params.categoryId + ";";
@@ -104,7 +97,6 @@ router.route('/:surveyId/category/:categoryId/edit')
 
 //Route to edit Question
 router.route('/:surveyId/question/:questionId/edit')
-  .all(authenticate, function(req, res, next) {next();})
   .get(function(req, res) {
     var query1 = "SELECT survey_category_name, survey_category_id FROM survey_category "
       + "where survey_id=" + req.params.surveyId + ";";
@@ -142,7 +134,6 @@ router.route('/:surveyId/question/:questionId/edit')
 
 //Routes for adding survey categories
 router.route('/new/:id/category/:done')
-  .all(authenticate, function (req, res, next) {next();})
   .get(function(req, res) {
     var query1 = "SELECT survey_category_name FROM survey_category "
       + "where survey_id=" + req.params.id + ";";
@@ -170,7 +161,6 @@ router.route('/new/:id/category/:done')
 
 //Routes for adding survey questions
 router.route('/new/:id/question/:done')
-  .all(authenticate, function (req, res, next) {next();})
   .get(function(req, res) {
 
     var query1 = "SELECT survey_category_name, survey_category_id FROM survey_category "
@@ -203,89 +193,6 @@ router.route('/new/:id/question/:done')
   });
 
 
- /***************************************************************
- * HELPER METHODS START HERE
- ****************************************************************/
-
-
-/**
- * Helper Method to get the questions for a specific category
- *
- * parameters:
- * categoryId -> from DB the category_id to get questions for
- * array      -> variable to pass in all the questions to. 
- * callback   -> method to pass parameters to
- */
-var getQuestionsFromCategory = function(categoryId, array, callback) {
-
-  var query = "SELECT  question, survey_question_id FROM survey_question where survey_category_id=" + categoryId + ";";
   
-  connection.query(query, function(err, questions) {
-    if (err) {console.log(err)};
-    array.push(questions);
-    callback();
-  });
-};
-
-
-/**
- * Helper Method to get the categories for a specific survey
- *
- * parameters:
- * surveyId -> from DB the survey_id to get categories for
- * callback -> method to pass parameters to
- */
-var getCategoriesFromSurvey = function(surveyId,callback) {
-
-
-  var query = "SELECT  survey_category_name, survey_category_id FROM survey_category where survey_id=" + surveyId + ";";
-  
-  connection.query(query, function(err, categories) {
-    if (err) {console.log(err)};
-    
-    callback(categories);
-  });
-};
-
-
-/**
- * Helper Method to compile all the survey categories and questions
- * into a JSON object to be parsed by handelbars.
- *
- * parameters:
- * surveyId -> from DB the survey_id to get categories/questions for
- * callback -> method to pass parameters to
- */
-var getSurveyQuestionsAndCategories = function(surveyId, callback) {
-
-  //temp vars
-  var compositeList = []; 
-  var questionsList = [];
-
-  getCategoriesFromSurvey(surveyId, function(categories) {
-    var j = 0;
-
-    for (var i = 0; i < categories.length; i++) {
-      getQuestionsFromCategory(categories[i].survey_category_id, questionsList, function(){
-        
-        var toAdd = {
-          category: categories[j].survey_category_name, 
-          categroyId:categories[j].survey_category_id, 
-          question: questionsList[j]
-        };
-        j++;
-        compositeList.push(toAdd);
-
-        //after going through full list initiate callback
-        if (questionsList.length == i) {
-
-          callback(compositeList)
-        }
-      });
-    }
-  });
-  
+  return router;
 }
-  
-
-module.exports = router;
