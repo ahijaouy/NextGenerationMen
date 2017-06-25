@@ -1,4 +1,3 @@
-
 module.exports = function(express, connection) {
   var router = express.Router();
 
